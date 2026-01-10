@@ -106,7 +106,7 @@ $$
 </p>
 
 ## Tree Rendering with Mermaid
-<div data-test-id="mermaid-tree">
+<div data-test-id="mermaid-tree" markdown="1">
 
 ```mermaid
 graph TD

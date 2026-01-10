@@ -117,7 +117,7 @@ $$\left(\exists y\right)\left(\neg R(y,y) \lor P(y,y)\right) \land (\forall x) R
 
 We try to prove the formula is **unsatisfiable** by assuming it is **false** and deriving a contradiction.
 
-<div data-test-id="tableaux-proof-1">
+<div data-test-id="tableaux-proof-1" markdown="1">
 
 ```mermaid
 graph TD
@@ -156,7 +156,7 @@ $$\forall x (P(x) \to Q(x)) \to (\forall x P(x) \to \forall x Q(x))$$
 
 **Approach**: Assume the formula is **false** and try to derive a contradiction.
 
-<div data-test-id="tableaux-proof-2">
+<div data-test-id="tableaux-proof-2" markdown="1">
 
 ```mermaid
 graph TD
