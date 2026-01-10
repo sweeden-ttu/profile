@@ -1,5 +1,5 @@
 // _typography.scss
-// Typography styles for Academic Minimalism
+// Typography styles for Technical Atlas theme
 
 @use "variables" as *;
 
@@ -15,6 +15,9 @@ body {
   color: $color-text-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: radial-gradient(circle at 18% 12%, rgba($color-primary, 0.08), transparent 26%),
+              radial-gradient(circle at 82% 0%, rgba($color-accent-cyan, 0.12), transparent 22%),
+              $color-bg-primary;
 }
 
 // ============================================================================
@@ -22,6 +25,7 @@ body {
 // ============================================================================
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;  // Technical display
   font-weight: $font-weight-semibold;
   line-height: $line-height-heading;
   color: $color-text-primary;
@@ -31,16 +35,19 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: $font-size-h1;
-  font-weight: $font-weight-bold;
+  font-weight: 700;
   margin-top: 0;
+  letter-spacing: -0.01em;
 }
 
 h2 {
   font-size: $font-size-h2;
+  letter-spacing: -0.01em;
 }
 
 h3 {
   font-size: $font-size-h3;
+  letter-spacing: -0.005em;
 }
 
 h4 {
@@ -64,18 +71,49 @@ p {
   }
 }
 
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: $color-text-secondary;
+  max-width: 70ch;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: $font-weight-semibold;
+  color: $color-text-secondary;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+  align-items: center;
+  color: $color-text-secondary;
+  font-size: $font-size-small;
+}
+
 // Links
 a {
   color: $color-primary;
-  text-decoration: none;
-  transition: color $transition-fast;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba($color-primary, 0.35);
+  transition: color $transition-fast, text-decoration-color $transition-fast;
 
   &:hover {
     color: $color-primary-dark;
+    text-decoration-color: rgba($color-primary-dark, 0.5);
   }
 
   &:focus {
-    outline: 2px solid $color-primary;
+    outline: 2px solid rgba($color-primary, 0.3);
     outline-offset: 2px;
   }
 }
@@ -101,7 +139,7 @@ small {
 
 code, pre {
   font-family: $font-family-mono;
-  font-size: 0.875rem; // 14px
+  font-size: 0.9rem; // 14px
 }
 
 // Inline code
@@ -110,18 +148,19 @@ code {
   color: $color-code-text;
   padding: 0.125rem 0.375rem;
   border-radius: $border-radius-sm;
-  border: 1px solid $color-border-light;
+  border: 1px solid rgba($color-primary, 0.1);
 }
 
 // Code blocks
 pre {
   background-color: $color-bg-tertiary;
-  border: 1px solid $color-border-light;
+  border: 1px solid rgba($color-primary-dark, 0.12);
   border-radius: $border-radius-md;
   padding: $space-lg;
   overflow-x: auto;
   line-height: $line-height-code;
   margin-bottom: $space-lg;
+  box-shadow: 0 12px 30px rgba($color-primary-dark, 0.08);
 
   code {
     background: transparent;
@@ -159,6 +198,10 @@ blockquote {
   margin-bottom: $space-lg;
   color: $color-text-secondary;
   font-style: italic;
+  background: linear-gradient(90deg, rgba($color-primary, 0.08), transparent);
+  border-radius: $border-radius-md;
+  padding-top: $space-md;
+  padding-bottom: $space-md;
 
   p:last-child {
     margin-bottom: 0;
@@ -198,6 +241,21 @@ table {
 
   tr:last-child td {
     border-bottom: none;
+  }
+}
+
+figure {
+  margin: 0 0 $space-xl 0;
+
+  img {
+    border-radius: $border-radius-lg;
+    border: 1px solid $color-border-light;
+  }
+
+  figcaption {
+    margin-top: $space-sm;
+    color: $color-text-secondary;
+    font-size: $font-size-small;
   }
 }
 

@@ -2,6 +2,11 @@ source "https://rubygems.org"
 
 # Jekyll
 gem "jekyll", "~> 4.3"
+gem "jekyll-sass-converter", "~> 3.0"
+gem "sass-embedded", "~> 1.80"
+gem "csv"
+gem "logger"
+gem "base64"
 
 # Jekyll plugins
 group :jekyll_plugins do
@@ -15,7 +20,7 @@ gem "kramdown-math-katex"
 
 # Development and testing tools
 group :development, :test do
-  gem "html-proofer"
+  gem "html-proofer", "~> 5.2"
   gem "webrick", "~> 1.8"
 end
 

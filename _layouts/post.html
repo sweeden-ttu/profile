@@ -29,6 +29,36 @@ layout: default
     {% endif %}
   </header>
 
+  {% if page.series %}
+    {% assign series_posts = site.posts | where: "series", page.series | sort: "date" %}
+    <section class="series-callout" aria-label="Series navigation">
+      <p class="badge">Series</p>
+      <h2 class="series-callout__title">{{ page.series }}</h2>
+
+      {% if page.series_index or page.series_length %}
+        <p class="series-callout__meta">
+          {% if page.series_index %}Part {{ page.series_index }}{% endif %}
+          {% if page.series_length %} of {{ page.series_length }}{% endif %}
+        </p>
+      {% endif %}
+
+      {% if series_posts and series_posts.size > 0 %}
+        <ol class="series-callout__list">
+          {% for post in series_posts %}
+            <li>
+              {% if post.url == page.url %}
+                <span class="badge">Current</span>
+                <span>{{ post.title }}</span>
+              {% else %}
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      {% endif %}
+    </section>
+  {% endif %}
+
   <div class="post__content">
     {{ content }}
   </div>

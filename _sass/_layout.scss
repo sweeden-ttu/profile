@@ -60,13 +60,13 @@ body {
 // ============================================================================
 
 .site-header {
-  background-color: $color-bg-primary;
+  background: linear-gradient(135deg, rgba($color-bg-primary, 0.9), rgba($color-bg-secondary, 0.9));
   border-bottom: 1px solid $color-border;
   position: sticky;
   top: 0;
   z-index: $z-index-sticky;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(21, 42, 115, 0.08);
 
   &__container {
     max-width: $max-width-wide;
@@ -138,7 +138,7 @@ body {
 
     &:hover {
       color: $color-text-primary;
-      border-bottom-color: $color-primary;
+      border-bottom-color: rgba($color-primary, 0.5);
     }
 
     &--active {
@@ -193,7 +193,7 @@ body {
     top: 64px;
     left: 0;
     right: 0;
-    background-color: $color-bg-primary;
+    background: rgba($color-bg-primary, 0.98);
     border-bottom: 1px solid $color-border;
     padding: $space-lg;
     transform: translateY(-100%);

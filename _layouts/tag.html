@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<article class="page">
+  <header class="page__header">
+    <p class="eyebrow">Tag</p>
+    <h1 class="page__title">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="lead">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <section class="content-slab">
+    {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains page.tag" %}
+    {% if tagged_posts and tagged_posts.size > 0 %}
+      <ul class="toc-card__list">
+        {% for post in tagged_posts %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="text-muted"> · {{ post.date | date: "%b %-d, %Y" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted">No posts published for this tag yet.</p>
+    {% endif %}
+  </section>
+</article>

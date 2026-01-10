@@ -9,11 +9,14 @@
 // ============================================================================
 
 .card {
-  background-color: $color-bg-primary;
+  background: linear-gradient(160deg, rgba($color-bg-secondary, 0.9), rgba($color-bg-primary, 0.95));
   border: 1px solid $color-border;
   border-radius: $border-radius-lg;
   padding: $space-xl;
   box-shadow: $shadow-card;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   transition: all $transition-base;
 
   &:hover {
@@ -28,6 +31,30 @@
 
   &__content {
     color: $color-text-secondary;
+  }
+}
+
+// ============================================================================
+// Accessibility helpers
+// ============================================================================
+
+.skip-link {
+  position: fixed;
+  left: $space-sm;
+  bottom: $space-sm;
+  background: $color-primary;
+  color: #ffffff;
+  padding: $space-sm $space-md;
+  border-radius: $border-radius-md;
+  text-decoration: none;
+  z-index: $z-index-fixed;
+  transition: box-shadow $transition-fast, transform $transition-fast, opacity $transition-fast;
+  opacity: 0.82;
+
+  &:focus {
+    box-shadow: $shadow-lg;
+    transform: translateY(-2px);
+    opacity: 1;
   }
 }
 
@@ -48,7 +75,7 @@
   transition: all $transition-fast;
 
   &--primary {
-    background-color: $color-primary;
+    background: linear-gradient(135deg, $color-primary, $color-primary-dark);
     color: #ffffff;
 
     &:hover {
@@ -58,12 +85,12 @@
   }
 
   &--secondary {
-    background-color: transparent;
-    border: 1px solid $color-border;
+    background-color: rgba($color-primary, 0.05);
+    border: 1px solid rgba($color-primary, 0.25);
     color: $color-text-primary;
 
     &:hover {
-      background-color: $color-bg-secondary;
+      background-color: rgba($color-primary, 0.1);
       transform: translateY(-1px);
     }
   }
@@ -77,6 +104,65 @@
     padding: 14px 28px;
     font-size: 1rem;
   }
+}
+
+// ============================================================================
+// Hero / Masthead
+// ============================================================================
+
+.hero {
+  background:
+    linear-gradient(135deg, rgba($color-primary, 0.08), rgba($color-accent-cyan, 0.08)),
+    url("/assets/images/patterns/tech-grid.svg");
+  background-size: cover, 520px;
+  background-position: center, top right;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-xl;
+  padding: $space-3xl $space-2xl;
+  box-shadow: 0 20px 40px rgba($color-primary-dark, 0.07);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 10%, rgba($color-primary, 0.12), transparent 32%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__title {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+    margin-bottom: $space-md;
+  }
+
+  &__subtitle {
+    position: relative;
+    z-index: 1;
+    max-width: 70ch;
+    color: $color-text-secondary;
+    margin: 0;
+  }
+
+  &__meta {
+    position: relative;
+    z-index: 1;
+    margin-top: $space-lg;
+  }
+}
+
+.content-slab {
+  background:
+    linear-gradient(135deg, rgba($color-primary, 0.04), rgba($color-accent-cyan, 0.02)),
+    url("/assets/images/patterns/halftone-dots.svg");
+  background-size: cover, 280px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-xl;
+  padding: $space-2xl;
+  box-shadow: 0 10px 25px rgba($color-primary-dark, 0.05);
 }
 
 // ============================================================================
@@ -119,6 +205,18 @@
     margin-bottom: $space-3xl;
     padding-bottom: $space-xl;
     border-bottom: 1px solid $color-border;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba($color-primary, 0.4), rgba($color-accent-cyan, 0.3));
+      opacity: 0.8;
+    }
   }
 
   &__title {
@@ -161,6 +259,11 @@
 
   &__content {
     margin-bottom: $space-3xl;
+    background: $color-bg-secondary;
+    border: 1px solid $color-border;
+    border-radius: $border-radius-xl;
+    padding: $space-2xl;
+    box-shadow: 0 10px 30px rgba($color-primary-dark, 0.06);
   }
 
   &__footer {
@@ -193,6 +296,108 @@
     &:hover {
       background-color: $color-primary;
       color: #ffffff;
+    }
+  }
+}
+
+// Series Callout
+.series-callout {
+  background: linear-gradient(135deg, rgba($color-primary, 0.08), rgba($color-accent-purple, 0.06));
+  border: 1px solid rgba($color-primary, 0.25);
+  border-radius: $border-radius-lg;
+  padding: $space-xl;
+  margin-bottom: $space-2xl;
+  box-shadow: 0 12px 26px rgba($color-primary-dark, 0.08);
+
+  &__title {
+    margin: 0 0 $space-md 0;
+    font-size: $font-size-h4;
+  }
+
+  &__meta {
+    color: $color-text-secondary;
+    font-size: $font-size-small;
+    margin-bottom: $space-md;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: $space-sm;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $space-sm;
+      padding: $space-sm $space-md;
+      border-radius: $border-radius-md;
+      border: 1px solid transparent;
+
+      &:hover {
+        border-color: rgba($color-primary, 0.25);
+        background: rgba($color-bg-primary, 0.6);
+      }
+    }
+
+    a {
+      color: $color-text-primary;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-xs;
+  font-size: $font-size-small;
+  font-weight: $font-weight-medium;
+  padding: $space-xs $space-md;
+  border-radius: 999px;
+  background: rgba($color-primary, 0.08);
+  color: $color-primary-dark;
+  border: 1px solid rgba($color-primary, 0.25);
+}
+
+.toc-card {
+  background: $color-bg-secondary;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $space-xl;
+  margin-bottom: $space-2xl;
+  box-shadow: 0 8px 20px rgba($color-primary-dark, 0.05);
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: $space-md;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: $space-sm;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-text-secondary;
+
+      &:hover {
+        color: $color-primary;
+      }
     }
   }
 }

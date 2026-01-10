@@ -118,7 +118,7 @@ The agent shows clear learning progress over episodes:
 - **Mid training (100-500)**: Learns basic ghost avoidance
 - **Late training (500-1000)**: Develops efficient pellet collection strategies
 
-![Learning Curve](../assets/images/qlearning-curve.png)
+![Learning Curve](/assets/images/qlearning-curve.png)
 
 ## Results
 
@@ -205,8 +205,8 @@ This project demonstrates:
 ## Resources
 
 - [GitHub Repository](https://github.com/[username]/qlearning-pacman)
-- [Sutton & Barto: Reinforcement Learning](http://incompleteideas.net/book/)
-- [UC Berkeley AI Course](http://ai.berkeley.edu/)
+- [Sutton & Barto: Reinforcement Learning](https://incompleteideas.net/book/)
+- [UC Berkeley AI Course](https://ai.berkeley.edu/)
 
 ## Acknowledgments
 
