@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="site-header__container">
+    <div class="site-header__brand">
+      <a href="{{ '/' | relative_url }}" class="site-header__logo">
+        <span class="site-header__name">{{ site.title }}</span>
+      </a>
+    </div>
+
+    {% include nav.html %}
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="mobile-menu-toggle__bar"></span>
+      <span class="mobile-menu-toggle__bar"></span>
+      <span class="mobile-menu-toggle__bar"></span>
+    </button>
+  </div>
+</header>

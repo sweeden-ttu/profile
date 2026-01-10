@@ -1,0 +1,306 @@
+// _layout.scss
+// Layout and structural styles
+
+@use "variables" as *;
+
+// ============================================================================
+// Global Layout
+// ============================================================================
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $color-bg-primary;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ============================================================================
+// Main Content
+// ============================================================================
+
+.main-content {
+  flex: 1;
+  padding: $padding-mobile;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: $padding-tablet;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    padding: $padding-desktop;
+  }
+}
+
+// ============================================================================
+// Container
+// ============================================================================
+
+.container {
+  max-width: $max-width-content;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+
+  &--wide {
+    max-width: $max-width-wide;
+  }
+}
+
+// ============================================================================
+// Header
+// ============================================================================
+
+.site-header {
+  background-color: $color-bg-primary;
+  border-bottom: 1px solid $color-border;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95);
+
+  &__container {
+    max-width: $max-width-wide;
+    margin: 0 auto;
+    padding: 0 $padding-mobile;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0 $padding-tablet;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    text-decoration: none;
+    color: $color-text-primary;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-h4;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__name {
+    display: inline-block;
+  }
+}
+
+// ============================================================================
+// Navigation
+// ============================================================================
+
+.site-nav {
+  display: none;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: block;
+  }
+
+  &__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: $space-xl;
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  &__link {
+    color: $color-text-secondary;
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    font-size: 0.9375rem; // 15px
+    padding: $space-sm 0;
+    border-bottom: 2px solid transparent;
+    transition: all $transition-base;
+
+    &:hover {
+      color: $color-text-primary;
+      border-bottom-color: $color-primary;
+    }
+
+    &--active {
+      color: $color-primary;
+      border-bottom-color: $color-primary;
+    }
+  }
+}
+
+// Mobile Menu Toggle
+.mobile-menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+
+  &__bar {
+    width: 100%;
+    height: 2px;
+    background-color: $color-text-primary;
+    transition: all $transition-base;
+  }
+
+  &[aria-expanded="true"] {
+    .mobile-menu-toggle__bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle__bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle__bar:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+}
+
+// Mobile Navigation (Hidden by default)
+@media (max-width: $breakpoint-tablet - 1px) {
+  .site-nav {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background-color: $color-bg-primary;
+    border-bottom: 1px solid $color-border;
+    padding: $space-lg;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all $transition-base;
+    pointer-events: none;
+
+    &--open {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    &__list {
+      flex-direction: column;
+      gap: $space-md;
+    }
+  }
+}
+
+// ============================================================================
+// Footer
+// ============================================================================
+
+.site-footer {
+  background-color: $color-bg-secondary;
+  border-top: 1px solid $color-border;
+  padding: $space-3xl $padding-mobile;
+  margin-top: $space-4xl;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: $space-3xl $padding-tablet;
+  }
+
+  &__container {
+    max-width: $max-width-wide;
+    margin: 0 auto;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-2xl;
+    margin-bottom: $space-2xl;
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-h4;
+    margin-top: 0;
+    margin-bottom: $space-md;
+  }
+
+  &__description {
+    color: $color-text-secondary;
+    margin-bottom: 0;
+  }
+
+  &__links-title,
+  &__nav-title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $space-md;
+  }
+
+  &__social,
+  &__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: $space-sm;
+    }
+
+    a {
+      color: $color-text-secondary;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__bottom {
+    padding-top: $space-xl;
+    border-top: 1px solid $color-border;
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__copyright,
+  &__credit {
+    margin: 0;
+    font-size: $font-size-small;
+    color: $color-text-secondary;
+  }
+}

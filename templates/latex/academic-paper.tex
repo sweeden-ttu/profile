@@ -1,0 +1,123 @@
+% Academic Research Paper Template
+% For IEEE-style publications and academic research
+
+\documentclass[conference]{IEEEtran}
+
+% Packages
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor=blue,
+}
+
+% Document metadata
+\title{Your Research Paper Title\\
+{\large Subtitle if Needed}}
+
+\author{
+    \IEEEauthorblockN{Scott Weeden}
+    \IEEEauthorblockA{
+        \textit{Department of Computer Science} \\
+        \textit{Texas Tech University}\\
+        Lubbock, Texas, USA \\
+        email@ttu.edu
+    }
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is where you write your abstract. The abstract should be a concise summary of your research, typically 150-250 words. It should include: (1) the problem or motivation, (2) the approach or methodology, (3) key results, and (4) main conclusions. Keep it focused and clear.
+\end{abstract}
+
+\begin{IEEEkeywords}
+machine learning, algorithm analysis, computational complexity, your keywords here
+\end{IEEEkeywords}
+
+\section{Introduction}
+Introduce your research problem and motivation. Explain why this work is important and what gap in knowledge or practice it addresses.
+
+\subsection{Background}
+Provide necessary background information for understanding your work.
+
+\subsection{Contributions}
+Clearly state your main contributions:
+\begin{itemize}
+    \item First contribution
+    \item Second contribution
+    \item Third contribution
+\end{itemize}
+
+\section{Related Work}
+Discuss previous research related to your work. Compare and contrast with your approach.
+
+\section{Methodology}
+Describe your approach, algorithms, or experimental setup.
+
+\subsection{Problem Formulation}
+Formally define the problem. Use mathematical notation where appropriate:
+
+\begin{equation}
+f(x) = \sum_{i=1}^{n} w_i x_i
+\end{equation}
+
+\subsection{Algorithm}
+Present your algorithm or approach.
+
+\section{Experimental Results}
+Present and analyze your results.
+
+\subsection{Experimental Setup}
+Describe your experimental environment, datasets, and evaluation metrics.
+
+\subsection{Results and Analysis}
+Present results with figures and tables.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.45\textwidth]{figure1.png}}
+\caption{Your figure caption here.}
+\label{fig:example}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Results Comparison}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Method} & \textbf{Accuracy} & \textbf{Time (s)} \\
+\hline
+Baseline & 85.2\% & 12.3 \\
+\hline
+Our Method & \textbf{92.7\%} & \textbf{8.1} \\
+\hline
+\end{tabular}
+\label{tab:results}
+\end{center}
+\end{table}
+
+\section{Discussion}
+Discuss the implications of your results, limitations, and potential improvements.
+
+\section{Conclusion}
+Summarize your work and contributions. Mention future research directions.
+
+\section*{Acknowledgments}
+Acknowledge funding sources, collaborators, and others who contributed.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

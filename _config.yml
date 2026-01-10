@@ -1,0 +1,103 @@
+# Site Settings
+title: Scott Weeden
+description: Computer Science student, researcher, and ML enthusiast at Texas Tech University
+url: "https://yourusername.github.io"
+baseurl: ""
+
+# Author Information
+author:
+  name: Scott Weeden
+  email: sweeden@ttu.edu
+  github: sweeden-ttu
+  linkedin: weedens
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+timezone: America/Chicago
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Kramdown Settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+    css_class: 'highlight'
+  math_engine: katex
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Feed Settings
+feed:
+  path: /feed.xml
+
+# SEO Settings
+logo: /assets/images/logo.png
+social:
+  name: Scott Weeden
+  links:
+    - https://github.com/yourusername
+    - https://linkedin.com/in/yourprofile
+
+# Defaults
+defaults:
+  # Posts
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      author: Scott Weeden
+  # Projects
+  - scope:
+      path: "_projects"
+      type: projects
+    values:
+      layout: project
+  # Pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - CLAUDE.md
+  - README.md
+  - templates/
+  - .lighthouserc.json
+  - package.json
+  - package-lock.json
+
+# Include files
+include:
+  - _pages
+
+# Sass/SCSS Settings
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Pagination (if needed in future)
+# paginate: 10
+# paginate_path: "/blog/page:num/"

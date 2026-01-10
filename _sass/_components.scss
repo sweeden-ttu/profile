@@ -1,0 +1,402 @@
+// _components.scss
+// Reusable component styles
+
+@use "sass:color";
+@use "variables" as *;
+
+// ============================================================================
+// Cards
+// ============================================================================
+
+.card {
+  background-color: $color-bg-primary;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $space-xl;
+  box-shadow: $shadow-card;
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-card-hover;
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: $space-md;
+  }
+
+  &__content {
+    color: $color-text-secondary;
+  }
+}
+
+// ============================================================================
+// Buttons
+// ============================================================================
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: $border-radius-md;
+  font-size: 0.875rem; // 14px
+  font-weight: $font-weight-medium;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all $transition-fast;
+
+  &--primary {
+    background-color: $color-primary;
+    color: #ffffff;
+
+    &:hover {
+      background-color: $color-primary-dark;
+      transform: translateY(-1px);
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    border: 1px solid $color-border;
+    color: $color-text-primary;
+
+    &:hover {
+      background-color: $color-bg-secondary;
+      transform: translateY(-1px);
+    }
+  }
+
+  &--small {
+    padding: 6px 12px;
+    font-size: 0.8125rem; // 13px
+  }
+
+  &--large {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+}
+
+// ============================================================================
+// Page Components
+// ============================================================================
+
+.page {
+  max-width: $max-width-content;
+  margin: 0 auto;
+
+  &__header {
+    margin-bottom: $space-3xl;
+  }
+
+  &__title {
+    margin-bottom: $space-md;
+  }
+
+  &__subtitle {
+    font-size: $font-size-h4;
+    color: $color-text-secondary;
+    font-weight: $font-weight-normal;
+    margin-top: 0;
+  }
+
+  &__content {
+    // Content styles inherited from typography
+  }
+}
+
+// ============================================================================
+// Post Components
+// ============================================================================
+
+.post {
+  max-width: $max-width-content;
+  margin: 0 auto;
+
+  &__header {
+    margin-bottom: $space-3xl;
+    padding-bottom: $space-xl;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__title {
+    margin-bottom: $space-lg;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-lg;
+    align-items: center;
+    color: $color-text-secondary;
+    font-size: $font-size-small;
+    margin-bottom: $space-md;
+  }
+
+  &__date,
+  &__reading-time {
+    display: inline-block;
+  }
+
+  &__categories {
+    display: flex;
+    gap: $space-sm;
+  }
+
+  &__category {
+    background-color: $color-bg-secondary;
+    padding: $space-xs $space-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-small;
+  }
+
+  &__excerpt {
+    font-size: $font-size-h4;
+    color: $color-text-secondary;
+    font-weight: $font-weight-normal;
+    line-height: 1.4;
+  }
+
+  &__content {
+    margin-bottom: $space-3xl;
+  }
+
+  &__footer {
+    padding-top: $space-xl;
+    border-top: 1px solid $color-border;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    align-items: center;
+  }
+
+  &__tags-label {
+    font-size: $font-size-small;
+    color: $color-text-secondary;
+    font-weight: $font-weight-medium;
+  }
+
+  &__tag {
+    background-color: $color-primary-light;
+    color: $color-primary;
+    padding: $space-xs $space-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-small;
+    text-decoration: none;
+    transition: all $transition-fast;
+
+    &:hover {
+      background-color: $color-primary;
+      color: #ffffff;
+    }
+  }
+}
+
+// Related Posts
+.related-posts {
+  max-width: $max-width-content;
+  margin: $space-4xl auto 0;
+  padding-top: $space-3xl;
+  border-top: 1px solid $color-border;
+
+  &__title {
+    margin-bottom: $space-xl;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-lg;
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.related-post-card {
+  &__title {
+    font-size: $font-size-base;
+    margin-top: 0;
+    margin-bottom: $space-sm;
+
+    a {
+      color: $color-text-primary;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__date {
+    font-size: $font-size-small;
+    color: $color-text-secondary;
+  }
+}
+
+// ============================================================================
+// Project Components
+// ============================================================================
+
+.project {
+  max-width: $max-width-content;
+  margin: 0 auto;
+
+  &__header {
+    margin-bottom: $space-3xl;
+    padding-bottom: $space-xl;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__title {
+    margin-bottom: $space-md;
+  }
+
+  &__subtitle {
+    font-size: $font-size-h4;
+    color: $color-text-secondary;
+    font-weight: $font-weight-normal;
+    margin-top: 0;
+    margin-bottom: $space-lg;
+  }
+
+  &__meta {
+    display: flex;
+    gap: $space-lg;
+    align-items: center;
+    margin-bottom: $space-lg;
+    flex-wrap: wrap;
+  }
+
+  &__date {
+    font-size: $font-size-small;
+    color: $color-text-secondary;
+  }
+
+  &__status {
+    padding: $space-xs $space-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-small;
+    font-weight: $font-weight-medium;
+
+    &--completed {
+      background-color: color.scale($color-accent-green, $lightness: 74%);
+      color: color.scale($color-accent-green, $lightness: -25%);
+    }
+
+    &--in-progress {
+      background-color: color.scale($color-accent-orange, $lightness: 80%);
+      color: color.scale($color-accent-orange, $lightness: -20%);
+    }
+
+    &--planned {
+      background-color: $color-bg-secondary;
+      color: $color-text-secondary;
+    }
+  }
+
+  &__tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    align-items: center;
+    margin-bottom: $space-lg;
+  }
+
+  &__tech-label {
+    font-size: $font-size-small;
+    color: $color-text-secondary;
+    font-weight: $font-weight-medium;
+  }
+
+  &__tech-item {
+    background-color: $color-bg-tertiary;
+    padding: $space-xs $space-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-small;
+    font-family: $font-family-mono;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-md;
+  }
+
+  &__link {
+    @extend .btn;
+    @extend .btn--secondary;
+
+    &--demo,
+    &--github,
+    &--paper,
+    &--video {
+      // Specific link styles can be added here
+    }
+  }
+
+  &__content {
+    margin-bottom: $space-3xl;
+  }
+
+  &__outcomes {
+    background-color: $color-bg-secondary;
+    padding: $space-xl;
+    border-radius: $border-radius-lg;
+    margin-top: $space-3xl;
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+}
+
+// ============================================================================
+// Code Block Enhancements
+// ============================================================================
+
+// Language label for code blocks
+pre[class*="language-"] {
+  position: relative;
+
+  &::before {
+    content: attr(class);
+    position: absolute;
+    top: $space-sm;
+    right: $space-sm;
+    font-size: $font-size-small;
+    color: $color-text-tertiary;
+    text-transform: uppercase;
+    font-family: $font-family-sans;
+  }
+}
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: $color-text-secondary;
+}
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-sm { margin-top: $space-sm; }
+.mb-sm { margin-bottom: $space-sm; }
+.mt-md { margin-top: $space-md; }
+.mb-md { margin-bottom: $space-md; }
+.mt-lg { margin-top: $space-lg; }
+.mb-lg { margin-bottom: $space-lg; }
+.mt-xl { margin-top: $space-xl; }
+.mb-xl { margin-bottom: $space-xl; }

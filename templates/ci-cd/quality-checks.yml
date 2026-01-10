@@ -1,0 +1,77 @@
+# GitHub Actions workflow for code quality and testing
+# Runs HTML validation, link checking, and accessibility tests
+
+name: Quality Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          gem install html-proofer
+          npm install -g pa11y-ci markdownlint-cli
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Check Markdown files
+        run: markdownlint '**/*.md' --ignore node_modules --ignore _site
+        continue-on-error: true
+
+      - name: Validate HTML
+        run: |
+          htmlproofer ./_site \
+            --disable-external \
+            --checks-to-ignore ImageCheck \
+            --allow-hash-href \
+            --ignore-empty-alt
+        continue-on-error: true
+
+      - name: Check accessibility
+        run: |
+          bundle exec jekyll serve --detach
+          sleep 5
+          pa11y-ci http://localhost:4000/
+        continue-on-error: true
+
+      - name: Check for broken links
+        run: |
+          htmlproofer ./_site \
+            --checks-to-ignore ScriptCheck,ImageCheck \
+            --only-4xx \
+            --http-status-ignore 429
+        continue-on-error: true
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: site-build
+          path: _site/

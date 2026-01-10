@@ -1,0 +1,182 @@
+% Blog Post Supplementary Material Template
+% For detailed mathematical derivations or extended technical content
+
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+% Hyperref configuration
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% Code listing style
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+% Title information
+\title{Blog Post Title: \\
+Extended Mathematical Supplement}
+\author{Scott Weeden \\
+\textit{Texas Tech University}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document provides extended mathematical derivations, proofs, and technical details that supplement the main blog post. It is intended for readers who want to dive deeper into the mathematical foundations and algorithmic details.
+
+\textbf{Related Blog Post:} \url{https://yoursite.com/blog/post-slug}
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+Provide context and overview of what this supplement covers.
+
+\section{Mathematical Foundations}
+
+\subsection{Definitions}
+\begin{definition}[Your Definition]
+Formally define key concepts used in your blog post.
+\end{definition}
+
+\subsection{Theorems and Proofs}
+\begin{theorem}[Main Result]
+State your main theoretical result.
+\end{theorem}
+
+\begin{proof}
+Provide a rigorous proof of the theorem.
+
+Step 1: Setup and assumptions...
+
+Step 2: Derivation...
+\begin{align}
+f(x) &= g(x) + h(x) \\
+     &= \sum_{i=1}^{n} a_i x^i \\
+     &= O(n^2)
+\end{align}
+
+Step 3: Conclusion...
+\end{proof}
+
+\section{Algorithm Details}
+
+\begin{algorithm}
+\caption{Your Algorithm Name}
+\begin{algorithmic}[1]
+\Procedure{AlgorithmName}{$input$}
+    \State $result \gets 0$
+    \For{$i \gets 1$ to $n$}
+        \State $result \gets result + compute(i)$
+    \EndFor
+    \State \Return $result$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Complexity Analysis}
+\begin{theorem}[Time Complexity]
+The algorithm runs in $O(n \log n)$ time.
+\end{theorem}
+
+\begin{proof}
+Analyze each step...
+\end{proof}
+
+\section{Code Implementation}
+
+\begin{lstlisting}[language=Python, caption=Python Implementation]
+def your_algorithm(data):
+    """
+    Detailed implementation of the algorithm.
+
+    Args:
+        data: Input data structure
+
+    Returns:
+        Processed result
+    """
+    result = []
+    for item in data:
+        processed = process_item(item)
+        result.append(processed)
+    return result
+\end{lstlisting}
+
+\section{Extended Examples}
+
+\begin{example}[Detailed Walkthrough]
+Let's walk through a complete example with data:
+\[
+X = \{x_1, x_2, \ldots, x_n\}
+\]
+
+Step by step computation...
+\end{example}
+
+\section{Additional Visualizations}
+
+\begin{figure}[h]
+\centering
+% \includegraphics[width=0.8\textwidth]{visualization.png}
+\caption{Detailed visualization of the algorithm behavior}
+\label{fig:visualization}
+\end{figure}
+
+\section{References and Further Reading}
+
+\begin{enumerate}
+    \item Reference 1: Original paper or textbook
+    \item Reference 2: Related work
+    \item Reference 3: Implementation resources
+\end{enumerate}
+
+\end{document}

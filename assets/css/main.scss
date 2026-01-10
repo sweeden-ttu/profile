@@ -1,0 +1,41 @@
+---
+# Front matter required for Jekyll to process this file
+---
+
+// Import Design Tokens and Styles using modern @use syntax
+@use "variables" as *;
+@use "typography";
+@use "layout";
+@use "components";
+
+// ============================================================================
+// CSS Custom Properties (for runtime theming if needed)
+// ============================================================================
+
+:root {
+  // Colors
+  --color-primary: #{$color-primary};
+  --color-primary-dark: #{$color-primary-dark};
+  --color-primary-light: #{$color-primary-light};
+
+  --color-text-primary: #{$color-text-primary};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-tertiary: #{$color-text-tertiary};
+
+  --color-bg-primary: #{$color-bg-primary};
+  --color-bg-secondary: #{$color-bg-secondary};
+  --color-bg-tertiary: #{$color-bg-tertiary};
+
+  --color-border: #{$color-border};
+  --color-border-light: #{$color-border-light};
+
+  // Spacing
+  --space-xs: #{$space-xs};
+  --space-sm: #{$space-sm};
+  --space-md: #{$space-md};
+  --space-lg: #{$space-lg};
+  --space-xl: #{$space-xl};
+  --space-2xl: #{$space-2xl};
+  --space-3xl: #{$space-3xl};
+  --space-4xl: #{$space-4xl};
+}

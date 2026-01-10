@@ -1,0 +1,216 @@
+// _typography.scss
+// Typography styles for Academic Minimalism
+
+@use "variables" as *;
+
+// ============================================================================
+// Base Typography
+// ============================================================================
+
+body {
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-body;
+  color: $color-text-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================================================
+// Headings
+// ============================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-heading;
+  color: $color-text-primary;
+  margin-top: $space-2xl;
+  margin-bottom: $space-lg;
+}
+
+h1 {
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+h3 {
+  font-size: $font-size-h3;
+}
+
+h4 {
+  font-size: $font-size-h4;
+}
+
+h5, h6 {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+// ============================================================================
+// Paragraphs & Text
+// ============================================================================
+
+p {
+  margin-bottom: $space-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Strong & Emphasis
+strong, b {
+  font-weight: $font-weight-semibold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+// Small text
+small {
+  font-size: $font-size-small;
+  color: $color-text-secondary;
+}
+
+// ============================================================================
+// Code & Preformatted Text
+// ============================================================================
+
+code, pre {
+  font-family: $font-family-mono;
+  font-size: 0.875rem; // 14px
+}
+
+// Inline code
+code {
+  background-color: $color-bg-tertiary;
+  color: $color-code-text;
+  padding: 0.125rem 0.375rem;
+  border-radius: $border-radius-sm;
+  border: 1px solid $color-border-light;
+}
+
+// Code blocks
+pre {
+  background-color: $color-bg-tertiary;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius-md;
+  padding: $space-lg;
+  overflow-x: auto;
+  line-height: $line-height-code;
+  margin-bottom: $space-lg;
+
+  code {
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+}
+
+// ============================================================================
+// Lists
+// ============================================================================
+
+ul, ol {
+  margin-bottom: $space-lg;
+  padding-left: $space-xl;
+
+  li {
+    margin-bottom: $space-sm;
+  }
+
+  ul, ol {
+    margin-top: $space-sm;
+    margin-bottom: $space-sm;
+  }
+}
+
+// ============================================================================
+// Blockquotes
+// ============================================================================
+
+blockquote {
+  border-left: 4px solid $color-primary;
+  padding-left: $space-lg;
+  margin-left: 0;
+  margin-bottom: $space-lg;
+  color: $color-text-secondary;
+  font-style: italic;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ============================================================================
+// Horizontal Rule
+// ============================================================================
+
+hr {
+  border: none;
+  border-top: 1px solid $color-border;
+  margin: $space-2xl 0;
+}
+
+// ============================================================================
+// Tables
+// ============================================================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $space-lg;
+
+  th, td {
+    padding: $space-md;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  th {
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    background-color: $color-bg-secondary;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// ============================================================================
+// Math Typography (for KaTeX)
+// ============================================================================
+
+.katex {
+  font-size: 1.05em;
+}
+
+.katex-display {
+  margin: $space-lg 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}

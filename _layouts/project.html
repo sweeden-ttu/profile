@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+<article class="project">
+  <header class="project__header">
+    <h1 class="project__title">{{ page.title }}</h1>
+
+    {% if page.subtitle %}
+      <p class="project__subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+
+    <div class="project__meta">
+      {% if page.date %}
+        <time class="project__date" datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%B %Y" }}
+        </time>
+      {% endif %}
+
+      {% if page.status %}
+        <span class="project__status project__status--{{ page.status | downcase }}">
+          {{ page.status }}
+        </span>
+      {% endif %}
+    </div>
+
+    {% if page.tech_stack %}
+      <div class="project__tech-stack">
+        <span class="project__tech-label">Technologies:</span>
+        {% for tech in page.tech_stack %}
+          <span class="project__tech-item">{{ tech }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if page.links %}
+      <div class="project__links">
+        {% if page.links.demo %}
+          <a href="{{ page.links.demo }}" class="project__link project__link--demo" target="_blank" rel="noopener">
+            View Demo
+          </a>
+        {% endif %}
+
+        {% if page.links.github %}
+          <a href="{{ page.links.github }}" class="project__link project__link--github" target="_blank" rel="noopener">
+            View on GitHub
+          </a>
+        {% endif %}
+
+        {% if page.links.paper %}
+          <a href="{{ page.links.paper }}" class="project__link project__link--paper" target="_blank" rel="noopener">
+            Read Paper
+          </a>
+        {% endif %}
+
+        {% if page.links.video %}
+          <a href="{{ page.links.video }}" class="project__link project__link--video" target="_blank" rel="noopener">
+            Watch Video
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="project__content">
+    {{ content }}
+  </div>
+
+  {% if page.outcomes %}
+    <section class="project__outcomes">
+      <h2>Outcomes & Results</h2>
+      <ul>
+        {% for outcome in page.outcomes %}
+          <li>{{ outcome }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+</article>

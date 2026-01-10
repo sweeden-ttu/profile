@@ -1,0 +1,33 @@
+<nav class="site-nav" aria-label="Main navigation">
+  <ul class="site-nav__list">
+    <li class="site-nav__item">
+      <a href="{{ '/' | relative_url }}" class="site-nav__link {% if page.url == '/' %}site-nav__link--active{% endif %}">
+        Home
+      </a>
+    </li>
+
+    <li class="site-nav__item">
+      <a href="{{ '/about/' | relative_url }}" class="site-nav__link {% if page.url contains '/about' %}site-nav__link--active{% endif %}">
+        About
+      </a>
+    </li>
+
+    <li class="site-nav__item">
+      <a href="{{ '/resume/' | relative_url }}" class="site-nav__link {% if page.url contains '/resume' %}site-nav__link--active{% endif %}">
+        Resume
+      </a>
+    </li>
+
+    <li class="site-nav__item">
+      <a href="{{ '/research/' | relative_url }}" class="site-nav__link {% if page.url contains '/research' %}site-nav__link--active{% endif %}">
+        Research & Projects
+      </a>
+    </li>
+
+    <li class="site-nav__item">
+      <a href="{{ '/blog/' | relative_url }}" class="site-nav__link {% if page.url contains '/blog' %}site-nav__link--active{% endif %}">
+        Blog
+      </a>
+    </li>
+  </ul>
+</nav>

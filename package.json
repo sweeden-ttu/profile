@@ -1,0 +1,24 @@
+{
+  "name": "profile",
+  "version": "1.0.0",
+  "description": "Scott Weeden's personal portfolio and blog - Jekyll static site",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "jekyll",
+    "portfolio",
+    "blog",
+    "computer-science",
+    "machine-learning"
+  ],
+  "author": "Scott Weeden",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@lhci/cli": "^0.13.0"
+  }
+}
