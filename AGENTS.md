@@ -25,3 +25,10 @@
 - Use short, action-oriented commit messages (observed pattern: `Add ...`, `Merge ...`); keep subject under ~72 chars and scope by area when helpful (`layout:`, `styles:`, `tests:`).
 - Pull requests should state the change, rationale, and testing done (commands run); include screenshots for visual updates and link any relevant issues.
 - Avoid committing `_site/`, `node_modules/`, or local Playwright artifacts (`playwright-report`, `test-results`)—they are generated. Keep changes focused and grouped by feature or fix.
+
+## Content Generation Guidelines (Gemini/Claude)
+- **Math Rendering**: Refer to `@math-rules.md` for all LaTeX/KaTeX usage.
+- **Reasoning**: Provide step-by-step, detailed reasoning. Explicitly state rules for axioms/equivalencies.
+- **Categorization**: All blog posts must categorize under: "Logic for Computer Scientists", "Intelligent Systems", or "Theory of Automata".
+- **Resources**: Always search for and append external resource links to the bottom of posts.
+

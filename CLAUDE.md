@@ -205,6 +205,26 @@ Secondary:
 - Publication date prominent
 - Tags for categorization
 
+### Content Generation Rules
+
+**1. Math Rendering**
+- ALWAYS refer to `@math-rules.md` for rendering standards.
+- Use KaTeX syntax: `$...$` for inline, `$$...$$` for display.
+
+**2. Deep Reasoning**
+- Provide detailed, step-by-step explanatory reasoning in a professional tone.
+- Explicitly describe the rule/axiom for any logical equivalencies or analytical steps.
+
+**3. Course Categorization**
+- Every post MUST belong to one of these Master's courses:
+  - "Logic for Computer Scientists"
+  - "Intelligent Systems"
+  - "Theory of Automata"
+
+**4. External Resources**
+- Search for and include high-quality external resources (links, papers) at the bottom of every post.
+
+
 ## Development Setup
 
 ### Prerequisites
