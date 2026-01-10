@@ -73,3 +73,46 @@ $$
 <p data-test-id="binomial-zero">
   $\binom{0}{0} = 1$, $\binom{3}{5} = 0$
 </p>
+
+## Propositional Logic - Quantifiers
+<p data-test-id="quantifiers">
+  Universal: $\forall x$, $\forall x \forall y P(x,y)$<br>
+  Existential: $\exists x$, $\exists y Q(y)$<br>
+  Mixed: $\forall x \exists y R(x,y)$
+</p>
+
+## Logical Connectives
+<p data-test-id="logical-connectives">
+  $P \land Q$ (and), $P \lor Q$ (or), $P \to Q$ (implies), $\neg P$ (not), $P \leftrightarrow Q$ (iff)
+</p>
+
+## Predicates and Relations
+<p data-test-id="predicates">
+  Unary: $P(x)$, $Q(a)$<br>
+  Binary: $R(x,y)$, $S(a,b)$<br>
+  Ternary: $T(x,y,z)$
+</p>
+
+## Proof Notation
+<p data-test-id="proof-notation">
+  Entailment: $\Gamma \vdash \phi$ (from $\Gamma$, we derive $\phi$)<br>
+  Skolem constants: $c, d, a, b$
+</p>
+
+## Herbrand Sets
+<p data-test-id="herbrand-sets">
+  Base: $\{p(a), p(b), q(a,a), q(a,b)\}$<br>
+  Model: $\{p(a), q(b,a)\} \subseteq \text{Base}$
+</p>
+
+## Tree Rendering with Mermaid
+<div data-test-id="mermaid-tree">
+
+```mermaid
+graph TD
+    A["∀x(P(x)→Q(x))"] --> B["P(a)→Q(a)"]
+    B --> C["¬P(a)"]
+    B --> D["Q(a)"]
+```
+
+</div>

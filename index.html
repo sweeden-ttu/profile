@@ -4,100 +4,316 @@ title: Scott Weeden - Computer Science & Machine Learning
 ---
 
 <main class="homepage">
+  <!-- Hero Section: Diagonal accent with asymmetric layout -->
   <section class="hero">
-    <div class="hero__content">
-      <h1 class="hero__title">Scott Weeden</h1>
-      <p class="hero__subtitle">Master of Computer Science Student<br>Texas Tech University</p>
-      <p class="hero__tagline">Exploring machine learning, algorithm analysis, and the intersection of technology with social and environmental challenges.</p>
-
-      <nav class="hero__nav">
-        <a href="/about" class="button button--primary">About Me</a>
-        <a href="/research" class="button button--secondary">Research</a>
-        <a href="/blog" class="button button--secondary">Blog</a>
-      </nav>
-    </div>
-  </section>
-
-  <section class="highlights">
-    <h2 class="section__title">Recent Work</h2>
-
-    <div class="highlights__grid">
-      <article class="highlight-card">
-        <h3 class="highlight-card__title">Research Publications</h3>
-        <p class="highlight-card__description">
-          Authored IEEE peer review article of Microsoft Research publication, contributing to advancing machine learning research methodologies.
+    <div class="hero__diagonal-accent"></div>
+    <div class="hero__container">
+      <div class="hero__content">
+        <div class="hero__label">Computer Science Researcher</div>
+        <h1 class="hero__title">
+          Scott Weeden
+        </h1>
+        <p class="hero__subtitle">
+          Master of Computer Science Student at Texas Tech University
         </p>
-        <a href="/research" class="highlight-card__link">View Research →</a>
-      </article>
-
-      <article class="highlight-card">
-        <h3 class="highlight-card__title">Algorithm Analysis</h3>
-        <p class="highlight-card__description">
-          Perfected the Master's theorem in algorithm analysis, deepening understanding of recursive algorithm complexity.
+        <p class="hero__tagline">
+          Exploring machine learning, algorithm analysis, and the intersection of technology
+          with social and environmental challenges.
         </p>
-        <a href="/projects/masters-theorem" class="highlight-card__link">Learn More →</a>
-      </article>
 
-      <article class="highlight-card">
-        <h3 class="highlight-card__title">Machine Learning Competitions</h3>
-        <p class="highlight-card__description">
-          Active participation in Kaggle competitions, applying ML techniques to real-world datasets and challenges.
-        </p>
-        <a href="/projects/kaggle-competitions" class="highlight-card__link">View Projects →</a>
-      </article>
+        <nav class="hero__actions">
+          <a href="/about" class="btn btn--primary">
+            About Me
+            <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/research" class="btn btn--secondary">Research</a>
+          <a href="/blog" class="btn btn--secondary">Blog</a>
+        </nav>
+      </div>
 
-      <article class="highlight-card">
-        <h3 class="highlight-card__title">Educational Content</h3>
-        <p class="highlight-card__description">
-          Published YouTube video shorts on reinforcement learning, making complex AI concepts accessible to broader audiences.
-        </p>
-        <a href="/projects/reinforcement-learning-videos" class="highlight-card__link">Watch Videos →</a>
-      </article>
-    </div>
-  </section>
-
-  <section class="about-preview">
-    <div class="about-preview__content">
-      <h2 class="section__title">About Me</h2>
-      <p>
-        Originally from Oregon, I moved to Texas a year ago to pursue computer science at Texas Tech University.
-        My research focuses on machine learning applications in solving complex social, environmental, and healthcare issues.
-      </p>
-      <p>
-        I plan to study abroad in Australia to explore new challenges in ML research and develop international
-        research connections. When I'm not coding, you'll find me biking through Dallas, Austin, and San Antonio.
-      </p>
-      <a href="/about" class="button button--secondary">Read Full Bio →</a>
-    </div>
-  </section>
-
-  <section class="blog-preview">
-    <h2 class="section__title">Latest from the Blog</h2>
-
-    <div class="blog-preview__grid">
-      {% for post in site.posts limit:3 %}
-      <article class="blog-card">
-        <div class="blog-card__meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-          {% if post.reading_time %}
-          <span class="blog-card__reading-time">{{ post.reading_time }} min read</span>
-          {% endif %}
+      <div class="hero__stats">
+        <div class="stat-card">
+          <div class="stat-card__value">4+</div>
+          <div class="stat-card__label">Research Projects</div>
         </div>
-        <h3 class="blog-card__title">
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </h3>
-        <p class="blog-card__excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-        <div class="blog-card__tags">
-          {% for tag in post.tags limit:3 %}
-          <span class="tag">{{ tag }}</span>
-          {% endfor %}
+        <div class="stat-card">
+          <div class="stat-card__value">IEEE</div>
+          <div class="stat-card__label">Peer Review Published</div>
         </div>
-      </article>
-      {% endfor %}
+        <div class="stat-card">
+          <div class="stat-card__value">ML</div>
+          <div class="stat-card__label">Kaggle Competitions</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="blog-preview__footer">
-      <a href="/blog" class="button button--secondary">View All Posts →</a>
+  <!-- Research Highlights: Bold typography on dark background -->
+  <section class="section section--research">
+    <div class="section__container">
+      <div class="section__header">
+        <span class="section__label">Featured Work</span>
+        <h2 class="section__title">Research Highlights</h2>
+      </div>
+
+      <div class="research-grid">
+        <article class="research-card research-card--featured">
+          <div class="research-card__icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="24" height="24" rx="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 16L15 19L20 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="research-card__title">IEEE Peer Review Publication</h3>
+          <p class="research-card__description">
+            Authored critical analysis of Microsoft Research publication, contributing to advancing
+            machine learning research methodologies and evaluation frameworks.
+          </p>
+          <div class="research-card__meta">
+            <span class="tag tag--accent">Machine Learning</span>
+            <span class="tag tag--accent">Research</span>
+          </div>
+          <a href="/research" class="research-card__link">
+            View Publication
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-card__icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 12V16L19 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="research-card__title">Master's Theorem Analysis</h3>
+          <p class="research-card__description">
+            Perfected understanding and application of the Master's theorem for analyzing
+            recursive algorithm complexity.
+          </p>
+          <div class="research-card__meta">
+            <span class="tag">Algorithms</span>
+            <span class="tag">Analysis</span>
+          </div>
+          <a href="/projects/masters-theorem" class="research-card__link">
+            Learn More
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-card__icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="20" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 14L16 18L24 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="research-card__title">Q-Learning Implementation</h3>
+          <p class="research-card__description">
+            Developed reinforcement learning demonstration using Q-Learning algorithm
+            applied to Pac-Man environment.
+          </p>
+          <div class="research-card__meta">
+            <span class="tag">RL</span>
+            <span class="tag">Python</span>
+          </div>
+          <a href="/projects/qlearning-pacman" class="research-card__link">
+            View Demo
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects: Card grid with geometric overlays -->
+  <section class="section section--projects">
+    <div class="section__container">
+      <div class="section__header section__header--centered">
+        <span class="section__label">Portfolio</span>
+        <h2 class="section__title">Featured Projects</h2>
+        <p class="section__description">
+          A selection of academic work, technical implementations, and educational content
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-card__header">
+            <div class="project-card__icon project-card__icon--ml">ML</div>
+            <span class="project-card__status project-card__status--active">Active</span>
+          </div>
+          <h3 class="project-card__title">Kaggle ML Competitions</h3>
+          <p class="project-card__description">
+            Participated in multiple Kaggle competitions applying supervised and unsupervised learning
+            techniques to real-world datasets, focusing on model optimization and feature engineering.
+          </p>
+          <div class="project-card__tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">Scikit-learn</span>
+          </div>
+          <a href="/projects/kaggle-competitions" class="project-card__link">
+            View Projects
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__header">
+            <div class="project-card__icon project-card__icon--edu">EDU</div>
+            <span class="project-card__status project-card__status--published">Published</span>
+          </div>
+          <h3 class="project-card__title">Reinforcement Learning Videos</h3>
+          <p class="project-card__description">
+            Created educational YouTube video shorts explaining reinforcement learning concepts,
+            making complex AI topics accessible through visual demonstrations.
+          </p>
+          <div class="project-card__tech">
+            <span class="tech-tag">RL</span>
+            <span class="tech-tag">Education</span>
+            <span class="tech-tag">YouTube</span>
+          </div>
+          <a href="/projects/reinforcement-learning-videos" class="project-card__link">
+            Watch Videos
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__header">
+            <div class="project-card__icon project-card__icon--dev">DEV</div>
+            <span class="project-card__status">Completed</span>
+          </div>
+          <h3 class="project-card__title">Propositional Logic Extension</h3>
+          <p class="project-card__description">
+            Built Chrome extension for propositional logic utilities, providing truth table generation,
+            formula validation, and logical equivalence checking.
+          </p>
+          <div class="project-card__tech">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Chrome API</span>
+            <span class="tech-tag">Logic</span>
+          </div>
+          <a href="/projects/propositional-logic-extension" class="project-card__link">
+            View Code
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </article>
+      </div>
+
+      <div class="section__footer">
+        <a href="/projects" class="btn btn--secondary">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Preview: Timeline-style with alternating layout -->
+  <section class="section section--blog">
+    <div class="section__container section__container--narrow">
+      <div class="section__header">
+        <span class="section__label">Writing</span>
+        <h2 class="section__title">Latest from the Blog</h2>
+      </div>
+
+      <div class="blog-timeline">
+        {% for post in site.posts limit:3 %}
+        <article class="blog-timeline__item">
+          <div class="blog-timeline__marker"></div>
+          <div class="blog-timeline__content">
+            <div class="blog-post-card">
+              <div class="blog-post-card__meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%B %d, %Y" }}
+                </time>
+                {% if post.reading_time %}
+                <span class="blog-post-card__divider">•</span>
+                <span class="blog-post-card__reading-time">{{ post.reading_time }} min read</span>
+                {% endif %}
+              </div>
+
+              <h3 class="blog-post-card__title">
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </h3>
+
+              <p class="blog-post-card__excerpt">
+                {{ post.excerpt | strip_html | truncatewords: 30 }}
+              </p>
+
+              <div class="blog-post-card__tags">
+                {% for tag in post.tags limit:4 %}
+                <span class="tag tag--blog">{{ tag }}</span>
+                {% endfor %}
+              </div>
+
+              <a href="{{ post.url }}" class="blog-post-card__link">
+                Read Article
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+
+      <div class="section__footer section__footer--centered">
+        <a href="/blog" class="btn btn--primary">View All Posts</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview: Clean with centered content -->
+  <section class="section section--about">
+    <div class="section__container section__container--narrow">
+      <div class="about-preview">
+        <div class="about-preview__image">
+          <div class="about-preview__image-placeholder">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="3"/>
+              <path d="M12 56C12 45 20 40 32 40C44 40 52 45 52 56" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="about-preview__content">
+          <span class="section__label">Background</span>
+          <h2 class="section__title section__title--sm">About Me</h2>
+
+          <div class="about-preview__text">
+            <p>
+              Originally from Oregon, I moved to Texas a year ago to pursue computer science at Texas Tech University.
+              My research focuses on machine learning applications in solving complex social, environmental, and healthcare issues.
+            </p>
+            <p>
+              I plan to study abroad in Australia to explore new challenges in ML research and develop international
+              research connections. When I'm not coding, you'll find me biking through Dallas, Austin, and San Antonio.
+            </p>
+          </div>
+
+          <a href="/about" class="btn btn--secondary">
+            Read Full Bio
+            <svg class="btn__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
