@@ -1,205 +1,87 @@
 # Formalization of AGENTS.md
 
-## Step 1: Extract First-Order Logic Predicates
+## Extracted first-order statements
 
-From AGENTS.md, we extract the following statements:
+From AGENTS.md we capture the core facts as ground formulas:
 
-1. The system is focused on automated generation and validation of Herbrand Bases
-2. Target course is CS-5384, specifically Lecture 16
-3. Core application is scripts/herbrand.pl implementing herbrand_universe/2, herbrand_base/2, satisfies/2
-4. Agent Herbrand is responsible for Prolog implementation and correctness verification
-5. Agent Logic is responsible for extracting requirements from lecture materials
-6. Success criteria include: correctness, readable code, integration with Jekyll blog
+$$
+\begin{aligned}
+agent(agent\_herbrand) & \\
+agent(agent\_logic) & \\
+focused\_on(system,\, herbrand\_bases) & \\
+target\_course(system,\, course\_cs5384) & \\
+covers\_lecture(course\_cs5384,\, lecture\_16) & \\
+core\_application(system,\, app\_herbrand\_pl) & \\
+uses\_language(app\_herbrand\_pl,\, prolog\_language) & \\
+responsible\_for(agent\_herbrand,\, task\_prolog\_impl) & \\
+responsible\_for(agent\_herbrand,\, task\_correctness\_verification) & \\
+responsible\_for(agent\_logic,\, task\_extract\_requirements) & \\
+implements(app\_herbrand\_pl,\, pred\_herbrand\_universe) & \\
+implements(app\_herbrand\_pl,\, pred\_herbrand\_base) & \\
+implements(app\_herbrand\_pl,\, pred\_satisfies) & \\
+has\_success\_criterion(system,\, goal\_correctness) & \\
+has\_success\_criterion(system,\, goal\_readability) & \\
+has\_success\_criterion(system,\, goal\_integration) &
+\end{aligned}
+$$
 
-## Step 2: First-Order Logic Formalization
+These facts encode agents, responsibilities, the core application, and the success criteria described in the document.
 
-### Constants:
-- `agent_herbrand` - Agent Herbrand
-- `agent_logic` - Agent Logic
-- `system` - The multi-agent system
-- `course_cs5384` - Course CS-5384
-- `lecture_16` - Lecture 16
-- `app_herbrand_pl` - scripts/herbrand.pl application
-- `herbrand_bases` - Herbrand bases
-- `prolog_impl` - Prolog implementation
-- `correctness` - Correctness verification
-- `extract_requirements` - Extracting requirements
-- `readability` - Readable code
-- `integration` - Integration with Jekyll blog
-- `pred_herbrand_universe` - herbrand_universe/2 predicate
-- `pred_herbrand_base` - herbrand_base/2 predicate
-- `pred_satisfies` - satisfies/2 predicate
+## Clause form and Skolemization
 
-### Predicates:
-- `agent(X)` - X is an agent
-- `focused_on(X, Y)` - X is focused on Y
-- `target_course(X, Y)` - Course X targets lecture Y
-- `responsible_for(X, Y)` - X is responsible for Y
-- `implements(X, Y)` - X implements Y
-- `has_success_criterion(X, Y)` - X has success criterion Y
+All statements are already ground. Taking their universal closure yields a set of unit clauses; Skolemization leaves them unchanged. In Prolog we expose this clause set as `agents_axioms/1` (and the backward-compatible alias `agents_clauses/1`).
 
-### First-Order Logic Sentences:
+## Vocabulary (Herbrand signature)
 
-1. `agent(agent_herbrand) ∧ agent(agent_logic)`
-2. `focused_on(system, herbrand_bases)`
-3. `target_course(course_cs5384, lecture_16)`
-4. `responsible_for(agent_herbrand, prolog_impl) ∧ responsible_for(agent_herbrand, correctness)`
-5. `responsible_for(agent_logic, extract_requirements)`
-6. `implements(app_herbrand_pl, pred_herbrand_universe) ∧ implements(app_herbrand_pl, pred_herbrand_base) ∧ implements(app_herbrand_pl, pred_satisfies)`
-7. `has_success_criterion(system, correctness) ∧ has_success_criterion(system, readability) ∧ has_success_criterion(system, integration)`
+**Constants**
 
-## Step 3: Skolemization
+`agent_herbrand`, `agent_logic`, `system`, `course_cs5384`, `lecture_16`,
+`app_herbrand_pl`, `herbrand_bases`, `prolog_language`,
+`task_extract_requirements`, `task_prolog_impl`, `task_correctness_verification`,
+`goal_correctness`, `goal_readability`, `goal_integration`,
+`pred_herbrand_universe`, `pred_herbrand_base`, `pred_satisfies`
 
-Since all formulas are already **ground** (contain no variables), Skolemization is **not necessary**. The formulas are already in propositional form.
+**Predicates**
 
-However, for completeness, if we were to express these with existential quantifiers, we would have:
+`agent/1`, `focused_on/2`, `target_course/2`, `covers_lecture/2`,
+`core_application/2`, `responsible_for/2`, `implements/2`,
+`has_success_criterion/2`, `uses_language/2`
 
-- `∃x [agent(x) ∧ (x = agent_herbrand ∨ x = agent_logic)]`
-  - Skolemized: Already ground, no change needed
+**Functions**
 
-- `∃x ∃y [focused_on(x, y) ∧ x = system ∧ y = herbrand_bases]`
-  - Skolemized: Already ground, no change needed
+None (the specification is propositional with respect to objects).
 
-Since we're working with concrete entities (no variables), the formulas are **propositional logic** rather than first-order logic requiring Skolemization.
+## Herbrand universe and base
 
-### Skolemized ground clauses (CNF-style list)
+With no function symbols, the Herbrand universe is exactly the constant set above (17 elements), so depth `0` suffices; depth `1` yields the same result.
+
+The Herbrand base contains:
+- `1` unary predicate × `17` constants = `17` atoms
+- `8` binary predicates × `17 × 17` constant pairs = `2,312` atoms
+- **Total: 2,329 ground atoms**
+
+Sample atoms (all are included in the base at depth `0`):
+
 - `agent(agent_herbrand)`
-- `agent(agent_logic)`
 - `focused_on(system, herbrand_bases)`
-- `target_course(course_cs5384, lecture_16)`
-- `responsible_for(agent_herbrand, prolog_impl)`
-- `responsible_for(agent_herbrand, correctness)`
-- `responsible_for(agent_logic, extract_requirements)`
-- `implements(app_herbrand_pl, pred_herbrand_universe)`
+- `core_application(system, app_herbrand_pl)`
 - `implements(app_herbrand_pl, pred_herbrand_base)`
-- `implements(app_herbrand_pl, pred_satisfies)`
-- `has_success_criterion(system, correctness)`
-- `has_success_criterion(system, readability)`
-- `has_success_criterion(system, integration)`
+- `has_success_criterion(system, goal_integration)`
 
-## Step 4: Vocabulary for Herbrand Base
+## Prolog usage (`scripts/herbrand.pl`)
 
-### Constants (Object Constants):
-- `agent_herbrand`
-- `agent_logic`
-- `system`
-- `course_cs5384`
-- `lecture_16`
-- `app_herbrand_pl`
-- `herbrand_bases`
-- `prolog_impl`
-- `correctness`
-- `extract_requirements`
-- `readability`
-- `integration`
-- `pred_herbrand_universe`
-- `pred_herbrand_base`
-- `pred_satisfies`
+Key predicates:
+- `agents_vocab/1` — vocabulary (constants and predicates)
+- `agents_axioms/1` (alias `agents_clauses/1`) — ground clause set
+- `agents_universe/2` — Herbrand universe up to a given depth
+- `agents_base/2` — Herbrand base up to a given depth
 
-### Predicates (Relation Constants):
-- `agent/1` (unary)
-- `focused_on/2` (binary)
-- `target_course/2` (binary)
-- `responsible_for/2` (binary)
-- `implements/2` (binary)
-- `has_success_criterion/2` (binary)
+Example queries:
 
-### Functions:
-- None (for simplicity, we work with constants only)
-
-## Step 5: Herbrand Base
-
-Since we have no function symbols, the Herbrand universe is simply the set of all constants:
-
-**Herbrand Universe**: 
-```
-{agent_herbrand, agent_logic, system, course_cs5384, lecture_16, 
- app_herbrand_pl, herbrand_bases, prolog_impl, correctness, 
- extract_requirements, readability, integration, 
- pred_herbrand_universe, pred_herbrand_base, pred_satisfies}
-```
-
-**Herbrand Base** (all ground atoms):
-
-Since we have no function symbols, the Herbrand base consists of:
-- All unary predicates applied to all constants
-- All binary predicates applied to all pairs of constants
-
-Total number of ground atoms:
-- 6 unary predicates × 15 constants = 90 atoms
-- 5 binary predicates × 15 × 15 constants = 1,125 atoms
-- **Total: 1,215 ground atoms**
-
-**Sample ground atoms (depth 0):**
-- `agent(agent_herbrand)`
-- `responsible_for(agent_logic, extract_requirements)`
-- `implements(app_herbrand_pl, pred_herbrand_base)`
-- `has_success_criterion(system, integration)`
-
-## Step 6: Prolog Implementation
-
-The formalization has been implemented in `scripts/herbrand.pl` with the following predicates:
-
-### Vocabulary Definition
-```prolog
-agents_vocab(Vocab)
-```
-Defines the vocabulary for the agents formalization (15 constants, 6 predicates).
-
-### Helper Queries
-```prolog
-agents_universe(Depth, Universe)
-```
-Generates the Herbrand universe for the agents vocabulary up to the given depth.
-Since there are no function symbols, depth 0 is sufficient to get all constants.
-
-```prolog
-agents_base(Depth, Base)
-```
-Generates the Herbrand base (all ground atoms) for the agents vocabulary.
-
-```prolog
-agents_clauses(Clauses)
-```
-Returns the Skolemized ground clauses (facts) extracted from AGENTS.md.
-
-```prolog
-ground_atom(Vocab, Atom)
-```
-Verifies that a ground Atom uses only symbols from the provided vocabulary.
-
-### Usage Examples
-
-**Get the Herbrand universe:**
 ```prolog
 ?- agents_universe(0, U).
-% Returns all 15 constants (since no functions)
+?- agents_base(0, B), length(B, N).        % N = 2329
+?- agents_axioms(Facts), maplist(writeln, Facts).
+?- agents_base(0, B), agents_axioms(Facts), subset(Facts, B).
+?- agents_base(0, B), member(core_application(system, app_herbrand_pl), B).
 ```
-
-**Get the Herbrand base:**
-```prolog
-?- agents_base(0, B).
-% Returns all 1,215 ground atoms
-```
-
-**Query specific facts from the base:**
-```prolog
-?- agents_base(0, B), member(agent(agent_herbrand), B).
-% True - agent_herbrand is an agent in the base
-
-?- agents_base(0, B), member(responsible_for(agent_herbrand, prolog_impl), B).
-% True - this ground atom exists in the base
-```
-
-### Notes
-
-1. **Propositional Logic**: Since all formulas are ground (no variables), the formalization is actually propositional logic rather than first-order logic requiring Skolemization.
-
-2. **No Functions**: The vocabulary contains only constants and predicates, no function symbols. This means:
-   - The Herbrand universe is finite (just the 15 constants)
-   - The Herbrand base is finite (1,215 ground atoms)
-   - Depth 0 is sufficient to generate the complete universe/base
-
-3. **Integration**: The implementation reuses the existing `herbrand_universe/3` and `herbrand_base/3` predicates from the module, demonstrating code reuse and consistency.
-
-4. **Extensibility**: To add function symbols or modify the vocabulary, update `agents_vocab/1` and regenerate the base with appropriate depth.
