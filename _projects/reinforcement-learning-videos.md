@@ -6,10 +6,21 @@ tech_stack: [Python, RL, Video Editing]
 status: planned
 subtitle: "Curated clips explaining policy gradients, Q-learning, and evaluation"
 links:
-  github: "#"
+  youtube: "https://youtube.com/cs-advanced-topics"
 outcomes:
   - "Storyboard for explainers and screen captures"
   - "Links to recorded demos and slides"
 ---
 
-Placeholder for a video series covering core RL topics. The finished entry will link to episode playlists, slides, and code snippets showcased in the recordings.
+Curated directly from the YouTube feed at `youtube.com/cs-advanced-topics`, this series packages reinforcement learning explainers and demos in short, focused episodes.
+
+## What’s inside
+
+- Policy gradients, Q-learning, and evaluation walkthroughs
+- Screen captures paired with succinct slide annotations
+- Links to companion code snippets used in each video
+
+## Watch now
+
+- Channel: https://youtube.com/cs-advanced-topics
+- Latest uploads auto-embedded on the channel page; playlists grouped by topic (fundamentals, advanced tricks, evaluation).
