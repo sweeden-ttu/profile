@@ -6,6 +6,7 @@ categories: [general, updates]
 tags: [introduction, welcome, blogging]
 excerpt: "An introduction to this blog and what I plan to share about my journey in computer science and machine learning research."
 reading_time: 3
+course: "General"
 ---
 
 # Welcome to My Blog

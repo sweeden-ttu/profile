@@ -6,6 +6,7 @@ categories: [programming, logic]
 tags: [prolog, logic-programming, declarative, ai, tutorial]
 excerpt: "An introduction to Prolog's unique declarative paradigm, exploring facts, rules, queries, and how logic programming differs from imperative approaches."
 reading_time: 12
+course: "Logic for Computer Scientists"
 ---
 
 # Prolog Programming Fundamentals
