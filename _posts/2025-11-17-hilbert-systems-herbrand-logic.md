@@ -158,6 +158,44 @@ The Tableaux method complements the Hilbert system by providing a **semi-decidab
 
 Together, these techniques form the foundation of **automated theorem proving** and are essential tools in formal verification, program correctness, and artificial intelligence reasoning systems.
 
+## Exercises
+
+To solidify your understanding of Hilbert systems and quantifier manipulation, work through these exercises:
+
+1.  **Hilbert Derivation**: Using Axiom 1 and Axiom 2, show that $A \rightarrow A$ is a theorem in the Hilbert system.
+2.  **Quantifier Analysis**: Explain why $\forall x \exists y A(x,y)$ does *not* logically imply $\exists y \forall x A(x,y)$. Provide a counterexample.
+3.  **Tableaux Proof**: Use the Tableaux method to prove that $\forall x P(x) \rightarrow \exists x P(x)$ is valid (assuming a non-empty domain).
+
+---
+
+### Exercise Solutions
+
+**Exercise 1: Proving $A \rightarrow A$**
+
+1.  $[A \rightarrow ((A \rightarrow A) \rightarrow A)] \rightarrow [(A \rightarrow (A \rightarrow A)) \rightarrow (A \rightarrow A)]$ (Axiom 2 with $B = (A \rightarrow A), C = A$)
+2.  $A \rightarrow ((A \rightarrow A) \rightarrow A)$ (Axiom 1 with $B = (A \rightarrow A)$)
+3.  $(A \rightarrow (A \rightarrow A)) \rightarrow (A \rightarrow A)$ (Modus Ponens on 1 and 2)
+4.  $A \rightarrow (A \rightarrow A)$ (Axiom 1 with $B = A$)
+5.  $A \rightarrow A$ (Modus Ponens on 3 and 4)
+
+**Exercise 2: Quantifier Order**
+
+The implication $\forall x \exists y A(x,y) \rightarrow \exists y \forall x A(x,y)$ is invalid because the choice of $y$ can depend on $x$ in the antecedent, but must be the same for all $x$ in the consequent.
+*   **Counterexample**: Let $A(x,y)$ be "$y$ is the mother of $x$".
+*   $\forall x \exists y A(x,y)$ means "Every person has a mother" (True).
+*   $\exists y \forall x A(x,y)$ means "There is one person who is the mother of everyone" (False).
+
+**Exercise 3: Tableaux Proof**
+
+1.  **False**: $\forall x P(x) \rightarrow \exists x P(x)$ (Assume negation)
+2.  **True**: $\forall x P(x)$ (Antecedent)
+3.  **False**: $\exists x P(x)$ (Consequent)
+4.  **True**: $\neg \exists x P(x)$ (from 3)
+5.  **True**: $\forall x \neg P(x)$ (from 4)
+6.  **Instantiate** (2) with $a$: $P(a)$
+7.  **Instantiate** (5) with $a$: $\neg P(a)$
+8.  **Contradiction**: $P(a)$ and $\neg P(a)$. Branch closed. Original formula is valid.
+
 ## Further Reading
 
 *   **Introduction to Mathematical Logic** by Mendelson - Comprehensive coverage of Hilbert systems.

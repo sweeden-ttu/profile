@@ -170,6 +170,35 @@ r :- \+ s.
 ```
 **Question**: What is the result of the query `?- p.`? Trace the execution stack.
 
+---
+
+### Exercise Solutions
+
+**Problem 1: Nixon Diamond**
+
+In Default Logic, we get two competing extensions:
+1.  **Extension 1**: Assume Pacifist(Nixon) is consistent. Conclusion: Pacifist(Nixon).
+2.  **Extension 2**: Assume ¬Pacifist(Nixon) is consistent. Conclusion: ¬Pacifist(Nixon).
+Without a priority rule, the system cannot decide between them. This highlights the ambiguity that non-monotonic systems must sometimes handle.
+
+**Problem 2: Stable Models**
+
+This program has two stable models:
+1.  **Model 1**: $\{a, c\}$. (Assume $b$ is false, so $a$ is true, which implies $c$).
+2.  **Model 2**: $\{b, c\}$. (Assume $a$ is false, so $b$ is true, which implies $c$).
+
+**Problem 3: PROLOG Trace**
+
+Query: `?- p.`
+1.  `p` depends on `\+ q`. PROLOG tries to prove `q`.
+2.  `q` depends on `\+ r`. PROLOG tries to prove `r`.
+3.  `r` depends on `\+ s`. PROLOG tries to prove `s`.
+4.  `s` is not in the database. Proof for `s` **fails**.
+5.  Since `s` fails, `\+ s` (which is `r`) **succeeds**.
+6.  Since `r` succeeds, `\+ r` (which is `q`) **fails**.
+7.  Since `q` fails, `\+ q` (which is `p`) **succeeds**.
+**Result**: `true`.
+
 ## Conclusion
 
 Non-monotonic reasoning bridges the gap between the rigid certainty of mathematical logic and the adaptive nature of human intelligence.

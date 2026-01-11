@@ -1,6 +1,8 @@
 :- module(herbrand, [
     herbrand_universe/3,
     herbrand_base/3,
+    herbrand_model/4,
+    satisfies/2,
     ground_atom/2,
     agents_vocab/1,
     agents_axioms/1,
@@ -9,13 +11,21 @@
     agents_base/2
 ]).
 
-% herbrand_universe(+Vocabulary, +Depth, -Universe)
-% Generates ground terms up to a certain depth.
-herbrand_universe(Vocab, Depth, Universe) :-
-    findall(Term, (between(0, Depth, D), member_of_universe(Vocab, D, Term)), Universe).
+:- use_module(library(error)).
+:- use_module(library(lists)).
 
-member_of_universe(Vocab, 0, C) :- 
+% herbrand_universe(+Vocabulary, +Depth, -Universe)
+% Generates ground terms up to a certain depth as a sorted set.
+herbrand_universe(Vocab, Depth, Universe) :-
+    must_be(nonneg, Depth),
+    findall(Term, (between(0, Depth, D), member_of_universe(Vocab, D, Term)), Terms),
+    sort(Terms, Universe).
+
+member_of_universe(Vocab, 0, C) :-
     member(const(C), Vocab).
+member_of_universe(Vocab, 0, F0) :-
+    member(func(F, 0), Vocab),
+    F0 =.. [F].
 member_of_universe(Vocab, D, Term) :-
     D > 0,
     member(func(F, Arity), Vocab),
@@ -25,7 +35,7 @@ member_of_universe(Vocab, D, Term) :-
     Term =.. [F | Args].
 
 % herbrand_base(+Vocab, +Depth, -Base)
-% Generates ground atoms up to a certain depth.
+% Generates ground atoms up to a certain depth as a sorted set.
 herbrand_base(Vocab, Depth, Base) :-
     herbrand_universe(Vocab, Depth, Universe),
     findall(Atom, (
@@ -33,7 +43,8 @@ herbrand_base(Vocab, Depth, Base) :-
         length(Args, Arity),
         maplist(arg_from_universe(Universe), Args),
         Atom =.. [P | Args]
-    ), Base).
+    ), Atoms),
+    sort(Atoms, Base).
 
 arg_from_universe(Universe, Term) :-
     member(Term, Universe).
@@ -49,13 +60,74 @@ ground_atom(Vocab, Atom) :-
 
 term_in_vocab(Vocab, Term) :-
     atomic(Term),
-    member(const(Term), Vocab).
+    (   member(const(Term), Vocab)
+    ;   member(func(Term, 0), Vocab)
+    ).
 term_in_vocab(Vocab, Term) :-
     compound(Term),
     Term =.. [F | Args],
     member(func(F, Arity), Vocab),
     length(Args, Arity),
     maplist(term_in_vocab(Vocab), Args).
+
+% herbrand_model(+Vocab, +Depth, +TrueAtoms, -Model)
+% Builds a validated Herbrand model from a truth set.
+herbrand_model(Vocab, Depth, TrueAtoms0, model(Universe, TrueAtoms)) :-
+    herbrand_universe(Vocab, Depth, Universe),
+    herbrand_base(Vocab, Depth, Base),
+    maplist(ground_atom(Vocab), TrueAtoms0),
+    subset_of(TrueAtoms0, Base),
+    sort(TrueAtoms0, TrueAtoms).
+
+subset_of([], _).
+subset_of([H|T], Set) :-
+    memberchk(H, Set),
+    subset_of(T, Set).
+
+% satisfies(+Model, +Formula)
+% Evaluates a (possibly quantified) formula under a Herbrand model.
+satisfies(_, true).
+satisfies(_, false) :- !, fail.
+satisfies(Model, not(F)) :-
+    !,
+    \+ satisfies(Model, F).
+satisfies(Model, and(A, B)) :-
+    !,
+    satisfies(Model, A),
+    satisfies(Model, B).
+satisfies(Model, or(A, B)) :-
+    !,
+    (   satisfies(Model, A)
+    ;   satisfies(Model, B)
+    ).
+satisfies(Model, implies(A, B)) :-
+    !,
+    (   \+ satisfies(Model, A)
+    ;   satisfies(Model, B)
+    ).
+satisfies(Model, iff(A, B)) :-
+    !,
+    satisfies(Model, implies(A, B)),
+    satisfies(Model, implies(B, A)).
+satisfies(model(Universe, TrueAtoms), forall(Var, F)) :-
+    !,
+    forall(member(Term, Universe), (
+        instantiate_formula(Var, Term, F, Instantiated),
+        satisfies(model(Universe, TrueAtoms), Instantiated)
+    )).
+satisfies(model(Universe, TrueAtoms), exists(Var, F)) :-
+    !,
+    member(Term, Universe),
+    instantiate_formula(Var, Term, F, Instantiated),
+    satisfies(model(Universe, TrueAtoms), Instantiated),
+    !.
+satisfies(model(_, TrueAtoms), Atom) :-
+    ground(Atom),
+    memberchk(Atom, TrueAtoms).
+
+instantiate_formula(Var, Term, Formula0, Formula) :-
+    copy_term(Var-Formula0, Var1-Formula),
+    Var1 = Term.
 
 % Example Vocabulary
 example_vocab([
@@ -69,6 +141,7 @@ example_vocab([
 % Usage:
 % ?- example_vocab(V), herbrand_universe(V, 1, U).
 % ?- example_vocab(V), herbrand_base(V, 1, B).
+% ?- example_vocab(V), herbrand_model(V, 1, [p(a)], M), satisfies(M, and(p(a), not(q(a, b)))).
 
 % ============================================================================
 % Agents Formalization Vocabulary

@@ -1,0 +1,598 @@
+{
+  "course": "CS-5384-Logic-for-Computer-Scientists",
+  "course_path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists",
+  "generated_at": "2026-01-11T04:32:04.114266+00:00",
+  "lectures": [
+    {
+      "lecture_id": "Lec_Aug25",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Aug25",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture1.pdf"
+        ],
+        "tex": [
+          "lecture-template.tex"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Aug27",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Aug27",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture2.pdf"
+        ],
+        "tex": [
+          "lecture-template.tex"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Aug29",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Aug29",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture3.pdf"
+        ],
+        "tex": [
+          "lecture-template.tex"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Dec01",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Dec01",
+      "files": {
+        "json": [
+          "2025-12-01_Ikram_Temporal_Logic_LTL.json",
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-12-01_Ikram_Temporal_Logic_LTL.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "LogicForApplications_Lec_Dec01_10_Linear_Resolution,_Horn_Cla.pdf",
+          "cs5384_2025_fall_lecture30.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Dec03",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Dec03",
+      "files": {
+        "other": [
+          ".DS_Store",
+          "2025-12-03_Ikram_Negation_and_Non_monotonic_Reasoning.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "2025-12-03_Ikram_Negation_and_Non_monotonic_Reasoning.pdf",
+          "LogicForApplications_Lec_Dec03_7_Negation_and_Nonmonotonic_Lo.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Dec05",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Dec05",
+      "files": {
+        "other": [
+          ".DS_Store",
+          "2025-12-05_Ikram_Temporal_Logic_LTL.mp4"
+        ],
+        "pdf": [
+          "2025-12-05_Ikram_Temporal_Logic_LTL_slides.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Dec08",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Dec08",
+      "files": {
+        "pdf": [
+          "2025-12-08_Ikram_Model_Checking_and_Course_Review_slides.pdf"
+        ],
+        "txt": [
+          "Model Checking and Course Review.txt"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Nov03",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Nov03",
+      "files": {
+        "json": [
+          "2025-11-03_Ikram_Predicate_Logic_Tableaux_and_Validity.json",
+          "lesson-plan-23.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-11-03_Ikram_Predicate_Logic_Tableaux_and_Validity.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "First-OrderLogicandAutomatedTheoremProving_Sec6.1.pdf",
+          "LogicForApplications_Lec_Nov03_6_Proofs:_Complete_Systematic_.pdf",
+          "LogicForApplications_SecII.6.pdf",
+          "Nov03_lecture23.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Nov05",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Nov05",
+      "files": {
+        "json": [
+          "2025-11-05_Ikram_Semantic_Tableaux_Validity_and_Proof_Theory.json",
+          "lesson-plan-24.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-11-05_Ikram_Semantic_Tableaux_Validity_and_Proof_Theory.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "First-OrderLogicandAutomatedTheoremProving_Sec6.1.pdf",
+          "First-OrderLogicandAutomatedTheoremProving_Sec9.1.pdf",
+          "LanguageProofandLogic_Sec12.1.pdf",
+          "LogicForApplications_Lec_Nov05_10_Herbrand's_Theorem.pdf",
+          "LogicForApplications_SecII.6.pdf",
+          "Nov05_lecture24.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Nov12",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Nov12",
+      "files": {
+        "json": [
+          "2025-11-12_Ikram_Resolution_in_First_Order_Logic.json",
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-11-12_Ikram_Resolution_in_First_Order_Logic.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "2025-11-12_Ikram_Resolution_in_First_Order_Logic_lecture21.pdf",
+          "LogicForApplications_Lec_Nov12_8_Resolution.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Nov14",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Nov14",
+      "files": {
+        "json": [
+          "2025-11-14_Ikram_Unification_Algorithm.json",
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-11-14_Ikram_Unification_Algorithm.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "LogicForApplications_Lec_Nov14_12_The_Unification_Algorithm.pdf",
+          "cs5384_2025_fall_lecture26.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Nov17",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Nov17",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-11-17_Ikram_Logic_Programming_Basics.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "LogicForApplications_Lec_Nov17_14_Refining_Resolution:_Linear.pdf",
+          "cs5384_2025_fall_lecture27.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Nov19",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Nov19",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-11-19_Ikram_Prolog_and_Horn_Clauses.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "2025-11-19_Ikram_Modal_Logic_Systems_lecture24.pdf",
+          "LogicForApplications_Lec_Nov19_3_Modal_Tableaux.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Nov21",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Nov21",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-11-21_Ikram_Negation_and_Non_monotonic_Reasoning.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "2025-11-21_Ikram_Negation_and_Non_monotonic_Reasoning.pdf",
+          "LogicForApplications_Lec_Nov21_7_Negation_and_Nonmonotonic_Lo.pdf",
+          "cs5384_2025_fall_lecture29.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct03",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct03",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture13.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct06",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct06",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture14.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct08",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct08",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture15.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct10",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct10",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture16.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct15",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct15",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture17.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct17",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct17",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture18.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct20",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct20",
+      "files": {
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture19.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct22",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct22",
+      "files": {
+        "json": [
+          "2025-10-22_Ikram_Predicates_and_Quantifiers.json",
+          "lesson-plan-19.json",
+          "topics-and-exercises.json"
+        ],
+        "md": [
+          "Lecture19_Overview_Script.md"
+        ],
+        "other": [
+          "2025-10-22_Ikram_Predicates_and_Quantifiers.mp4",
+          "2025-10-22_Ikram_Predicates_and_Quantifiers.srt",
+          "2025-10-22_Ikram_Predicates_and_Quantifiers.tsv",
+          "2025-10-22_Ikram_Predicates_and_Quantifiers.vtt",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "First-OrderLogicandAutomatedTheoremProving_Sec5.1.pdf",
+          "LanguageProofandLogic_Sec9.1.pdf",
+          "LanguageProofandLogic_Sec9.2.pdf",
+          "LanguageProofandLogic_Sec9.4.pdf",
+          "LogicForApplications_SecII.1.pdf",
+          "Oct22_lecture19.pdf"
+        ],
+        "txt": [
+          "2025-10-22_Ikram_Predicates_and_Quantifiers.txt"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct27",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct27",
+      "files": {
+        "json": [
+          "lesson-plan-20.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "Lec20_Oct27.mp4",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "First-OrderLogicandAutomatedTheoremProving_Sec5.3.pdf",
+          "LanguageProofandLogic_Sec9.3.pdf",
+          "LanguageProofandLogic_Sec9.5.pdf",
+          "LogicForApplications_SecII.2.pdf",
+          "LogicForApplications_SecII.4.pdf",
+          "Oct27_lecture20.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct29",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct29",
+      "files": {
+        "json": [
+          "2025-10-29_Ikram_Nested_Quantifiers_and_Distributivity.json",
+          "lesson-plan-21.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-10-29_Ikram_Nested_Quantifiers_and_Distributivity.mp4",
+          "2025-10-29_Ikram_Nested_Quantifiers_and_Distributivity.srt",
+          "2025-10-29_Ikram_Nested_Quantifiers_and_Distributivity.tsv",
+          "2025-10-29_Ikram_Nested_Quantifiers_and_Distributivity.vtt",
+          "Oct29_KeyPoints",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "Oct29_lecture21.pdf"
+        ],
+        "txt": [
+          "2025-10-29_Ikram_Nested_Quantifiers_and_Distributivity.txt"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Oct31",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Oct31",
+      "files": {
+        "json": [
+          "2025-10-31_Ikram_Quantifier_Scoping_and_Logic_Trees.json",
+          "lesson-plan-22.json"
+        ],
+        "other": [
+          ".DS_Store",
+          "2025-10-31_Ikram_Quantifier_Scoping_and_Logic_Trees.mp4",
+          "2025-10-31_Ikram_Quantifier_Scoping_and_Logic_Trees.srt",
+          "2025-10-31_Ikram_Quantifier_Scoping_and_Logic_Trees.tsv",
+          "2025-10-31_Ikram_Quantifier_Scoping_and_Logic_Trees.vtt",
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "First-OrderLogicandAutomatedTheoremProving_Sec5.1.pdf",
+          "First-OrderLogicandAutomatedTheoremProving_Sec8.4.pdf",
+          "LanguageProofandLogic_Sec10.1.pdf",
+          "LanguageProofandLogic_Sec10.3.pdf",
+          "Oct31_lecture22.pdf"
+        ],
+        "txt": [
+          "2025-10-31_Ikram_Quantifier_Scoping_and_Logic_Trees.txt"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep03",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep03",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture4.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep05",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep05",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture5.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep08",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep08",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture6.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep10",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep10",
+      "files": {
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture7.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep15",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep15",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture8.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep17",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep17",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture9.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep19",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep19",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture10.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep26",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep26",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture11.pdf"
+        ]
+      }
+    },
+    {
+      "lecture_id": "Lec_Sep29",
+      "path": "/Users/sdw/CS-5384-Logic-for-Computer-Scientists/Lectures/Lec_Sep29",
+      "files": {
+        "json": [
+          "topics-and-exercises.json"
+        ],
+        "other": [
+          "transcribe.sh"
+        ],
+        "pdf": [
+          "cs5384_2025_fall_lecture12.pdf"
+        ]
+      }
+    }
+  ]
+}
