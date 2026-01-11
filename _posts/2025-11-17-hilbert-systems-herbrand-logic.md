@@ -1,870 +1,170 @@
 ---
-
-
 layout: post
-
-
 title: "Hilbert Proof Systems and Herbrand Logic: Foundations of Automated Theorem Proving"
-
-
 date: 2025-11-17
-
-
 categories: [logic, computer-science]
-
-
 tags: [logic-for-computer-scientists, hilbert-system, herbrand-logic, tableaux-method, automated-reasoning]
-
-
 excerpt: "An in-depth exploration of Hilbert proof systems and the Tableaux method for predicate logic, with detailed examples on quantifier manipulation and step-by-step proof construction."
-
-
 reading_time: 12
-
-
 course: "Logic for Computer Scientists"
-
-
 ---
-
-
- 
-
 
 # Hilbert Proof Systems and Herbrand Logic: Foundations of Automated Theorem Proving
 
+The Hilbert proof system represents one of the most elegant and rigorous approaches to formal logic. By reducing complex logical reasoning to a minimal set of axioms and a single rule of inference, it provides a foundational bedrock for mathematical logic.
 
- 
-
-
-The Hilbert proof system represents one of the most elegant approaches to formal logic, reducing complex logical reasoning to a minimal set of axioms and a single inference rule. In this lecture, we explore the foundations of Hilbert systems, examine critical examples of quantifier manipulation, and apply the Tableaux method to construct formal proofs.
-
-
- 
-
+In this lecture, we explore the structure of Hilbert systems, examine critical examples of quantifier manipulation, and apply the Tableaux method—a powerful algorithmic technique used in modern automated theorem provers—to construct formal proofs.
 
 ## The Hilbert Proof System
 
+The defining characteristic of a Hilbert system is its minimalism. Unlike systems with many inference rules (like Natural Deduction), a Hilbert system typically uses **implication as the primary connective** and relies on a small set of logical axioms combined with **Modus Ponens** as the sole rule of derivation.
 
- 
+### The Five Axioms of First-Order Logic
 
+Our system consists of five schema axioms. Let $A$, $B$, and $C$ be arbitrary well-formed formulas:
 
-The Hilbert system is characterized by its minimalist design: it uses **implication as the only connective** and relies on a small set of axioms combined with **Modus Ponens** as the sole rule of inference.
-
-
- 
-
-
-### The Five Axioms
-
-
- 
-
-
-The Hilbert system consists of five axioms, where $A$, $B$, and $C$ are arbitrary predicates:
-
-
- 
-
-
-**A1**: Basic Implication Identity
-
-
+**Axiom 1: Basic Implication Identity**
 $$A \to (B \to A)$$
 
+*Intuition*: This axiom asserts that if a proposition $A$ is true, it remains true even if we assume some other condition $B$. This reflects the **monotonicity** of classical logic—adding premises cannot invalidate a true conclusion.
 
- 
-
-
-**Intuition**: If $A$ is true, then $A$ remains true regardless of $B$. This captures the idea that truth is preserved under additional assumptions.
-
-
- 
-
-
-**A2**: Implication Distribution
-
-
+**Axiom 2: Implication Distribution**
 $$[A \to (B \to C)] \to [(A \to B) \to (A \to C)]$$
 
+*Intuition*: This is the logical analog of function distribution. If $A$ implies that "$B$ implies $C$", and $A$ also implies $B$, then $A$ must imply $C$. It allows us to distribute an assumption $A$ across an implication $B \to C$.
 
- 
-
-
-**Intuition**: If $A$ implies that $B$ implies $C$, and $A$ implies $B$, then $A$ must imply $C$. This is the logical analog of function composition.
-
-
- 
-
-
-**A3**: Contrapositive Principle
-
-
+**Axiom 3: The Contrapositive Principle**
 $$(\neg B \to \neg A) \to (A \to B)$$
 
+*Intuition*: This captures the essence of proof by contrapositive. If the falsity of $B$ guarantees the falsity of $A$, then the truth of $A$ guarantees the truth of $B$.
 
- 
+**Axiom 4: Universal Instantiation**
+$$\forall x A(x) \to A(t)$$
 
+*Condition*: $t$ is any term free for $x$ in $A(x)$.
+*Intuition*: If a property holds for *everything*, it must hold for any specific *thing* $t$. This allows us to move from general laws to specific instances.
 
-**Intuition**: If the negation of $B$ implies the negation of $A$, then $A$ must imply $B$. This is the foundation of proof by contrapositive.
-
-
- 
-
-
-**A4**: Universal Instantiation
-
-
-$$\forall x A(x) \to A(a)$$
-
-
- 
-
-
-where $a$ is any ground term (constant or specific value).
-
-
- 
-
-
-**Intuition**: If a property holds for all $x$, then it must hold for any specific instance $a$.
-
-
- 
-
-
-**A5**: Universal Distribution over Implication
-
-
+**Axiom 5: Universal Distribution**
 $$\forall x(A \to B(x)) \to (A \to \forall x B(x))$$
 
+*Condition*: The variable $x$ must not occur free in $A$.
+*Intuition*: If $A$ implies $B(x)$ for every possible $x$, and $A$ itself does not depend on $x$, then $A$ implies that $B(x)$ is universally true.
 
- 
+### Modus Ponens: The Single Rule of Inference
 
+The engine of the Hilbert system is **Modus Ponens** (MP):
 
-where $x$ does not appear free in $A$.
+$$\frac{A, \quad A \to B}{B}$$
 
+**Meaning**: If we have proven $A$, and we have proven that $A$ implies $B$, we can logically conclude $B$.
 
- 
+This single rule, combined with the five axioms above, forms a **sound and complete** proof system for first-order logic. Every valid mathematical theorem can, in principle, be derived from this compact foundation.
 
+## Quantifier Manipulation: Subtleties and Pitfalls
 
-**Intuition**: If for every $x$, $A$ implies $B(x)$, and $A$ doesn't depend on $x$, then $A$ implies that $B(x)$ holds for all $x$.
+One of the most common sources of error in logic is the improper manipulation of quantifiers. The order of quantifiers ($\forall \exists$ vs $\exists \forall$) fundamentally changes the meaning of a statement.
 
-
- 
-
-
-### Modus Ponens: The Single Inference Rule
-
-
- 
-
-
-The Hilbert system uses **Modus Ponens** as its only rule of inference:
-
-
- 
-
-
-$$\frac{A; \quad (A \to B)}{B}$$
-
-
- 
-
-
-**Meaning**: From $A$ and $A \to B$, we can conclude $B$.
-
-
- 
-
-
-This single rule, combined with the five axioms, forms a **complete** proof system for first-order logic.
-
-
- 
-
-
-## Quantifier Manipulation: Common Pitfalls
-
-
- 
-
-
-One of the most subtle aspects of first-order logic involves understanding when quantifiers can and cannot be manipulated. The following examples demonstrate critical limitations.
-
-
- 
-
-
-### Example 5: Why $\exists x \forall y A(x,y) \to \forall x \exists y A(x,y)$ is NOT Always Valid
-
-
- 
-
-
-**Claim**: We attempt to prove:
-
-
+### Case Study 1: The Invalid Commutation
+**Claim**: Is the following implication valid?
 $$\exists x \forall y A(x,y) \to \forall x \exists y A(x,y)$$
 
-
- 
-
-
-**Attempted Proof**:
-
-
- 
-
-
-Step 1: Assume the antecedent
-
-
-$$\exists x \forall y A(x,y) \vdash \exists x \forall y A(x,y)$$
-
-
- 
-
-
-Step 2: Existential elimination (introduce Skolem constant $a$)
-
-
-$$\exists x \forall y A(x,y) \vdash \forall y A(a,y)$$
-
-
- 
-
-
-where $a$ is a constant witnessing the existential quantifier.
-
-
- 
-
-
-Step 3: Universal instantiation (let $b$ be any ground term)
-
-
-$$\exists x \forall y A(x,y) \vdash A(a,b)$$
-
-
- 
-
-
-Step 4: Existential introduction
-
-
-$$\exists x \forall y A(x,y) \vdash \exists y A(a,y)$$
-
-
- 
-
-
-Step 5: **STUCK** - We cannot proceed to $\forall x \exists y A(x,y)$
-
-
- 
-
-
-**Why This Fails**:
-
-
- 
-
-
-The constants $a$ and $b$ are **independent**. The constant $a$ was introduced from the existential quantifier $\exists x$, making it a fixed witness. We cannot universally quantify over $a$ because $a$ is a specific constant, not an arbitrary variable.
-
-
- 
-
-
-**Concrete Counterexample**:
-
-
- 
-
-
-Let $A(x,y)$ mean "$x$ equals $y$". Then:
-
-
-- $\exists x \forall y (x = y)$ is **false** (there is no single value equal to all values)
-
-
-- $\forall x \exists y (x = y)$ is **true** (every value equals itself)
-
-
- 
-
-
-Therefore, the implication does not hold universally.
-
-
- 
-
-
-**Key Insight**: Swapping quantifiers from $\exists x \forall y$ to $\forall x \exists y$ is **not** logically valid. The witness for $\exists x$ is a single fixed value, while $\forall x$ requires the property to hold for all values.
-
-
- 
-
-
-###Example 6: Why $\exists x \forall y A(x,y) \to \forall y \exists x A(y,x)$ is NOT Valid
-
-
- 
-
-
-**Claim**: We attempt to prove:
-
-
+**Analysis**:
+Let's attempt a proof to see where it breaks down.
+1.  Assume $\exists x \forall y A(x,y)$.
+2.  By Existential Elimination, we introduce a specific constant (a witness), say $a$, such that $\forall y A(a,y)$.
+3.  By Universal Instantiation, we can pick any arbitrary term $b$ and say $A(a,b)$.
+4.  By Existential Introduction, we can say $\exists y A(a,y)$.
+
+**The Block**: We are stuck. We have shown that for the specific constant $a$, there exists a $y$. However, the consequent $\forall x \exists y A(x,y)$ requires this to hold for **every** $x$, not just our witness $a$. Since $a$ is a specific constant fixed by the premise, we cannot generalize it to $\forall x$.
+
+**Counterexample**:
+Let $A(x,y)$ be the relation "$x = y$".
+*   $\exists x \forall y (x=y)$ means "There is a number equal to every number." (**False**)
+*   $\forall x \exists y (x=y)$ means "Every number is equal to some number" (e.g., itself). (**True**)
+The implication False $\to$ True is technically valid truth-functionally, but the logical derivation fails because the structure doesn't hold for all interpretations.
+
+### Case Study 2: Swapping Quantifiers
+**Claim**: Is the following valid?
 $$\exists x \forall y A(x,y) \to \forall y \exists x A(y,x)$$
 
-
- 
-
-
-**Attempted Proof**:
-
-
- 
-
-
-Step 1: Assume the antecedent
-
-
-$$\exists x \forall y A(x,y) \vdash \exists x \forall y A(x,y)$$
-
-
- 
-
-
-Step 2: Existential elimination (Skolem constant $a$)
-
-
-$$\exists x \forall y A(x,y) \vdash \forall y A(a,y)$$
-
-
- 
-
-
-Step 3: Universal instantiation (let $b$ be any ground term)
-
-
-$$\exists x \forall y A(x,y) \vdash A(a,b)$$
-
-
- 
-
-
-Step 4: **STUCK** - We cannot derive $A(b,a)$ from $A(a,b)$
-
-
- 
-
-
-**Why This Fails**:
-
-
- 
-
-
-The constants $a$ and $b$ are **independent**, originating from two different quantifiers ($\exists x$ and $\forall y$ respectively). We cannot swap their positions in the predicate $A$ because there is no logical rule permitting such a transformation. The predicates $A(a,b)$ and $A(b,a)$ are entirely different propositions.
-
-
- 
-
-
-**Concrete Counterexample**:
-
-
- 
-
-
-Let $A(x,y)$ mean "$x < y$" (less than). Then:
-
-
-- $\exists x \forall y (x < y)$ is **false** (there's no single value less than all values)
-
-
-- $\forall y \exists x (y < x)$ is **true** (for any value, there exists a smaller value)
-
-
- 
-
-
-Even if the antecedent were true, swapping argument positions would not preserve meaning.
-
-
- 
-
-
-**Key Insight**: Independent constants resulting from independent quantifiers **cannot** be swapped or rearranged. They may represent entirely different quantities with no established relationship.
-
-
- 
-
-
-### Example 7: Why $\exists x \forall y A(x,y) \to \forall y \exists x A(x,x)$ is NOT Valid
-
-
- 
-
-
-**Claim**: We attempt to prove:
-
-
-$$\exists x \forall y A(x,y) \to \forall y \exists x A(x,x)$$
-
-
- 
-
-
-**Attempted Proof**:
-
-
- 
-
-
-Step 1: Assume the antecedent
-
-
-$$\exists x \forall y A(x,y) \vdash \exists x \forall y A(x,y)$$
-
-
- 
-
-
-Step 2: Existential elimination (Skolem constant $a$)
-
-
-$$\exists x \forall y A(x,y) \vdash \forall y A(a,y)$$
-
-
- 
-
-
-Step 3: Universal instantiation (let $b$ be any ground term)
-
-
-$$\exists x \forall y A(x,y) \vdash A(a,b)$$
-
-
- 
-
-
-Step 4: **STUCK** - We cannot derive $A(a,a)$ or $A(b,b)$ from $A(a,b)$
-
-
- 
-
-
-**Why This Fails**:
-
-
- 
-
-
-The constants $a$ and $b$ are **independent**. We cannot **duplicate** or **substitute** one constant for another without justification. There is no logical rule that permits deriving $A(a,a)$ from $A(a,b)$ when $a \neq b$.
-
-
- 
-
-
-**Concrete Counterexample**:
-
-
- 
-
-
-Let $A(x,y)$ mean "$x \neq y$" (not equal). Then:
-
-
-- $\exists x \forall y (x \neq y)$ is **false** (no value is different from itself)
-
-
-- $\forall y \exists x (x = x)$ is **true** (trivially, everything equals itself)
-
-
- 
-
-
-The implication fails because we cannot force independent constants to be equal.
-
-
- 
-
-
-**Key Insight**: **Duplication** or **substitution** of independent constants is not permitted in formal logic. Each constant introduced by a quantifier represents a potentially distinct value.
-
-
- 
-
+**Analysis**:
+1.  Assume $\exists x \forall y A(x,y)$.
+2.  Eliminate $\exists x$: We get $\forall y A(a,y)$ for some witness $a$.
+3.  Eliminate $\forall y$: We get $A(a,b)$ for any arbitrary $b$.
+
+**The Block**: We need to prove $\forall y \exists x A(y,x)$. This would require deriving $A(b, \text{something})$. We have $A(a,b)$.
+Unless the relation $A$ is symmetric (i.e., $A(x,y) \to A(y,x)$), we cannot derive $A(b,a)$ from $A(a,b)$.
+
+**Counterexample**:
+Let $A(x,y)$ be "$x > y$".
+*   Premise: "There is a number larger than all numbers." (False)
+*   Conclusion: "For every number, there is a number smaller than it." (True)
+Again, the logical form does not support the derivation. $A(a,b)$ does not imply $A(b,a)$.
 
 ## The Tableaux Method for Predicate Logic
 
-
- 
-
-
-The Tableaux method provides a systematic approach to proving or disproving logical formulas by constructing a **proof tree**. The method works by assuming the negation of the goal and deriving a contradiction (closing all branches).
-
-
- 
-
-
-### Problem 1: Proving $\exists y [\neg R(y,y) \lor P(y,y)] \land \forall x R(x,x)$
-
-
- 
-
-
-**Goal**: Use the Tableaux method to prove or disprove:
-
-
-$$\exists y [\neg R(y,y) \lor P(y,y)] \land \forall x R(x,x)$$
-
-
- 
-
-
-**Solution**:
-
-
- 
-
-
-We construct a Tableaux tree by marking the formula as **False** and applying the rules systematically.
-
-
- 
-
-
-```
-
-
-F: ∃y[¬R(y,y) ∨ P(y,y)] ∧ ∀x R(x,x)
-
-
-│
-
-
-├─ F: ∃y[¬R(y,y) ∨ P(y,y)]        (Conjunction rule - left branch)
-
-
-│  │
-
-
-│  └─ ∀y F:[¬R(y,y) ∨ P(y,y)]     (Negation of existential)
-
-
-│     │
-
-
-│     └─ F:[¬R(a,a) ∨ P(a,a)]     (Universal instantiation with constant a)
-
-
-│        │
-
-
-│        ├─ F: ¬R(a,a)              (Disjunction - both must be false)
-
-
-│        │  │
-
-
-│        │  └─ T: R(a,a)            (Double negation)
-
-
-│        │
-
-
-│        └─ F: P(a,a)
-
-
-│
-
-
-└─ F: ∀x R(x,x)                    (Conjunction rule - right branch)
-
-
-   │
-
-
-   └─ ∃x F:R(x,x)                  (Negation of universal)
-
-
-      │
-
-
-      └─ F:R(b,b)                   (Existential instantiation with constant b)
-
-
-```
-
-
- 
-
-
-**Analysis**:
-
-
- 
-
-
-- The left branch derives $T: R(a,a)$ (meaning $R(a,a)$ is true)
-
-
-- The right branch derives $F: R(b,b)$ (meaning $R(b,b)$ is false)
-
-
-- Since $a$ and $b$ are independent constants, there is **no contradiction**
-
-
-- The branches do **not** close
-
-
- 
-
-
-**Conclusion**: The formula is **satisfiable** but not a tautology. The Tableaux tree does not close, indicating that there exist models where the formula holds and models where it doesn't.
-
-
- 
-
-
-**Key Insight**: The formula is satisfiable when $R$ holds for some elements (like $a$) but not others (like $b$), and $P(a,a)$ is false.
-
-
- 
-
-
-### Problem 2: Proving $\forall x[P(x) \to Q(x)] \to (\forall x P(x) \to \forall x Q(x))$
-
-
- 
-
-
-**Goal**: Use the Tableaux method to prove:
-
-
-$$\forall x[P(x) \to Q(x)] \to (\forall x P(x) \to \forall x Q(x))$$
-
-
- 
-
-
-**Solution**:
-
-
- 
-
-
-We attempt to derive a contradiction by assuming the formula is **False**.
-
-
- 
-
-
-```
-
-
-F: ∀x[P(x) → Q(x)] → (∀x P(x) → ∀x Q(x))
-
-
-│
-
-
-├─ T: ∀x[P(x) → Q(x)]              (Implication - antecedent must be true)
-
-
-│
-
-
-└─ F: ∀x P(x) → ∀x Q(x)            (Implication - consequent must be false)
-
-
-   │
-
-
-   ├─ T: ∀x P(x)                    (Nested implication - antecedent true)
-
-
-   │  │
-
-
-   │  └─ T: P(a)                    (Universal instantiation)
-
-
-   │
-
-
-   └─ F: ∀x Q(x)                    (Nested implication - consequent false)
-
-
-      │
-
-
-      └─ ∃x F:Q(x)                  (Negation of universal)
-
-
-         │
-
-
-         └─ F: Q(a)                  (Existential instantiation with same constant a)
-
-
- 
-
-
-Now apply T: ∀x[P(x) → Q(x)] with x = a:
-
-
- 
-
-
-   T: P(a) → Q(a)
-
-
-   │
-
-
-   ├─ F: P(a)    (CONTRADICTION with T: P(a) above - BRANCH CLOSES)
-
-
-   │
-
-
-   └─ T: Q(a)    (CONTRADICTION with F: Q(a) above - BRANCH CLOSES)
-
-
-```
-
-
- 
-
-
-**All branches close**, therefore the formula is a **tautology** (logically valid).
-
-
- 
-
-
-**Key Insight**: This formula captures the principle that universal quantifiers distribute over implications. If every $P$ implies $Q$, and all things are $P$, then all things are $Q$.
-
-
- 
-
-
-## Practice Problems
-
-
- 
-
-
-To solidify your understanding, try proving or disproving the following using the Tableaux method:
-
-
- 
-
-
-1. $\forall x[P(x) \lor Q(x)] \to [\forall x P(x) \lor \exists x Q(x)]$
-
-
-2. $[\exists x P(x) \land \exists x Q(x)] \to \exists x[P(x) \land Q(x)]$
-
-
-3. $\forall x \forall y R(x,y) \to \forall y \forall x R(x,y)$
-
-
- 
-
-
-**Hints**:
-
-
-- Start by assuming the formula is False
-
-
-- Systematically apply quantifier rules
-
-
-- Watch for opportunities to use the same constant across branches
-
-
-- A closed tree (all branches close) proves validity
-
-
- 
-
+While Hilbert systems are elegant, they are difficult to use for finding proofs manually. The **Tableaux Method** (or Truth Tree method) is a refutation-based procedure ideal for automated reasoning.
+
+**Algorithm**: To prove a formula $F$, we assume $\neg F$ and try to show this leads to a contradiction in all branches of the logic tree.
+
+### Problem 1: Proving Satisfiability
+**Formula**: $\exists y [\neg R(y,y) \lor P(y,y)] \land \forall x R(x,x)$
+
+We construct the tree by decomposing the formula:
+
+1.  **Root**: $\exists y [\neg R(y,y) \lor P(y,y)] \land \forall x R(x,x)$
+2.  **Decompose AND**:
+    *   (1) $\exists y [\neg R(y,y) \lor P(y,y)]$
+    *   (2) $\forall x R(x,x)$
+3.  **Eliminate $\exists y$** (from 1): Introduce witness constant $a$.
+    *   (3) $\neg R(a,a) \lor P(a,a)$
+4.  **Branch on OR** (from 3):
+    *   **Left Branch**: $\neg R(a,a)$
+        *   Apply (2) $\forall x R(x,x)$ to $a$: $R(a,a)$.
+        *   Contradiction! ($R(a,a)$ and $\neg R(a,a)$). **Branch Closed.**
+    *   **Right Branch**: $P(a,a)$
+        *   Apply (2) to $a$: $R(a,a)$.
+        *   No contradiction. We have $P(a,a)$ true and $R(a,a)$ true.
+
+**Result**: The tree has an open branch. Therefore, the formula is **satisfiable** (true in at least one model) but **not a tautology** (not true in all models).
+
+### Problem 2: Proving Validity
+**Formula**: $\forall x[P(x) \to Q(x)] \to (\forall x P(x) \to \forall x Q(x))$
+
+**Proof**: Assume the negation is true.
+1.  **False**: $\forall x[P(x) \to Q(x)] \to (\forall x P(x) \to \forall x Q(x))$
+2.  **True**: $\forall x[P(x) \to Q(x)]$ (Antecedent)
+3.  **False**: $\forall x P(x) \to \forall x Q(x)$ (Consequent)
+4.  **True**: $\forall x P(x)$ (from 3)
+5.  **False**: $\forall x Q(x)$ (from 3)
+6.  **True**: $\exists x \neg Q(x)$ (Negation of 5)
+7.  **Witness**: $\neg Q(a)$ (from 6, constant $a$)
+8.  **Instantiate** (2) with $a$: $P(a) \to Q(a)$
+9.  **Instantiate** (4) with $a$: $P(a)$
+10. **Modus Ponens** (on 8, 9): Therefore $Q(a)$
+11. **Contradiction**: We have derived $Q(a)$ (step 10) and we have $\neg Q(a)$ (step 7).
+
+**Result**: All branches close. The negation is impossible. Therefore, the original formula is **valid**.
 
 ## Conclusion
 
-
- 
-
-
 The Hilbert proof system demonstrates the power of minimal axiomatization: with just five axioms and Modus Ponens, we can derive all valid formulas of first-order logic. However, the examples of quantifier manipulation reveal critical subtleties:
 
-
- 
-
-
-1. **Quantifier order matters**: $\exists x \forall y$ is fundamentally different from $\forall x \exists y$
-
-
-2. **Independent constants cannot be freely manipulated**: Constants from different quantifiers represent potentially distinct values
-
-
-3. **Skolemization is sound but introduces constraints**: Skolem constants are witnesses, not arbitrary values
-
-
- 
-
+1.  **Quantifier order matters**: $\exists x \forall y$ is fundamentally different from $\forall x \exists y$.
+2.  **Independent constants cannot be freely manipulated**: Constants from different quantifiers represent potentially distinct values.
+3.  **Skolemization is sound but introduces constraints**: Skolem constants are witnesses, not arbitrary values.
 
 The Tableaux method complements the Hilbert system by providing a **semi-decidable** proof procedure: if a formula is valid, the Tableaux method will eventually close all branches and confirm validity. If invalid, the method may not terminate, but often reveals counterexamples through open branches.
 
-
- 
-
-
 Together, these techniques form the foundation of **automated theorem proving** and are essential tools in formal verification, program correctness, and artificial intelligence reasoning systems.
-
-
- 
-
 
 ## Further Reading
 
-
- 
-
-
-- *Introduction to Mathematical Logic* by Mendelson - Comprehensive coverage of Hilbert systems
-
-
-- *Logic for Applications* by Anil Nerode and Richard Shore - Practical applications of formal logic
-
-
-- *Automated Reasoning* by Gallier - Tableaux methods and resolution theorem proving
-
-
-- [Stanford Encyclopedia of Philosophy: Automated Reasoning](https://plato.stanford.edu/entries/reasoning-automated/) - Philosophical foundations
-
-
-- [The Isabelle Theorem Prover](https://isabelle.in.tum.de/) - Modern automated proof assistant
-
-
- 
-
+*   **Introduction to Mathematical Logic** by Mendelson - Comprehensive coverage of Hilbert systems.
+*   **Logic for Applications** by Anil Nerode and Richard Shore - Practical applications of formal logic.
+*   **Automated Reasoning** by Gallier - Tableaux methods and resolution theorem proving.
+*   [The Isabelle Theorem Prover](https://isabelle.in.tum.de/) - Modern automated proof assistant.
 
 ---
 
-
- 
-
-
-*This lecture covered Hilbert proof systems, quantifier manipulation, and the Tableaux method. Next, we'll explore Herbrand semantics and how they provide efficient models for first-order logic.*
-
-
- 
-
-
+*This lecture covered Hilbert proof systems, quantifier manipulation, and the Tableaux method. Next, we will explore Herbrand semantics and how they provide efficient models for first-order logic.*
