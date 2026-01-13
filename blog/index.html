@@ -15,17 +15,15 @@ permalink: /blog/
 
   <div class="blog-posts-container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
     {% assign courses = "Logic for Computer Scientists|Intelligent Systems|Theory of Automata" | split: "|" %}
-    {% assign handled_posts = "" | split: "" %}
 
     {% for course in courses %}
-      {% assign course_posts = site.posts | where_exp: "item", "item.categories contains course" %}
+      {% assign course_posts = site.posts | where: "course", course %}
       
       {% if course_posts.size > 0 %}
         <section class="section" style="padding: 2rem 0;">
           <h2 class="section__title" style="margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0;">{{ course }}</h2>
           <div class="projects-grid">
             {% for post in course_posts %}
-              {% assign handled_posts = handled_posts | push: post.url %}
               <article class="blog-post-card" style="height: 100%; display: flex; flex-direction: column;">
                 <div class="blog-post-card__meta">
                   <time datetime="{{ post.date | date_to_xmlschema }}">
@@ -73,7 +71,7 @@ permalink: /blog/
     {% endfor %}
 
     <!-- Catch-all for remaining posts -->
-    {% assign remaining_posts = site.posts | where_exp: "item", "(handled_posts contains item.url) == false" %}
+    {% assign remaining_posts = site.posts | where: "course", "General" %}
     
     {% if remaining_posts.size > 0 %}
       <section class="section" style="padding: 2rem 0;">

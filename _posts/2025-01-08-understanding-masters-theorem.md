@@ -6,6 +6,7 @@ categories: [algorithms, theory]
 tags: [algorithms, complexity, masters-theorem, divide-and-conquer]
 excerpt: "A comprehensive guide to understanding and applying the Master's Theorem for analyzing divide-and-conquer algorithms."
 reading_time: 8
+course: "Theory of Automata"
 ---
 
 # Understanding the Master's Theorem: A Practical Guide
