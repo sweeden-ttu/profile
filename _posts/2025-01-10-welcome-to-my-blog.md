@@ -24,7 +24,7 @@ Over the next months and years, I plan to use this space to:
 
 ## My Background
 
-Originally from Oregon, I recently moved to Texas to pursue my graduate studies at Texas Tech. My research interests center on machine learning applications that make a real difference—whether in social impact, environmental sustainability, or healthcare.
+Originally from Oregon, I moved to Texas after being the victim of mortgage fraud. My passion and goal is to use technology to empower the voice of americans, hold leaders accountable, provide elected officials and candidates a platform where they can be known, and voters a petition to sign when its time for change
 
 Some highlights of my work so far:
 - Authored an IEEE peer review article of a Microsoft Research publication
