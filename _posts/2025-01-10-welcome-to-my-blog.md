@@ -59,9 +59,9 @@ I'm planning a study abroad semester in Australia, which should bring exciting n
 
 I'm always eager to connect with fellow enthusiasts, researchers, and learners. Whether you have questions, suggestions, or just want to discuss interesting problems, feel free to reach out:
 
-- **Email**: [your-email@example.com]
-- **GitHub**: [your-github-profile]
-- **LinkedIn**: [your-linkedin-profile]
+- **Email**: sweeden@ttu.edu
+- **GitHub**: sweeden-ttu
+- **LinkedIn**: weedens
 
 Thanks for stopping by, and I hope you find something valuable here. Stay tuned for upcoming posts on reinforcement learning, algorithm analysis, and the intersection of ML with real-world impact.
 
