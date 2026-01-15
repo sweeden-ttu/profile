@@ -12,14 +12,75 @@ permalink: /
         <h1 class="hero__title">Scott Weeden</h1>
         <p class="hero__subtitle">Computer Science Student & ML Researcher</p>
         <p class="hero__description">
-          Master's student at Texas Tech University exploring machine learning, 
-          cryptography, and software verification. Documenting my academic journey 
+          Master's student at Texas Tech University exploring machine learning,
+          cryptography, and software verification. Documenting my academic journey
           through research, projects, and course work.
         </p>
         <div class="hero__actions">
           <a href="/about/" class="button button--primary">About Me</a>
           <a href="/research/" class="button button--secondary">Projects</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Assignment Solutions Section -->
+  <section class="section" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+    <div class="section__container">
+      <div class="section__header section__header--centered">
+        <span class="section__label">📚 Featured</span>
+        <h2 class="section__title">Recent Assignment Solutions</h2>
+        <p class="section__description">Complete solutions with step-by-step explanations for recent coursework</p>
+      </div>
+
+      <div class="solutions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; margin-top: 3rem;">
+
+        <!-- Logic Homework 3 Solutions -->
+        <div class="solution-card" style="border: 2px solid #8b5cf6; border-radius: 12px; padding: 0; background: #ffffff; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+          <div style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); color: white; padding: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 1.5rem;">📝</span>
+              <span style="font-size: 0.875rem; opacity: 0.9;">Logic for Computer Scientists</span>
+            </div>
+            <h3 style="margin: 0; font-size: 1.5rem;">Homework 3 Solutions</h3>
+          </div>
+          <div style="padding: 1.5rem;">
+            <ul style="margin: 0 0 1.5rem 0; padding-left: 1.25rem; color: #475569;">
+              <li style="margin-bottom: 0.5rem;">Predicate logic trees & variable scoping</li>
+              <li style="margin-bottom: 0.5rem;">Propositional proofs (Modus Ponens, Addition)</li>
+              <li style="margin-bottom: 0.5rem;">CNF conversion with algebraic steps</li>
+              <li style="margin-bottom: 0.5rem;">Predicate logic formalization</li>
+            </ul>
+            <div style="display: flex; gap: 1rem;">
+              <a href="/assignments/logic-for-computer-scientists/logic-homework3-solutions" style="flex: 1; text-align: center; background: #8b5cf6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
+              <a href="/assignments/logic-for-computer-scientists/logic-homework3" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Intelligent Systems Assignment 4 Solutions -->
+        <div class="solution-card" style="border: 2px solid #3b82f6; border-radius: 12px; padding: 0; background: #ffffff; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+          <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 1.5rem;">🧠</span>
+              <span style="font-size: 0.875rem; opacity: 0.9;">Intelligent Systems</span>
+            </div>
+            <h3 style="margin: 0; font-size: 1.5rem;">Assignment 4 Solutions</h3>
+          </div>
+          <div style="padding: 1.5rem;">
+            <ul style="margin: 0 0 1.5rem 0; padding-left: 1.25rem; color: #475569;">
+              <li style="margin-bottom: 0.5rem;">Probability table sizes & sums</li>
+              <li style="margin-bottom: 0.5rem;">Bayesian Network representation</li>
+              <li style="margin-bottom: 0.5rem;">D-separation & independence</li>
+              <li style="margin-bottom: 0.5rem;">Variable elimination inference</li>
+            </ul>
+            <div style="display: flex; gap: 1rem;">
+              <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-solutions" style="flex: 1; text-align: center; background: #3b82f6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
+              <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-problems" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -39,10 +100,10 @@ permalink: /
           <span style="color: #3b82f6; font-weight: 500; margin-top: 1rem; display: inline-block;">View Courses →</span>
         </a>
 
-        <a href="/research/" class="quick-link-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: block;">
-          <h3 style="margin-top: 0; color: #1e293b;">🔬 Projects & Assignments</h3>
-          <p style="color: #64748b; margin: 0.5rem 0 0 0;">Browse academic projects, assignments, and research work</p>
-          <span style="color: #3b82f6; font-weight: 500; margin-top: 1rem; display: inline-block;">View Projects →</span>
+        <a href="/assignments/" class="quick-link-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: block;">
+          <h3 style="margin-top: 0; color: #1e293b;">📋 Assignments</h3>
+          <p style="color: #64748b; margin: 0.5rem 0 0 0;">Browse homework, assignments, and complete solutions with explanations</p>
+          <span style="color: #3b82f6; font-weight: 500; margin-top: 1rem; display: inline-block;">View Assignments →</span>
         </a>
 
         <a href="/blog/" class="quick-link-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: block;">
@@ -64,7 +125,7 @@ permalink: /
       </div>
 
       <div class="courses-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-        
+
         <div class="course-preview-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff;">
           <h3 style="margin-top: 0; color: #1e293b;">CS-6343 Cryptography</h3>
           <p style="color: #64748b; font-size: 0.95rem; margin: 0.5rem 0 1rem 0;">
@@ -91,63 +152,8 @@ permalink: /
     </div>
   </section>
 
-  <!-- Recent Assignments Section -->
-  <section class="section">
-    <div class="section__container">
-      <div class="section__header">
-        <span class="section__label">Academic Work</span>
-        <h2 class="section__title">Recent Assignments & Projects</h2>
-        <p class="section__description">Latest problem sets, homework solutions, and course projects</p>
-      </div>
-
-      <div class="assignments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-        
-        <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-problems" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
-          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #3b82f6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Intelligent Systems</span>
-            <span style="color: #64748b; font-size: 0.875rem;">Assignment 4</span>
-          </div>
-          <h4 style="margin: 0.5rem 0; color: #1e293b;">Problem Solving</h4>
-          <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Probabilities, Bayesian Networks, and Inference</p>
-        </a>
-
-        <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-solutions" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
-          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #10b981; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Intelligent Systems</span>
-            <span style="color: #64748b; font-size: 0.875rem;">Solutions</span>
-          </div>
-          <h4 style="margin: 0.5rem 0; color: #1e293b;">Assignment 4 Solutions</h4>
-          <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Complete solutions with explanations</p>
-        </a>
-
-        <a href="/assignments/logic-for-computer-scientists/logic-homework3" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
-          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #8b5cf6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Logic</span>
-            <span style="color: #64748b; font-size: 0.875rem;">Homework 3</span>
-          </div>
-          <h4 style="margin: 0.5rem 0; color: #1e293b;">Logic Problems</h4>
-          <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Propositional logic and Herbrand semantics</p>
-        </a>
-
-        <a href="/assignments/intelligent-systems/intelligent-systems-assignment3-problems" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
-          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #3b82f6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Intelligent Systems</span>
-            <span style="color: #64748b; font-size: 0.875rem;">Assignment 3</span>
-          </div>
-          <h4 style="margin: 0.5rem 0; color: #1e293b;">Problem Solving</h4>
-          <p style="color: #64748b; font-size: 0.9rem; margin: 0;">RL, TD learning, and Q-learning</p>
-        </a>
-
-      </div>
-
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="/research/" class="button button--secondary">View All Projects →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Recent Blog Posts Section -->
-  <section class="section" style="background: #f8fafc;">
+  <section class="section">
     <div class="section__container">
       <div class="section__header section__header--centered">
         <span class="section__label">Latest</span>

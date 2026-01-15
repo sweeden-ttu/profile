@@ -1,0 +1,315 @@
+# GitHub Actions workflow for SEO and Site Audit using Gemini AI
+# Builds Jekyll site, then scans _site folder for SEO, sitemaps, feeds, meta tags, and broken links
+
+name: Gemini SEO & Site Audit
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - master
+      - stable
+
+  push:
+    branches:
+      - main
+      - master
+      - stable
+
+  # Manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ============================================
+      # STEP 1: Build Jekyll Site
+      # ============================================
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Install Jekyll and dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Verify _site folder exists
+        run: |
+          if [ ! -d "_site" ]; then
+            echo "ERROR: _site folder not found after Jekyll build"
+            exit 1
+          fi
+          echo "✓ _site folder exists"
+          echo "Files in _site:"
+          find _site -type f | head -50
+
+      # ============================================
+      # STEP 2: Run SEO and Site Audit
+      # ============================================
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install audit tools
+        run: |
+          npm install -g broken-link-checker
+
+      - name: Extract site data for AI analysis
+        id: site-data
+        run: |
+          mkdir -p audit_reports
+
+          # Extract sitemap
+          echo "=== SITEMAP ANALYSIS ===" > audit_reports/sitemap_report.txt
+          if [ -f "_site/sitemap.xml" ]; then
+            echo "✓ sitemap.xml found" >> audit_reports/sitemap_report.txt
+            echo "" >> audit_reports/sitemap_report.txt
+            cat _site/sitemap.xml >> audit_reports/sitemap_report.txt
+          else
+            echo "❌ sitemap.xml NOT FOUND" >> audit_reports/sitemap_report.txt
+          fi
+
+          # Extract feed/RSS
+          echo "=== FEED ANALYSIS ===" > audit_reports/feed_report.txt
+          for feed in _site/feed.xml _site/atom.xml _site/rss.xml _site/feed/index.xml; do
+            if [ -f "$feed" ]; then
+              echo "✓ Feed found: $feed" >> audit_reports/feed_report.txt
+              head -100 "$feed" >> audit_reports/feed_report.txt
+              echo "" >> audit_reports/feed_report.txt
+            fi
+          done
+
+          # Extract meta tags from HTML files
+          echo "=== META TAGS ANALYSIS ===" > audit_reports/meta_report.txt
+          for html in $(find _site -name "*.html" | head -20); do
+            echo "--- File: $html ---" >> audit_reports/meta_report.txt
+            # Extract head section
+            sed -n '/<head>/,/<\/head>/p' "$html" 2>/dev/null | head -50 >> audit_reports/meta_report.txt
+            echo "" >> audit_reports/meta_report.txt
+          done
+
+          # Extract page titles and descriptions
+          echo "=== PAGE TITLES ===" > audit_reports/titles_report.txt
+          for html in $(find _site -name "*.html"); do
+            title=$(grep -oP '(?<=<title>).*(?=</title>)' "$html" 2>/dev/null | head -1)
+            if [ -n "$title" ]; then
+              echo "$html: $title" >> audit_reports/titles_report.txt
+            fi
+          done
+
+          # Check robots.txt
+          echo "=== ROBOTS.TXT ===" > audit_reports/robots_report.txt
+          if [ -f "_site/robots.txt" ]; then
+            echo "✓ robots.txt found" >> audit_reports/robots_report.txt
+            cat _site/robots.txt >> audit_reports/robots_report.txt
+          else
+            echo "❌ robots.txt NOT FOUND" >> audit_reports/robots_report.txt
+          fi
+
+          # File naming conventions check
+          echo "=== FILE NAMING CONVENTIONS ===" > audit_reports/naming_report.txt
+          echo "Checking for naming issues..." >> audit_reports/naming_report.txt
+          
+          # Check for spaces in filenames
+          find _site -name "* *" -type f >> audit_reports/naming_report.txt 2>/dev/null || echo "✓ No spaces in filenames" >> audit_reports/naming_report.txt
+          
+          # Check for uppercase in URLs
+          find _site -name "*[A-Z]*" -type f | head -20 >> audit_reports/naming_report.txt 2>/dev/null
+          
+          # List all HTML files for URL structure review
+          echo "" >> audit_reports/naming_report.txt
+          echo "HTML file structure:" >> audit_reports/naming_report.txt
+          find _site -name "*.html" | sort >> audit_reports/naming_report.txt
+
+          # Combine all reports
+          cat audit_reports/*.txt > audit_reports/full_audit.txt
+          
+          # Set output for next step
+          echo "audit_ready=true" >> $GITHUB_OUTPUT
+
+      - name: Check for broken internal links
+        id: link-check
+        continue-on-error: true
+        run: |
+          echo "=== BROKEN LINKS CHECK ===" > audit_reports/links_report.txt
+          
+          # Start Jekyll server in background for link checking
+          bundle exec jekyll serve --detach --port 4000 2>/dev/null || true
+          sleep 5
+          
+          # Run broken link checker
+          blc http://localhost:4000 --recursive --ordered --exclude-external \
+            --filter-level 3 2>&1 | tee -a audit_reports/links_report.txt || true
+          
+          # Kill Jekyll server
+          pkill -f "jekyll serve" || true
+
+      - name: Run Gemini SEO Audit
+        if: steps.site-data.outputs.audit_ready == 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # Create the audit prompt
+          cat > audit_prompt.txt << 'PROMPT_EOF'
+          You are an expert SEO auditor reviewing a Jekyll static site. Analyze the following site data and provide a comprehensive audit report.
+
+          ## AUDIT CHECKLIST
+
+          ### 1. SEO Best Practices
+          - Title tags: Are they unique, descriptive, 50-60 characters?
+          - Meta descriptions: Present, unique, 150-160 characters?
+          - Heading hierarchy: Proper H1-H6 structure?
+          - Open Graph tags: Present for social sharing?
+          - Twitter Card tags: Present?
+          - Canonical URLs: Properly set?
+
+          ### 2. Sitemap Accuracy
+          - Is sitemap.xml present and valid XML?
+          - Does it include all important pages?
+          - Are URLs absolute and correct?
+          - Is lastmod date present and accurate?
+          - Is changefreq appropriate?
+
+          ### 3. RSS/Atom Feeds
+          - Is feed present (feed.xml, atom.xml, rss.xml)?
+          - Is feed valid and well-formed?
+          - Does it include recent posts?
+          - Are feed links in HTML head?
+
+          ### 4. Meta Tag Accuracy
+          - viewport meta tag present?
+          - charset declaration correct?
+          - robots meta tags appropriate?
+          - author/publisher metadata?
+
+          ### 5. Naming Conventions
+          - URLs lowercase and hyphenated?
+          - No spaces or special characters in URLs?
+          - Consistent file naming pattern?
+          - Clean URL structure (no .html extensions visible)?
+
+          ### 6. Technical SEO
+          - robots.txt present and correct?
+          - 404 page exists?
+          - Favicon present?
+          - Language attributes set?
+
+          ## OUTPUT FORMAT
+
+          Provide your audit as a GitHub-flavored markdown report with:
+          1. **Executive Summary** (2-3 sentences)
+          2. **Critical Issues** (must fix)
+          3. **Warnings** (should fix)
+          4. **Recommendations** (nice to have)
+          5. **Score** (out of 100)
+
+          Be specific with file paths and line numbers where applicable.
+
+          ---
+
+          SITE DATA TO ANALYZE:
+
+          PROMPT_EOF
+
+          # Append site data (truncated to avoid token limits)
+          head -c 50000 audit_reports/full_audit.txt >> audit_prompt.txt
+
+          # Call Gemini API
+          if [ -n "$GEMINI_API_KEY" ]; then
+            echo "Calling Gemini API for SEO audit..."
+            
+            # Escape the prompt for JSON
+            PROMPT_ESCAPED=$(cat audit_prompt.txt | jq -Rs .)
+            
+            # Make API call
+            RESPONSE=$(curl -s -X POST \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"contents\": [{
+                  \"parts\": [{
+                    \"text\": ${PROMPT_ESCAPED}
+                  }]
+                }],
+                \"generationConfig\": {
+                  \"temperature\": 0.3,
+                  \"maxOutputTokens\": 4096
+                }
+              }")
+            
+            # Extract and save the response
+            echo "$RESPONSE" | jq -r '.candidates[0].content.parts[0].text // "Error: No response from Gemini"' > audit_reports/gemini_seo_audit.md
+            
+            echo "=== GEMINI SEO AUDIT RESULTS ==="
+            cat audit_reports/gemini_seo_audit.md
+          else
+            echo "⚠️ GEMINI_API_KEY not set - skipping AI audit"
+            echo "To enable Gemini SEO audits, add GEMINI_API_KEY to repository secrets"
+          fi
+
+      - name: Post audit results to PR
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let auditReport = '## 🔍 Gemini SEO & Site Audit Results\n\n';
+            
+            // Read Gemini audit if available
+            try {
+              const geminiAudit = fs.readFileSync('audit_reports/gemini_seo_audit.md', 'utf8');
+              auditReport += geminiAudit;
+            } catch (e) {
+              auditReport += '⚠️ Gemini audit not available. Ensure `GEMINI_API_KEY` secret is configured.\n\n';
+            }
+            
+            // Add link check summary
+            try {
+              const linksReport = fs.readFileSync('audit_reports/links_report.txt', 'utf8');
+              const brokenLinks = linksReport.match(/BROKEN/gi) || [];
+              if (brokenLinks.length > 0) {
+                auditReport += `\n### 🔗 Broken Links\n\nFound ${brokenLinks.length} potential broken link issues. Check workflow logs for details.\n`;
+              } else {
+                auditReport += '\n### 🔗 Link Check\n\n✅ No broken internal links detected.\n';
+              }
+            } catch (e) {
+              auditReport += '\n### 🔗 Link Check\n\n⚠️ Link check results not available.\n';
+            }
+            
+            // Post comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: auditReport
+            });
+
+      - name: Upload audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-audit-reports
+          path: audit_reports/
+          retention-days: 30

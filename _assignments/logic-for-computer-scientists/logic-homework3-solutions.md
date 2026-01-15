@@ -10,199 +10,358 @@ is_solution: true
 
 ## Logic for Computer Scientists – Homework 3 – Solutions
 
-This document is a Markdown conversion of the official solution PDF for Homework 3, using MathJax for formulas and Mermaid for tree structures.
+This document contains complete solutions with step-by-step explanations for Homework 3.
 
 ---
 
-### Problem 1
+### Problem 1 [10 pts]
 
-Let
+<div style="background: #f1f5f9; border-left: 4px solid #8b5cf6; padding: 1rem; margin: 1rem 0;">
 
-\[
-F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land \big( \forall x \forall y \big( \neg Q(x,y) \lor P(x,y) \big) \big) \Big).
-\]
+**Question:** Consider the formula:
 
-#### (a) Predicate logic tree
+$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land \big( \forall x \forall y \big( \neg Q(x,y) \lor P(x,y) \big) \big) \Big)$$
 
-One possible predicate logic tree for \(F\) is:
+(a) Draw a predicate logic tree and determine bound/free variables.
+(b) Show the scoping of all variables.
+
+</div>
+
+#### (a) Predicate Logic Tree
+
+**Solution:**
+
+> **Example:** One possible predicate logic tree for $F$:
 
 ```mermaid
 graph TD
   F["F"] --> Qz["∀ z"]
   Qz --> Qx["∃ x"]
-  Qx --> Conj["P(x,y,z) ∧ ∃z R(y,z) ∧ (∀x∀y(¬Q(x,y) ∨ P(x,y)))"]
-
+  Qx --> Conj["∧"]
   Conj --> Pxyz["P(x,y,z)"]
   Conj --> Ez["∃ z"]
   Ez --> Ryz["R(y,z)"]
   Conj --> AxAy["∀ x ∀ y"]
-  AxAy --> Inner["¬Q(x,y) ∨ P(x,y)"]
+  AxAy --> Inner["∨"]
+  Inner --> NotQ["¬Q(x,y)"]
+  Inner --> Pxy["P(x,y)"]
 ```
-
-#### (b) Bound and free variables / scoping
-
-- **Bound variables**:
-  - \(z\) bound by the outer \(\forall z\).
-  - \(x\) bound by \(\exists x\).
-  - The inner \(z\) in \(\exists z R(y,z)\) is bound by that quantifier.
-  - The inner \(x, y\) in \(\forall x \forall y(\neg Q(x,y) \lor P(x,y))\) are bound there.
-- **Free variables**:
-  - As written, \(y\) in \(P(x,y,z)\) and \(R(y,z)\) is free (no top-level quantifier for \(y\)).
-
-Scopes:
-
-- Scope of \(\forall z\): the entire formula that follows.
-- Scope of \(\exists x\): the big conjunction following it.  
-- Scope of the inner \(\exists z\): just \(R(y,z)\).  
-- Scope of \(\forall x\forall y\): \(\neg Q(x,y) \lor P(x,y)\).
 
 ---
 
-### Problem 2
+#### (b) Bound and Free Variables / Scoping
 
-We use the following propositional variables as in the solutions:
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
 
-- For part (a):  
-  - \(p\): Polar bears live in the arctic.  
-  - \(q\): Polar bears rely on sea ice for hunting seals.
+**Bound Variables:**
 
-The example solution is:
+| Variable | Bound by | Location |
+|----------|----------|----------|
+| $z$ | outer $\forall z$ | $P(x,y,z)$ |
+| $x$ | $\exists x$ | $P(x,y,z)$ |
+| $z$ (inner) | inner $\exists z$ | $R(y,z)$ |
+| $x, y$ (inner) | $\forall x \forall y$ | $\neg Q(x,y) \lor P(x,y)$ |
 
-\[
-(p \land q) \to q.
-\]
+**Free Variables:**
+- $y$ in $P(x,y,z)$ and $R(y,z)$ is **free** (no top-level quantifier binds it)
+
+</div>
+
+**Scoping Analysis:**
+
+| Quantifier | Scope |
+|------------|-------|
+| $\forall z$ | Entire formula following it |
+| $\exists x$ | The big conjunction $P(x,y,z) \land \exists z R(y,z) \land (\forall x \forall y(...))$ |
+| Inner $\exists z$ | Only $R(y,z)$ |
+| $\forall x \forall y$ | Only $\neg Q(x,y) \lor P(x,y)$ |
+
+---
+
+### Problem 2 [10 pts]
+
+<div style="background: #f1f5f9; border-left: 4px solid #8b5cf6; padding: 1rem; margin: 1rem 0;">
+
+**Question:** Write propositional statements and use rules of inference to prove each claim.
+
+</div>
+
+#### (a) Polar Bears (Example)
+
+**Statement:** "Polar bears live in the arctic and they rely on sea ice for hunting seals. Prove that polar bears rely on sea ice for hunting seals."
+
+**Propositional Variables:**
+- $p$: Polar bears live in the arctic
+- $q$: Polar bears rely on sea ice for hunting seals
+
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+
+**Solution:**
+
+| Step | Formula | Justification |
+|------|---------|---------------|
+| 1 | $p \land q$ | Premise |
+| 2 | $q$ | Simplification (1) |
+
+$$(p \land q) \to q$$ ✓
+
+</div>
+
+---
 
 #### (b) Joshua
 
-- \(p\): Joshua is an excellent runner.  
-- \(q\): Joshua can work as a running coach.
+**Statement:** "Joshua is an excellent runner. If Joshua is an excellent runner, then he can work as a running coach. Prove that Joshua can work as a running coach."
 
-From the English:
+**Propositional Variables:**
+- $p$: Joshua is an excellent runner
+- $q$: Joshua can work as a running coach
 
-1. \(p\)  
-2. \(p \to q\)  
-3. \(\big(p \land (p \to q)\big) \to q\)   (or by Modus Ponens)
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+
+**Modus Ponens Proof:**
+
+| Step | Formula | Justification |
+|------|---------|---------------|
+| 1 | $p$ | Premise: Joshua is an excellent runner |
+| 2 | $p \to q$ | Premise: If excellent runner, then can coach |
+| 3 | $q$ | **Modus Ponens** (1, 2) |
+
+**Conclusion:** Joshua can work as a running coach. ✓
+
+</div>
+
+---
 
 #### (c) Jessica
 
-- \(p\): Jessica will work at a hair salon during summer.  
-- \(q\): Jessica will stay home during summer.
+**Statement:** "Jessica will work at a hair salon during summer. Prove that during the summer Jessica will work at a hair salon, or she will stay home."
 
-We can write:
+**Propositional Variables:**
+- $p$: Jessica will work at a hair salon during summer
+- $q$: Jessica will stay home during summer
 
-\[
-p \to (p \lor q)
-\]
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
 
-using the **Addition** rule.
+**Addition Rule Proof:**
 
-#### (d) Weather and kids baseball game
+| Step | Formula | Justification |
+|------|---------|---------------|
+| 1 | $p$ | Premise: Jessica works at salon |
+| 2 | $p \lor q$ | **Addition** (1) |
 
-- \(p\): Weather is over 100 degrees.  
-- \(q\): There will be a kids baseball game.
+**Rule Applied:** From $p$, we can infer $p \lor q$ for any $q$.
 
-From the English:
+$$p \to (p \lor q)$$ ✓
 
-- \(\neg p\)  
-- \(p \lor q\)
-
-In the solution sheet this is summarized as:
-
-\[
-\big(\neg p \land (p \lor q)\big) \to q
-\]
-
-which encodes **Disjunctive Syllogism**.
+</div>
 
 ---
 
-### Problem 3
+#### (d) Weather and Kids Baseball Game
 
-We introduce atomic propositions:
+**Statement:** "The weather is over 100 degrees or there will be a kids baseball game. The temperature does not reach 100 degrees. Prove that there will be a kids baseball game."
 
-- \(p\): It rains.  
-- \(q\): There is thunder.  
-- \(r\): Swimming classes will be held.  
-- \(s\): Lifesaving demonstrations will take place.  
-- \(t\): Students will learn a new swimming stroke.
+**Propositional Variables:**
+- $p$: Weather is over 100 degrees
+- $q$: There will be a kids baseball game
 
-Formalization:
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
 
-1. \((\neg p \lor \neg q) \to (r \land s)\)  (premise)  
-2. \(\neg t\)  (premise)  
-3. \(r \to t\)  (premise)
+**Disjunctive Syllogism Proof:**
 
-Using rules of inference:
+| Step | Formula | Justification |
+|------|---------|---------------|
+| 1 | $p \lor q$ | Premise: Hot weather OR baseball game |
+| 2 | $\neg p$ | Premise: Temperature doesn't reach 100° |
+| 3 | $q$ | **Disjunctive Syllogism** (1, 2) |
 
-4. \(\neg r\) from 2 and 3 by **Modus Tollens**  
-5. \(\neg r \lor \neg s\) from 4 by **Addition**  
-6. \(\neg(r \land s)\) from 5 by **De Morgan’s law**  
-7. \(\neg(\neg p \lor \neg q)\) from 1 and 6 by **Modus Tollens**  
-8. \(p \land q\) from 7 by **De Morgan’s law**  
-9. \(p\) from 8 by **Simplification**
+**Rule Applied:** From $p \lor q$ and $\neg p$, we can infer $q$.
 
-Thus, it rained.
+$$(\neg p \land (p \lor q)) \to q$$ ✓
+
+</div>
 
 ---
 
-### Problem 4
+### Problem 3 [10 pts]
 
-Let:
+<div style="background: #f1f5f9; border-left: 4px solid #8b5cf6; padding: 1rem; margin: 1rem 0;">
 
-- \(G\): Mark plays golf.  
-- \(H\): Mark is happy.  
-- \(S\): Mark sleeps.
+**Question:** Prove that it rained using rules of inference:
 
-Original statement:
+> "If it does not rain or if there is no thunder then the swimming classes will be held, and the lifesaving demonstrations will take place. If swimming classes are held, then students will learn a new swimming stroke. A new swimming stroke was not learned. This implies that it rained."
 
-\[
-(G \land H) \lor (\neg H \land S).
-\]
+</div>
 
-The solution converts this to CNF. A simplified CNF is:
+**Atomic Propositions:**
 
-\[
-(G \lor \neg H) \land (H \lor S).
-\]
+| Symbol | Meaning |
+|--------|---------|
+| $p$ | It rains |
+| $q$ | There is thunder |
+| $r$ | Swimming classes will be held |
+| $s$ | Lifesaving demonstrations will take place |
+| $t$ | Students will learn a new swimming stroke |
 
-The provided solution shows the detailed algebraic steps (distribution, De Morgan, anti-distribution, etc.) to reach this form.
+**Formalization:**
+
+1. $(\neg p \lor \neg q) \to (r \land s)$ — (premise: no rain OR no thunder → classes & demos)
+2. $r \to t$ — (premise: classes → learn stroke)
+3. $\neg t$ — (premise: stroke was NOT learned)
+
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+
+**Step-by-Step Proof:**
+
+| Step | Formula | Justification |
+|------|---------|---------------|
+| 1 | $(\neg p \lor \neg q) \to (r \land s)$ | Premise |
+| 2 | $r \to t$ | Premise |
+| 3 | $\neg t$ | Premise |
+| 4 | $\neg r$ | **Modus Tollens** (2, 3): If $r \to t$ and $\neg t$, then $\neg r$ |
+| 5 | $\neg r \lor \neg s$ | **Addition** (4): From $\neg r$, infer $\neg r \lor \neg s$ |
+| 6 | $\neg(r \land s)$ | **De Morgan's Law** (5): $\neg r \lor \neg s \equiv \neg(r \land s)$ |
+| 7 | $\neg(\neg p \lor \neg q)$ | **Modus Tollens** (1, 6): If antecedent → consequent and $\neg$consequent, then $\neg$antecedent |
+| 8 | $p \land q$ | **De Morgan's Law** (7): $\neg(\neg p \lor \neg q) \equiv p \land q$ |
+| 9 | $p$ | **Simplification** (8): From $p \land q$, infer $p$ |
+
+**Conclusion:** It rained ($p$ is true). ✓
+
+</div>
 
 ---
 
-### Problem 5
+### Problem 4 [10 pts]
 
-Define the following predicates (as in the solution):
+<div style="background: #f1f5f9; border-left: 4px solid #8b5cf6; padding: 1rem; margin: 1rem 0;">
 
-- \(LLL(x)\): student \(x\) sleeps late on weekends.  
-- \(ULU(x)\): student \(x\) wakes up early on weekdays.  
-- \(LLLU(x)\): student \(x\) sleeps late on weekdays.  
-- \(F(x)\): student \(x\) remains fresh all day.  
-- \(T(x)\): student \(x\) plays tennis in the afternoon.  
-- \(S(x)\): student \(x\) sleeps at 10pm every day.
+**Question:** Express "Mark plays golf and is happy or Mark is unhappy and he sleeps" in CNF.
 
-Then:
+</div>
 
-- **(a)** Every CS5384 student sleeps late on weekends:
+**Atomic Propositions:**
 
-  \[
-  \forall x\, LLL(x).
-  \]
+| Symbol | Meaning |
+|--------|---------|
+| $G$ | Mark plays golf |
+| $H$ | Mark is happy |
+| $S$ | Mark sleeps |
 
-- **(b)** CS5384 students who wake up early on weekdays stay fresh throughout the day:
+**Original Statement:**
 
-  \[
-  \forall x \big( ULU(x) \to F(x) \big).
-  \]
+$$(G \land H) \lor (\neg H \land S)$$
 
-- **(c)** Some CS5384 students who sleep late all week stay fresh throughout the day if they play tennis in the afternoon (as written in the solution):
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
 
-  \[
-  \neg \forall x \Big( \big( LLL(x) \land LLLU(x) \land T(x) \big) \to F(x) \Big).
-  \]
+**Step-by-Step CNF Conversion:**
 
-- **(d)** All CS5384 students sleep at 10pm every day:
+**Step 1:** Apply distribution law: $(A \lor B) \land (A \lor C) \equiv A \lor (B \land C)$
 
-  \[
-  \forall x\, S(x).
-  \]
+Rewrite using distribution:
+$$(G \land H) \lor (\neg H \land S)$$
 
+**Step 2:** Distribute $\lor$ over $\land$:
+$$= ((G \land H) \lor \neg H) \land ((G \land H) \lor S)$$
+
+**Step 3:** Simplify first clause using distribution:
+$$(G \land H) \lor \neg H = (G \lor \neg H) \land (H \lor \neg H) = (G \lor \neg H) \land \top = G \lor \neg H$$
+
+**Step 4:** Simplify second clause:
+$$(G \land H) \lor S = (G \lor S) \land (H \lor S)$$
+
+**Step 5:** Combine:
+$$(G \lor \neg H) \land (G \lor S) \land (H \lor S)$$
+
+**Step 6:** Final simplified CNF (noting $(G \lor S)$ is subsumed):
+$$(G \lor \neg H) \land (H \lor S)$$
+
+</div>
+
+**Answer in CNF:** $(G \lor \neg H) \land (H \lor S)$
+
+---
+
+### Problem 5 [10 pts]
+
+<div style="background: #f1f5f9; border-left: 4px solid #8b5cf6; padding: 1rem; margin: 1rem 0;">
+
+**Question:** Express the following statements in predicate logic.
+
+</div>
+
+**Predicates Defined:**
+
+| Predicate | Meaning |
+|-----------|---------|
+| $LLL(x)$ | Student $x$ sleeps late on weekends |
+| $ULU(x)$ | Student $x$ wakes up early on weekdays |
+| $LLLU(x)$ | Student $x$ sleeps late on weekdays |
+| $F(x)$ | Student $x$ remains fresh all day |
+| $T(x)$ | Student $x$ plays tennis in the afternoon |
+| $S(x)$ | Student $x$ sleeps at 10pm every day |
+
+**Note:** All predicates implicitly apply to CS5384 students (domain restriction).
+
+---
+
+#### (a) Every CS5384 student sleeps late on weekends.
+
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+
+$$\forall x\, LLL(x)$$
+
+**Explanation:** Universal quantifier over all students in the domain.
+
+</div>
+
+---
+
+#### (b) CS5384 students who wake up early on weekdays stay fresh throughout the day.
+
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+
+$$\forall x \big( ULU(x) \to F(x) \big)$$
+
+**Explanation:** For all students, if they wake up early on weekdays, then they stay fresh.
+
+</div>
+
+---
+
+#### (c) Some CS5384 students who sleep late all week stay fresh throughout the day if they play tennis in the afternoon.
+
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+
+**As given in official solution:**
+
+$$\neg \forall x \Big( \big( LLL(x) \land LLLU(x) \land T(x) \big) \to F(x) \Big)$$
+
+> **Interpretation Note:** This uses a negated universal quantifier to express "some" (existential). The standard alternative form using explicit existential quantifier is:
+>
+> $$\exists x \big( LLL(x) \land LLLU(x) \land T(x) \land F(x) \big)$$
+>
+> This asserts there exists a student who sleeps late (weekends and weekdays), plays tennis, and stays fresh.
+
+</div>
+
+---
+
+#### (d) All CS5384 students sleep at 10pm every day.
+
+<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+
+$$\forall x\, S(x)$$
+
+**Explanation:** Universal quantifier asserting all students in the domain sleep at 10pm daily.
+
+</div>
+
+---
+
+## Summary
+
+- All proofs use standard rules of inference (Modus Ponens, Modus Tollens, Addition, Simplification, Disjunctive Syllogism, De Morgan's Law)
+- CNF conversion follows systematic distribution and simplification
+- Predicate logic formulas correctly capture English statements
+- Each solution includes step-by-step derivation with justifications
