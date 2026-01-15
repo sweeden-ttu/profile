@@ -1,5 +1,5 @@
 {
   "setup-worktree": [
-    "venv/bin/activate"
+    "bundle exec jekyll buids"
   ]
 }
