@@ -1,16 +1,16 @@
 ---
 name: Schedule Intelligent Systems Final Exam
-about: Plan and schedule final exam preparation for CS-5368 Intelligent Systems
-title: '[CS-5368] Schedule Final Exam for Intelligent Systems'
-labels: ['exam', 'intelligent-systems', 'cs5368', 'planning', 'spring-2026']
+about: Plan and schedule final exam preparation for Intelligent Systems
+title: 'Schedule Final Exam for Intelligent Systems'
+labels: ['exam', 'intelligent-systems', 'planning', 'spring-2026']
 assignees: ''
 ---
 
 ## Overview
-Plan, schedule, and prepare for the final exam in CS-5368 Intelligent Systems. This includes reviewing course materials, creating study guides, and organizing exam preparation schedule.
+Plan, schedule, and prepare for the final exam in Intelligent Systems. This includes reviewing course materials, creating study guides, and organizing exam preparation schedule.
 
 ## Course Information
-- **Course**: CS-5368 Intelligent Systems
+- **Course**: Intelligent Systems
 - **Semester**: Spring 2026 (or as applicable)
 - **Exam Type**: Final Exam
 - **Status**: Planning phase
@@ -48,7 +48,7 @@ Plan, schedule, and prepare for the final exam in CS-5368 Intelligent Systems. T
 
 ## Course Topics to Review
 
-Based on CS-5368 Intelligent Systems course, review the following topics:
+Based on Intelligent Systems course, review the following topics:
 
 ### Core Topics
 - [ ] Introduction to Intelligent Systems
@@ -86,12 +86,13 @@ Based on CS-5368 Intelligent Systems course, review the following topics:
 - Any provided study guides or review materials
 
 ### Blog Posts (if applicable)
-- Review any blog posts written for CS-5368
+- Review any blog posts written for Intelligent Systems
 - Use posts as study material and reference
 - Check for summaries of key concepts
 
 ### Reference Files
 - `AGENTS.md` - May contain course-related information
+- `_data/courses.yaml` - Course metadata
 - `_projects/` - Project files may contain relevant examples
 - `_posts/` - Blog posts on intelligent systems topics
 - Assignment files and solutions
@@ -134,13 +135,6 @@ Based on CS-5368 Intelligent Systems course, review the following topics:
 - [ ] Practice problems completed
 - [ ] Any allowed materials prepared (notes, formula sheets)
 - [ ] Ready for exam day
-
-## Timeline
-
-- **Planning Start**: [Immediate]
-- **Study Period**: [1-2 weeks before exam]
-- **Exam Date**: [To be confirmed]
-- **Priority**: High (final exam)
 
 ## Notes
 

@@ -1,16 +1,16 @@
 ---
 name: Complete Logic Homework Assignment
-about: Complete homework assignment for CS-5384 Logic for Computer Scientists
-title: '[CS-5384] Complete Logic Homework Assignment'
-labels: ['homework', 'logic', 'cs5384', 'assignment', 'fall-2025']
+about: Complete homework assignment for Logic for Computer Scientists
+title: 'Complete Logic Homework Assignment'
+labels: ['homework', 'logic', 'assignment', 'fall-2025']
 assignees: ''
 ---
 
 ## Overview
-Complete the pending homework assignment for CS-5384 Logic for Computer Scientists. This assignment involves solving logic problems, constructing proofs, and demonstrating understanding of course concepts.
+Complete the pending homework assignment for Logic for Computer Scientists. This assignment involves solving logic problems, constructing proofs, and demonstrating understanding of course concepts.
 
 ## Course Information
-- **Course**: CS-5384 Logic for Computer Scientists
+- **Course**: Logic for Computer Scientists
 - **Semester**: Fall 2025 (or as applicable)
 - **Assignment**: Homework 3 (or current assignment)
 - **Status**: In progress / Pending completion
@@ -100,12 +100,6 @@ Based on existing files, this assignment covers:
 - [ ] Solutions document is complete and well-organized
 - [ ] Assignment meets all stated requirements
 - [ ] Ready for submission or review
-
-## Timeline
-
-- **Start Date**: [To be determined]
-- **Due Date**: [Check course syllabus/Canvas]
-- **Priority**: High (graded assignment)
 
 ## Notes
 

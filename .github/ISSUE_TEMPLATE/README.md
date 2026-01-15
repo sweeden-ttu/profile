@@ -6,27 +6,27 @@ This directory contains issue templates for tracking academic work and blog post
 
 ### 1. Complete Cryptography Blogs
 **File**: `complete-cryptography-blogs.md`
-- **Purpose**: Track completion of CS-6343 Cryptography blog posts
+- **Purpose**: Track completion of Cryptography blog posts
 - **Status**: 7 draft posts pending completion
-- **Labels**: blog, cryptography, cs6343, content, spring-2026
+- **Labels**: blog, cryptography, content, spring-2026
 
-### 2. Complete Software Validation Blogs
+### 2. Complete Software Verification Blogs
 **File**: `complete-software-validation-blogs.md`
-- **Purpose**: Track completion of CS-5374 Software Verification and Validation blog posts
+- **Purpose**: Track completion of Software Verification and Validation blog posts
 - **Status**: 7 draft posts pending completion
-- **Labels**: blog, software-verification, cs5374, content, spring-2026
+- **Labels**: blog, software-verification, content, spring-2026
 
 ### 3. Complete Logic Homework Assignment
 **File**: `complete-logic-homework.md`
-- **Purpose**: Track completion of CS-5384 Logic for Computer Scientists homework
+- **Purpose**: Track completion of Logic for Computer Scientists homework
 - **Status**: Homework 3 (or current assignment) pending
-- **Labels**: homework, logic, cs5384, assignment, fall-2025
+- **Labels**: homework, logic, assignment, fall-2025
 
 ### 4. Schedule Intelligent Systems Final Exam
 **File**: `schedule-intelligent-systems-final.md`
-- **Purpose**: Plan and schedule final exam preparation for CS-5368
+- **Purpose**: Plan and schedule final exam preparation for Intelligent Systems
 - **Status**: Planning phase
-- **Labels**: exam, intelligent-systems, cs5368, planning, spring-2026
+- **Labels**: exam, intelligent-systems, planning, spring-2026
 
 ## How to Use
 
@@ -50,9 +50,9 @@ This directory contains issue templates for tracking academic work and blog post
 ### Option 3: GitHub CLI
 ```bash
 # Create an issue from a template
-gh issue create --title "[CS-6343] Complete Cryptography Blog Posts" \
+gh issue create --title "Complete Cryptography Blog Posts" \
   --body-file .github/ISSUE_TEMPLATE/complete-cryptography-blogs.md \
-  --label "blog,cryptography,cs6343"
+  --label "blog,cryptography"
 ```
 
 ## Template Structure
@@ -81,3 +81,4 @@ To customize templates:
 - Frontmatter (YAML) is required for GitHub to recognize templates
 - Labels can be adjusted based on your repository's label structure
 - All dates and specific details should be filled in when creating the issue
+- Course numbers are used internally only - use display names in user-facing content

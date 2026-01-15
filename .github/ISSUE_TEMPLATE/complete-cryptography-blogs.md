@@ -1,16 +1,16 @@
 ---
 name: Complete Cryptography Blogs
-about: Complete all pending blog posts for CS-6343 Cryptography course
-title: '[CS-6343] Complete Cryptography Blog Posts'
-labels: ['blog', 'cryptography', 'cs6343', 'content', 'spring-2026']
+about: Complete all pending blog posts for Cryptography course
+title: 'Complete Cryptography Blog Posts'
+labels: ['blog', 'cryptography', 'content', 'spring-2026']
 assignees: ''
 ---
 
 ## Overview
-Complete all pending blog post drafts for the CS-6343 Cryptography course. These posts document key cryptographic concepts, security principles, and implementation details covered throughout the semester.
+Complete all pending blog post drafts for the Cryptography course. These posts document key cryptographic concepts, security principles, and implementation details covered throughout the semester.
 
 ## Course Information
-- **Course**: CS-6343 Cryptography
+- **Course**: Cryptography
 - **Semester**: Spring 2026
 - **Status**: Multiple draft posts pending completion
 
@@ -18,37 +18,37 @@ Complete all pending blog post drafts for the CS-6343 Cryptography course. These
 
 ### Draft Files to Complete
 
-1. **Course Overview and Foundations** (`2026-01-16-cs6343-cryptography-introduction-to-testing-and-syllabus.md`)
+1. **Course Overview and Foundations** (`2026-01-16-cryptography-introduction-to-testing-and-syllabus.md`)
    - Status: Draft/Stub
    - Topics: Course structure, security properties, threat models
    - Priority: High (foundational)
 
-2. **Symmetric Encryption Basics** (`2026-01-19-cs6343-cryptography-symmetric-encryption-basics.md`)
+2. **Symmetric Encryption Basics** (`2026-01-19-cryptography-symmetric-encryption-basics.md`)
    - Status: Draft
    - Topics: Symmetric key cryptography, encryption algorithms
    - Priority: High
 
-3. **Number Theory Prerequisites** (`2026-01-21-cs6343-cryptography-number-theory-prerequisites.md`)
+3. **Number Theory Prerequisites** (`2026-01-21-cryptography-number-theory-prerequisites.md`)
    - Status: Draft
    - Topics: Mathematical foundations for cryptography
    - Priority: High
 
-4. **Block Ciphers and Modes of Operation** (`2026-01-23-cs6343-cryptography-block-ciphers-and-modes-of-operation.md`)
+4. **Block Ciphers and Modes of Operation** (`2026-01-23-cryptography-block-ciphers-and-modes-of-operation.md`)
    - Status: Draft
    - Topics: Block cipher design, ECB, CBC, CTR modes
    - Priority: Medium
 
-5. **Attack Models and Security Goals** (`2026-01-26-cs6343-cryptography-attack-models-and-security-goals.md`)
+5. **Attack Models and Security Goals** (`2026-01-26-cryptography-attack-models-and-security-goals.md`)
    - Status: Draft
    - Topics: Threat modeling, security definitions
    - Priority: High
 
-6. **Public Key Cryptography Overview** (`2026-01-28-cs6343-cryptography-public-key-cryptography-overview.md`)
+6. **Public Key Cryptography Overview** (`2026-01-28-cryptography-public-key-cryptography-overview.md`)
    - Status: Draft
    - Topics: RSA, Diffie-Hellman, key exchange
    - Priority: High
 
-7. **TBD Topic from Canvas Modules** (`2026-01-30-cs6343-cryptography-tbd-topic-from-canvas-modules.md`)
+7. **TBD Topic from Canvas Modules** (`2026-01-30-cryptography-tbd-topic-from-canvas-modules.md`)
    - Status: Draft
    - Topics: To be determined from course materials
    - Priority: Medium
@@ -74,7 +74,7 @@ Complete all pending blog post drafts for the CS-6343 Cryptography course. These
 - [ ] Cross-references to related blog posts
 
 ### Technical Requirements
-- [ ] Frontmatter includes correct course tag: `course: "CS-6343 Cryptography"`
+- [ ] Frontmatter includes correct course tag: `course: "Cryptography"`
 - [ ] Proper categories and tags assigned
 - [ ] Excerpt written (50-100 words)
 - [ ] Date matches lecture/class date
@@ -90,7 +90,7 @@ Complete all pending blog post drafts for the CS-6343 Cryptography course. These
 
 ### Reference Files
 - `BLOG_POST_GENERATION_INSTRUCTIONS.md` - Blog post format guidelines
-- `QUALITY_CHECKLIST.md` - Quality validation checklist
+- `_data/courses.yaml` - Course metadata
 - `math-rules.md` - Mathematical notation standards
 - `_posts/` - Existing published posts for style reference
 
@@ -117,12 +117,6 @@ Complete all pending blog post drafts for the CS-6343 Cryptography course. These
 - [ ] External links are valid and accessible
 - [ ] Posts are moved from `_drafts/` to `_posts/`
 - [ ] No draft flags remaining in frontmatter
-
-## Timeline
-
-- **Start Date**: [To be determined]
-- **Target Completion**: Before end of Spring 2026 semester
-- **Priority**: High (foundational course content)
 
 ## Notes
 
