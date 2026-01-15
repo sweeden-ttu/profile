@@ -25,6 +25,11 @@ collections:
   courses:
     output: true
     permalink: /courses/:name/
+  assignments:
+    output: true
+    permalink: /assignments/:path/
+  lectures:
+    output: false
   drafts:
     output: false
 
@@ -77,6 +82,12 @@ defaults:
       type: courses
     values:
       layout: page
+  # Assignments
+  - scope:
+      path: "_assignments"
+      type: assignments
+    values:
+      layout: project
   # Drafts
   - scope:
       path: "_drafts"

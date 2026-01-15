@@ -52,6 +52,35 @@ Foundations of logic for computer science including propositional logic, first-o
 
 ---
 
+## Assignments
+
+{% assign course_assignments = site.assignments | where: "course_slug", "logic-for-computer-scientists" %}
+{% if course_assignments.size > 0 %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0;">
+{% for assignment in course_assignments %}
+<a href="{{ assignment.url }}" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+    <span style="background: {% if assignment.is_solution %}#10b981{% else %}#8b5cf6{% endif %}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">
+      {% if assignment.is_solution %}Solution{% else %}{{ assignment.assignment_type | default: "Homework" | capitalize }}{% endif %}
+    </span>
+    {% if assignment.assignment_number %}
+    <span style="color: #64748b; font-size: 0.875rem;">#{{ assignment.assignment_number }}</span>
+    {% endif %}
+  </div>
+  <h4 style="margin: 0.5rem 0; color: #1e293b; font-size: 1rem;">{{ assignment.title }}</h4>
+</a>
+{% endfor %}
+</div>
+{% else %}
+<p style="color: #64748b;">No assignments available for this course.</p>
+{% endif %}
+
+**PDF Materials:**
+- [Homework 3 (PDF)](/assignments/logic-for-computer-scientists/cs5384_2025_fall_homework3_111725-1.pdf)
+- [Homework 3 Solutions (PDF)](/assignments/logic-for-computer-scientists/cs5384_2025_fall_homework3_solution_111725-1.pdf)
+
+---
+
 ## Related Content
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">

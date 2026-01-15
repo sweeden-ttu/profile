@@ -18,8 +18,8 @@ Complete the pending homework assignment for Logic for Computer Scientists. This
 ## Assignment Details
 
 ### Existing Files
-- `_projects/logic-homework3.md` - Assignment problems and instructions
-- `_projects/logic-homework3-solutions.md` - Solutions document (may be partial)
+- `_assignments/logic-for-computer-scientists/logic-homework3.md` - Assignment problems and instructions
+- `_assignments/logic-for-computer-scientists/logic-homework3-solutions.md` - Solutions document (may be partial)
 - `_posts/2026-01-13-homework-3-guide.md` - Study guide/reference post
 
 ### Assignment Topics
@@ -47,7 +47,7 @@ Based on existing files, this assignment covers:
 - [ ] Final answers clearly marked
 
 ### Technical Requirements
-- [ ] Solutions document updated in `_projects/logic-homework3-solutions.md`
+- [ ] Solutions document updated in `_assignments/logic-for-computer-scientists/logic-homework3-solutions.md`
 - [ ] Markdown formatting follows project template
 - [ ] All LaTeX/math notation renders correctly
 - [ ] Code examples (if any) are properly formatted
@@ -71,8 +71,8 @@ Based on existing files, this assignment covers:
 - Study guide: `_posts/2026-01-13-homework-3-guide.md`
 
 ### Reference Files
-- `_projects/logic-homework3.md` - Assignment problems
-- `_projects/logic-homework3-solutions.md` - Solutions template
+- `_assignments/logic-for-computer-scientists/logic-homework3.md` - Assignment problems
+- `_assignments/logic-for-computer-scientists/logic-homework3-solutions.md` - Solutions template
 - `math-rules.md` - Mathematical notation standards
 - `herbrand.pl` - Prolog examples (if applicable)
 - `README_PROLOG.md` - Prolog reference (if applicable)
@@ -86,7 +86,7 @@ Based on existing files, this assignment covers:
 ## Deliverables
 
 1. **Completed Solutions**: All problems solved with full work shown
-2. **Updated Solutions Document**: `_projects/logic-homework3-solutions.md` fully completed
+2. **Updated Solutions Document**: `_assignments/logic-for-computer-scientists/logic-homework3-solutions.md` fully completed
 3. **Verification**: Solutions checked for correctness
 4. **Documentation**: Solutions properly formatted and documented
 5. **Submission**: Assignment ready for submission (if applicable)

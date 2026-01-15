@@ -102,36 +102,36 @@ permalink: /
 
       <div class="assignments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
         
-        <a href="/projects/intelligent-systems-assignment4-problems" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
+        <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-problems" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
           <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #3b82f6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">CS-5368</span>
+            <span style="background: #3b82f6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Intelligent Systems</span>
             <span style="color: #64748b; font-size: 0.875rem;">Assignment 4</span>
           </div>
           <h4 style="margin: 0.5rem 0; color: #1e293b;">Problem Solving</h4>
           <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Probabilities, Bayesian Networks, and Inference</p>
         </a>
 
-        <a href="/projects/intelligent-systems-assignment4-solutions" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
+        <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-solutions" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
           <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #10b981; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">CS-5368</span>
+            <span style="background: #10b981; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Intelligent Systems</span>
             <span style="color: #64748b; font-size: 0.875rem;">Solutions</span>
           </div>
           <h4 style="margin: 0.5rem 0; color: #1e293b;">Assignment 4 Solutions</h4>
           <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Complete solutions with explanations</p>
         </a>
 
-        <a href="/projects/logic-homework3" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
+        <a href="/assignments/logic-for-computer-scientists/logic-homework3" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
           <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #8b5cf6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">CS-5384</span>
+            <span style="background: #8b5cf6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Logic</span>
             <span style="color: #64748b; font-size: 0.875rem;">Homework 3</span>
           </div>
           <h4 style="margin: 0.5rem 0; color: #1e293b;">Logic Problems</h4>
           <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Propositional logic and Herbrand semantics</p>
         </a>
 
-        <a href="/projects/intelligent-systems-assignment3-problems" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
+        <a href="/assignments/intelligent-systems/intelligent-systems-assignment3-problems" class="assignment-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff; text-decoration: none; color: inherit; display: block; transition: transform 0.2s, box-shadow 0.2s;">
           <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-            <span style="background: #3b82f6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">CS-5368</span>
+            <span style="background: #3b82f6; color: white; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.75rem;">Intelligent Systems</span>
             <span style="color: #64748b; font-size: 0.875rem;">Assignment 3</span>
           </div>
           <h4 style="margin: 0.5rem 0; color: #1e293b;">Problem Solving</h4>

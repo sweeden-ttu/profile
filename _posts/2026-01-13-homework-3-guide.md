@@ -92,5 +92,5 @@ Domain: CS5384 students. Predicates: $LWE(x)$ — sleeps late on weekends; $UWD(
 
 ---
 
-[^hw]: [Homework 3 PDF](/assets/homework/cs5384_2025_fall_homework3_111725-1.pdf)
-[^sol]: [Homework 3 Solution PDF](/assets/homework/cs5384_2025_fall_homework3_solution_111725-1.pdf)
+[^hw]: [Homework 3 PDF](/assignments/logic-for-computer-scientists/cs5384_2025_fall_homework3_111725-1.pdf)
+[^sol]: [Homework 3 Solution PDF](/assignments/logic-for-computer-scientists/cs5384_2025_fall_homework3_solution_111725-1.pdf)
