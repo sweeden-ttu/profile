@@ -1,0 +1,91 @@
+{
+  "dataset_name": "sirag-stable-interpretable-rag",
+  "description": "Dataset for SIRAG experiments: Stable and Interpretable RAG with process-supervised multi-agent framework",
+  "created_at": "2026-01-15T00:00:00Z",
+  "examples": [
+    {
+      "id": "sirag-example-001",
+      "name": "Stable Retrieval with Decision Making",
+      "inputs": {
+        "query": "Explain the concept of attention mechanisms in transformer architectures, including how they differ from recurrent neural networks",
+        "domain": "deep_learning",
+        "require_stability": true,
+        "require_interpretability": true
+      },
+      "outputs": {
+        "expected_components": {
+          "decision_maker": "Decide on retrieval strategy: focus on transformer papers, attention mechanism papers, RNN comparison papers",
+          "knowledge_selector": "Select most relevant knowledge chunks from retrieved documents",
+          "reasoning_trajectory": "Step-by-step reasoning path showing how decision maker and knowledge selector coordinate"
+        },
+        "expected_answer": "Clear explanation with interpretable reasoning trajectory"
+      },
+      "metadata": {
+        "tags": ["rag", "stable", "interpretable", "process-supervised"],
+        "source": "https://arxiv.org/abs/2509.18167",
+        "difficulty": "medium",
+        "stability_required": true,
+        "interpretability_required": true
+      }
+    },
+    {
+      "id": "sirag-example-002",
+      "name": "Interpretable Multi-Step Reasoning",
+      "inputs": {
+        "query": "What are the security implications of quantum computing for current cryptographic systems, and what migration strategies are recommended?",
+        "domain": "cryptography",
+        "require_stability": true,
+        "require_interpretability": true
+      },
+      "outputs": {
+        "expected_components": {
+          "decision_maker": "Plan multi-step reasoning: 1) Quantum computing capabilities, 2) Current crypto vulnerabilities, 3) Migration strategies",
+          "knowledge_selector": "Select relevant sections from quantum computing and cryptography sources",
+          "reasoning_trajectory": "Explicit reasoning path showing decision points and knowledge selection rationale"
+        },
+        "expected_answer": "Comprehensive answer with visible reasoning process"
+      },
+      "metadata": {
+        "tags": ["rag", "stable", "interpretable", "multi-step"],
+        "source": "https://arxiv.org/abs/2509.18167",
+        "difficulty": "high",
+        "stability_required": true,
+        "interpretability_required": true
+      }
+    },
+    {
+      "id": "sirag-example-003",
+      "name": "Stable Retrieval Under Uncertainty",
+      "inputs": {
+        "query": "Compare different approaches to reinforcement learning in robotics",
+        "domain": "robotics",
+        "require_stability": true,
+        "require_interpretability": true,
+        "uncertainty_level": "high"
+      },
+      "outputs": {
+        "expected_components": {
+          "decision_maker": "Handle uncertainty by retrieving diverse perspectives, multiple approaches",
+          "knowledge_selector": "Select balanced representation of different RL approaches",
+          "reasoning_trajectory": "Show how uncertainty was handled in decision-making"
+        },
+        "expected_answer": "Balanced comparison with interpretable handling of uncertainty"
+      },
+      "metadata": {
+        "tags": ["rag", "stable", "interpretable", "uncertainty"],
+        "source": "https://arxiv.org/abs/2509.18167",
+        "difficulty": "high",
+        "stability_required": true,
+        "interpretability_required": true
+      }
+    }
+  ],
+  "evaluation_metrics": [
+    "stability_score",
+    "interpretability_score",
+    "decision_maker_quality",
+    "knowledge_selector_accuracy",
+    "reasoning_trajectory_clarity",
+    "answer_quality"
+  ]
+}

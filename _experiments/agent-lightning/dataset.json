@@ -1,0 +1,78 @@
+{
+  "dataset_name": "agent-lightning-rl-training",
+  "description": "Dataset for Agent Lightning experiments: Reinforcement learning-based training of large language models for AI agents",
+  "created_at": "2026-01-15T00:00:00Z",
+  "examples": [
+    {
+      "id": "agent-lightning-example-001",
+      "name": "RL Training for Task Completion",
+      "inputs": {
+        "task": "Complete a multi-step research task: find information about quantum computing, summarize key points, and generate a report",
+        "agent_type": "research_assistant",
+        "training_episodes": 1000
+      },
+      "outputs": {
+        "expected_training_metrics": {
+          "task_completion_rate": "Improvement over training episodes",
+          "reward_accumulation": "Reward signal progression",
+          "policy_convergence": "Policy stability over time"
+        },
+        "expected_agent_behavior": "Agent learns to efficiently complete multi-step tasks"
+      },
+      "metadata": {
+        "tags": ["rl", "agent-training", "llm", "reinforcement-learning"],
+        "source": "https://arxiv.org/abs/2508.03680",
+        "difficulty": "high",
+        "requires_training": true
+      }
+    },
+    {
+      "id": "agent-lightning-example-002",
+      "name": "Decoupled Execution and Training",
+      "inputs": {
+        "task": "Integrate Agent Lightning with existing LangChain agent",
+        "existing_agent": "langchain_agent",
+        "training_objective": "improve_response_quality"
+      },
+      "outputs": {
+        "expected_integration": "Seamless integration with LangChain agent",
+        "expected_training": "Training proceeds without affecting execution",
+        "expected_improvement": "Gradual improvement in agent performance"
+      },
+      "metadata": {
+        "tags": ["rl", "integration", "langchain", "decoupling"],
+        "source": "https://arxiv.org/abs/2508.03680",
+        "difficulty": "medium",
+        "requires_integration": true
+      }
+    },
+    {
+      "id": "agent-lightning-example-003",
+      "name": "Continuous Improvement Across Tasks",
+      "inputs": {
+        "task_variety": ["research", "coding", "analysis", "synthesis"],
+        "training_regime": "multi-task",
+        "evaluation_frequency": "every_100_episodes"
+      },
+      "outputs": {
+        "expected_improvement": "Stable, continuous improvements across all task types",
+        "expected_generalization": "Improved performance on unseen tasks",
+        "expected_stability": "Consistent performance without catastrophic forgetting"
+      },
+      "metadata": {
+        "tags": ["rl", "multi-task", "generalization", "continuous-learning"],
+        "source": "https://arxiv.org/abs/2508.03680",
+        "difficulty": "high",
+        "requires_multi_task": true
+      }
+    }
+  ],
+  "evaluation_metrics": [
+    "task_completion_rate",
+    "reward_accumulation",
+    "policy_convergence",
+    "training_stability",
+    "generalization_score",
+    "integration_ease"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "dataset_name": "interact-rag-active-retrieval",
+  "description": "Dataset for Interact-RAG experiments: Transforming LLM agents from passive query issuers into active manipulators of retrieval processes",
+  "created_at": "2026-01-15T00:00:00Z",
+  "examples": [
+    {
+      "id": "interact-rag-example-001",
+      "name": "Complex Multi-Step Information Seeking",
+      "inputs": {
+        "query": "What are the latest developments in quantum computing error correction, and how do they compare to classical error correction methods?",
+        "context": "User is researching quantum computing for a technical paper",
+        "corpus_type": "academic_papers"
+      },
+      "outputs": {
+        "expected_retrieval_steps": [
+          "Initial broad search: quantum computing error correction",
+          "Refine: compare quantum vs classical error correction",
+          "Extract: specific error correction algorithms",
+          "Synthesize: recent developments timeline"
+        ],
+        "expected_answer": "A comprehensive comparison of quantum and classical error correction methods with recent developments"
+      },
+      "metadata": {
+        "tags": ["rag", "active-retrieval", "multi-step", "academic"],
+        "source": "https://arxiv.org/abs/2510.27566",
+        "difficulty": "high",
+        "requires_interaction": true
+      }
+    },
+    {
+      "id": "interact-rag-example-002",
+      "name": "Ambiguous Query Resolution",
+      "inputs": {
+        "query": "How does it work?",
+        "context": "Previous conversation about transformer architectures",
+        "corpus_type": "technical_documentation"
+      },
+      "outputs": {
+        "expected_retrieval_steps": [
+          "Detect ambiguity in query",
+          "Use context to disambiguate: transformer attention mechanism",
+          "Retrieve relevant documentation sections",
+          "Clarify specific aspect: attention mechanism vs positional encoding"
+        ],
+        "expected_answer": "Explanation of transformer attention mechanism based on context"
+      },
+      "metadata": {
+        "tags": ["rag", "active-retrieval", "ambiguity-resolution", "context-aware"],
+        "source": "https://arxiv.org/abs/2510.27566",
+        "difficulty": "medium",
+        "requires_interaction": true
+      }
+    },
+    {
+      "id": "interact-rag-example-003",
+      "name": "Iterative Refinement Query",
+      "inputs": {
+        "query": "Tell me about neural networks",
+        "context": "User is a beginner",
+        "corpus_type": "educational_content"
+      },
+      "outputs": {
+        "expected_retrieval_steps": [
+          "Initial broad retrieval: neural network basics",
+          "Assess user level: beginner",
+          "Refine: simplified explanations, visual aids",
+          "Iterate: check for understanding, provide deeper content if needed"
+        ],
+        "expected_answer": "Beginner-friendly explanation of neural networks with examples"
+      },
+      "metadata": {
+        "tags": ["rag", "active-retrieval", "iterative", "educational"],
+        "source": "https://arxiv.org/abs/2510.27566",
+        "difficulty": "low",
+        "requires_interaction": true
+      }
+    }
+  ],
+  "evaluation_metrics": [
+    "retrieval_precision",
+    "retrieval_recall",
+    "answer_accuracy",
+    "interaction_efficiency",
+    "user_satisfaction"
+  ]
+}
