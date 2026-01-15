@@ -1,0 +1,13 @@
+{
+  "terminals": [
+    {
+      "name": "zsh",
+      "command": "zsh -c"
+    }
+  ],
+  "build": {
+    "context": ".",
+    "dockerfile": "Dockerfile"
+  },
+  "install": "brew install"
+}
