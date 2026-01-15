@@ -1,8 +1,9 @@
 ---
 layout: page
-title: CS-6343 Cryptography
-short_name: CS-6343
-course_id: 70714
+title: Cryptography
+course_slug: cryptography
+course_number: CS-6343
+canvas_id: 70714
 semester: Spring 2026
 status: active
 enrollment_term_id: 140
@@ -12,28 +13,23 @@ tags:
   - encryption
   - computer-science
   - spring-2026
-course_code: "Full Term (CS-6343-D01)"
-start_at: 2026-01-14T06:00:00Z
-end_at: 2026-09-10T04:59:59Z
-permalink: /courses/cs-6343-cryptography/
+permalink: /courses/cryptography/
 ---
 
-# CS-6343 Cryptography
+# Cryptography
 
-**Course Name**: Spring 2026 TTU Cryptography (CS-6343-D01) Full Term  
-**Short Name**: CS-6343  
-**Canvas Course ID**: 70714  
 **Semester**: Spring 2026  
-**Status**: Active  
-**Enrollment Term ID**: 140
+**Status**: Active
+
+{% comment %} Course data from _data/courses.yaml {% endcomment %}
+{% assign course_data = site.data.courses | where: "slug", "cryptography" | first %}
 
 ## Course Information
 
-- **Course Code**: Full Term (CS-6343-D01)
 - **Start Date**: January 14, 2026
-- **End Date**: September 10, 2026
+- **End Date**: May 15, 2026
 - **Time Zone**: America/Chicago
-- **Default View**: Modules
+- **Syllabus**: [View on Canvas]({{ course_data.syllabus_url }})
 
 ## Description
 
@@ -65,7 +61,7 @@ See course draft posts for recommended textbooks and reference materials.
 
 ### Recent Drafts
 
-{% assign course_drafts = site.drafts | where: "course", "CS-6343 Cryptography" | sort: "date" | reverse | limit: 5 %}
+{% assign course_drafts = site.drafts | where: "course", "Cryptography" | sort: "date" | reverse | limit: 5 %}
 {% if course_drafts.size > 0 %}
   <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff;">
     <h3 style="margin-top: 0; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">Recent Drafts</h3>
@@ -98,7 +94,7 @@ See course draft posts for recommended textbooks and reference materials.
 
 ### Recent Projects
 
-{% assign course_projects = site.projects | where: "course", "CS-6343 Cryptography" | sort: "date" | reverse | limit: 5 %}
+{% assign course_projects = site.projects | where: "course", "Cryptography" | sort: "date" | reverse | limit: 5 %}
 {% if course_projects.size > 0 %}
   <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff;">
     <h3 style="margin-top: 0; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">Recent Projects</h3>
@@ -127,7 +123,7 @@ See course draft posts for recommended textbooks and reference materials.
 
 ### Recent Posts
 
-{% assign course_posts = site.posts | where: "course", "CS-6343 Cryptography" | sort: "date" | reverse | limit: 5 %}
+{% assign course_posts = site.posts | where: "course", "Cryptography" | sort: "date" | reverse | limit: 5 %}
 {% if course_posts.size > 0 %}
   <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff;">
     <h3 style="margin-top: 0; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">Recent Posts</h3>
@@ -155,7 +151,7 @@ See course draft posts for recommended textbooks and reference materials.
         </li>
       {% endfor %}
     </ul>
-    <a href="/blog/?course=CS-6343%20Cryptography" style="color: #3b82f6; text-decoration: none; font-size: 0.875rem; margin-top: 1rem; display: inline-block;">View All Posts →</a>
+    <a href="/blog/?course=Cryptography" style="color: #3b82f6; text-decoration: none; font-size: 0.875rem; margin-top: 1rem; display: inline-block;">View All Posts →</a>
   </div>
 {% else %}
   <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #f8fafc; color: #64748b;">
