@@ -1,0 +1,82 @@
+{
+  "dataset_name": "froav-rag-observation-verification",
+  "description": "Dataset for FROAV experiments: Framework for RAG Observation and Agent Verification - open-source platform for LLM-based agent workflows",
+  "created_at": "2026-01-15T00:00:00Z",
+  "examples": [
+    {
+      "id": "froav-example-001",
+      "name": "Visual Workflow Orchestration Test",
+      "inputs": {
+        "query": "Research and summarize recent advances in large language model fine-tuning techniques",
+        "workflow_type": "research_summarization",
+        "require_visualization": true
+      },
+      "outputs": {
+        "expected_workflow_steps": [
+          "Query Analysis",
+          "Document Retrieval",
+          "Information Extraction",
+          "Summary Generation",
+          "Quality Verification"
+        ],
+        "expected_visualization": "Workflow graph showing step dependencies",
+        "expected_answer": "Comprehensive summary of LLM fine-tuning advances"
+      },
+      "metadata": {
+        "tags": ["froav", "workflow", "visualization", "rag"],
+        "source": "https://arxiv.org/abs/2601.07504",
+        "difficulty": "medium",
+        "requires_workflow": true
+      }
+    },
+    {
+      "id": "froav-example-002",
+      "name": "Comprehensive Evaluation Framework Test",
+      "inputs": {
+        "query": "Compare different approaches to few-shot learning in computer vision",
+        "evaluation_metrics": ["accuracy", "efficiency", "generalization"],
+        "require_evaluation": true
+      },
+      "outputs": {
+        "expected_evaluation": {
+          "accuracy": "Comparison of accuracy metrics",
+          "efficiency": "Computational efficiency analysis",
+          "generalization": "Generalization capability assessment"
+        },
+        "expected_answer": "Comprehensive comparison with evaluation metrics"
+      },
+      "metadata": {
+        "tags": ["froav", "evaluation", "metrics", "comparison"],
+        "source": "https://arxiv.org/abs/2601.07504",
+        "difficulty": "high",
+        "requires_evaluation": true
+      }
+    },
+    {
+      "id": "froav-example-003",
+      "name": "Extensible Python Integration Test",
+      "inputs": {
+        "query": "Implement a custom RAG pipeline for domain-specific document retrieval",
+        "custom_components": ["domain_retriever", "custom_ranker"],
+        "require_extensibility": true
+      },
+      "outputs": {
+        "expected_integration": "Custom components integrated into FROAV framework",
+        "expected_answer": "Domain-specific RAG pipeline results"
+      },
+      "metadata": {
+        "tags": ["froav", "extensibility", "python", "custom"],
+        "source": "https://arxiv.org/abs/2601.07504",
+        "difficulty": "high",
+        "requires_extensibility": true
+      }
+    }
+  ],
+  "evaluation_metrics": [
+    "workflow_visualization_quality",
+    "evaluation_framework_completeness",
+    "python_integration_ease",
+    "extensibility_score",
+    "overall_platform_usability"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "dataset_name": "ma-rag-multi-agent-collaboration",
+  "description": "Dataset for MA-RAG experiments: Multi-Agent Retrieval-Augmented Generation with specialized collaborative agents",
+  "created_at": "2026-01-15T00:00:00Z",
+  "examples": [
+    {
+      "id": "ma-rag-example-001",
+      "name": "Complex Technical Query with Multiple Sub-Questions",
+      "inputs": {
+        "query": "Compare the performance of transformer architectures in natural language processing versus computer vision, including attention mechanisms, computational requirements, and recent optimization techniques",
+        "domain": "machine_learning",
+        "complexity": "high"
+      },
+      "outputs": {
+        "expected_agent_roles": {
+          "planner": "Break down query into sub-tasks: NLP transformers, CV transformers, attention comparison, computational analysis, optimization review",
+          "step_definer": "Define retrieval steps: 1) NLP transformer papers, 2) CV transformer papers, 3) Attention mechanism analysis, 4) Computational benchmarks, 5) Optimization techniques",
+          "extractor": "Extract relevant information from retrieved documents",
+          "qa_agent": "Synthesize answers to each sub-question and integrate into comprehensive response"
+        },
+        "expected_answer": "Comprehensive comparison covering all aspects with citations"
+      },
+      "metadata": {
+        "tags": ["multi-agent", "rag", "collaborative", "technical"],
+        "source": "https://arxiv.org/abs/2505.20096",
+        "difficulty": "high",
+        "requires_collaboration": true
+      }
+    },
+    {
+      "id": "ma-rag-example-002",
+      "name": "Ambiguous Query Requiring Clarification",
+      "inputs": {
+        "query": "What are the best practices?",
+        "context": "Previous discussion about software testing",
+        "domain": "software_engineering"
+      },
+      "outputs": {
+        "expected_agent_roles": {
+          "planner": "Identify ambiguity and plan clarification strategy",
+          "step_definer": "Define steps: 1) Detect ambiguity, 2) Use context to infer domain, 3) Retrieve best practices in that domain, 4) Verify with user if needed",
+          "extractor": "Extract best practices from software testing literature",
+          "qa_agent": "Present best practices with context awareness"
+        },
+        "expected_answer": "Best practices for software testing based on context"
+      },
+      "metadata": {
+        "tags": ["multi-agent", "rag", "ambiguity", "context-aware"],
+        "source": "https://arxiv.org/abs/2505.20096",
+        "difficulty": "medium",
+        "requires_collaboration": true
+      }
+    },
+    {
+      "id": "ma-rag-example-003",
+      "name": "Multi-Domain Information Synthesis",
+      "inputs": {
+        "query": "How do recent advances in quantum computing impact cryptography and what are the implications for blockchain security?",
+        "domain": "cross_domain",
+        "complexity": "high"
+      },
+      "outputs": {
+        "expected_agent_roles": {
+          "planner": "Plan multi-domain retrieval: quantum computing, cryptography, blockchain",
+          "step_definer": "Define parallel retrieval steps for each domain, then synthesis step",
+          "extractor": "Extract key information from quantum computing, cryptography, and blockchain sources",
+          "qa_agent": "Synthesize cross-domain information into coherent answer"
+        },
+        "expected_answer": "Integrated analysis of quantum computing's impact on cryptography and blockchain security"
+      },
+      "metadata": {
+        "tags": ["multi-agent", "rag", "cross-domain", "synthesis"],
+        "source": "https://arxiv.org/abs/2505.20096",
+        "difficulty": "high",
+        "requires_collaboration": true
+      }
+    }
+  ],
+  "evaluation_metrics": [
+    "agent_coordination_quality",
+    "retrieval_accuracy",
+    "answer_completeness",
+    "cross_agent_communication_efficiency",
+    "task_aware_reasoning_quality"
+  ]
+}
