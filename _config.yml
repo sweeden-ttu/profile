@@ -25,6 +25,8 @@ collections:
   courses:
     output: true
     permalink: /courses/:name/
+  drafts:
+    output: false
 
 # Kramdown Settings
 kramdown:
@@ -75,6 +77,12 @@ defaults:
       type: courses
     values:
       layout: page
+  # Drafts
+  - scope:
+      path: "_drafts"
+      type: drafts
+    values:
+      layout: post
   # Pages
   - scope:
       path: ""
