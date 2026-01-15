@@ -145,6 +145,30 @@ JEKYLL_ENV=production bundle exec jekyll build
 # Output in _site/ directory
 ```
 
+### Git Hooks
+
+This repository uses git hooks to ensure code quality and build integrity. Hooks are stored in `.githooks/` and automatically used via `git config core.hooksPath .githooks`.
+
+**Available Hooks:**
+
+- **`pre-push`** - Requires successful Jekyll build before allowing push
+  - Runs `bundle exec jekyll build` (or `jekyll build` if bundle unavailable)
+  - Prevents pushing code that would break the site build
+  - Can be bypassed with `git push --no-verify` if needed (not recommended)
+
+- **`post-checkout`** / **`post-merge`** - Regenerates Agent A lecture inventory after repository updates
+
+**Testing the Build Hook:**
+
+```bash
+# The hook will automatically run on git push
+git push
+
+# If build fails, fix errors and try again
+# To skip the hook (not recommended):
+git push --no-verify
+```
+
 ## Project Structure
 
 ```

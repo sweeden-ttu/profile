@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Pre-push hook: Require successful Jekyll build before allowing push
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+echo "🔨 Running Jekyll build before push..."
+
+# Check if bundle is available
+if command -v bundle &> /dev/null; then
+    # Use bundle exec if Gemfile exists
+    if [[ -f "Gemfile" ]]; then
+        echo "📦 Using Bundler to run Jekyll build..."
+        bundle exec jekyll build
+    else
+        # Fallback to direct jekyll command
+        echo "⚠️  Gemfile not found, using system Jekyll..."
+        jekyll build
+    fi
+else
+    # Fallback to direct jekyll command if bundle not available
+    echo "⚠️  Bundler not found, using system Jekyll..."
+    if ! command -v jekyll &> /dev/null; then
+        echo "❌ Error: Jekyll not found. Please install Jekyll or Bundler." >&2
+        exit 1
+    fi
+    jekyll build
+fi
+
+# Check if build was successful
+if [[ $? -eq 0 ]]; then
+    echo "✅ Jekyll build successful! Proceeding with push..."
+    exit 0
+else
+    echo "❌ Jekyll build failed! Push aborted." >&2
+    echo "   Please fix build errors before pushing." >&2
+    exit 1
+fi
