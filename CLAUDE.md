@@ -59,16 +59,33 @@ JEKYLL_ENV=production bundle exec jekyll build
 3. **Create Posts**: Use course info from `_courses/` collection, reference module numbers and lecture dates. Update the recent drafts, projects and posts collections anytime a blog post is Published
 4. **Quality**: Accurately reflect Canvas content, maintain academic integrity, cite sources
 
-### Courses Collection
+### Course Data Dictionary
 
-Located in `_courses/`, contains course metadata synced from Canvas:
-- Course name, short name (e.g., "CS-6343"), Canvas course ID
-- Tags, semester, status, enrollment term ID
-- Each course landing page shows recent drafts, projects, and posts
+**Official Source**: `_data/courses.yaml` - This YAML file is the **single source of truth** for all course information. It rarely changes throughout the semester and should be used for course lookups instead of calling Canvas LMS.
 
-**Current Spring 2026 Courses**:
-- **CS-6343 Cryptography** (Canvas ID: 70714)
-- **CS-5374 Software Verification and Validation** (Canvas ID: 70713)
+**Course Naming Convention**:
+- **User-facing content**: Use `display_name` only (e.g., "Cryptography", "Software Verification and Validation")
+- **NEVER include course numbers** (e.g., CS-6343) in blog titles, page headers, or navigation
+- Course numbers and Canvas IDs are for **internal agent use only**
+- See `.cursor/rules/course-naming-convention.mdc` for detailed guidelines
+
+**Current Courses** (from `_data/courses.yaml`):
+
+| Display Name | Slug | Status |
+|--------------|------|--------|
+| Cryptography | cryptography | Active (Spring 2026) |
+| Software Verification and Validation | software-verification | Active (Spring 2026) |
+| Intelligent Systems | intelligent-systems | Completed (Fall 2025) |
+| Logic for Computer Scientists | logic-for-computer-scientists | Completed (Fall 2025) |
+| Theory of Automata | theory-of-automata | Completed (Fall 2025) |
+
+**Jekyll Usage**:
+```liquid
+{% assign course = site.data.courses | where: "slug", "cryptography" | first %}
+{{ course.display_name }}  <!-- "Cryptography" -->
+```
+
+**Landing Pages**: `_courses/` collection contains course landing pages with recent drafts, projects, and posts
 
 ### Jekyll Build Configuration
 

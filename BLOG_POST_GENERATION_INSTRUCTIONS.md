@@ -2,97 +2,79 @@
 
 ## Overview
 
-This document provides comprehensive instructions for LLM agents tasked with converting lecture materials into high-quality, textbook-quality blog posts. The system uses a **two-agent parallel workflow** with iterative peer review to ensure accuracy, completeness, and readability.
-
-## System Architecture
-
-### Two-Agent Design
-
-- **Agent A**: CS-5384 Logic for Computer Scientists
-- **Agent B**: CS-5368 Intelligent Systems
-
-Both agents work **in parallel** on their respective courses, then **cross-review** each other's work iteratively.
-
-### Work Tree Structure
-
-```
-blog-generation-workspace/
-├── cs5384-logic/
-│   ├── lectures/
-│   │   ├── Lec_Aug25/
-│   │   │   ├── extracted-content.json
-│   │   │   ├── lesson-plan.md
-│   │   │   ├── draft-v1.md
-│   │   │   ├── review-feedback-v1.md
-│   │   │   ├── draft-v2.md
-│   │   │   └── final-post.md
-│   │   └── ...
-│   ├── assets/
-│   │   ├── diagrams/
-│   │   ├── tables/
-│   │   └── screenshots/
-│   └── metadata.json
-├── cs5368-intelligent-systems/
-│   ├── lectures/
-│   │   ├── Lec_Dec01/
-│   │   │   ├── extracted-content.json
-│   │   │   ├── lesson-plan.md
-│   │   │   ├── draft-v1.md
-│   │   │   ├── review-feedback-v1.md
-│   │   │   ├── draft-v2.md
-│   │   │   └── final-post.md
-│   │   └── ...
-│   ├── assets/
-│   │   ├── diagrams/
-│   │   ├── tables/
-│   │   └── screenshots/
-│   └── metadata.json
-└── shared/
-    ├── review-templates/
-    └── quality-checklist.md
-```
+This document provides comprehensive instructions for LLM agents tasked with converting lecture materials into high-quality, textbook-quality blog posts.
 
 ---
 
-## Agent Workflow: ReAct Pattern with State Tracking
+## Course Data Reference (`_data/courses.yaml`)
 
-### Core Loop Structure
+**IMPORTANT**: All course information is stored in `_data/courses.yaml`. This file is the **single source of truth** for course metadata and **rarely changes throughout the semester**.
 
-Each agent follows a **Think → Act → Observe → Reflect** cycle:
+### Using Course Data
+
+Always reference `_data/courses.yaml` for:
+- Course display names (user-facing)
+- Course numbers (internal/agent use only)
+- Canvas IDs (for MCP lookups)
+- Semester information
+- Course descriptions
+
+### Course Naming Convention
+
+**CRITICAL**: Course numbers (CS-5384, CS-6343, etc.) must **NEVER** appear in:
+- Blog post titles
+- File names
+- Page headers
+- User-facing content
+
+**Always use the `display_name` from courses.yaml:**
+
+| Display Name | Course Number | Slug |
+|--------------|---------------|------|
+| Cryptography | CS-6343 | cryptography |
+| Software Verification and Validation | CS-5374 | software-verification |
+| Intelligent Systems | CS-5368 | intelligent-systems |
+| Logic for Computer Scientists | CS-5384 | logic-for-computer-scientists |
+| Theory of Automata | CS-5383 | theory-of-automata |
+| Analysis of Algorithms | CS-5381 | analysis-of-algorithms |
+| Software Project Management | CS-5363 | software-project-management |
+| Machine Learning Security | CS-5331 | machine-learning-security |
+
+### File Naming Convention
+
+Blog post files **MUST** follow this naming pattern:
 
 ```
-<state>
-  current_lecture: "Lec_Dec01"
-  phase: "extraction" | "planning" | "drafting" | "reviewing" | "finalizing"
-  iteration: 1
-  success_criteria: {...}
-</state>
-
-<reasoning>
-  [Agent analyzes current state and determines next action]
-</reasoning>
-
-<action>
-  [Agent performs specific task using available tools]
-</action>
-
-<observation>
-  [Agent evaluates result of action]
-</observation>
-
-<reflection>
-  [Agent checks if success criteria met, adjusts plan if needed]
-</reflection>
+YYYY-MM-DD-{course-display-name}-{lecture-title}.md
 ```
+
+**Examples:**
+- `2026-01-20-cryptography-symmetric-encryption-basics.md`
+- `2026-01-22-software-verification-introduction-to-testing.md`
+- `2025-12-01-logic-for-computer-scientists-temporal-logic-ltl.md`
+- `2025-11-15-intelligent-systems-bayesian-networks.md`
+
+**Rules:**
+1. Date in `YYYY-MM-DD` format (lecture date)
+2. Course display name in lowercase with hyphens (from `courses.yaml` slug)
+3. Lecture title in lowercase with hyphens
+4. All lowercase, no course numbers, no special characters
+
+### Course Landing Pages
+
+Each course has a landing page at `_courses/{course-slug}.md`. These pages:
+- Display course information from `_data/courses.yaml`
+- Show related drafts, projects, and posts
+- Link to the course syllabus on Canvas
 
 ---
 
-## Phase 1: Content Extraction
+## Content Extraction
 
 ### Goal
 Extract all relevant information from lecture materials (PDFs, transcripts, JSON metadata, summary files).
 
-### Success Criteria
+### Checklist
 - [ ] All PDF slides processed and key content extracted
 - [ ] Transcript/JSON data parsed and structured
 - [ ] Topics and exercises identified
@@ -103,15 +85,11 @@ Extract all relevant information from lecture materials (PDFs, transcripts, JSON
 ### Instructions
 
 **Step 1: Identify Lecture Materials**
-```xml
-<task>
-  Scan lecture directory for:
+- Scan lecture directory for:
   - PDF files (lecture slides, summaries)
   - JSON files (transcripts, topics-and-exercises.json)
   - Video files (if transcripts available)
   - Any supplementary materials
-</task>
-```
 
 **Step 2: Extract PDF Content**
 - Use PDF parsing tools to extract:
@@ -156,12 +134,12 @@ Extract all relevant information from lecture materials (PDFs, transcripts, JSON
 
 ---
 
-## Phase 2: Lesson Plan Generation
+## Lesson Plan Generation
 
 ### Goal
 Create a comprehensive lesson plan that covers all topics from the lecture in a logical, pedagogical order.
 
-### Success Criteria
+### Checklist
 - [ ] All main topics from lecture included
 - [ ] Logical progression from basic to advanced concepts
 - [ ] Prerequisites identified
@@ -223,12 +201,12 @@ Create a comprehensive lesson plan that covers all topics from the lecture in a 
 
 ---
 
-## Phase 3: Content Creation
+## Content Creation
 
 ### Goal
 Generate a complete, readable blog post draft with all required elements.
 
-### Success Criteria
+### Checklist
 - [ ] Follows Jekyll frontmatter format
 - [ ] All sections from lesson plan included
 - [ ] Mathematical notation properly formatted (KaTeX)
@@ -242,17 +220,37 @@ Generate a complete, readable blog post draft with all required elements.
 ### Instructions
 
 **Step 1: Create Jekyll Frontmatter**
+
+Reference `_data/courses.yaml` for the correct course `display_name`:
+
 ```yaml
 ---
 layout: post
-title: "[Descriptive, SEO-friendly Title]"
+title: "[Descriptive, SEO-friendly Title - NO course numbers]"
 date: YYYY-MM-DD
 categories: [category1, category2]
 tags: [tag1, tag2, tag3, tag4, tag5]
 excerpt: "One-sentence summary that captures the essence (50-100 words)"
 reading_time: 15
-course: "Logic for Computer Scientists" | "Intelligent Systems"
+course: "[Course display_name from courses.yaml]"
+course_slug: "[Course slug from courses.yaml]"
 ---
+```
+
+**Valid course values** (from `_data/courses.yaml`):
+- `"Cryptography"` (Spring 2026)
+- `"Software Verification and Validation"` (Spring 2026)
+- `"Intelligent Systems"` (Fall 2025)
+- `"Logic for Computer Scientists"` (Fall 2025)
+- `"Theory of Automata"` (Fall 2025)
+- `"Analysis of Algorithms"` (Summer 2025)
+- `"Software Project Management"` (Summer 2025)
+- `"Machine Learning Security"` (Summer 2025)
+- `"General"` (for non-course-specific posts)
+
+**INCORRECT:**
+```yaml
+course: "CS-6343 Cryptography"  # NEVER include course numbers
 ```
 
 **Step 2: Write Introduction**
@@ -372,25 +370,11 @@ For each section in the lesson plan:
 
 ---
 
-## Phase 4: Peer Review
+## Review and Quality Checklist
 
-### Goal
-Each agent reviews the other agent's work to ensure quality, accuracy, and completeness.
+Before finalizing any blog post, review against these checklists:
 
-### Success Criteria
-- [ ] Review covers all checklist items
-- [ ] Specific, actionable feedback provided
-- [ ] Accuracy verified against source materials
-- [ ] Readability assessed
-- [ ] Visual elements evaluated
-
-### Instructions
-
-**Step 1: Initial Review Pass**
-
-Review the draft blog post against this checklist:
-
-**Accuracy Checklist:**
+### Accuracy Checklist
 - [ ] All definitions match lecture content
 - [ ] Mathematical formulas are correct
 - [ ] Examples are accurate and illustrative
@@ -398,7 +382,7 @@ Review the draft blog post against this checklist:
 - [ ] No factual errors or misrepresentations
 - [ ] Terminology is consistent with course materials
 
-**Completeness Checklist:**
+### Completeness Checklist
 - [ ] All topics from lesson plan are covered
 - [ ] All exercises are addressed
 - [ ] Prerequisites are mentioned or explained
@@ -406,7 +390,7 @@ Review the draft blog post against this checklist:
 - [ ] Examples cover different aspects of the topic
 - [ ] External resources are relevant and high-quality
 
-**Readability Checklist:**
+### Readability Checklist
 - [ ] Introduction clearly sets context
 - [ ] Logical flow from section to section
 - [ ] Concepts build on each other appropriately
@@ -416,7 +400,7 @@ Review the draft blog post against this checklist:
 - [ ] Paragraphs are appropriately sized (3-5 sentences)
 - [ ] Reading time matches target (15 minutes)
 
-**Visual Elements Checklist:**
+### Visual Elements Checklist
 - [ ] Diagrams are accurate and clear
 - [ ] Tables are well-formatted and readable
 - [ ] Code examples are syntax-highlighted
@@ -424,95 +408,12 @@ Review the draft blog post against this checklist:
 - [ ] All diagrams/tables are referenced in text
 - [ ] Alt text provided for accessibility
 
-**Structure Checklist:**
+### Structure Checklist
 - [ ] Jekyll frontmatter is complete and correct
 - [ ] Headings follow logical hierarchy (H2 → H3 → H4)
 - [ ] Sections are appropriately sized
 - [ ] Conclusion ties everything together
 - [ ] External resources section is present
-
-**Step 2: Generate Review Feedback**
-
-Create a structured feedback document:
-
-```markdown
-# Review Feedback: [Lecture Title]
-
-## Reviewer: [Agent Name]
-## Review Date: [Date]
-## Draft Version: v[Number]
-
-## Overall Assessment
-[Brief summary of quality and any major issues]
-
-## Accuracy Issues
-### Critical
-- [Issue 1]: [Description] - [Location] - [Suggested fix]
-
-### Minor
-- [Issue 2]: [Description] - [Location] - [Suggested fix]
-
-## Completeness Issues
-- [Missing topic/concept]: [Description] - [Where it should be added]
-
-## Readability Issues
-- [Issue]: [Description] - [Location] - [Suggested improvement]
-
-## Visual Elements Issues
-- [Diagram/Table issue]: [Description] - [Location] - [Suggested fix]
-
-## Structure Issues
-- [Issue]: [Description] - [Location] - [Suggested fix]
-
-## Strengths
-- [What works well]
-
-## Priority Actions
-1. [High priority fix]
-2. [Medium priority fix]
-3. [Low priority fix]
-```
-
-**Step 3: Cross-Reference with Source Materials**
-- Verify claims against PDF slides
-- Check mathematical formulas against lecture notes
-- Confirm examples match lecture content
-- Validate external resources are appropriate
-
----
-
-## Phase 5: Iterative Refinement
-
-### Goal
-Address review feedback and improve the blog post iteratively.
-
-### Success Criteria
-- [ ] All critical feedback addressed
-- [ ] All high-priority issues resolved
-- [ ] Post meets quality standards
-- [ ] Reviewers approve final version
-
-### Instructions
-
-**Step 1: Prioritize Feedback**
-- Address critical accuracy issues first
-- Then completeness issues
-- Then readability improvements
-- Finally, polish and structure
-
-**Step 2: Revise Draft**
-- Make changes based on feedback
-- Track which feedback items are addressed
-- Maintain version control (v1, v2, v3...)
-
-**Step 3: Re-submit for Review**
-- If significant changes made, request re-review
-- If minor changes, self-validate against checklist
-
-**Step 4: Final Approval**
-- Both agents approve final version
-- All checklist items pass
-- Post is ready for publication
 
 ---
 
@@ -594,36 +495,36 @@ Address review feedback and improve the blog post iteratively.
 
 ## Course-Specific Guidelines
 
-### CS-5384: Logic for Computer Scientists
+**Note**: All course information is stored in `_data/courses.yaml`. Reference this file for course metadata. Each course has a landing page at `_courses/{slug}.md`.
 
-**Categorization:**
-- All posts must be categorized under: "Logic for Computer Scientists"
-- Tags should include: `logic-for-computer-scientists`
+### Cryptography (Spring 2026)
+
+**Front matter**: `course: "Cryptography"`  
+**Tags**: `cryptography`, `security`, `encryption`
 
 **Content Focus:**
-- Formal logic systems
-- Proof techniques
-- Model theory
-- Automated theorem proving
-- Temporal and modal logics
+- Symmetric and asymmetric encryption
+- Hash functions and digital signatures
+- Public key cryptography
+- Number theory foundations
+- Attack models and security goals
 
-**Mathematical Rigor:**
-- Precise definitions
-- Formal proofs when appropriate
-- Clear distinction between syntax and semantics
-- Proper use of logical notation
+### Software Verification and Validation (Spring 2026)
 
-**Examples:**
-- Computer science applications
-- Algorithm verification
-- System specification
-- Formal methods
+**Front matter**: `course: "Software Verification and Validation"`  
+**Tags**: `software-verification`, `testing`, `formal-methods`
 
-### CS-5368: Intelligent Systems
+**Content Focus:**
+- Software testing strategies
+- Formal methods and model checking
+- Specification and requirements analysis
+- Continuous verification
+- Quality assurance
 
-**Categorization:**
-- All posts must be categorized under: "Intelligent Systems"
-- Tags should include: `intelligent-systems`
+### Intelligent Systems (Fall 2025)
+
+**Front matter**: `course: "Intelligent Systems"`  
+**Tags**: `artificial-intelligence`, `machine-learning`
 
 **Content Focus:**
 - Machine learning algorithms
@@ -632,17 +533,65 @@ Address review feedback and improve the blog post iteratively.
 - Classification and regression
 - Neural networks
 
-**Mathematical Rigor:**
-- Clear explanations of algorithms
-- Step-by-step derivations
-- Intuitive explanations alongside formal math
-- Practical implementation considerations
+### Logic for Computer Scientists (Fall 2025)
 
-**Examples:**
-- Real-world applications
-- Dataset examples
-- Implementation details
-- Performance considerations
+**Front matter**: `course: "Logic for Computer Scientists"`  
+**Tags**: `logic`, `formal-methods`, `prolog`
+
+**Content Focus:**
+- Formal logic systems
+- Proof techniques
+- Model theory
+- Automated theorem proving
+- Temporal and modal logics
+
+### Theory of Automata (Fall 2025)
+
+**Front matter**: `course: "Theory of Automata"`  
+**Tags**: `automata`, `formal-languages`, `computation`
+
+**Content Focus:**
+- Finite automata
+- Regular languages
+- Context-free grammars
+- Turing machines
+- Computational complexity
+
+### Analysis of Algorithms (Summer 2025)
+
+**Front matter**: `course: "Analysis of Algorithms"`  
+**Tags**: `algorithms`, `complexity`
+
+**Content Focus:**
+- Algorithm design techniques
+- Complexity analysis
+- Divide and conquer
+- Dynamic programming
+- Graph algorithms
+
+### Software Project Management (Summer 2025)
+
+**Front matter**: `course: "Software Project Management"`  
+**Tags**: `project-management`, `software-engineering`
+
+**Content Focus:**
+- Project planning and estimation
+- Risk management
+- Team coordination
+- Quality assurance processes
+- Agile methodologies
+
+### Machine Learning Security (Summer 2025)
+
+**Front matter**: `course: "Machine Learning Security"`  
+**Tags**: `machine-learning`, `security`
+
+**Content Focus:**
+- Adversarial attacks
+- Model robustness
+- Privacy-preserving ML
+- Security applications
+- Threat modeling
 
 ---
 
@@ -669,8 +618,11 @@ Address review feedback and improve the blog post iteratively.
 
 ### Reference Documents
 
+- `_data/courses.yaml` - **Official course data dictionary** (display names, slugs, Canvas IDs)
+- `.cursor/rules/course-naming-convention.mdc` - Course naming convention rules
 - `@math-rules.md` - Mathematical notation standards
 - `@CLAUDE.md` - Site structure and design principles
+- `@AGENTS.md` - Agent workflow and course information
 - Existing blog posts - Style and format examples
 - Course textbooks - Authoritative source material
 
@@ -694,7 +646,7 @@ Address review feedback and improve the blog post iteratively.
 
 ---
 
-## Error Handling and Recovery
+## Error Handling
 
 ### Common Issues
 
@@ -724,96 +676,7 @@ Address review feedback and improve the blog post iteratively.
 
 ---
 
-## State Tracking
-
-### State Variables
-
-```json
-{
-  "agent_id": "A" | "B",
-  "course": "CS-5384" | "CS-5368",
-  "current_lecture": "Lec_Dec01",
-  "phase": "extraction" | "planning" | "drafting" | "reviewing" | "finalizing",
-  "iteration": 1,
-  "lectures_completed": [],
-  "lectures_in_progress": [],
-  "lectures_pending": [],
-  "current_draft_version": 1,
-  "review_feedback_received": false,
-  "success_criteria": {
-    "extraction_complete": false,
-    "lesson_plan_complete": false,
-    "draft_complete": false,
-    "review_passed": false,
-    "final_approved": false
-  }
-}
-```
-
-### State Transitions
-
-```
-extraction → planning → drafting → reviewing → finalizing
-                                    ↓
-                              [feedback received]
-                                    ↓
-                              [refinement]
-                                    ↓
-                              reviewing (repeat until approved)
-```
-
----
-
-## Reflection and Self-Correction
-
-### Reflection Checkpoints
-
-After each phase, agent should reflect:
-
-```xml
-<reflection>
-  <current_state>
-    [Describe current state]
-  </current_state>
-  
-  <progress_assessment>
-    [Evaluate progress against success criteria]
-  </progress_assessment>
-  
-  <issues_identified>
-    [List any problems or concerns]
-  </issues_identified>
-  
-  <next_steps>
-    [Determine what to do next]
-  </next_steps>
-  
-  <success_criteria_check>
-    [Verify if success criteria met]
-  </success_criteria_check>
-</reflection>
-```
-
-### Self-Correction Triggers
-
-Agent should trigger self-correction when:
-- Success criteria not met after action
-- Review feedback indicates significant issues
-- Quality metrics below thresholds
-- Inconsistencies detected in content
-- Missing critical information
-
-### Correction Actions
-
-1. **Identify root cause** of issue
-2. **Adjust plan** to address issue
-3. **Re-execute** relevant phase
-4. **Re-validate** against success criteria
-5. **Document** correction for future reference
-
----
-
-## Final Output Format
+## Final Output
 
 ### File Structure
 
@@ -821,14 +684,11 @@ Each completed lecture should produce:
 
 ```
 lecture-directory/
-├── extracted-content.json          # Phase 1 output
-├── lesson-plan.md                  # Phase 2 output
-├── draft-v1.md                     # Phase 3 initial draft
-├── review-feedback-v1.md           # Phase 4 feedback
-├── draft-v2.md                     # Phase 5 revised draft
-├── review-feedback-v2.md           # Phase 4 second review (if needed)
-├── draft-v3.md                     # Phase 5 final draft
-├── final-post.md                   # Approved final version
+├── extracted-content.json          # Extraction output
+├── lesson-plan.md                  # Lesson plan
+├── draft-v1.md                     # Initial draft
+├── draft-v2.md                     # Revised draft (if needed)
+├── final-post.md                   # Final version
 ├── assets/
 │   ├── diagram-1.svg               # Generated diagrams
 │   ├── table-1.md                  # Table definitions
@@ -840,73 +700,23 @@ lecture-directory/
 
 The `final-post.md` file should:
 - Be ready for direct use in Jekyll `_posts/` directory
-- Follow naming convention: `YYYY-MM-DD-title.md`
-- Include all required frontmatter
+- Follow naming convention: `YYYY-MM-DD-{course-display-name}-{lecture-title}.md`
+  - Example: `2026-01-20-cryptography-symmetric-encryption-basics.md`
+  - Example: `2025-12-01-logic-for-computer-scientists-temporal-logic-ltl.md`
+- **NEVER include course numbers** (CS-5384, CS-6343, etc.) in filenames or titles
+- Include all required frontmatter with `course` set to display name from `_data/courses.yaml`
 - Have all diagrams/tables properly referenced
 - Pass all quality checks
-- Be approved by both agents
 
 ---
 
-## Example Workflow Execution
-
-### Agent A: CS-5384 Lecture Processing
-
-```
-<state>
-  agent_id: "A"
-  course: "CS-5384"
-  current_lecture: "Lec_Dec01"
-  phase: "extraction"
-  iteration: 1
-</state>
-
-<reasoning>
-  I need to extract all content from Lec_Dec01. Let me identify what files are available:
-  - cs5384_2025_fall_lecture30.pdf
-  - 2025-12-01_Ikram_Temporal_Logic_LTL.json (transcript)
-  - topics-and-exercises.json
-  
-  I'll start by parsing the topics-and-exercises.json to understand the structure, then extract PDF content, then parse the transcript.
-</reasoning>
-
-<action>
-  [Agent reads and parses topics-and-exercises.json]
-  [Agent extracts PDF content using PDF parser]
-  [Agent parses JSON transcript]
-  [Agent creates extracted-content.json]
-</action>
-
-<observation>
-  Successfully extracted:
-  - 4 main topics identified
-  - 3 exercises found
-  - Multiple textbook references mapped
-  - Transcript contains detailed explanations
-  
-  Missing: Some diagrams from PDF need to be recreated
-</observation>
-
-<reflection>
-  Extraction phase mostly complete. Need to describe diagrams for recreation.
-  Success criteria: extraction_complete = true (pending diagram descriptions)
-  Next: Move to planning phase
-</reflection>
-```
-
-[Continue through all phases...]
-
----
-
-## Conclusion
-
-These instructions provide a comprehensive framework for generating high-quality blog posts from lecture materials. The two-agent system with iterative peer review ensures accuracy, completeness, and readability while maintaining consistency with existing blog post standards.
+## Summary
 
 **Key Principles:**
-1. **Clear goals** at each phase
-2. **Structured workflow** with state tracking
-3. **Iterative refinement** through peer review
-4. **Quality standards** enforced throughout
-5. **Self-correction** mechanisms built in
+1. **Course data from `_data/courses.yaml`** - Single source of truth for course information
+2. **No course numbers in user-facing content** - Use display names only
+3. **File naming: `YYYY-MM-DD-{slug}-{title}.md`** - Consistent, clean URLs
+4. **Quality standards enforced** - Use checklists before finalizing
+5. **15-minute reading time target** - 2000-2500 words per post
 
 Follow these instructions systematically, and the resulting blog posts will be textbook-quality, informative, and valuable resources for readers.

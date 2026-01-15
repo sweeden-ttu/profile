@@ -44,33 +44,57 @@ This is the **Spring Semester** of the academic year. Agents should be aware of:
    - Maintain academic integrity by properly citing source materials
    - Follow the blog post generation instructions in `BLOG_POST_GENERATION_INSTRUCTIONS.md`
 
-### Courses Collection
+### Course Data Dictionary (`_data/courses.yaml`)
 
-The Jekyll site includes a **courses collection** located in `_courses/` that contains course information pulled from Canvas LMS using the canvas-lms-mcp server.
+The official source of truth for all course information is `_data/courses.yaml`. This file contains course metadata synced from Canvas LMS and **rarely changes throughout the semester**.
 
-**Collection Structure**: Each course file in `_courses/` includes:
-- **Course Name**: Full course title from Canvas
-- **Short Name**: Abbreviated course code (e.g., "CS-6343", "CS-5374")
-- **Course ID**: Canvas course ID (numeric identifier)
-- **Tags**: Relevant tags for filtering and organization (e.g., "cryptography", "software-verification", "spring-2026")
-- **Semester**: Current semester (e.g., "Spring 2026")
-- **Status**: Enrollment status ("active" for currently enrolled courses)
-- **Enrollment Term ID**: Canvas enrollment term identifier
+**IMPORTANT**: This YAML file should be used by agents and MCP server lookups for course metadata. Course information in this file is stable and does not need to be re-fetched from Canvas during normal operations.
 
-**Current Spring 2026 Courses** (as of latest Canvas sync):
-- **CS-6343 Cryptography** (Canvas ID: 70714)
-  - Tags: cryptography, security, encryption, computer-science, spring-2026
-  - File: `_courses/cs-6343-cryptography.md`
+**Course Data Structure**:
+```yaml
+- slug: cryptography                    # URL-safe identifier
+  display_name: "Cryptography"          # User-facing name (NO course numbers!)
+  course_number: "CS-6343"              # Internal use only (agents/MCP)
+  canvas_id: 70714                      # Internal use only (agents/MCP)
+  enrollment_term_id: 140               # Canvas term ID
+  semester: "Spring 2026"
+  status: active                        # active or completed
+  completed: false
+  description: "..."                    # Course description
+  syllabus_url: "..."                   # Link to Canvas syllabus
+  calendar_ics: "..."                   # iCal feed URL
+  tags: [...]                           # Course tags
+```
 
-- **CS-5374 Software Verification and Validation** (Canvas ID: 70713)
-  - Tags: software-verification, software-engineering, testing, formal-methods, validation, computer-science, spring-2026
-  - File: `_courses/cs-5374-software-verification.md`
+**Current Courses** (from `_data/courses.yaml`):
 
-**Updating Course Information**:
-- Course information is synced from Canvas using the `canvas_list_courses` MCP tool
-- Filter for active enrollments with `enrollment_state: "active"`
-- Filter for Spring 2026 using `enrollment_term_id: 140`
-- Update course files when new courses are added or course information changes
+| Display Name | Course Number | Canvas ID | Semester | Status |
+|--------------|---------------|-----------|----------|--------|
+| Cryptography | CS-6343 | 70714 | Spring 2026 | Active |
+| Software Verification and Validation | CS-5374 | 70713 | Spring 2026 | Active |
+| Intelligent Systems | CS-5368 | 58606 | Fall 2025 | Completed |
+| Logic for Computer Scientists | CS-5384 | 53482 | Fall 2025 | Completed |
+| Theory of Automata | CS-5383 | 51243 | Fall 2025 | Completed |
+| Analysis of Algorithms | CS-5381 | 37735 | Summer 2025 | Completed |
+| Software Project Management | CS-5363 | 37196 | Summer 2025 | Completed |
+| Machine Learning Security | CS-5331 | 38308 | Summer 2025 | Completed |
+
+**Course Naming Convention**:
+- **User-facing content** (blog titles, page headers, navigation): Use `display_name` only, **never include course numbers**
+- **Internal/agent use**: Course numbers and Canvas IDs are for agents and MCP lookups only
+- See `.cursor/rules/course-naming-convention.mdc` for detailed guidelines
+
+**Using Course Data in Jekyll**:
+```liquid
+{% assign course = site.data.courses | where: "slug", "cryptography" | first %}
+{{ course.display_name }}  <!-- "Cryptography" -->
+{{ course.canvas_id }}     <!-- 70714 (for agent use) -->
+```
+
+**When to Update `_data/courses.yaml`**:
+- Only update at the start of a new semester
+- Only update when new courses are added
+- Do NOT re-fetch from Canvas during normal operations - the data is stable
 
 ### Workflow Principles
 

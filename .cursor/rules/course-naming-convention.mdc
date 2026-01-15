@@ -1,0 +1,114 @@
+---
+description: Course naming conventions for blog posts, pages, and references
+globs:
+  - "_posts/**/*.md"
+  - "_drafts/**/*.md"
+  - "_courses/**/*.md"
+  - "_projects/**/*.md"
+  - "blog/**/*.html"
+  - "blog/**/*.md"
+alwaysApply: false
+---
+
+# Course Naming Convention
+
+## Overview
+
+This project uses a consistent course naming convention that separates user-facing display names from internal identifiers (course numbers and Canvas IDs).
+
+## Official Course Data Source
+
+All course information is stored in `_data/courses.yaml`. This file is the **single source of truth** for:
+- Course display names
+- Course numbers (e.g., CS-6343)
+- Canvas course IDs
+- Semester information
+- Course descriptions
+- Syllabus and media links
+
+## Naming Rules
+
+### User-Facing Content (Blog Titles, Page Headers, Navigation)
+
+**DO NOT include course numbers in:**
+- Blog post titles
+- Page headers
+- Navigation menus
+- Course section headings
+- User-visible text
+
+**CORRECT:**
+- "Cryptography – Introduction to Symmetric Encryption"
+- "Software Verification and Validation – Testing Strategies"
+- "Logic for Computer Scientists – Propositional Logic Basics"
+
+**INCORRECT:**
+- "CS-6343 Cryptography – Introduction to Symmetric Encryption"
+- "CS-5374 Software Verification and Validation – Testing Strategies"
+
+### Internal/Agent Use Only
+
+Course numbers and Canvas IDs should **ONLY** be used by:
+- Agents for Canvas LMS MCP lookups
+- Internal scripts and automation
+- Data files and configuration
+- Front matter `course_id` or `canvas_id` fields
+
+### Front Matter Convention
+
+When creating blog posts or pages related to courses:
+
+```yaml
+---
+title: "Introduction to Symmetric Encryption"  # NO course number
+course: "Cryptography"                          # Display name only
+course_slug: "cryptography"                     # For URL/filtering
+# Internal fields (agent use only):
+# canvas_id: 70714
+# course_number: "CS-6343"
+---
+```
+
+### Course Display Names (Reference)
+
+Always use these exact display names in user-facing content:
+
+| Display Name | Course Number | Slug |
+|--------------|---------------|------|
+| Cryptography | CS-6343 | cryptography |
+| Software Verification and Validation | CS-5374 | software-verification |
+| Intelligent Systems | CS-5368 | intelligent-systems |
+| Logic for Computer Scientists | CS-5384 | logic-for-computer-scientists |
+| Theory of Automata | CS-5383 | theory-of-automata |
+| Analysis of Algorithms | CS-5381 | analysis-of-algorithms |
+| Software Project Management | CS-5363 | software-project-management |
+| Machine Learning Security | CS-5331 | machine-learning-security |
+| General | - | general |
+
+### Referencing Course Data in Jekyll
+
+```liquid
+{% comment %} Lookup course by slug {% endcomment %}
+{% assign course = site.data.courses | where: "slug", "cryptography" | first %}
+{{ course.display_name }}
+{{ course.description }}
+
+{% comment %} Iterate all courses {% endcomment %}
+{% for course in site.data.courses %}
+  {{ course.display_name }} ({{ course.semester }})
+{% endfor %}
+```
+
+## Migration Notes
+
+When updating existing content:
+1. Remove course numbers from titles (e.g., "CS-6343" from "CS-6343 Cryptography")
+2. Use `course: "Cryptography"` instead of `course: "CS-6343 Cryptography"` in front matter
+3. Update any hardcoded course lists to reference `site.data.courses`
+
+## Canvas LMS Integration
+
+When agents need to lookup course information via canvas-lms-mcp:
+1. Reference `_data/courses.yaml` for the `canvas_id`
+2. Use the canvas_id for API calls
+3. Never expose the canvas_id in user-facing content

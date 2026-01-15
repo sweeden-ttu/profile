@@ -1,0 +1,202 @@
+# Course Data Dictionary
+# ======================
+# This is the official source of truth for all course information.
+# Course data is synced from Canvas LMS and rarely changes throughout the semester.
+# Agents and MCP server lookups should reference this file for course metadata.
+#
+# Usage in Jekyll: {{ site.data.courses }}
+# Lookup by slug: {% assign course = site.data.courses | where: "slug", "cryptography" | first %}
+#
+# IMPORTANT: Course numbers (e.g., CS-6343) and Canvas IDs should ONLY be used
+# internally by agents and MCP tools. All user-facing content (blog titles,
+# page headers, navigation) should use the display_name without course numbers.
+
+# =============================================================================
+# Spring 2026 Courses (Current Semester)
+# =============================================================================
+
+- slug: cryptography
+  display_name: "Cryptography"
+  course_number: "CS-6343"
+  canvas_id: 70714
+  enrollment_term_id: 140
+  semester: "Spring 2026"
+  status: active
+  completed: false
+  description: "Advanced study of cryptographic systems, security protocols, and modern encryption techniques including symmetric/asymmetric encryption, hash functions, digital signatures, and public key cryptography."
+  start_date: "2026-01-14"
+  end_date: "2026-05-15"
+  syllabus_url: "https://texastech.instructure.com/courses/70714/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_tPfa5STeKYoJe9DlOXVO5CKezugv193nXP3IAfnI.ics"
+  tags:
+    - cryptography
+    - security
+    - encryption
+    - spring-2026
+
+- slug: software-verification
+  display_name: "Software Verification and Validation"
+  course_number: "CS-5374"
+  canvas_id: 70713
+  enrollment_term_id: 140
+  semester: "Spring 2026"
+  status: active
+  completed: false
+  description: "Methods and techniques for verifying and validating software systems, including testing strategies, formal methods, model checking, specification analysis, and continuous verification."
+  start_date: "2026-01-14"
+  end_date: "2026-05-15"
+  syllabus_url: "https://texastech.instructure.com/courses/70713/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_StkXgOD3d2Rw2tv46ad0H4DyetiapkEA4bz1rUd1.ics"
+  tags:
+    - software-verification
+    - testing
+    - formal-methods
+    - spring-2026
+
+# =============================================================================
+# Fall 2025 Courses (Completed)
+# =============================================================================
+
+- slug: intelligent-systems
+  display_name: "Intelligent Systems"
+  course_number: "CS-5368"
+  canvas_id: 58606
+  enrollment_term_id: 134
+  semester: "Fall 2025"
+  status: completed
+  completed: true
+  description: "Introduction to artificial intelligence including search algorithms, game playing, constraint satisfaction, Bayesian networks, probabilistic reasoning, and reinforcement learning."
+  start_date: "2025-08-25"
+  end_date: "2025-12-15"
+  syllabus_url: "https://texastech.instructure.com/courses/58606/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_03HZU9NLrq7VTIiGq5FL2utb4YUDwMQqM4nBrgjZ.ics"
+  tags:
+    - artificial-intelligence
+    - machine-learning
+    - fall-2025
+
+- slug: logic-for-computer-scientists
+  display_name: "Logic for Computer Scientists"
+  course_number: "CS-5384"
+  canvas_id: 53482
+  enrollment_term_id: 134
+  semester: "Fall 2025"
+  status: completed
+  completed: true
+  description: "Foundations of logic for computer science including propositional logic, first-order logic, resolution, Herbrand semantics, automated reasoning, and Prolog programming."
+  start_date: "2025-08-25"
+  end_date: "2025-12-15"
+  syllabus_url: "https://texastech.instructure.com/courses/53482/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_e9uMgjboVbU7hbf5ElaawlcFYLbloy8qtERJRCOF.ics"
+  tags:
+    - logic
+    - formal-methods
+    - prolog
+    - fall-2025
+
+- slug: theory-of-automata
+  display_name: "Theory of Automata"
+  course_number: "CS-5383"
+  canvas_id: 51243
+  enrollment_term_id: 134
+  semester: "Fall 2025"
+  status: completed
+  completed: true
+  description: "Study of formal languages, automata theory, and computational models including finite automata, regular languages, context-free grammars, Turing machines, and computational complexity."
+  start_date: "2025-08-25"
+  end_date: "2025-12-15"
+  syllabus_url: "https://texastech.instructure.com/courses/51243/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_CaujB2X573Wv7LkC6XvWiLccNTfCsiJRioPT9OsU.ics"
+  tags:
+    - automata
+    - formal-languages
+    - computation
+    - fall-2025
+
+# =============================================================================
+# Summer 2025 Courses (Completed)
+# =============================================================================
+
+- slug: analysis-of-algorithms
+  display_name: "Analysis of Algorithms"
+  course_number: "CS-5381"
+  canvas_id: 37735
+  enrollment_term_id: 131
+  semester: "Summer 2025"
+  status: completed
+  completed: true
+  description: "Design and analysis of algorithms including complexity analysis, divide and conquer, dynamic programming, greedy algorithms, graph algorithms, and NP-completeness."
+  start_date: "2025-05-30"
+  end_date: "2025-07-03"
+  syllabus_url: "https://texastech.instructure.com/courses/37735/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_fBmMXL0xXBocERiTjuTjj1CngXGf2KZn9MMjHDJW.ics"
+  tags:
+    - algorithms
+    - complexity
+    - summer-2025
+
+- slug: software-project-management
+  display_name: "Software Project Management"
+  course_number: "CS-5363"
+  canvas_id: 37196
+  enrollment_term_id: 131
+  semester: "Summer 2025"
+  status: completed
+  completed: true
+  description: "Principles and practices of software project management including planning, estimation, risk management, quality assurance, and team coordination."
+  start_date: "2025-07-08"
+  end_date: "2025-08-08"
+  syllabus_url: "https://texastech.instructure.com/courses/37196/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_Fy1ZSd2PwqDVbuHC5bOkwXUmdAmkbI4xa3RiFCK4.ics"
+  tags:
+    - project-management
+    - software-engineering
+    - summer-2025
+
+- slug: machine-learning-security
+  display_name: "Machine Learning Security"
+  course_number: "CS-5331"
+  canvas_id: 38308
+  enrollment_term_id: 131
+  semester: "Summer 2025"
+  status: completed
+  completed: true
+  description: "Special topics in machine learning security including adversarial attacks, model robustness, privacy-preserving machine learning, and security applications."
+  start_date: "2025-07-08"
+  end_date: "2025-08-08"
+  syllabus_url: "https://texastech.instructure.com/courses/38308/assignments/syllabus"
+  media_site_url: null
+  calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_JhmRqHH4iiSckxZAIsOteczaHqp0JwkkMomtUH1D.ics"
+  tags:
+    - machine-learning
+    - security
+    - summer-2025
+
+# =============================================================================
+# Other
+# =============================================================================
+
+- slug: general
+  display_name: "General"
+  course_number: null
+  canvas_id: null
+  enrollment_term_id: null
+  semester: null
+  status: active
+  completed: false
+  description: "General posts, updates, and content not specific to a particular course."
+  start_date: null
+  end_date: null
+  syllabus_url: null
+  media_site_url: null
+  calendar_ics: null
+  tags:
+    - general
+    - updates
