@@ -9,5 +9,6 @@
     "context": ".",
     "dockerfile": "Dockerfile"
   },
-  "install": "brew install"
+  "install": "npm install",
+  "start": "npm run dev"
 }
