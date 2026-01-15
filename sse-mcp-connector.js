@@ -284,4 +284,9 @@ class SSEMCPConnector {
     handleGenericMessage(data) {
         console.log('💬 Generic message:', data);
     }
-}\n\n// Export for use in other scripts\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { SSEMCPConnector };\n}
+}
+
+// Export for use in other scripts 
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = { SSEMCPConnector };
+}
