@@ -56,7 +56,7 @@ export default defineConfig({
   webServer: {
     command: 'bundle exec jekyll serve',
     url: 'http://localhost:4000',
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },
 });

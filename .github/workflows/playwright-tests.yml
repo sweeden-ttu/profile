@@ -69,22 +69,12 @@ jobs:
           npx playwright install --with-deps chromium
 
       # ============================================
-      # Run Tests
+      # Run Tests (Playwright manages Jekyll server via webServer config)
       # ============================================
-      - name: Start Jekyll server
-        run: |
-          bundle exec jekyll serve --detach --port 4000
-          sleep 5
-          curl -s http://localhost:4000 > /dev/null || echo "Server may still be starting..."
-
       - name: Run Playwright Tests
         run: npx playwright test --project=chromium
         env:
           CI: true
-
-      - name: Stop Jekyll server
-        if: always()
-        run: pkill -f "jekyll serve" || true
 
       # ============================================
       # Upload Results
@@ -111,25 +101,25 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            
+
             let report = '## 🎭 Playwright Test Results\n\n';
-            
+
             // Check if tests passed or failed
             const exitCode = process.env.PLAYWRIGHT_EXIT_CODE || '0';
-            
+
             if (exitCode === '0') {
               report += '✅ All UI validation and link checker tests passed!\n\n';
             } else {
               report += '❌ Some tests failed. Check the artifacts for details.\n\n';
             }
-            
+
             report += '### Tests Run\n\n';
             report += '- **UI Validation**: Visual design, layout, interactive elements\n';
             report += '- **Backwards Link Checker**: Verifies all content files are linked\n';
             report += '- **Accessibility**: A11y compliance checks\n';
             report += '- **Performance**: CLS, load times, optimization\n\n';
             report += '📊 [View full report in workflow artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n';
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -171,20 +161,11 @@ jobs:
           npm ci || npm install
           npx playwright install --with-deps webkit
 
-      - name: Start Jekyll server
-        run: |
-          bundle exec jekyll serve --detach --port 4000
-          sleep 5
-
       - name: Run Mobile/Tablet Tests
         run: npx playwright test --project=mobile --project=tablet
         env:
           CI: true
         continue-on-error: true
-
-      - name: Stop Jekyll server
-        if: always()
-        run: pkill -f "jekyll serve" || true
 
       - name: Upload Mobile Test Report
         if: always()
