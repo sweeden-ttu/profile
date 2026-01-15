@@ -20,7 +20,6 @@
   "author": "Scott Weeden",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.40.0",
-    "@lhci/cli": "^0.13.0"
+    "@playwright/test": "^1.40.0"
   }
 }
