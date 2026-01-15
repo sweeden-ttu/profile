@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-5374 Software Verification – LangSmith Experiments and Observability"
+title: "Software Verification – LangSmith Experiments and Observability"
 date: 2026-01-28
 categories: [computer-science, software-engineering]
-tags: [software-verification, cs5374, langsmith, observability, experimentation]
+tags: [software-verification, langsmith, observability, experimentation]
 excerpt: "Stub post expanding the LangSmith hands-on work into a discussion of experiment design, observability, and how tooling supports verification efforts."
 reading_time: 10
-course: "CS-5374 Software Verification and Validation"
+course: "Software Verification and Validation"
 draft: true
 ---
 
-# CS-5374 Software Verification – LangSmith Experiments and Observability
+# Software Verification – LangSmith Experiments and Observability
 
 [Stub] How to think about experiments, logs, and traces as part of a broader verification and validation strategy.
 

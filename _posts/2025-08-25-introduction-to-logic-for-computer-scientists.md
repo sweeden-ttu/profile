@@ -12,7 +12,7 @@ tags:
   - logic-for-computer-scientists
 excerpt: "Discover how logic—the study of reasoning—forms the invisible foundation of every computer program, database query, and artificial intelligence system you build."
 reading_time: 13
-course: "CS-5384 Logic for Computer Scientists"
+course: "Logic for Computer Scientists"
 ---
 
 Welcome to CS 5384, a course that explores one of the most fundamental yet often overlooked pillars of computer science: logic. Before we dive into propositional calculus, resolution proofs, and Prolog programming, we need to understand a simple but profound truth—logic is the bridge between human reasoning and machine computation.

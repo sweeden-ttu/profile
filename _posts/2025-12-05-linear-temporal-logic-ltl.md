@@ -6,7 +6,7 @@ categories: [logic, computer-science]
 tags: [logic-for-computer-scientists, temporal-logic, ltl, model-checking, safety, liveness]
 excerpt: "Master Linear Temporal Logic (LTL) for specifying and verifying time-dependent properties of reactive systems, from safety invariants to liveness guarantees."
 reading_time: 15
-course: "CS-5384 Logic for Computer Scientists"
+course: "Logic for Computer Scientists"
 ---
 
 # Linear Temporal Logic: Specification and Verification of Reactive Systems

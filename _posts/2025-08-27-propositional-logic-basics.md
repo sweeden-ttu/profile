@@ -6,7 +6,7 @@ categories: [logic, computer-science, propositional-logic]
 tags: [propositional-logic, truth-values, logical-connectives, boolean-algebra, computer-science]
 excerpt: "Master the fundamental building blocks of logical reasoning: propositions, truth values, and logical connectives that form the bedrock of computer science applications."
 reading_time: 15
-course: "CS-5384 Logic for Computer Scientists"
+course: "Logic for Computer Scientists"
 ---
 
 ## Introduction: The Language of Logic

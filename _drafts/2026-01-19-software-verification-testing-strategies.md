@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-5374 Software Verification – Testing Strategies and Test Design"
+title: "Software Verification – Testing Strategies and Test Design"
 date: 2026-01-19
 categories: [computer-science, software-engineering]
-tags: [software-verification, cs5374, testing, test-design, coverage]
-excerpt: "A stub post on core testing strategies in CS-5374, from black-box and white-box testing to basic coverage criteria and test design heuristics."
+tags: [software-verification, testing, test-design, coverage]
+excerpt: "A stub post on core testing strategies in , from black-box and white-box testing to basic coverage criteria and test design heuristics."
 reading_time: 10
-course: "CS-5374 Software Verification and Validation"
+course: "Software Verification and Validation"
 draft: true
 ---
 
-# CS-5374 Software Verification – Testing Strategies and Test Design
+# Software Verification – Testing Strategies and Test Design
 
 [Stub] High-level discussion of how to design effective tests and think about coverage and fault models.
 

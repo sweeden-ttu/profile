@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-6343 Cryptography – Block Ciphers and Modes of Operation"
+title: "Cryptography – Block Ciphers and Modes of Operation"
 date: 2026-01-23
 categories: [computer-science, security]
-tags: [cryptography, cs6343, block-ciphers, modes-of-operation]
+tags: [cryptography, block-ciphers, modes-of-operation]
 excerpt: "Stub for a lecture post on block ciphers and common modes of operation, building on earlier symmetric encryption basics."
 reading_time: 10
-course: "CS-6343 Cryptography"
+course: "Cryptography"
 draft: true
 ---
 
-# CS-6343 Cryptography – Block Ciphers and Modes of Operation
+# Cryptography – Block Ciphers and Modes of Operation
 
 [Stub] Overview of block cipher structure and the intuition behind standard modes of operation.
 

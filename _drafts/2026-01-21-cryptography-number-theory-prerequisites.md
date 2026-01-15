@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-6343 Cryptography – Number Theory Prerequisites"
+title: "Cryptography – Number Theory Prerequisites"
 date: 2026-01-21
 categories: [computer-science, security]
-tags: [cryptography, cs6343, number-theory, mathematics]
+tags: [cryptography, number-theory, mathematics]
 excerpt: "Stub post for the mathematical foundations of modern cryptography, focusing on number theory concepts used later for public-key systems."
 reading_time: 10
-course: "CS-6343 Cryptography"
+course: "Cryptography"
 draft: true
 ---
 
-# CS-6343 Cryptography – Number Theory Prerequisites
+# Cryptography – Number Theory Prerequisites
 
 [Stub] Short mathematical warm-up for modular arithmetic, gcd, and related concepts that appear in later cryptographic constructions.
 

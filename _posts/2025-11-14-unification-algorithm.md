@@ -13,7 +13,7 @@ tags:
   - occur-check
 excerpt: "Learn how the unification algorithm finds the most general unifier (MGU) that makes two terms identical, a fundamental operation in automated reasoning and logic programming."
 reading_time: 15
-course: "CS-5384 Logic for Computer Scientists"
+course: "Logic for Computer Scientists"
 ---
 
 ## Introduction

@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-6343 Cryptography – Attack Models and Security Goals"
+title: "Cryptography – Attack Models and Security Goals"
 date: 2026-01-26
 categories: [computer-science, security]
-tags: [cryptography, cs6343, security-goals, attack-models]
+tags: [cryptography, security-goals, attack-models]
 excerpt: "Stub lecture post on formalizing security goals and attack models in cryptography, bridging intuitive threats to precise definitions."
 reading_time: 10
-course: "CS-6343 Cryptography"
+course: "Cryptography"
 draft: true
 ---
 
-# CS-6343 Cryptography – Attack Models and Security Goals
+# Cryptography – Attack Models and Security Goals
 
 [Stub] Discussion of how we model adversaries and define what “secure” actually means for cryptographic schemes.
 

@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-5374 Software Verification – LangSmith Tutorial and Hands-On Setup"
+title: "Software Verification – LangSmith Tutorial and Hands-On Setup"
 date: 2026-01-23
 categories: [computer-science, software-engineering]
-tags: [software-verification, cs5374, langsmith, tooling, hands-on]
-excerpt: "Stub post capturing the LangSmith tutorial and hands-on setup work from the CS-5374 modules, focusing on tooling for testing and observability."
+tags: [software-verification, langsmith, tooling, hands-on]
+excerpt: "Stub post capturing the LangSmith tutorial and hands-on setup work from the modules, focusing on tooling for testing and observability."
 reading_time: 10
-course: "CS-5374 Software Verification and Validation"
+course: "Software Verification and Validation"
 draft: true
 ---
 
-# CS-5374 Software Verification – LangSmith Tutorial and Hands-On Setup
+# Software Verification – LangSmith Tutorial and Hands-On Setup
 
 [Stub] Summary of the LangSmith tutorial, what the tooling does, and how it supports debugging and evaluating complex software systems.
 

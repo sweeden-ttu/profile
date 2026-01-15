@@ -12,7 +12,7 @@ tags:
   - syntax-analysis
 excerpt: "Learn to analyze propositional formulas using truth tables and formation trees—essential tools for understanding logical structure and validity."
 reading_time: 15
-course: "CS-5384 Logic for Computer Scientists"
+course: "Logic for Computer Scientists"
 ---
 
 Welcome back to our journey through propositional logic. In the previous lecture, we established the foundations: propositional variables, logical connectives, and the definition of well-formed formulas. Today, we'll develop practical tools for analyzing logical formulas: **truth tables** and **formation trees**. These techniques let us systematically evaluate any propositional formula and verify its validity.

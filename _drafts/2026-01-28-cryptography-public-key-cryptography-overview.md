@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-6343 Cryptography – Public-Key Cryptography Overview"
+title: "Cryptography – Public-Key Cryptography Overview"
 date: 2026-01-28
 categories: [computer-science, security]
-tags: [cryptography, cs6343, public-key, rsa]
+tags: [cryptography, public-key, rsa]
 excerpt: "Stub lecture post introducing the core ideas of public-key cryptography, setting up later deep dives into RSA and related schemes."
 reading_time: 10
-course: "CS-6343 Cryptography"
+course: "Cryptography"
 draft: true
 ---
 
-# CS-6343 Cryptography – Public-Key Cryptography Overview
+# Cryptography – Public-Key Cryptography Overview
 
 [Stub] Conceptual introduction to key pairs, one-way functions, and why public-key cryptography changed how we design secure protocols.
 

@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "CS-6343 Cryptography – Symmetric Encryption Basics"
+title: "Cryptography – Symmetric Encryption Basics"
 date: 2026-01-19
 categories: [computer-science, security]
-tags: [cryptography, cs6343, symmetric-encryption, block-ciphers]
-excerpt: "A stub for the first deep-dive into symmetric encryption in CS-6343, focusing on block ciphers, modes of operation, and basic threat models."
+tags: [cryptography, symmetric-encryption, block-ciphers]
+excerpt: "A stub for the first deep-dive into symmetric encryption in , focusing on block ciphers, modes of operation, and basic threat models."
 reading_time: 10
-course: "CS-6343 Cryptography"
+course: "Cryptography"
 draft: true
 ---
 
-# CS-6343 Cryptography – Symmetric Encryption Basics
+# Cryptography – Symmetric Encryption Basics
 
 [Stub] Outline of core ideas: secret-key encryption, ideal cipher model, and how block ciphers are used in practice.
 

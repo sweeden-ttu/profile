@@ -6,7 +6,7 @@ categories: [logic, computer-science]
 tags: [logic-for-computer-scientists, herbrand-logic, herbrand-semantics, skolemization, first-order-logic]
 excerpt: "Learn how Herbrand semantics reduce the infinite complexity of first-order logic interpretations to finite, manageable models through ground atoms and the Herbrand base."
 reading_time: 12
-course: "CS-5384 Logic for Computer Scientists"
+course: "Logic for Computer Scientists"
 ---
 
 # Herbrand Logic and Semantics: Simplifying First-Order Interpretations

@@ -3,10 +3,10 @@ layout: post
 title: "Cryptographic Hash Functions: Ensuring Data Integrity"
 date: 2026-01-15
 categories: [computer-science, security]
-tags: [cryptography, cs6343, hash-functions, sha, md5, data-integrity, digital-signatures]
+tags: [cryptography, hash-functions, sha, md5, data-integrity, digital-signatures]
 excerpt: "Understanding cryptographic hash functions, their properties, applications in data integrity verification, digital signatures, and password storage systems."
 reading_time: 15
-course: "CS-6343 Cryptography"
+course: "Cryptography"
 ---
 
 # Cryptographic Hash Functions: Ensuring Data Integrity
