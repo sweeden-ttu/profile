@@ -16,8 +16,6 @@ tags:
 permalink: /courses/theory-of-automata/
 ---
 
-# Theory of Automata
-
 **Semester**: Fall 2025  
 **Status**: Completed
 

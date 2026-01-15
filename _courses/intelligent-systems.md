@@ -15,8 +15,6 @@ tags:
 permalink: /courses/intelligent-systems/
 ---
 
-# Intelligent Systems
-
 **Semester**: Fall 2025  
 **Status**: Completed
 

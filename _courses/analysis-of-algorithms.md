@@ -15,8 +15,6 @@ tags:
 permalink: /courses/analysis-of-algorithms/
 ---
 
-# Analysis of Algorithms
-
 **Semester**: Summer 2025  
 **Status**: Completed
 

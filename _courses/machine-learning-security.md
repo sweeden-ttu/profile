@@ -15,8 +15,6 @@ tags:
 permalink: /courses/machine-learning-security/
 ---
 
-# Machine Learning Security
-
 **Semester**: Summer 2025  
 **Status**: Completed
 

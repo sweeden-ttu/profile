@@ -16,8 +16,6 @@ tags:
 permalink: /courses/cryptography/
 ---
 
-# Cryptography
-
 **Semester**: Spring 2026  
 **Status**: Active
 

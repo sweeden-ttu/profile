@@ -15,8 +15,6 @@ tags:
 permalink: /courses/software-project-management/
 ---
 
-# Software Project Management
-
 **Semester**: Summer 2025  
 **Status**: Completed
 

@@ -18,8 +18,6 @@ tags:
 permalink: /courses/software-verification/
 ---
 
-# Software Verification and Validation
-
 **Semester**: Spring 2026  
 **Status**: Active
 

@@ -16,8 +16,6 @@ tags:
 permalink: /courses/logic-for-computer-scientists/
 ---
 
-# Logic for Computer Scientists
-
 **Semester**: Fall 2025  
 **Status**: Completed
 
