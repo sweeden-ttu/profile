@@ -1,6 +1,11 @@
 ---
 title: "Logic for Computer Scientists – Homework 3 Solutions"
 layout: project
+course: "Logic for Computer Scientists"
+course_slug: logic-for-computer-scientists
+assignment_type: homework
+assignment_number: 3
+is_solution: true
 ---
 
 ## Logic for Computer Scientists – Homework 3 – Solutions

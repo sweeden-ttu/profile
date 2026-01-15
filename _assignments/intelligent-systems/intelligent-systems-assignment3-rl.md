@@ -1,9 +1,13 @@
 ---
-title: "CS5368 Intelligent Systems – Project 3: Reinforcement Learning"
+title: "Intelligent Systems – Project 3: Reinforcement Learning"
 layout: project
+course: "Intelligent Systems"
+course_slug: intelligent-systems
+assignment_type: project
+assignment_number: 3
 ---
 
-## CS5368 Intelligent Systems – Project 3: Reinforcement Learning
+## Intelligent Systems – Project 3: Reinforcement Learning
 
 > (Thanks to John DeNero and Dan Klein!)
 

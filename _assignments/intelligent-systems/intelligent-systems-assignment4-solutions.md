@@ -1,13 +1,17 @@
 ---
-title: "CS5368 Intelligent Systems – Assignment 4 Problem Solving Solutions"
+title: "Intelligent Systems – Assignment 4 Problem Solving Solutions"
 layout: project
 date: 2025-12-01
-course: "CS-5368 Intelligent Systems"
+course: "Intelligent Systems"
+course_slug: intelligent-systems
+assignment_type: assignment
+assignment_number: 4
+is_solution: true
 ---
 
-# CS5368 Intelligent Systems – Assignment 4 Problem Solving Solutions
+# Intelligent Systems – Assignment 4 Problem Solving Solutions
 
-- **Course**: CS5368 Intelligent Systems  
+- **Course**: Intelligent Systems  
 - **Assignment**: 4 – Problem Solving  
 - **Due date**: December 1st
 - **Max grade**: 50 points

@@ -1,13 +1,16 @@
 ---
-title: "CS5368 Intelligent Systems – Assignment 4 Problem Solving"
+title: "Intelligent Systems – Assignment 4 Problem Solving"
 layout: project
 date: 2025-12-01
-course: "CS-5368 Intelligent Systems"
+course: "Intelligent Systems"
+course_slug: intelligent-systems
+assignment_type: assignment
+assignment_number: 4
 ---
 
-# CS5368 Intelligent Systems – Assignment 4 Problem Solving
+# Intelligent Systems – Assignment 4 Problem Solving
 
-- **Course**: CS5368 Intelligent Systems  
+- **Course**: Intelligent Systems  
 - **Assignment**: 4 – Problem Solving  
 - **Due date**: December 1st
   - Before class for 001
