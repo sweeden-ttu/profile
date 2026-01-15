@@ -27,7 +27,20 @@ Authored a comprehensive peer review article of a Microsoft Research publication
 
 ---
 
-## Academic Projects
+## Academic Projects & Assignments
+
+### Course Assignments
+
+#### CS-5368 Intelligent Systems
+- [Assignment 3: Problem Solving](/projects/intelligent-systems-assignment3-problems) - Model-based RL, TD learning, and feature-based Q-learning
+- [Assignment 4: Problem Solving](/projects/intelligent-systems-assignment4-problems) - Probabilities, Bayesian Networks, and Inference
+- [Assignment 3: Reinforcement Learning](/projects/intelligent-systems-assignment3-rl) - Q-Learning and RL applications
+
+#### CS-5384 Logic for Computer Scientists
+- [Homework 3: Logic Problems](/projects/logic-homework3) - Propositional logic, Herbrand semantics, and CNF
+- [Homework 3: Solutions](/projects/logic-homework3-solutions) - Complete solutions with explanations
+
+### Research Projects
 
 ### Master's Theorem in Algorithm Analysis
 **Status**: Completed | **Focus**: Algorithm Complexity
