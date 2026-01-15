@@ -1,5 +1,5 @@
 {
   "setup-worktree": [
-    "bundle exec jekyll buids"
+    "bundle exec jekyll buid --incremental"
   ]
 }
