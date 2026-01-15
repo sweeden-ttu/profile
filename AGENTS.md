@@ -9,6 +9,69 @@ This is the **Spring Semester** of the academic year. Agents should be aware of:
 - Final project planning and execution phases
 - Integration of concepts across multiple courses
 
+### Jekyll Static Site Configuration
+
+**Build Output**: The Jekyll static site builds to the `_site` directory. This is the default Jekyll output location where all generated HTML, CSS, and assets are placed after running `jekyll build` or `jekyll serve`.
+
+**Important**: 
+- Never commit the `_site` directory to version control (it's in `.gitignore`)
+- The site is built from source files in `_posts`, `_projects`, `_courses`, `_drafts`, etc.
+- Always work with source files, not the generated `_site` output
+
+### Blog Post Creation from Canvas Course Materials
+
+**Canvas LMS Integration**: Blog entries should follow specific texts from lecture and module notes downloaded using the **canvas-lms-mcp server** (user-canvas-lms MCP server).
+
+**Workflow for Blog Posts**:
+1. **Access Course Materials**: Use the Canvas LMS MCP tools to:
+   - List courses: `canvas_list_courses` to get course IDs
+   - Get modules: `canvas_get_modules` to retrieve course module structure
+   - List module items: `canvas_list_module_items` to access files, assignments, and lecture materials
+   - Download files: `canvas_get_file_download_url` or `canvas_get_course_file` to retrieve lecture notes, PDFs, and module content
+
+2. **Extract Content**: 
+   - Parse downloaded lecture notes and module materials
+   - Follow the specific text and structure from Canvas materials
+   - Maintain accuracy to source material while adapting for blog format
+
+3. **Create Blog Posts**:
+   - Use course information from the `_courses` collection (see below)
+   - Reference specific module numbers, lecture dates, and topics from Canvas
+   - Include proper attribution and links back to Canvas course materials
+
+4. **Quality Standards**:
+   - Blog posts should accurately reflect the content from Canvas lecture and module notes
+   - Maintain academic integrity by properly citing source materials
+   - Follow the blog post generation instructions in `BLOG_POST_GENERATION_INSTRUCTIONS.md`
+
+### Courses Collection
+
+The Jekyll site includes a **courses collection** located in `_courses/` that contains course information pulled from Canvas LMS using the canvas-lms-mcp server.
+
+**Collection Structure**: Each course file in `_courses/` includes:
+- **Course Name**: Full course title from Canvas
+- **Short Name**: Abbreviated course code (e.g., "CS-6343", "CS-5374")
+- **Course ID**: Canvas course ID (numeric identifier)
+- **Tags**: Relevant tags for filtering and organization (e.g., "cryptography", "software-verification", "spring-2026")
+- **Semester**: Current semester (e.g., "Spring 2026")
+- **Status**: Enrollment status ("active" for currently enrolled courses)
+- **Enrollment Term ID**: Canvas enrollment term identifier
+
+**Current Spring 2026 Courses** (as of latest Canvas sync):
+- **CS-6343 Cryptography** (Canvas ID: 70714)
+  - Tags: cryptography, security, encryption, computer-science, spring-2026
+  - File: `_courses/cs-6343-cryptography.md`
+
+- **CS-5374 Software Verification and Validation** (Canvas ID: 70713)
+  - Tags: software-verification, software-engineering, testing, formal-methods, validation, computer-science, spring-2026
+  - File: `_courses/cs-5374-software-verification.md`
+
+**Updating Course Information**:
+- Course information is synced from Canvas using the `canvas_list_courses` MCP tool
+- Filter for active enrollments with `enrollment_state: "active"`
+- Filter for Spring 2026 using `enrollment_term_id: 140`
+- Update course files when new courses are added or course information changes
+
 ### Workflow Principles
 
 1. **Parallel Processing**: Multiple agents can work simultaneously on different tasks
