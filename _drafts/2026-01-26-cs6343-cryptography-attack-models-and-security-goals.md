@@ -1,0 +1,27 @@
+---
+layout: post
+title: "CS-6343 Cryptography – Attack Models and Security Goals"
+date: 2026-01-26
+categories: [computer-science, security]
+tags: [cryptography, cs6343, security-goals, attack-models]
+excerpt: "Stub lecture post on formalizing security goals and attack models in cryptography, bridging intuitive threats to precise definitions."
+reading_time: 10
+course: "CS-6343 Cryptography"
+draft: true
+---
+
+# CS-6343 Cryptography – Attack Models and Security Goals
+
+[Stub] Discussion of how we model adversaries and define what “secure” actually means for cryptographic schemes.
+
+## Topics
+
+- Adversary capabilities and threat models  
+- Security notions for encryption (e.g., indistinguishability) at a high level  
+- Chosen-plaintext and chosen-ciphertext attacks (intuition)  
+- Why precise goals matter before designing schemes  
+
+## Reading and Preparation
+
+[Stub] Refer to Canvas modules or textbook sections on security definitions and attack models.
+
