@@ -14,7 +14,7 @@ permalink: /blog/
   </header>
 
   <div class="blog-posts-container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-    {% assign courses = "Logic for Computer Scientists|Intelligent Systems|Theory of Automata" | split: "|" %}
+    {% assign courses = "CS-6343 Cryptography|CS-5374 Software Verification and Validation|Logic for Computer Scientists|Intelligent Systems|Theory of Automata" | split: "|" %}
 
     {% for course in courses %}
       {% assign course_posts = site.posts | where: "course", course %}

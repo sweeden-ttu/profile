@@ -22,6 +22,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:name/
+  courses:
+    output: true
+    permalink: /courses/:name/
 
 # Kramdown Settings
 kramdown:
@@ -66,6 +69,12 @@ defaults:
       type: projects
     values:
       layout: project
+  # Courses
+  - scope:
+      path: "_courses"
+      type: courses
+    values:
+      layout: page
   # Pages
   - scope:
       path: ""

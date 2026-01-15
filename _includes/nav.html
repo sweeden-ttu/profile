@@ -25,6 +25,12 @@
     </li>
 
     <li class="site-nav__item">
+      <a href="{{ '/courses/' | relative_url }}" class="site-nav__link {% if page.url contains '/courses' %}site-nav__link--active{% endif %}">
+        Courses
+      </a>
+    </li>
+
+    <li class="site-nav__item">
       <a href="{{ '/blog/' | relative_url }}" class="site-nav__link {% if page.url contains '/blog' %}site-nav__link--active{% endif %}">
         Blog
       </a>
