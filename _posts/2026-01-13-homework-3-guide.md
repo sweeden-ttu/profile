@@ -3,15 +3,15 @@ layout: post
 title: "Homework 3 Guide: Quantifier Scope, Proofs, and CNF"
 date: 2026-01-13
 categories: [logic, computer-science]
-tags: [cs5384, homework3, herbrand, propositional-logic, cnf]
-excerpt: "Worked guide for CS5384 Homework 3: scoping, inference proofs, CNF transformations, and predicate encodings."
+tags: [homework3, herbrand, propositional-logic, cnf]
+excerpt: "Worked guide for Logic for Computer Scientists Homework 3: scoping, inference proofs, CNF transformations, and predicate encodings."
 reading_time: 8
-course: "CS-5384 Logic for Computer Scientists"
+course: "Logic for Computer Scientists"
 ---
 
 # Homework 3 Guide: Quantifier Scope, Proofs, and CNF
 
-This post summarizes the CS5384 Homework 3 questions and worked solutions, focusing on quantifier scoping, propositional inference, CNF rewriting, and predicate encodings for everyday statements. Source PDFs: [Homework 3][^hw] and [Homework 3 Solution][^sol].
+This post summarizes the Logic for Computer Scientists Homework 3 questions and worked solutions, focusing on quantifier scoping, propositional inference, CNF rewriting, and predicate encodings for everyday statements. Source PDFs: [Homework 3][^hw] and [Homework 3 Solution][^sol].
 
 ## Problem 1 — Quantifier Scope and Bound/Free Variables
 
@@ -92,5 +92,5 @@ Domain: CS5384 students. Predicates: $LWE(x)$ — sleeps late on weekends; $UWD(
 
 ---
 
-[^hw]: [Homework 3 PDF](file:///Users/sdw/Documents/gh/profile/_posts/cs5384_2025_fall_homework3_111725-1.pdf)
-[^sol]: [Homework 3 Solution PDF](file:///Users/sdw/Documents/gh/profile/_posts/cs5384_2025_fall_homework3_solution_111725-1.pdf)
+[^hw]: [Homework 3 PDF](/assets/homework/cs5384_2025_fall_homework3_111725-1.pdf)
+[^sol]: [Homework 3 Solution PDF](/assets/homework/cs5384_2025_fall_homework3_solution_111725-1.pdf)
