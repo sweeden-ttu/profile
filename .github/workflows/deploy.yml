@@ -7,8 +7,7 @@ on:
   # Runs on pushes to main/master branch
   push:
     branches:
-      - main
-      - master
+      - stable
 
   # Allows manual workflow trigger from Actions tab
   workflow_dispatch:

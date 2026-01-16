@@ -6,12 +6,10 @@ name: Quality Checks
 on:
   pull_request:
     branches:
-      - main
-      - master
+      - stable
   push:
     branches:
-      - main
-      - master
+      - stable
 
 jobs:
   build-and-test:

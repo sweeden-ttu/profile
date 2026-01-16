@@ -7,14 +7,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
-      - main
-      - master
       - stable
 
   push:
     branches:
-      - main
-      - master
       - stable
 
   # Manual trigger
