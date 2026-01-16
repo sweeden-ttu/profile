@@ -42,9 +42,37 @@ graph TD
   Ez --> Ryz["R(y,z)"]
   Conj --> AxAy["∀ x ∀ y"]
   AxAy --> Inner["¬Q(x,y) ∨ P(x,y)"]
+  Pxyz --> l1x["x (bound)"]
+  Pxyz --> l1y["y (free)"]
+  Pxyz --> l1z["z (bound)"]
+  Ryz --> l2y["y (free)"]
+  Ryz --> l2z["z (bound)"]
+
 ```
 
-You should add your own annotations for scopes and quantifier binding.
+**Annotations regarding bound and free variables in the tree above:**
+
+- **Branch 1 (`P(x, y, z)`):**
+  - `$x$` and `$z$` are *bound* in this branch by the quantifiers `∃x` and `∀z`.
+  - `$y$` is *free* in `P(x, y, z)` because there is no quantifier binding `$y$` in the formula $F$.
+
+- **Branch 2 (`R(y, z)`):**
+  - The innermost `∃z` quantifier *binds* `$z$` in `R(y, z)`.
+  - `$y$` is *free* here, as it is not bound by any quantifier in this branch.
+
+- **Branch 3 (`∀x ∀y (¬Q(x,y) ∨ P(x,y))`):**
+  - Both `$x$` and `$y$` are *bound* in this subformula.
+
+> Note: Because `$y$` is not bound by any quantifier in $F$, it is *free* everywhere unless specifically bound by an inner quantifier. `$x$` and `$z$` are only bound within their respective quantifier scopes.
+
+**Scope Table:**
+
+| Variable | Bound in $F$     | Free in $F$              |
+|----------|------------------|--------------------------|
+| $x$      | Yes (by $\exists x$ and $\forall x$)   | No (*except inside $P$ with free $y$*)   |
+| $y$      | No               | Yes                      |
+| $z$      | Yes (by $\forall z$, $\exists z$)      | No                         |
+
 
 ---
 

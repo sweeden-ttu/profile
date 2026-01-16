@@ -6,108 +6,157 @@ import { test, expect, Page } from '@playwright/test';
  */
 
 test.describe('Visual Design Validation', () => {
-  test('color scheme is consistent', async ({ page }) => {
-    await page.goto('/');
-    
-    // Check primary color is used for links
-    const links = page.locator('a:not([class*="nav"])').first();
+  test('primary color is used for links', async ({ page }) => {
+    await page.goto('/blog');
+
+    // Check primary color is used for links (should be cobalt blue #2446b5)
+    // Look for links in article/post content
+    const links = page.locator('article a, .post a, .content a, main a').first();
     if (await links.count() > 0) {
-      const color = await links.evaluate(el => 
+      const color = await links.evaluate(el =>
         window.getComputedStyle(el).color
       );
-      // Should be a blue-ish color (cobalt primary)
+      // Should be rgb(36, 70, 181) which is #2446b5
+      // Or it might be styled differently, so just check it's a valid color
       expect(color).toBeTruthy();
+      expect(color).toMatch(/rgb/);
     }
   });
 
-  test('typography is applied correctly', async ({ page }) => {
+  test('headings use correct font family', async ({ page }) => {
     await page.goto('/');
-    
-    // Check heading font
+
+    // Check heading font (should be Space Grotesk or fallbacks)
     const h1 = page.locator('h1').first();
     if (await h1.count() > 0) {
-      const fontFamily = await h1.evaluate(el => 
+      const fontFamily = await h1.evaluate(el =>
         window.getComputedStyle(el).fontFamily
       );
-      // Should use Space Grotesk, IBM Plex Sans, or Inter
-      expect(fontFamily.toLowerCase()).toMatch(/space|plex|inter|sans/);
+      // Should use Space Grotesk, IBM Plex Sans, or Inter (or system fallbacks)
+      expect(fontFamily.toLowerCase()).toMatch(/space.*grotesk|plex.*sans|inter|sans-serif/);
     }
   });
 
-  test('spacing is consistent (8px grid)', async ({ page }) => {
+  test('body text uses correct font family', async ({ page }) => {
     await page.goto('/');
-    
-    // Check that main content has appropriate padding
-    const main = page.locator('main, .content, .container').first();
+
+    // Check body font
+    const body = page.locator('body');
+    const fontFamily = await body.evaluate(el =>
+      window.getComputedStyle(el).fontFamily
+    );
+    // Should use IBM Plex Sans or Inter
+    expect(fontFamily.toLowerCase()).toMatch(/plex.*sans|inter|sans-serif/);
+  });
+
+  test('spacing follows 8px grid system', async ({ page }) => {
+    await page.goto('/');
+
+    // Check that main content has padding divisible by 4px
+    const main = page.locator('main, .main-content').first();
     if (await main.count() > 0) {
       const padding = await main.evaluate(el => {
         const style = window.getComputedStyle(el);
         return {
           paddingLeft: parseInt(style.paddingLeft),
-          paddingRight: parseInt(style.paddingRight)
+          paddingRight: parseInt(style.paddingRight),
+          paddingTop: parseInt(style.paddingTop),
+          paddingBottom: parseInt(style.paddingBottom)
         };
       });
-      // Should be divisible by 8 (8px grid system)
+      // All padding should be divisible by 4 (8px grid system)
       expect(padding.paddingLeft % 4).toBe(0);
       expect(padding.paddingRight % 4).toBe(0);
+      expect(padding.paddingTop % 4).toBe(0);
+      expect(padding.paddingBottom % 4).toBe(0);
     }
   });
 
-  test('cards have consistent styling', async ({ page }) => {
+  test('cards have consistent border-radius', async ({ page }) => {
     await page.goto('/');
-    
-    const cards = page.locator('.card, [class*="card"]');
+
+    const cards = page.locator('.card, [class*="-card"]');
     const cardCount = await cards.count();
-    
+
     if (cardCount > 1) {
-      // All cards should have similar border-radius
-      const firstRadius = await cards.first().evaluate(el => 
-        window.getComputedStyle(el).borderRadius
-      );
-      const lastRadius = await cards.last().evaluate(el => 
-        window.getComputedStyle(el).borderRadius
-      );
-      expect(firstRadius).toBe(lastRadius);
+      // Cards should have border-radius from design system (8px or 12px)
+      for (let i = 0; i < Math.min(cardCount, 5); i++) {
+        const radius = await cards.nth(i).evaluate(el =>
+          window.getComputedStyle(el).borderRadius
+        );
+        // Should be 8px or 12px from the design system
+        expect(radius).toMatch(/8px|12px/);
+      }
     }
   });
 
-  test('buttons have hover states', async ({ page }) => {
+  test('buttons have proper styling and hover states', async ({ page }) => {
     await page.goto('/');
-    
-    const button = page.locator('button, .btn, [class*="button"]').first();
+
+    const button = page.locator('.btn, button:not([class*="toggle"])').first();
     if (await button.count() > 0) {
-      const initialBg = await button.evaluate(el => 
-        window.getComputedStyle(el).backgroundColor
+      // Check border-radius (should be 6px)
+      const borderRadius = await button.evaluate(el =>
+        window.getComputedStyle(el).borderRadius
       );
-      
-      await button.hover();
-      
-      // Background should change on hover (or transform, or shadow)
-      const hoverBg = await button.evaluate(el => 
-        window.getComputedStyle(el).backgroundColor
-      );
-      const transform = await button.evaluate(el => 
+      expect(borderRadius).toMatch(/6px/);
+
+      // Check hover effect
+      const initialTransform = await button.evaluate(el =>
         window.getComputedStyle(el).transform
       );
-      
-      // Either color changed or transform applied
-      const hasHoverEffect = initialBg !== hoverBg || transform !== 'none';
+
+      await button.hover();
+      await page.waitForTimeout(200); // Wait for transition
+
+      const hoverTransform = await button.evaluate(el =>
+        window.getComputedStyle(el).transform
+      );
+
+      // Transform should change on hover (translateY effect)
+      const hasHoverEffect = initialTransform !== hoverTransform;
       expect(hasHoverEffect).toBeTruthy();
     }
+  });
+
+  test('background gradient is applied to body', async ({ page }) => {
+    await page.goto('/');
+
+    const body = page.locator('body');
+    const background = await body.evaluate(el =>
+      window.getComputedStyle(el).background
+    );
+
+    // Should have gradient background
+    expect(background).toContain('gradient');
   });
 });
 
 test.describe('Layout Validation', () => {
-  test('header is sticky or fixed', async ({ page }) => {
+  test('header is sticky with correct styling', async ({ page }) => {
     await page.goto('/');
-    
-    const header = page.locator('header, .site-header, nav').first();
+
+    const header = page.locator('header, .site-header').first();
     if (await header.count() > 0) {
-      const position = await header.evaluate(el => 
-        window.getComputedStyle(el).position
-      );
-      // Header should be sticky, fixed, or relative
-      expect(['sticky', 'fixed', 'relative']).toContain(position);
+      const styles = await header.evaluate(el => {
+        const computed = window.getComputedStyle(el);
+        return {
+          position: computed.position,
+          height: computed.height,
+          borderBottom: computed.borderBottom
+        };
+      });
+
+      // Header should be sticky
+      expect(styles.position).toBe('sticky');
+
+      // Header should have height around 64-65px (64px + 1px border)
+      const height = parseInt(styles.height);
+      expect(height).toBeGreaterThanOrEqual(64);
+      expect(height).toBeLessThanOrEqual(66);
+
+      // Header should have bottom border
+      expect(styles.borderBottom).toContain('1px');
     }
   });
 

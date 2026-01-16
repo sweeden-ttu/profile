@@ -139,175 +139,414 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ### Design Philosophy
 
-**"Academic Minimalism with Technical Precision"** - Inspired by Linear, Notion, and Stripe. The site uses a clean, research-forward styling optimized for long-form engineering writeups and series. MathJax and Mermaid are used throughout.
+**"Academic Minimalism with Technical Precision"** - Inspired by Linear, Notion, and Stripe. The site uses a clean, research-forward styling optimized for long-form engineering writeups and series. MathJax and Mermaid are used throughout for mathematical notation and diagrams.
 
 ### Color Palette
 
 **Primary Colors**:
-- `$color-primary`: #2446b5 (Cobalt) - Links, CTAs
-- `$color-primary-dark`: #152a73 (Midnight) - Hover states
-- `$color-primary-light`: #e5e9ff (Mist Blue) - Backgrounds
-- `$color-accent-purple`: #5a4fff (Electric Indigo) - Highlights
-- `$color-accent-cyan`: #3cd0d3 (Cyan) - Inline badges, data points
+- `$color-primary`: `#2446b5` (Cobalt Blue) - Primary links, CTAs, interactive elements
+- `$color-primary-dark`: `#152a73` (Midnight Blue) - Hover states, darkened variants
+- `$color-primary-light`: `#e5e9ff` (Mist Blue) - Light backgrounds, subtle accents
+- `$color-accent-purple`: `#5a4fff` (Electric Indigo) - Special highlights, featured content
+- `$color-accent-cyan`: `#3cd0d3` (Bright Cyan) - Inline badges, data points, accents
 
 **Neutral Grays** (Matte paper aesthetic):
-- `$color-text-primary`: #0d1329 (Deep ink) - Headlines, body text
-- `$color-text-secondary`: #344054 (Neutral 600) - Captions, metadata
-- `$color-text-tertiary`: #6b7280 (Neutral 500) - Placeholders
-- `$color-bg-primary`: #f6f8fb (Soft paper) - Main background
-- `$color-bg-secondary`: #eef1f8 - Section slabs, cards
-- `$color-bg-tertiary`: #e6ebf5 - Code blocks, callouts
-- `$color-border`: #d6deec - Clean dividers
+- `$color-text-primary`: `#0d1329` (Deep Ink) - Main body text, headlines
+- `$color-text-secondary`: `#344054` (Neutral 600) - Secondary text, captions, metadata
+- `$color-text-tertiary`: `#6b7280` (Neutral 500) - Tertiary text, placeholders, disabled states
+- `$color-bg-primary`: `#f6f8fb` (Soft Paper) - Main page background
+- `$color-bg-secondary`: `#eef1f8` (Light Gray) - Section backgrounds, card backgrounds
+- `$color-bg-tertiary`: `#e6ebf5` (Lighter Gray) - Code blocks, callout boxes
+- `$color-border`: `#d6deec` (Soft Border) - Primary borders and dividers
+- `$color-border-light`: `#e9eef7` (Subtle Border) - Lighter borders for nested elements
 
-**Accent Colors**:
-- Green (#10b981): Success, achievements
-- Orange (#f59e0b): Highlights, warnings
-- Red (#ef4444): Errors, critical info
+**Semantic Accent Colors**:
+- `$color-accent-green`: `#10b981` (Success Green) - Success states, completed items, achievements
+- `$color-accent-orange`: `#f59e0b` (Warning Orange) - Warnings, highlights, in-progress states
+- `$color-accent-red`: `#ef4444` (Error Red) - Errors, critical information, destructive actions
+
+**Code Syntax Colors** (Minimalist theme):
+- Background: `#f8fafc` (Very Light Blue-Gray)
+- Text: `#1e293b` (Dark Slate)
+- Keywords: `#7c3aed` (Purple)
+- Strings: `#059669` (Green)
+- Comments: `#94a3b8` (Gray)
+- Functions: `#2563eb` (Blue)
 
 ### Typography
 
 **Font Families**:
-- **Headings**: "Space Grotesk", "IBM Plex Sans", "Inter" - Geometric sans for headlines
-- **Body**: "IBM Plex Sans", "Inter" - Technical body copy
-- **Monospace**: "IBM Plex Mono", "JetBrains Mono" - Code blocks
+- **Headings**: `"Space Grotesk", "IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif`
+  - Geometric sans-serif for headlines and display text
+  - Technical, modern aesthetic
+- **Body**: `"IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif`
+  - Clean, readable sans-serif for body copy
+  - Optimized for long-form technical content
+- **Monospace**: `"IBM Plex Mono", "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace`
+  - Code blocks and inline code
+  - High readability for technical content
 
-**Type Scale** (Major Third - 1.250):
-- H1: 2.441rem (39px) - Page titles
-- H2: 1.953rem (31px) - Section headers
-- H3: 1.563rem (25px) - Subsection headers
-- H4: 1.25rem (20px) - Card titles
-- Base: 1rem (16px) - Standard text
-- Small: 0.8rem (13px) - Captions, metadata
+**Type Scale** (Major Third - 1.250 ratio):
+- `$font-size-h1`: 2.441rem (≈39px) - Page titles, hero headings
+- `$font-size-h2`: 1.953rem (≈31px) - Section headers, major divisions
+- `$font-size-h3`: 1.563rem (≈25px) - Subsection headers, card titles
+- `$font-size-h4`: 1.25rem (20px) - Minor headings, prominent labels
+- `$font-size-base`: 1rem (16px) - Body text, standard UI elements
+- `$font-size-small`: 0.8rem (≈13px) - Captions, metadata, fine print
+
+**Font Weights**:
+- `$font-weight-normal`: 400 - Body text
+- `$font-weight-medium`: 500 - Subtle emphasis
+- `$font-weight-semibold`: 600 - Headings, strong emphasis
+- `$font-weight-bold`: 700 - Major headings, high emphasis
 
 **Line Heights**:
-- Headings: 1.2
-- Body: 1.6
-- Code: 1.5
+- `$line-height-heading`: 1.2 - Tight for headings
+- `$line-height-body`: 1.6 - Comfortable for reading
+- `$line-height-code`: 1.5 - Balanced for code blocks
+
+**Typography Implementation Details**:
+- Headings use negative letter-spacing (-0.01em to -0.02em) for tighter, modern look
+- Links have 2px underline with 3px offset, using rgba opacity for subtle effect
+- Code blocks have rounded corners (6px) and subtle shadows for depth
+- All text is anti-aliased for smooth rendering
 
 ### Spacing System
 
-**8px base unit**:
-- `$space-xs`: 4px
-- `$space-sm`: 8px
-- `$space-md`: 16px
-- `$space-lg`: 24px
-- `$space-xl`: 32px
-- `$space-2xl`: 48px
-- `$space-3xl`: 64px
-- `$space-4xl`: 96px
+**8px Grid System** (All spacing follows 4px/8px increments):
+- `$space-xs`: 0.25rem (4px) - Micro spacing, tight gaps
+- `$space-sm`: 0.5rem (8px) - Small spacing, list items
+- `$space-md`: 1rem (16px) - Standard spacing, paragraph margins
+- `$space-lg`: 1.5rem (24px) - Large spacing, section gaps
+- `$space-xl`: 2rem (32px) - Extra large, major sections
+- `$space-2xl`: 3rem (48px) - Double XL, page sections
+- `$space-3xl`: 4rem (64px) - Triple XL, hero sections
+- `$space-4xl`: 6rem (96px) - Quadruple XL, major divisions
+
+**Grid Usage**:
+- Use for all margins, padding, and gaps
+- Maintain vertical rhythm throughout the site
+- All element spacing should be divisible by 4px minimum
 
 ### Layout
 
 **Content Widths**:
-- `$max-width-content`: 768px (Reading comfort)
-- `$max-width-wide`: 1200px (Wide content, project grids)
+- `$max-width-content`: 768px - Optimal reading width for blog posts and articles
+- `$max-width-wide`: 1200px - Wide layouts for project grids and dashboards
 
 **Responsive Breakpoints**:
-- Mobile: 375px
-- Tablet: 768px
-- Desktop: 1024px
-- Wide: 1440px
+- `$breakpoint-mobile`: 375px - Minimum mobile width
+- `$breakpoint-tablet`: 768px - Tablet and up
+- `$breakpoint-desktop`: 1024px - Desktop and up
+- `$breakpoint-wide`: 1440px - Wide desktop displays
 
-**Padding**:
-- Mobile: 24px
-- Tablet: 48px
-- Desktop: 64px
+**Responsive Padding** (Adapts to viewport):
+- Mobile: `$padding-mobile` = 24px
+- Tablet: `$padding-tablet` = 48px
+- Desktop: `$padding-desktop` = 64px
+
+**Header**:
+- Height: 64px fixed
+- Position: Sticky top, z-index 1020
+- Background: Blurred backdrop with gradient overlay
+- Border: 1px bottom border
+
+**Footer**:
+- Padding: 64px vertical
+- Background: `$color-bg-secondary`
+- Border: 1px top border
+- Grid: 3-column on desktop, stacked on mobile
+
+### Border Radius Scale
+
+- `$border-radius-sm`: 4px - Tight radius for small elements (badges, tags)
+- `$border-radius-md`: 6px - Standard radius for buttons, inputs
+- `$border-radius-lg`: 8px - Large radius for cards, modals
+- `$border-radius-xl`: 12px - Extra large for hero sections
+
+### Shadow System
+
+**Elevation Levels**:
+- `$shadow-sm`: `0 1px 2px rgba(0, 0, 0, 0.05)` - Subtle elevation
+- `$shadow-md`: `0 1px 3px rgba(0, 0, 0, 0.1)` - Medium elevation
+- `$shadow-lg`: `0 4px 6px rgba(0, 0, 0, 0.07)` - High elevation
+- `$shadow-xl`: `0 10px 15px rgba(0, 0, 0, 0.1)` - Extra high elevation
+
+**Component Shadows**:
+- `$shadow-card`: `0 1px 3px rgba(0, 0, 0, 0.05)` - Default card shadow
+- `$shadow-card-hover`: `0 4px 12px rgba(0, 0, 0, 0.1)` - Card hover state
+- Code blocks: `0 12px 30px rgba($color-primary-dark, 0.08)` - Deep shadow with primary tint
+
+### Transitions & Animation
+
+**Timing Functions**:
+- `$transition-fast`: 100ms ease - Quick interactions (hover, focus)
+- `$transition-base`: 150ms ease - Standard UI transitions
+- `$transition-slow`: 300ms ease - Larger movements, reveals
+
+**Common Transitions**:
+- Button hover: `translateY(-1px)` with shadow increase
+- Card hover: `translateY(-2px)` or `translateY(-4px)` with shadow
+- Link hover: Color change + underline opacity change
+- All transitions use `ease` easing for natural feel
 
 ### Components
 
-**Cards**:
-- Gradient background: `linear-gradient(160deg, rgba($color-bg-secondary, 0.9), rgba($color-bg-primary, 0.95))`
+**Cards** (`.card` class):
+- Background: `linear-gradient(160deg, rgba($color-bg-secondary, 0.9), rgba($color-bg-primary, 0.95))`
 - Border: 1px solid `$color-border`
-- Border radius: `$border-radius-lg` (8px)
-- Shadow: `$shadow-card` with hover state `$shadow-card-hover`
-- Hover: `translateY(-2px)` transform
+- Border radius: 8px (`$border-radius-lg`)
+- Padding: 32px (`$space-xl`)
+- Shadow: `$shadow-card` at rest, `$shadow-card-hover` on hover
+- Hover: `transform: translateY(-2px)` + shadow increase
+- Transition: 150ms ease (all properties)
 
-**Buttons**:
-- Primary: Gradient from `$color-primary` to `$color-primary-dark`
-- Secondary: Light background with border
-- Transitions: `$transition-fast` (100ms ease)
+**Buttons** (`.btn` class):
+- **Primary** (`.btn--primary`):
+  - Background: `linear-gradient(135deg, $color-primary, $color-primary-dark)`
+  - Color: White
+  - Hover: Darker background + `translateY(-1px)`
+- **Secondary** (`.btn--secondary`):
+  - Background: `rgba($color-primary, 0.05)`
+  - Border: 1px `rgba($color-primary, 0.25)`
+  - Hover: Darker background + `translateY(-1px)`
+- Padding: 10px 20px (standard), 14px 28px (large), 6px 12px (small)
+- Border radius: 6px
+- Font: 0.875rem, medium weight (500)
+- Transition: 100ms ease
 
-**Links**:
-- Color: `$color-primary`
-- Underline: 2px thickness, 3px offset
-- Hover: Darker color with increased underline opacity
+**Links** (`a` elements):
+- Color: `$color-primary` (#2446b5)
+- Underline: 2px thickness, 3px offset, `rgba($color-primary, 0.35)` color
+- Hover: `$color-primary-dark` with increased underline opacity (0.5)
+- Focus: 2px outline with `rgba($color-primary, 0.3)`, 2px offset
+- Transition: 100ms ease on color and underline
+
+**Hero Section** (`.hero` class):
+- Min height: clamp(600px, 80vh, 800px)
+- Diagonal accent: Rotated gradient overlay (12deg rotation)
+- Background: Linear gradient + optional pattern overlay
+- Grid: 2fr 1fr on desktop, stacked on mobile
+- Padding: 96px vertical, responsive horizontal
+
+**Navigation** (`.site-nav`):
+- Hidden on mobile (< 768px), shown on tablet+
+- Links: 15px font, medium weight, no underline
+- Hover: 2px bottom border with primary color
+- Active: Primary color with solid bottom border
+- Gap: 32px between items
+
+**Code Blocks** (`pre` and `code`):
+- Background: `$color-bg-tertiary` (#e6ebf5)
+- Border: 1px solid `rgba($color-primary-dark, 0.12)`
+- Border radius: 6px
+- Padding: 24px (blocks), 2px 6px (inline)
+- Font: 0.9rem (14px), `$font-family-mono`
+- Shadow: `0 12px 30px rgba($color-primary-dark, 0.08)` (blocks only)
+- Inline code has border: 1px `rgba($color-primary, 0.1)`
+
+**Tables**:
+- Width: 100%
+- Border collapse: collapse
+- Cell padding: 16px
+- Header: Semibold text, `$color-bg-secondary` background
+- Borders: 1px bottom border on cells, `$color-border`
 
 ### Visual Effects
 
 **Background Gradients**:
-- Body: Radial gradients with primary and cyan accents at specific positions
-- Hero sections: Linear gradients with pattern overlays
-- Cards: Subtle gradients for depth
+- **Body**:
+  ```scss
+  background: radial-gradient(circle at 18% 12%, rgba($color-primary, 0.08), transparent 26%),
+              radial-gradient(circle at 82% 0%, rgba($color-accent-cyan, 0.12), transparent 22%),
+              $color-bg-primary;
+  ```
+- **Hero Diagonal Accent**: Rotated gradient with 40% opacity
+- **Research Section**: Dark gradient (`color.scale($color-primary, $lightness: -75%)` to -85%)
+- **Cards**: Subtle gradient from secondary to primary background colors
 
-**Shadows**:
-- Cards: `0 1px 3px rgba(0, 0, 0, 0.05)`
-- Card hover: `0 4px 12px rgba(0, 0, 0, 0.1)`
-- Code blocks: `0 12px 30px rgba($color-primary-dark, 0.08)`
-
-**Transitions**:
-- Fast: 100ms ease
-- Base: 150ms ease
-- Slow: 300ms ease
+**Z-Index Scale**:
+- `$z-index-dropdown`: 1000
+- `$z-index-sticky`: 1020 (header)
+- `$z-index-fixed`: 1030
+- `$z-index-modal-backdrop`: 1040
+- `$z-index-modal`: 1050
+- `$z-index-popover`: 1060
+- `$z-index-tooltip`: 1070
 
 ### UI Design Guidelines
 
 **When creating or modifying UI components**:
 
-1. **Use Design Tokens**: Always reference variables from `_sass/_variables.scss` - never hardcode colors, spacing, or typography values
-2. **Maintain Consistency**: Follow existing component patterns in `_sass/_components.scss`
-3. **Responsive Design**: Use breakpoint mixins and ensure mobile-first approach
-4. **Accessibility**:
-   - Maintain proper contrast ratios (text meets WCAG AA)
-   - Include focus states for interactive elements
-   - Use semantic HTML
+1. **Use Design Tokens** (CRITICAL):
+   - NEVER hardcode colors, spacing, or typography values
+   - Always reference SASS variables from `_sass/_variables.scss`
+   - Examples: Use `$color-primary` not `#2446b5`, `$space-lg` not `24px`
+
+2. **Maintain Visual Consistency**:
+   - Follow existing component patterns in `_sass/_components.scss`
+   - Use established border-radius scale (4px, 6px, 8px, 12px)
+   - Apply consistent shadow system for elevation
+   - Match transition timings across similar interactions
+
+3. **Responsive Design** (Mobile-First):
+   - Start with mobile styles, enhance for larger screens
+   - Use media queries with established breakpoints (768px, 1024px, 1440px)
+   - Test all viewports: 375px (mobile), 768px (tablet), 1024px+ (desktop)
+   - Hide/show elements appropriately (e.g., mobile menu vs desktop nav)
+
+4. **Accessibility Standards** (WCAG AA Compliance):
+   - **Color Contrast**: Minimum 4.5:1 for body text, 3:1 for large text
+   - **Focus States**: All interactive elements must have visible focus indicators
+   - **Keyboard Navigation**: Ensure tab order is logical and complete
+   - **Semantic HTML**: Use proper heading hierarchy (h1→h2→h3), landmarks, ARIA labels
+   - **Touch Targets**: Minimum 44x44px for mobile interactive elements
+
 5. **Visual Hierarchy**:
-   - Use type scale consistently
-   - Apply spacing system for rhythm
-   - Use color purposefully (primary for CTAs, secondary for metadata)
-6. **Polish**:
-   - Add subtle transitions for interactions
-   - Use shadows sparingly for depth
-   - Maintain clean borders and rounded corners
-   - Ensure hover states provide clear feedback
+   - Use type scale consistently (h1: 2.441rem, h2: 1.953rem, h3: 1.563rem, etc.)
+   - Apply spacing system for vertical rhythm (all spacing divisible by 4px)
+   - Use color purposefully:
+     - Primary blue for CTAs and important links
+     - Secondary gray for supporting text and metadata
+     - Accent colors for semantic meaning (green=success, red=error, orange=warning)
+
+6. **Interaction Polish**:
+   - Add transitions to all interactive elements (100-150ms for most, 300ms for large movements)
+   - Use shadows sparingly for depth (cards, modals, elevated elements)
+   - Apply hover states that provide clear feedback:
+     - Links: Color darkens, underline increases
+     - Buttons: Lift with `translateY(-1px)` + shadow
+     - Cards: Lift with `translateY(-2px)` + larger shadow
+   - Maintain consistent border-radius across similar elements
+
+7. **Typography Best Practices**:
+   - Headings: Space Grotesk with negative letter-spacing
+   - Body: IBM Plex Sans with 1.6 line-height for readability
+   - Code: IBM Plex Mono with 1.5 line-height
+   - Keep line lengths between 60-80 characters for optimal readability
 
 **File Structure**:
-- `_sass/_variables.scss` - Design tokens (colors, spacing, typography, breakpoints)
-- `_sass/_typography.scss` - Typography styles
-- `_sass/_layout.scss` - Layout and structural styles
-- `_sass/_components.scss` - Reusable component styles
-- `_sass/_homepage.scss` - Homepage-specific styles
-- `assets/css/main.scss` - Main stylesheet (imports all partials)
+- `_sass/_variables.scss` - **Design tokens** (colors, spacing, typography, breakpoints) - THE SOURCE OF TRUTH
+- `_sass/_typography.scss` - Typography styles, heading hierarchy, text elements
+- `_sass/_layout.scss` - Layout and structural styles, header, footer, navigation
+- `_sass/_components.scss` - Reusable component styles (cards, buttons, badges, etc.)
+- `_sass/_homepage.scss` - Homepage-specific styles (hero, sections, grids)
+- `assets/css/main.scss` - Main stylesheet entry point (imports all partials)
 
-**Before making UI changes**:
-1. Review existing components for similar patterns
-2. Check design tokens in `_variables.scss`
-3. Ensure responsive behavior across breakpoints
-4. Test hover/focus states
-5. Verify color contrast and accessibility
-6. Maintain consistent spacing using the 8px system
+**Workflow for UI Changes**:
+1. **Research**: Review existing components in `_sass/_components.scss` for similar patterns
+2. **Reference**: Check design tokens in `_sass/_variables.scss` for colors, spacing, etc.
+3. **Implement**: Write styles using design system variables
+4. **Test Responsive**: Verify behavior at 375px, 768px, 1024px, and 1440px widths
+5. **Test Interactions**: Verify hover, focus, and active states work correctly
+6. **Validate Accessibility**: Check color contrast, keyboard navigation, focus indicators
+7. **Verify Spacing**: Ensure all spacing follows 4px/8px grid system
+8. **Cross-browser**: Test in Chrome, Firefox, Safari if making complex changes
+
+**Quality Checklist** (before committing UI changes):
+- [ ] All colors use SASS variables (no hex codes in component files)
+- [ ] All spacing follows 4px/8px grid system
+- [ ] Typography uses type scale variables
+- [ ] Responsive at all breakpoints (mobile, tablet, desktop)
+- [ ] Hover/focus states present and smooth
+- [ ] Color contrast meets WCAG AA standards
+- [ ] Keyboard navigation works
+- [ ] Transitions are smooth (100-300ms)
+- [ ] No layout shift on load or interaction
+- [ ] Consistent with existing design patterns
 
 ---
 
 ## UI Designer Skills Usage
 
-**When working on this site, apply UI designer skills to ensure**:
+**Apply professional UI/UX designer skills when working on this site**:
 
-- **Visual Consistency**: All new components, pages, and modifications should follow the established design system
-- **Design Token Usage**: Always use SASS variables from `_variables.scss` - never hardcode values
-- **Component Reusability**: Leverage existing component patterns before creating new ones
-- **Responsive Design**: Ensure all UI works across mobile, tablet, and desktop breakpoints
-- **Accessibility**: Maintain WCAG AA compliance, proper focus states, and semantic HTML
-- **Polish & Details**: Add appropriate transitions, shadows, and hover states for professional feel
-- **Typography Hierarchy**: Use the type scale consistently for clear information hierarchy
-- **Spacing Rhythm**: Follow the 8px spacing system for visual consistency
+### Core Design Principles
 
-**If creating new UI elements**:
-1. Check `_sass/_components.scss` for similar patterns first
-2. Use design tokens from `_variables.scss`
-3. Follow the spacing and typography scales
-4. Ensure responsive behavior
-5. Add appropriate hover/focus states
-6. Test accessibility (contrast, keyboard navigation)
+1. **Visual Consistency** - Unified Design Language:
+   - All components must follow the established "Academic Minimalism with Technical Precision" aesthetic
+   - Maintain consistent visual weight, spacing, and proportions across pages
+   - Use the design system as the single source of truth
+   - New patterns must harmonize with existing ones
+
+2. **Design Token Discipline**:
+   - ZERO tolerance for hardcoded values (colors, spacing, typography)
+   - All styles must reference SASS variables from `_variables.scss`
+   - This ensures maintainability, consistency, and theme-ability
+
+3. **Component-First Thinking**:
+   - Audit `_sass/_components.scss` before creating new components
+   - Reuse and extend existing patterns (cards, buttons, badges, etc.)
+   - Create new components only when existing ones cannot be adapted
+   - Document new component patterns for future reuse
+
+4. **Responsive & Adaptive Design**:
+   - Mobile-first approach (start at 375px, scale up)
+   - Fluid typography and spacing where appropriate
+   - Test at all breakpoints: 375px, 768px, 1024px, 1440px
+   - Consider touch targets on mobile (minimum 44x44px)
+
+5. **Accessibility as Standard** (WCAG AA):
+   - Color contrast: 4.5:1 for text, 3:1 for large text/UI elements
+   - Focus indicators: Visible, high-contrast outlines on all interactive elements
+   - Keyboard navigation: Logical tab order, no keyboard traps
+   - Semantic HTML: Proper heading hierarchy, landmarks, ARIA where needed
+   - Screen reader testing for complex interactions
+
+6. **Interaction Design & Microinteractions**:
+   - Smooth transitions: 100-150ms for quick feedback, 300ms for larger movements
+   - Clear hover states: Visual feedback on all interactive elements
+   - Loading states: Show progress for async operations
+   - Error states: Clear, helpful error messages
+   - Empty states: Guide users when no content exists
+
+7. **Typography as UI**:
+   - Establish clear information hierarchy with type scale
+   - Maintain optimal line lengths (60-80 characters)
+   - Use appropriate line heights (1.6 for body, 1.2 for headings)
+   - Leverage font weights for emphasis (not just bold/regular)
+
+8. **Spacing & Rhythm**:
+   - Follow 8px grid system religiously (4px for micro-spacing)
+   - Create vertical rhythm with consistent spacing between sections
+   - Use white space intentionally to guide user attention
+   - Maintain balanced layouts with appropriate padding/margins
+
+### Workflow for New UI Features
+
+**Phase 1 - Research & Planning**:
+1. Understand the user need and design requirements
+2. Audit existing components for reusable patterns
+3. Sketch or wireframe the solution (low-fidelity first)
+4. Identify design tokens needed (colors, spacing, typography)
+
+**Phase 2 - Implementation**:
+1. Write semantic HTML structure
+2. Apply styles using design system tokens
+3. Implement responsive behavior (mobile → desktop)
+4. Add interactive states (hover, focus, active, disabled)
+
+**Phase 3 - Polish & Validation**:
+1. Fine-tune spacing, alignment, visual hierarchy
+2. Test across all breakpoints
+3. Validate accessibility (contrast, keyboard, screen reader)
+4. Review against design system checklist
+5. Get feedback and iterate
+
+### Quality Standards for UI Work
+
+**Before marking UI work as "complete"**:
+- [ ] Visually consistent with existing site aesthetic
+- [ ] Uses design tokens exclusively (no hardcoded values)
+- [ ] Responsive across all breakpoints (tested)
+- [ ] Accessible (WCAG AA contrast, keyboard nav, focus states)
+- [ ] Smooth interactions (appropriate transitions/animations)
+- [ ] Follows 8px spacing grid system
+- [ ] Typography uses established type scale
+- [ ] Hover/focus states provide clear feedback
+- [ ] No layout shift on load or interaction
+- [ ] Cross-browser compatible (Chrome, Firefox, Safari)
+- [ ] Performance optimized (no excessive animations, efficient CSS)
 
 ---
 

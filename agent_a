@@ -1,8 +1,0 @@
-error: unrecognized subcommand '.log'
-
-  tip: some similar subcommands exist: 'logout', 'login'
-
-Usage: codex [OPTIONS] [PROMPT]
-       codex [OPTIONS] <COMMAND> [ARGS]
-
-For more information, try '--help'.

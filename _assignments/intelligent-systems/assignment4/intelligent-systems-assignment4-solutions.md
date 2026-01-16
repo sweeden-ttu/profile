@@ -24,7 +24,7 @@ This document contains complete solutions with step-by-step explanations for Ass
 
 ### A. [5 pts] Probability Table Sizes
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Question:** Let $X$, $Y$, and $Z$ be discrete random variables with domains:
 - $X \in \{x_1, x_2, x_3\}$ (3 values)
@@ -33,7 +33,6 @@ This document contains complete solutions with step-by-step explanations for Ass
 
 How many entries are in each probability table, and what is the sum of values?
 
-</div>
 
 **Solution:**
 
@@ -53,8 +52,8 @@ How many entries are in each probability table, and what is the sum of values?
    - Each slice sums to 1 (normalization)
 
 2. **$P(Y \mid X,Z)$**: Conditional distribution of $Y$ given $(X,Z)$.
-   - Full table size: $|Y| \times |X| \times |Z| = 3 \times 3 \times 4 = 36$
-   - There are $|X| \times |Z| = 12$ slices (one per conditioning value)
+   - Full table size: $|Y| \cdot |X| \cdot |Z| = 3 \cdot 3 \cdot 4 = 36$
+   - There are $|X| \cdot |Z| = 12$ slices (one per conditioning value)
    - Each slice $P(Y \mid X=x_i, Z=z_j)$ is a distribution over $Y$, summing to 1
 
 3. **$P(z_1 \mid X)$**: Probability of specific value $z_1$ given each $X$.
@@ -73,27 +72,25 @@ How many entries are in each probability table, and what is the sum of values?
 
 ### B. [5 pts] True or False
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Question:** State whether each statement is True or False. No independence assumptions are made.
 
-</div>
 
 **1.** $P(A, B) = P(A \mid B) P(A)$
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
 **Explanation:** The correct formula is $P(A, B) = P(A \mid B) P(B)$, not $P(A \mid B) P(A)$. This is the definition of conditional probability rearranged: $P(A \mid B) = \frac{P(A,B)}{P(B)}$.
 
-</div>
 
 ---
 
 **2.** $P(A \mid B) P(C \mid B) = P(A, C \mid B)$
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
@@ -101,13 +98,12 @@ How many entries are in each probability table, and what is the sum of values?
 $$P(A, C \mid B) = P(A \mid B) P(C \mid A, B)$$
 The given expression implicitly assumes independence, which is not stated.
 
-</div>
 
 ---
 
 **3.** $P(B,C) = \sum_{a \in A} P(B, C \mid A)$
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
@@ -115,13 +111,12 @@ The given expression implicitly assumes independence, which is not stated.
 $$P(B, C) = \sum_a P(B, C \mid A=a) P(A=a)$$
 The expression $\sum_{a \in A} P(B, C \mid A)$ is missing the $P(A=a)$ term.
 
-</div>
 
 ---
 
 **4.** $P(A, B, C, D) = P(C) P(D \mid C) P(A \mid C, D) P(B \mid A, C, D)$
 
-<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: True**
 
@@ -131,13 +126,12 @@ The expression $\sum_{a \in A} P(B, C \mid A)$ is missing the $P(A=a)$ term.
 3. Multiply by $P(A \mid C, D)$ → gives $P(A, C, D)$
 4. Multiply by $P(B \mid A, C, D)$ → gives $P(A, B, C, D)$ ✓
 
-</div>
 
 ---
 
 **5.** $P(C \mid B, D) = \frac{P(C) P(B \mid C) P(D \mid C, B)}{\sum_{c'} P(C=c') P(B \mid C=c') P(D \mid C=c', B)}$
 
-<div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: True**
 
@@ -146,7 +140,6 @@ The expression $\sum_{a \in A} P(B, C \mid A)$ is missing the $P(A=a)$ term.
 2. Denominator: $\sum_{c'} P(c') P(B \mid c') P(D \mid c', B) = P(B, D)$ by marginalization
 3. Result: $\frac{P(C, B, D)}{P(B, D)} = P(C \mid B, D)$ ✓
 
-</div>
 
 ---
 
@@ -154,11 +147,10 @@ The expression $\sum_{a \in A} P(B, C \mid A)$ is missing the $P(A=a)$ term.
 
 #### (i) Compute $P(A, B \mid C)$
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Given:** $P(A)$, $P(A \mid C)$, $P(B \mid C)$, $P(C \mid A, B)$ with no independence assumptions.
 
-</div>
 
 **Solution:**
 
@@ -172,11 +164,10 @@ However, we don't have $P(A, B)$ directly and cannot derive it from the given ta
 
 #### (ii) Compute $P(B \mid A, C)$
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Given:** $P(A)$, $P(A \mid C)$, $P(B \mid A)$, $P(C \mid A, B)$ with no independence assumptions.
 
-</div>
 
 **Solution:**
 
@@ -196,11 +187,10 @@ $$P(B \mid A, C) = \frac{P(C \mid A, B) \cdot P(B \mid A)}{\sum_b P(C \mid A, b)
 
 #### (iii) Compute $P(C)$
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Given:** $P(A \mid B)$, $P(B)$, $P(B \mid A, C)$, $P(C \mid A)$ with assumption $A \perp B$.
 
-</div>
 
 **Solution:**
 
@@ -217,11 +207,10 @@ $$P(C) = \sum_a P(C, a) = \sum_a P(C \mid a) \cdot P(a) = \sum_a P(C \mid a) \cd
 
 #### (iv) Compute $P(A, B, C)$
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Given:** $P(A \mid B, C)$, $P(B)$, $P(B \mid A, C)$, $P(C \mid B, A)$ with assumption $A \perp B \mid C$.
 
-</div>
 
 **Solution:**
 
@@ -240,7 +229,7 @@ $$P(A, B, C) = P(A, B \mid C) \cdot P(C) = P(A \mid C) \cdot P(B \mid C) \cdot P
 
 ### A. [2 pts] Joint Probability Distribution
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Question:** Write the joint probability distribution for the given Bayes Net.
 
@@ -253,7 +242,6 @@ graph TD
     C --> E
 ```
 
-</div>
 
 **Solution:**
 
@@ -270,11 +258,10 @@ $$P(A, B, C, D, E) = P(A) \cdot P(B) \cdot P(C \mid A, B) \cdot P(D \mid C) \cdo
 
 ### B. [2 pts] Draw Bayes Net
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Question:** Draw the Bayes net for $P(A) \cdot P(B) \cdot P(C \mid A, B) \cdot P(D \mid C) \cdot P(E \mid B, C)$
 
-</div>
 
 **Solution:**
 
@@ -297,11 +284,10 @@ graph TD
 
 ### C. [5 pts] Space Complexity
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Question:** For $N$ binary variables, compare space needed for joint distribution vs. Bayes net.
 
-</div>
 
 **Key concept:** For $N$ binary variables:
 - Joint distribution: $2^N$ entries ($2^N - 1$ free parameters)
@@ -360,11 +346,10 @@ This equals the joint distribution (15 free parameters).
 
 #### (i) $P(A) \cdot P(B \mid A) \cdot P(C \mid A) \cdot P(E \mid B, C, D)$
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Question:** What factor is missing to form a valid joint distribution?
 
-</div>
 
 **Solution:**
 
@@ -398,7 +383,7 @@ This equals the joint distribution (15 free parameters).
 
 ## Problem 3 [10 pts]: BN Independence
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Question:** Use d-separation to determine independence in the following Bayes net:
 
@@ -416,35 +401,32 @@ graph TD
     G --> H
 ```
 
-</div>
 
 **1. Is $A \perp B$ guaranteed?**
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
 There is a direct edge $A → B$, so $A$ and $B$ are directly dependent.
 
-</div>
 
 ---
 
 **2. Is $A \perp C$ guaranteed?**
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
 There is a direct edge $A → C$, so $A$ and $C$ are directly dependent.
 
-</div>
 
 ---
 
 **3. Is $A \perp D \mid \{B, H\}$ guaranteed?**
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
@@ -454,13 +436,12 @@ There is a direct edge $A → C$, so $A$ and $C$ are directly dependent.
 
 Therefore, $A$ and $D$ are NOT conditionally independent given $\{B, H\}$.
 
-</div>
 
 ---
 
 **4. Is $A \perp E \mid F$ guaranteed?**
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
@@ -471,13 +452,12 @@ Therefore, $A$ and $D$ are NOT conditionally independent given $\{B, H\}$.
 
 Therefore, there exists an active path, so $A$ and $E$ are NOT independent given $F$.
 
-</div>
 
 ---
 
 **5. Is $C \perp H \mid G$ guaranteed?**
 
-<div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0;">
+**ANSWER:**
 
 **Answer: False**
 
@@ -491,7 +471,6 @@ Also, path $C → D → G → H$ where $G$ is observed:
 
 But the first path $C → F → H$ remains active, so $C$ and $H$ are NOT independent given $G$.
 
-</div>
 
 ---
 
@@ -499,7 +478,7 @@ But the first path $C → F → H$ remains active, so $C$ and $H$ are NOT indepe
 
 ### a. [7 pts] Medical Diagnosis Bayes Net
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Given Bayes Net:**
 
@@ -511,7 +490,6 @@ graph TD
     B --> S
 ```
 
-</div>
 
 #### (i) Compute $P(g, a, b, s)$
 
@@ -571,7 +549,7 @@ $$P(G \mid B) = \frac{P(B \mid G) \cdot P(G)}{\sum_g P(B \mid g) \cdot P(g)}$$
 
 ### b. [3 pts] Variable Elimination
 
-<div style="background: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1rem; margin: 1rem 0;">
+**QUESTION:**
 
 **Given Bayes Net (all binary variables):**
 
@@ -584,7 +562,6 @@ graph TD
     E --> F
 ```
 
-</div>
 
 #### (i) Size of Bayes Net
 

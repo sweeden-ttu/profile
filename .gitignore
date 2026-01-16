@@ -45,3 +45,6 @@ Gemfile.lock
 # Design artifacts (temporary generation files)
 design-philosophy.md
 cartographic-abstraction.png
+AGENTS.md
+CLAUDE.md
+BLOG_POST_GENERATION_INSTRUCTIONS.md

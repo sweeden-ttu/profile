@@ -63,12 +63,15 @@ graph TD
 
 **Scoping Analysis:**
 
-| Quantifier | Scope |
-|------------|-------|
-| $\forall z$ | Entire formula following it |
-| $\exists x$ | The big conjunction $P(x,y,z) \land \exists z R(y,z) \land (\forall x \forall y(...))$ |
-| Inner $\exists z$ | Only $R(y,z)$ |
-| $\forall x \forall y$ | Only $\neg Q(x,y) \lor P(x,y)$ |
+In the formula
+
+$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land ( \forall x \forall y ( \neg Q(x,y) \lor P(x,y) ) ) \Big),$$
+
+- The outer $\forall z$ binds the $z$ that appears in $P(x,y,z)$.
+- The $\exists x$ binds the $x$ that appears in $P(x,y,z)$.
+- The inner $\exists z$ binds the $z$ that appears in $R(y,z)$ (this is a different scoped variable from the outer $z$).
+- The inner $\forall x\forall y$ binds the $x$ and $y$ that appear in $(\neg Q(x,y) \lor P(x,y))$.
+- The $y$ in $P(x,y,z)$ and $R(y,z)$ remains **free** in $F$ because it is not bound by any quantifier in the outer scope.
 
 ---
 
@@ -302,4 +305,3 @@ $$\neg \forall x \Big( \big( LLL(x) \land LLLU(x) \land T(x) \big) \to F(x) \Big
 $$\forall x\, S(x)$$
 
 **Explanation:** Universal quantifier asserting all students in the domain sleep at 10pm daily.
-  

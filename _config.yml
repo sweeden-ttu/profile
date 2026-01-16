@@ -1,7 +1,7 @@
 # Site Settings
 title: Scott Weeden
 description: Computer Science student, researcher, and ML enthusiast at Texas Tech University
-url: "https://yourusername.github.io"
+url: "https://scottweeden.online"
 baseurl: ""
 
 # Author Information
@@ -58,8 +58,8 @@ logo: /assets/images/logo.png
 social:
   name: Scott Weeden
   links:
-    - https://github.com/yourusername
-    - https://linkedin.com/in/yourprofile
+    - https://github.com/sweeden-ttu
+    - https://linkedin.com/in/weedens
 
 # Defaults
 defaults:
