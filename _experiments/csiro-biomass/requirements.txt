@@ -1,0 +1,33 @@
+# CSIRO Biomass Prediction - DINOv2 Experiment
+# Python 3.10+
+
+# Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+timm>=0.9.0
+transformers>=4.30.0
+
+# Image Processing
+opencv-python>=4.8.0
+albumentations>=1.3.0
+Pillow>=10.0.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Experiment Tracking
+wandb>=0.15.0
+tqdm>=4.65.0
+
+# Utilities
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Kaggle API
+kaggle>=1.5.0

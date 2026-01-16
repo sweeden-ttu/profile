@@ -1,0 +1,21 @@
+{
+  "id": "giovannyrodrguez/dinov2-pseudo-segmentation",
+  "id_no": 105939654,
+  "title": "DINOv2 Pseudo-Segmentation",
+  "code_file": "inference-dinov2-2-streams.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "csiro-biomass"
+  ],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-images/python@sha256:9afebf76637ce6541a4a62ba59c41f7cdf5402c3e9b93b86637ef048b20283e0",
+  "machine_shape": "None"
+}

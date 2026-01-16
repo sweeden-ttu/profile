@@ -1,0 +1,108 @@
+# CSIRO Biomass Prediction - Experiment Configuration
+# DINOv2 Vision Transformer Approach
+
+experiment:
+  name: "csiro-biomass-dinov2"
+  version: "0.1.0"
+  description: "Biomass prediction using DINOv2 vision transformer features"
+
+data:
+  train_csv: "../../_datasets/csiro-biomass/train.csv"
+  test_csv: "../../_datasets/csiro-biomass/test.csv"
+  train_images: "../../_datasets/csiro-biomass/train"
+  test_images: "../../_datasets/csiro-biomass/test"
+  val_split: 0.2
+  stratify_by: "State"
+
+model:
+  backbone: "vit_base_patch14_dinov2"
+  pretrained: true
+  freeze_backbone: true
+  input_size: 518
+  patch_size: 14
+
+features:
+  use_dino: true
+  use_vegetation_indices: true
+  use_color_features: true
+  use_texture_features: true
+  weights:
+    dino: 0.4
+    color: 0.3
+    vegetation: 0.2
+    texture: 0.1
+
+segmentation:
+  enabled: true
+  n_clusters: 8
+  upsample_factor: 4
+  post_process: true
+
+regression:
+  hidden_dims: [768, 384, 192]
+  dropout: 0.2
+  activation: "relu"
+  output_dim: 5  # 5 biomass targets
+
+training:
+  epochs: 100
+  batch_size: 16
+  learning_rate: 0.0005
+  weight_decay: 0.0001
+  scheduler: "cosine"
+  warmup_epochs: 5
+  early_stopping:
+    patience: 15
+    min_delta: 0.001
+
+augmentation:
+  train:
+    horizontal_flip: 0.5
+    vertical_flip: 0.5
+    rotate: 15
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+  val:
+    resize_only: true
+
+loss:
+  type: "huber"  # Options: mse, mae, huber
+  delta: 1.0  # For Huber loss
+
+metrics:
+  primary: "mae"
+  secondary: ["rmse", "r2", "mape"]
+  per_target: true
+
+logging:
+  wandb:
+    enabled: true
+    project: "csiro-biomass"
+    entity: null
+  checkpoints:
+    save_best: true
+    save_last: true
+    monitor: "val_mae"
+    mode: "min"
+
+inference:
+  tta: true  # Test-time augmentation
+  tta_transforms: ["hflip", "vflip", "rotate90"]
+  ensemble: false
+
+targets:
+  - name: "Dry_Clover_g"
+    weight: 1.0
+  - name: "Dry_Dead_g"
+    weight: 1.0
+  - name: "Dry_Green_g"
+    weight: 1.0
+  - name: "Dry_Total_g"
+    weight: 1.0
+  - name: "GDM_g"
+    weight: 1.0
+
+seed: 42
+device: "cuda"
+num_workers: 4
