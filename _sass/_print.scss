@@ -1,0 +1,248 @@
+// ============================================================================
+// Print Styles
+// ============================================================================
+// Optimized styles for printing, especially for academic assignments and solutions
+
+@media print {
+  // Page box: avoid "double margins" (browser default + content padding)
+  // Browsers vary in @page support, so we set both @page margin and a small content padding fallback.
+  @page {
+    margin: 0.4in;
+  }
+
+  // Hide non-essential elements
+  .site-header,
+  .site-nav,
+  .site-footer,
+  .skip-link,
+  .project__links,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  // Reset body and page
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Main content
+  .main-content,
+  .project,
+  .project__content,
+  article {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0.15in !important; // fallback if @page is ignored
+    width: 100% !important;
+  }
+
+  // Headers and titles
+  h1, h2, h3, h4, h5, h6 {
+    color: black !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .project__title,
+  h1 {
+    font-size: 18pt;
+    margin-top: 0;
+    margin-bottom: 12pt;
+  }
+
+  h2 {
+    font-size: 16pt;
+    border-bottom: 1px solid #333;
+    padding-bottom: 4pt;
+    margin-top: 16pt;
+    margin-bottom: 8pt;
+  }
+
+  h3 {
+    font-size: 14pt;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+  }
+
+  h4 {
+    font-size: 12pt;
+    margin-top: 10pt;
+    margin-bottom: 6pt;
+  }
+
+  // Blockquotes (used for questions)
+  blockquote {
+    border-left: 3pt solid #333 !important;
+    background: #f5f5f5 !important;
+    padding: 8pt 12pt !important;
+    margin: 8pt 0 !important;
+    page-break-inside: avoid;
+  }
+
+  blockquote p {
+    margin: 4pt 0 !important;
+  }
+
+  // Tables
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    page-break-inside: avoid;
+    font-size: 10pt;
+    margin: 8pt 0;
+  }
+
+  th, td {
+    border: 1pt solid #333 !important;
+    padding: 4pt 6pt;
+    text-align: left;
+  }
+
+  th {
+    background: #e0e0e0 !important;
+    font-weight: bold;
+  }
+
+  // Code blocks
+  pre, code {
+    background: #f8f8f8 !important;
+    border: 1pt solid #ccc !important;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 9pt;
+  }
+
+  pre {
+    padding: 8pt !important;
+    overflow: visible;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+    margin: 8pt 0;
+  }
+
+  code {
+    padding: 1pt 3pt !important;
+  }
+
+  // Math rendering (KaTeX)
+  .katex,
+  .katex-display {
+    font-size: 11pt !important;
+    page-break-inside: avoid;
+  }
+
+  // Mermaid diagrams
+  .mermaid,
+  pre.mermaid,
+  svg {
+    border: 1pt solid #ccc !important;
+    page-break-inside: avoid;
+    background: white !important;
+    max-width: 100%;
+  }
+
+  // Links - show URL for external links only
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #666;
+  }
+
+  // Don't show URL for anchor links or relative links
+  a[href^="#"]:after,
+  a[href^="/"]:after {
+    content: "";
+  }
+
+  // Page breaks
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .no-page-break {
+    page-break-inside: avoid;
+  }
+
+  // Problem sections and headings
+  h3[id*="problem"] {
+    page-break-before: auto;
+    margin-top: 16pt;
+  }
+
+  // Lists
+  ul, ol {
+    page-break-inside: avoid;
+  }
+
+  li {
+    page-break-inside: avoid;
+  }
+
+  // Paragraphs
+  p {
+    orphans: 3;
+    widows: 3;
+    margin: 6pt 0;
+  }
+
+  // Project metadata
+  .project__header {
+    page-break-after: avoid;
+    margin-bottom: 16pt;
+  }
+
+  .project__meta,
+  .project__date,
+  .project__status {
+    font-size: 10pt;
+    color: #666 !important;
+  }
+
+  // Remove all shadows
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  // Ensure good contrast and color accuracy
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  // Strong/bold text
+  strong, b {
+    font-weight: bold;
+    color: black !important;
+  }
+
+  // Emphasis
+  em, i {
+    font-style: italic;
+  }
+
+  // Horizontal rules
+  hr {
+    border: none;
+    border-top: 1pt solid #333;
+    margin: 12pt 0;
+    page-break-after: avoid;
+  }
+
+  // Images
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+}
