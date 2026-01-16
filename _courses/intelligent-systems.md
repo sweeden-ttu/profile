@@ -15,7 +15,7 @@ tags:
 permalink: /courses/intelligent-systems/
 ---
 
-**Semester**: Fall 2025  
+**Semester**: Fall 2025
 **Status**: Completed
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}
@@ -72,8 +72,8 @@ Introduction to artificial intelligence including search algorithms, game playin
 {% endif %}
 
 **PDF Materials:**
-- [Assignment 3 Problems (PDF)](/assignments/intelligent-systems/intelligent-systems-assignment3-problems.pdf)
-- [Assignment 4 Problems (PDF)](/assignments/intelligent-systems/CS5368_Fa25_Ass4_ProblemSolving-1.pdf)
+- [Assignment 3 Problems (PDF)](/assignments/intelligent-systems/assignment3/intelligent-systems-assignment3-problems.pdf)
+- [Assignment 4 Problems (PDF)](/assignments/intelligent-systems/assignment4/CS5368_Fa25_Ass4_ProblemSolving-1.pdf)
 
 ---
 

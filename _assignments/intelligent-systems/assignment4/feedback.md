@@ -2,9 +2,9 @@
 
 ### Files reviewed
 
-- **Source PDF**: `../CS5368_Fa25_Ass4_ProblemSolving-1.pdf`
-- **Questions markdown**: `../intelligent-systems-assignment4-problems.md`
-- **Solutions markdown**: `../intelligent-systems-assignment4-solutions.md`
+- **Source PDF**: `CS5368_Fa25_Ass4_ProblemSolving-1.pdf`
+- **Questions markdown**: `intelligent-systems-assignment4-problems.md`
+- **Solutions markdown**: `intelligent-systems-assignment4-solutions.md`
 
 ### Factual accuracy vs PDF (questions)
 
@@ -33,7 +33,7 @@ The solutions file has multiple **likely incorrect** entries due to “size” a
 
 #### Problem 1B (True/False)
 
-- **(3)** \(P(B,C)=\sum_{a\in A}P(B,C\mid A)\) is **False** as written; the law of total probability needs \(P(A=a)\):  
+- **(3)** \(P(B,C)=\sum_{a\in A}P(B,C\mid A)\) is **False** as written; the law of total probability needs \(P(A=a)\):
   \(\;\;P(B,C)=\sum_a P(B,C\mid A=a)\,P(A=a)\).
 
 #### Problem 2C(ii) “less space than joint”
@@ -61,4 +61,3 @@ P(A\mid S,B)\propto \sum_g P(g)\,P(A\mid g)\,P(B\mid g)\,P(S\mid A,B).
 
 - **Questions file**: Replace unverifiable Mermaid diagrams with either (a) embedded figure images from the PDF, or (b) a clearly-labeled “reconstruction” section that cites the PDF page/figure and notes it was manually recreated.
 - **Solutions file**: Treat as **draft** until the above correctness issues are fixed; otherwise it can mislead readers who use it for verification.
-

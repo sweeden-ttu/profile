@@ -32,9 +32,9 @@ Authored a comprehensive peer review article of a Microsoft Research publication
 ### Course Assignments
 
 #### Intelligent Systems
-- [Assignment 3: Problem Solving](/assignments/intelligent-systems/intelligent-systems-assignment3-problems) - Model-based RL, TD learning, and feature-based Q-learning
-- [Assignment 4: Problem Solving](/assignments/intelligent-systems/intelligent-systems-assignment4-problems) - Probabilities, Bayesian Networks, and Inference
-- [Assignment 3: Reinforcement Learning](/assignments/intelligent-systems/intelligent-systems-assignment3-rl) - Q-Learning and RL applications
+- [Assignment 3: Problem Solving](/assignments/intelligent-systems/assignment3/intelligent-systems-assignment3-problems) - Model-based RL, TD learning, and feature-based Q-learning
+- [Assignment 4: Problem Solving](/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-problems) - Probabilities, Bayesian Networks, and Inference
+- [Assignment 3: Reinforcement Learning](/assignments/intelligent-systems/assignment3/intelligent-systems-assignment3-rl) - Q-Learning and RL applications
 
 #### Logic for Computer Scientists
 - [Homework 3: Logic Problems](/assignments/logic-for-computer-scientists/logic-homework3) - Propositional logic, Herbrand semantics, and CNF

@@ -11,13 +11,13 @@ test.describe('Assignments - math rendering', () => {
   const cases: Array<{ name: string; path: string; minKatexCount: number; screenshot: string }> = [
     {
       name: 'Intelligent Systems - Assignment 3 (problems)',
-      path: '/assignments/intelligent-systems/intelligent-systems-assignment3-problems/',
+      path: '/assignments/intelligent-systems/assignment3/intelligent-systems-assignment3-problems/',
       minKatexCount: 10,
       screenshot: 'analysis_output/assignments-intelligent-systems-assignment3-problems.png',
     },
     {
       name: 'Intelligent Systems - Assignment 4 (problems)',
-      path: '/assignments/intelligent-systems/intelligent-systems-assignment4-problems/',
+      path: '/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-problems/',
       minKatexCount: 10,
       screenshot: 'analysis_output/assignments-intelligent-systems-assignment4-problems.png',
     },
@@ -46,4 +46,3 @@ test.describe('Assignments - math rendering', () => {
     });
   }
 });
-

@@ -75,8 +75,8 @@ permalink: /
               <li style="margin-bottom: 0.5rem;">Variable elimination inference</li>
             </ul>
             <div style="display: flex; gap: 1rem;">
-              <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-solutions" style="flex: 1; text-align: center; background: #3b82f6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
-              <a href="/assignments/intelligent-systems/intelligent-systems-assignment4-problems" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
+              <a href="/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-solutions" style="flex: 1; text-align: center; background: #3b82f6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
+              <a href="/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-problems" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
             </div>
           </div>
         </div>
