@@ -50,3 +50,4 @@ CLAUDE.md
 BLOG_POST_GENERATION_INSTRUCTIONS.md
 _datasets/*
 __pycache__
+*.pt
