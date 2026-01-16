@@ -52,8 +52,8 @@ permalink: /
               <li style="margin-bottom: 0.5rem;">Predicate logic formalization</li>
             </ul>
             <div style="display: flex; gap: 1rem;">
-              <a href="/assignments/logic-for-computer-scientists/logic-homework3-solutions" style="flex: 1; text-align: center; background: #8b5cf6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
-              <a href="/assignments/logic-for-computer-scientists/logic-homework3" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
+              <a href="/assignments/logic-for-computer-scientists/homework3/logic-homework3-solutions" style="flex: 1; text-align: center; background: #8b5cf6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
+              <a href="/assignments/logic-for-computer-scientists/homework3/logic-homework3" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
             </div>
           </div>
         </div>
