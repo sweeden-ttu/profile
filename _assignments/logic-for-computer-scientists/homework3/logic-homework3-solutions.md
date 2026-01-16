@@ -1,17 +1,11 @@
 ---
-title: "Logic for Computer Scientists – Homework 3 Solutions"
+title: "Homework 3 Solutions worked by Scott Weeden"
 layout: project
 course: "Logic for Computer Scientists"
 course_slug: logic-for-computer-scientists
 assignment_type: homework
 assignment_number: 3
 is_solution: true
----
-
-## Logic for Computer Scientists – Homework 3 – Solutions
-
-This document contains complete solutions with step-by-step explanations for Homework 3.
-
 ---
 
 ### Problem 1 [10 pts]
@@ -35,12 +29,22 @@ graph TD
   Qz --> Qx["∃ x"]
   Qx --> Conj["∧"]
   Conj --> Pxyz["P(x,y,z)"]
+  Pxyz --> x1(("x<br/>bound"))
+  Pxyz --> y1(("y<br/>free"))
+  Pxyz --> z1(("z<br/>bound"))
   Conj --> Ez["∃ z"]
   Ez --> Ryz["R(y,z)"]
+  Ryz --> y2(("y<br/>free"))
+  Ryz --> z2(("z<br/>bound"))
   Conj --> AxAy["∀ x ∀ y"]
   AxAy --> Inner["∨"]
-  Inner --> NotQ["¬Q(x,y)"]
+  Inner --> NotQ["¬"]
+  NotQ --> Qxy["Q(x,y)"]
+  Qxy --> x2(("x<br/>bound"))
+  Qxy --> y3(("y<br/>bound"))
   Inner --> Pxy["P(x,y)"]
+  Pxy --> x3(("x<br/>bound"))
+  Pxy --> y4(("y<br/>bound"))
 ```
 
 ---
@@ -63,15 +67,18 @@ graph TD
 
 **Scoping Analysis:**
 
-In the formula
+The highlighted bound variables of $F$:
 
-$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land ( \forall x \forall y ( \neg Q(x,y) \lor P(x,y) ) ) \Big),$$
+$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land ( \forall x \forall y ( \neg Q(x,y) \lor P(x,y) ) ) \Big)$$
 
-- The outer $\forall z$ binds the $z$ that appears in $P(x,y,z)$.
-- The $\exists x$ binds the $x$ that appears in $P(x,y,z)$.
-- The inner $\exists z$ binds the $z$ that appears in $R(y,z)$ (this is a different scoped variable from the outer $z$).
-- The inner $\forall x\forall y$ binds the $x$ and $y$ that appear in $(\neg Q(x,y) \lor P(x,y))$.
-- The $y$ in $P(x,y,z)$ and $R(y,z)$ remains **free** in $F$ because it is not bound by any quantifier in the outer scope.
+$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land ( \forall x \forall y ( \neg Q(x,y) \lor P(x,y) ) ) \Big)$$
+
+$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land ( \forall x \forall y ( \neg Q(x,y) \lor P(x,y) ) ) \Big)$$
+
+$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land ( \forall x \forall y ( \neg Q(x,y) \lor P(x,y) ) ) \Big)$$
+
+$$F = \forall z \,\exists x \Big( P(x,y,z) \land \exists z\,R(y,z) \land ( \forall x \forall y ( \neg Q(x,y) \lor P(x,y) ) ) \Big)$$
+
 
 ---
 
