@@ -1,6 +1,6 @@
-# Blog Post Generation System - Overview
+# Lecture and Course Notes (as a blog post)
 
-This directory contains a comprehensive system for generating high-quality, textbook-quality blog posts from lecture materials.
+This is an automated proof checking system that verifies notes taken during course lectures against textbook materials, institutional and foundational knowledge regarding the topic, and presents each lecture in a 15-30 minute blog post format that is geared towards graduate students who are researching advanced topics in computer science. Each blog entry performs a deep-dive into examples that are worked in class, presents the material using various markdown enhancements and extensions,  provides links to research articles, IEEE publications, and institutional publications related to the research of the professor instructing the course. Each course should have an introduction and about page of the instructor. The system integrates with Canvas LMS API 
 
 ## Quick Start
 
@@ -25,7 +25,7 @@ This directory contains a comprehensive system for generating high-quality, text
 ### `BLOG_POST_GENERATION_INSTRUCTIONS.md`
 Comprehensive instructions covering:
 - Course data reference (`_data/courses.yaml`)
-- File naming convention: `YYYY-MM-DD-{course-slug}-{lecture-title}.md`
+- File naming convention: `YYYY-MM-DD-{course-slug}-{lecture-title}.md`  and the date should reflect date of the lecture which is being covered
 - Content extraction guidelines
 - Lesson plan generation
 - Content creation standards
@@ -53,6 +53,8 @@ Comprehensive checklists for:
 Blog posts follow this naming pattern:
 ```
 YYYY-MM-DD-{course-slug}-{lecture-title}.md
+
+Where there should be one blog post per lecture 
 ```
 
 **Examples:**
@@ -60,14 +62,7 @@ YYYY-MM-DD-{course-slug}-{lecture-title}.md
 - `2025-12-01-logic-for-computer-scientists-temporal-logic-ltl.md`
 - `2025-11-15-intelligent-systems-bayesian-networks.md`
 
-**Important:** Course numbers (CS-5384, CS-6343, etc.) should **NEVER** appear in:
-- File names
-- Blog post titles
-- User-facing content
 
-## Work Tree Structure
-
-```
 blog-generation-workspace/
 ├── logic-for-computer-scientists/      # Uses course slug
 │   ├── lectures/

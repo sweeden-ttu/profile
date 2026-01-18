@@ -44,15 +44,72 @@ Methods and techniques for verifying and validating software systems, including 
 - LangSmith and observability tools
 - Integration testing
 - Unit testing strategies
+- Open source tools for testing/debugging AI/LLM/RL
 
 ## Resources
 
 - [Course Blog Posts](/blog/?course=CS-5374%20Software%20Verification%20and%20Validation)
 - Canvas Course: Course ID 70713
 
+### LangSmith & Observability Tools
+
+- **LangSmith**: [Official Website](https://www.langchain.com/langsmith) - LLM application observability and monitoring platform
+- **LangSmith Documentation**: [Setup Instructions](https://docs.smith.langchain.com/) - Complete guide for getting started
+- **LangSmith Setup Guide**: Available in course materials (`v0.1_LangSmith_Setup_Instructions-v1.pdf`)
+- **LangSmith Hands-On Materials**: Download from Canvas module "LangSmith Tutorial + Hands-On Experiences"
+
+### Open Source Testing Tools
+
+- **Collection of Frameworks & Tools**: Available in course materials (`Collection_of_frameworks_tools_projects.pdf`)
+- Covers tools for testing, debugging, and validating AI/LLM/RL systems
+- Includes frameworks for unit testing, integration testing, and continuous verification
+
 ## External Resources – Textbooks
 
 See course draft posts for recommended textbooks and reference materials.
+
+---
+
+## Student Planner
+
+### Past Week & Upcoming Lectures
+
+| Lecture # | Date | Title | Notes | Slides | Transcript | Media | Additional Resources |
+|-----------|------|-------|-------|--------|------------|-------|---------------------|
+| 1 | 2026-01-14 | Course Setup & Resources | ✓ | ✓ | | | [Syllabus PDF](https://texastech.instructure.com/courses/70713), [Mediasite Guide](https://texastech.instructure.com/courses/70713) |
+| 2 | 2026-01-15 | Introduction to Software Testing | ✓ | ✓ | | | [Testing PDF](https://texastech.instructure.com/courses/70713/files/11826183) |
+| 3 | 2026-01-17 | Open Source Tools for AI/LLM/RL | ✓ | ✓ | | | [Tools Collection PDF](https://texastech.instructure.com/courses/70713/files/11855957) |
+| **Upcoming** | 2026-01-19 | TBD | | | | | |
+| **Upcoming** | 2026-01-21 | TBD | | | | | |
+| **Upcoming** | 2026-01-23 | TBD | | | | | |
+
+### LangSmith Tutorial Materials
+
+- **Setup Instructions**: `v0.1_LangSmith_Setup_Instructions-v1.pdf` (Downloaded)
+- **Hands-On Code**: `langsmith.zip` (Downloaded)
+- **External Links**: 
+  - [LangSmith Platform](https://www.langchain.com/langsmith)
+  - [LangSmith Documentation](https://docs.smith.langchain.com/)
+
+### Course Materials Location
+
+All materials are organized in: `/coursework/Spring2026/software-verification/`
+
+- **Syllabus**: `syllabus.yaml`
+- **Agent Instructions**: `AGENT_INSTRUCTIONS.md`
+- **Lecture Materials**: `_lectures/lecture-XX/`
+
+### Canvas & Media Links
+
+- **Canvas Course**: [View on Canvas](https://texastech.instructure.com/courses/70713)
+- **Syllabus**: [View Syllabus]({{ course_data.syllabus_url }})
+- **Media Site**: [Mediasite Channel](https://engrmediacast.ttu.edu/Mediasite/Channel/96542-cs5374-d01-namin-spring-2026)
+- **Calendar Feed**: [iCal Feed]({{ course_data.calendar_ics }})
+
+### Instructors
+
+- **Primary Instructor**: Akbar Siami Namin
+- **Co-Instructor**: Hasan Al-Qudah
 
 ---
 

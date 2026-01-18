@@ -28,6 +28,9 @@ collections:
   assignments:
     output: true
     permalink: /assignments/:path/
+  faculty:
+    output: true
+    permalink: /faculty/:name/
   lectures:
     output: false
   drafts:
@@ -80,6 +83,12 @@ defaults:
   - scope:
       path: "_courses"
       type: courses
+    values:
+      layout: page
+  # Faculty
+  - scope:
+      path: "_faculty"
+      type: faculty
     values:
       layout: page
   # Assignments

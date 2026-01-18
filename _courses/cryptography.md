@@ -53,6 +53,33 @@ See course draft posts for recommended textbooks and reference materials.
 
 ---
 
+## Student Planner
+
+### Past Week & Upcoming Lectures
+
+| Lecture # | Date | Title | Notes | Slides | Transcript | Media | Additional Resources |
+|-----------|------|-------|-------|--------|------------|-------|---------------------|
+| 1 | 2026-01-15 | Introduction to Cryptography | | | | | |
+| 2 | 2026-01-22 | Number Theory Foundations | | | | | |
+| **Upcoming** | 2026-01-29 | Symmetric Encryption | | | | | |
+| **Upcoming** | 2026-02-05 | Public Key Encryption / RSA | | | | | |
+
+### Course Materials Location
+
+All materials are organized in: `/coursework/Spring2026/cryptography/`
+
+- **Syllabus**: `syllabus.yaml`
+- **Agent Instructions**: `AGENT_INSTRUCTIONS.md`
+- **Lecture Materials**: `_lectures/lecture-XX/`
+
+### Canvas & Media Links
+
+- **Canvas Course**: [View on Canvas](https://texastech.instructure.com/courses/70714)
+- **Syllabus**: [View Syllabus]({{ course_data.syllabus_url }})
+- **Calendar Feed**: [iCal Feed]({{ course_data.calendar_ics }})
+
+---
+
 ## Related Content
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">

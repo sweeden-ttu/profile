@@ -27,8 +27,13 @@
   start_date: "2026-01-14"
   end_date: "2026-05-15"
   syllabus_url: "https://texastech.instructure.com/courses/70714/assignments/syllabus"
+  canvas_url: "https://texastech.instructure.com/courses/70714"
   media_site_url: null
   calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_tPfa5STeKYoJe9DlOXVO5CKezugv193nXP3IAfnI.ics"
+  landing_pages:
+    course_page: "/courses/cryptography/"
+    media_links: "/courses/cryptography/media"
+    canvas_instructure: "https://texastech.instructure.com/courses/70714"
   tags:
     - cryptography
     - security
@@ -47,8 +52,13 @@
   start_date: "2026-01-14"
   end_date: "2026-05-15"
   syllabus_url: "https://texastech.instructure.com/courses/70713/assignments/syllabus"
-  media_site_url: null
+  canvas_url: "https://texastech.instructure.com/courses/70713"
+  media_site_url: "https://engrmediacast.ttu.edu/Mediasite/Channel/96542-cs5374-d01-namin-spring-2026"
   calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_StkXgOD3d2Rw2tv46ad0H4DyetiapkEA4bz1rUd1.ics"
+  landing_pages:
+    course_page: "/courses/software-verification/"
+    media_links: "/courses/software-verification/media"
+    canvas_instructure: "https://texastech.instructure.com/courses/70713"
   tags:
     - software-verification
     - testing

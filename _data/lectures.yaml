@@ -1,0 +1,19 @@
+# Lecture Data - Consolidated from all courses
+# This file references course-specific lecture data
+# For Software Verification: see software-verification-lectures/lectures.yaml
+# For Cryptography: see cryptography-lectures/lectures.yaml
+
+# This is a placeholder that will be populated by agents
+# Individual course lecture data is stored in:
+# - coursework/Spring2026/software-verification/_data/lectures.yaml
+# - coursework/Spring2026/cryptography/_data/lectures.yaml
+
+# Jekyll can access these via:
+# {% assign sv_lectures = site.data['software-verification-lectures'].lectures.lectures %}
+# {% assign crypto_lectures = site.data['cryptography-lectures'].lectures.lectures %}
+
+courses:
+  - slug: software-verification
+    data_path: "../coursework/Spring2026/software-verification/_data/lectures.yaml"
+  - slug: cryptography
+    data_path: "../coursework/Spring2026/cryptography/_data/lectures.yaml"

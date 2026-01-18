@@ -47,7 +47,13 @@ design-philosophy.md
 cartographic-abstraction.png
 AGENTS.md
 CLAUDE.md
-BLOG_POST_GENERATION_INSTRUCTIONS.md
+GEMINI.md
+*GENERATION.md
+*INSTRUCTIONS.md
 _datasets/*
 __pycache__
 *.pt
+venv
+.venv
+README_BLOG_GENERATION.md
+README_BLOG_GENERATION.md
