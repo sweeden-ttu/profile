@@ -119,6 +119,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - docs
   - CLAUDE.md
   - README.md
   - templates/

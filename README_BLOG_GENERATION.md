@@ -40,7 +40,7 @@ Single source of truth for course metadata:
 - Canvas IDs (for MCP lookups)
 - Semester information
 
-### `QUALITY_CHECKLIST.md`
+### `docs/QUALITY_CHECKLIST.md`
 Comprehensive checklists for:
 - Accuracy validation
 - Completeness validation
