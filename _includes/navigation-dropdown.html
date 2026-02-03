@@ -1,0 +1,120 @@
+{%- comment -%}
+  Responsive Navigation with Dropdown Menus for Courses
+  ======================================================
+  Semantic HTML navigation with ARIA accessibility attributes.
+  Includes dropdown menus for courses organized by term.
+  Mobile-first responsive design with hamburger menu.
+{%- endcomment -%}
+
+<nav class="navigation navigation--dropdown" aria-label="Main navigation">
+  <button class="navigation__toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navigation-menu">
+    <span class="navigation__toggle-icon"></span>
+    <span class="navigation__toggle-icon"></span>
+    <span class="navigation__toggle-icon"></span>
+  </button>
+  
+  <ul class="navigation__list" id="navigation-menu">
+    {%- for _item in site.data.navigation.header -%}
+      {%- assign _has_children = false -%}
+      {%- assign _item_key = _item.key | default: _item.url | slugify -%}
+      
+      {%- comment -%} Check if this is the Courses item and has dropdown children {%- endcomment -%}
+      {%- if _item_key == 'courses' or _item.url == '/courses/' -%}
+        {%- assign _has_children = true -%}
+        {%- assign _spring_courses = site.data.courses | where: "semester", "Spring 2026" -%}
+        {%- assign _fall_courses = site.data.courses | where: "semester", "Fall 2025" -%}
+        {%- assign _summer_courses = site.data.courses | where: "semester", "Summer 2025" -%}
+      {%- endif -%}
+      
+      {%- include snippets/get-nav-url.html path=_item.url -%}
+      {%- assign _nav_url = __return -%}
+      {%- include snippets/get-nav-url.html path=page.url -%}
+      {%- assign _page_url = __return -%}
+      {%- include snippets/get-string-from-locale-config.html locale=_item.titles -%}
+      {%- assign _item_title = _item.title | default: __return -%}
+      
+      <li class="navigation__item {% if _has_children %}navigation__item--has-dropdown{% endif %} {% if _nav_url == _page_url or page.nav_key and _item.key and page.nav_key == _item.key %}navigation__item--active{% endif %}">
+        {%- if _has_children -%}
+          <button class="navigation__link navigation__link--dropdown" 
+                  aria-expanded="false" 
+                  aria-haspopup="true" 
+                  aria-controls="dropdown-{{ _item_key }}">
+            {{ _item_title }}
+            <span class="navigation__dropdown-icon" aria-hidden="true">▼</span>
+          </button>
+          <ul class="navigation__dropdown" id="dropdown-{{ _item_key }}" role="menu">
+            {%- if _spring_courses.size > 0 -%}
+              <li class="navigation__dropdown-group" role="none">
+                <span class="navigation__dropdown-heading" role="heading" aria-level="2">Spring 2026</span>
+                <ul class="navigation__dropdown-list" role="menu">
+                  {%- for course in _spring_courses -%}
+                    <li class="navigation__dropdown-item" role="none">
+                      <a href="{{ course.landing_pages.course_page | default: course.course_site }}" 
+                         class="navigation__dropdown-link" 
+                         role="menuitem">
+                        {{ course.display_name }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {%- endif -%}
+            
+            {%- if _fall_courses.size > 0 -%}
+              <li class="navigation__dropdown-group" role="none">
+                <span class="navigation__dropdown-heading" role="heading" aria-level="2">Fall 2025</span>
+                <ul class="navigation__dropdown-list" role="menu">
+                  {%- for course in _fall_courses -%}
+                    <li class="navigation__dropdown-item" role="none">
+                      <a href="{{ course.landing_pages.course_page | default: course.course_site }}" 
+                         class="navigation__dropdown-link" 
+                         role="menuitem">
+                        {{ course.display_name }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {%- endif -%}
+            
+            {%- if _summer_courses.size > 0 -%}
+              <li class="navigation__dropdown-group" role="none">
+                <span class="navigation__dropdown-heading" role="heading" aria-level="2">Summer 2025</span>
+                <ul class="navigation__dropdown-list" role="menu">
+                  {%- for course in _summer_courses -%}
+                    <li class="navigation__dropdown-item" role="none">
+                      <a href="{{ course.landing_pages.course_page | default: course.course_site }}" 
+                         class="navigation__dropdown-link" 
+                         role="menuitem">
+                        {{ course.display_name }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {%- endif -%}
+            
+            <li class="navigation__dropdown-footer" role="none">
+              <a href="{{ _nav_url }}" class="navigation__dropdown-link navigation__dropdown-link--all" role="menuitem">
+                View All Courses →
+              </a>
+            </li>
+          </ul>
+        {%- else -%}
+          <a href="{{ _nav_url }}" 
+             class="navigation__link {% if _nav_url == _page_url or page.nav_key and _item.key and page.nav_key == _item.key %}navigation__link--active{% endif %}">
+            {{ _item_title }}
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+    
+    {%- if site.search.provider -%}
+      <li class="navigation__item navigation__item--search">
+        <button class="button button--secondary button--circle search-button js-search-toggle" aria-label="Search">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+      </li>
+    {%- endif -%}
+  </ul>
+</nav>

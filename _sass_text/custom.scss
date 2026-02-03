@@ -2,9 +2,20 @@
 
 /* Portfolio Landing Page Custom Styles - Enhanced with 2026 UX Principles */
 
-// Smooth scrolling for the entire page
+// Ensure basic body/html styles are applied
 html {
   scroll-behavior: smooth;
+  background-color: #fff;
+}
+
+body {
+  background-color: #fff;
+  color: #222;
+}
+
+.root {
+  background-color: #fff;
+  min-height: 100vh;
 }
 
 // Enhanced hero section

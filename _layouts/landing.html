@@ -46,7 +46,70 @@ article_header:
 
           </div>
 
-          {%- if _section.children -%}
+          {%- if _section.children_dynamic == 'posts' -%}
+            {%- assign _children = site.posts | limit: 6 -%}
+            {%- assign _size = _children | size -%}
+            <div class="grid--container">
+              <div class="grid grid--p-3">
+                {%- for post in _children -%}
+                  {%- assign child = nil -%}
+                  {%- assign child_title = post.title -%}
+                  {%- assign child_excerpt = post.excerpt | strip_html | truncatewords: 20 -%}
+                  {%- assign child_url = post.url -%}
+                  {%- if _size >= 2 -%}
+                    {%- assign _cell_md_col = 6 -%}
+                  {%- else -%}
+                    {%- assign _cell_md_col = 12 | divided_by: _size -%}
+                  {%- endif -%}
+                  {%- if _size >= 4 -%}
+                    {%- assign _cell_lg_col = 3 -%}
+                  {%- else -%}
+                    {%- assign _cell_lg_col = 12 | divided_by: _size -%}
+                  {%- endif -%}
+                  <div class="cell cell--12 cell--md-{{ _cell_md_col }} cell--lg-{{ _cell_lg_col }}">
+                    <div class="mb-5">
+                      <h4>{{ child_title }}</h4>
+                      <p>{{ child_excerpt }}</p>
+                      <ul class="menu">
+                        <li><a class="button button--success button--pill button--lg" href="{{ child_url }}">Read Article</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- elsif _section.children_dynamic == 'projects' -%}
+            {%- assign _children = site.projects | limit: 4 -%}
+            {%- assign _size = _children | size -%}
+            <div class="grid--container">
+              <div class="grid grid--p-3">
+                {%- for project in _children -%}
+                  {%- assign child_title = project.title -%}
+                  {%- assign child_excerpt = project.excerpt | default: project.description | strip_html | truncatewords: 15 -%}
+                  {%- assign child_url = project.url -%}
+                  {%- if _size >= 2 -%}
+                    {%- assign _cell_md_col = 6 -%}
+                  {%- else -%}
+                    {%- assign _cell_md_col = 12 | divided_by: _size -%}
+                  {%- endif -%}
+                  {%- if _size >= 4 -%}
+                    {%- assign _cell_lg_col = 3 -%}
+                  {%- else -%}
+                    {%- assign _cell_lg_col = 12 | divided_by: _size -%}
+                  {%- endif -%}
+                  <div class="cell cell--12 cell--md-{{ _cell_md_col }} cell--lg-{{ _cell_lg_col }}">
+                    <div class="mb-5">
+                      <h4>{{ child_title }}</h4>
+                      <p>{{ child_excerpt }}</p>
+                      <ul class="menu">
+                        <li><a class="button button--info button--pill button--lg" href="{{ child_url }}">View Project</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- elsif _section.children -%}
             {%- assign _size = _section.children | size  -%}
             <div class="grid--container">
               <div class="grid grid--p-3">

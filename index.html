@@ -117,16 +117,7 @@ data:
         - text: View All Posts
           type: outline-theme-dark
           url: /blog/
-      children:
-        {% assign recent_posts = site.posts | limit: 6 %}
-        {% for post in recent_posts %}
-        - title: {{ post.title }}
-          excerpt: {{ post.excerpt | strip_html | truncatewords: 20 }}
-          actions:
-            - text: Read Article
-              type: success
-              url: {{ post.url }}
-        {% endfor %}
+      children_dynamic: posts
 
     - title: <i class="fas fa-flask"></i> Research & Implementation Projects
       excerpt: Hands-on exploration of computer science concepts through practical implementations. From cryptographic algorithms to machine learning models and verification tools, discover real-world applications of theoretical knowledge.
@@ -139,16 +130,7 @@ data:
         - text: Research Page
           type: outline-primary
           url: /research/
-      children:
-        {% assign featured_projects = site.projects | limit: 4 %}
-        {% for project in featured_projects %}
-        - title: {{ project.title }}
-          excerpt: {{ project.excerpt | default: project.description | strip_html | truncatewords: 15 }}
-          actions:
-            - text: View Project
-              type: info
-              url: {{ project.url }}
-        {% endfor %}
+      children_dynamic: projects
 
     - title: Connect & Collaborate
       excerpt: Passionate about the elegant mathematics underlying computer science and building secure, intelligent systems. Open to research collaborations, academic discussions, and exploring challenging problems at the intersection of theory and practice.
@@ -164,3 +146,4 @@ data:
         - text: <i class="fab fa-linkedin"></i> LinkedIn
           type: outline-theme-dark
           url: https://linkedin.com/in/weedens
+---
