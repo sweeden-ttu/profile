@@ -21,8 +21,8 @@ An overview of courses for Spring 2026 semester at Texas Tech University.
   <p style="color: #64748b; font-size: 0.9rem; margin: 0.5rem 0;">CS-6343 | Spring 2026</p>
   <p style="color: #475569; font-size: 0.95rem;">Advanced study of cryptographic systems, security protocols, and modern encryption techniques.</p>
   <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
-    <a href="/courses/cryptography/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Course Page →</a>
-    <a href="/blog/?course=Cryptography" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Posts →</a>
+    <a href="https://cryptography.scottweeden.online" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Course Site →</a>
+    <a href="/courses/cryptography/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Overview →</a>
     <a href="https://texastech.instructure.com/courses/70714" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Canvas →</a>
   </div>
 </div>
@@ -34,8 +34,8 @@ An overview of courses for Spring 2026 semester at Texas Tech University.
   <p style="color: #64748b; font-size: 0.9rem; margin: 0.5rem 0;">CS-5374 | Spring 2026</p>
   <p style="color: #475569; font-size: 0.95rem;">Methods and techniques for verifying and validating software systems, including testing, formal methods, and quality assurance.</p>
   <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
-    <a href="/courses/software-verification/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Course Page →</a>
-    <a href="/blog/?course=Software%20Verification%20and%20Validation" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Posts →</a>
+    <a href="https://software-vv.scottweeden.online" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Course Site →</a>
+    <a href="/courses/software-verification/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Overview →</a>
     <a href="https://texastech.instructure.com/courses/70713" style="color: #3b82f6; text-decoration: none; font-weight: 500;">Canvas →</a>
   </div>
 </div>
