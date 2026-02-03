@@ -1,0 +1,48 @@
+header:
+  - titles:
+      en: &EN Blog
+      en-GB: *EN
+      en-US: *EN
+      en-CA: *EN
+      en-AU: *EN
+    url: /blog/
+
+  - titles:
+      en: &EN Courses
+      en-GB: *EN
+      en-US: *EN
+      en-CA: *EN
+      en-AU: *EN
+    url: /courses/
+
+  - titles:
+      en: &EN Projects
+      en-GB: *EN
+      en-US: *EN
+      en-CA: *EN
+      en-AU: *EN
+    url: /projects/
+
+  - titles:
+      en: &EN Research
+      en-GB: *EN
+      en-US: *EN
+      en-CA: *EN
+      en-AU: *EN
+    url: /research/
+
+  - titles:
+      en: &EN Archive
+      en-GB: *EN
+      en-US: *EN
+      en-CA: *EN
+      en-AU: *EN
+    url: /archive.html
+
+  - titles:
+      en: &EN About
+      en-GB: *EN
+      en-US: *EN
+      en-CA: *EN
+      en-AU: *EN
+    url: /about.html

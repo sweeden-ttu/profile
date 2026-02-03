@@ -1,0 +1,153 @@
+---
+layout: landing
+title: Scott Weeden - Computer Science Portfolio
+excerpt: >
+  Master's student at Texas Tech University exploring machine learning, cryptography, and software verification.
+
+article_header:
+  actions:
+    - text: View Blog
+      type: primary
+      url: /blog/
+    - text: Explore Courses
+      type: outline-theme-dark
+      url: /courses/
+  height: 100vh
+  theme: dark
+  background_color: "#1a237e"
+  background_image:
+    gradient: "linear-gradient(135deg, rgba(26, 35, 126, .9), rgba(13, 71, 161, .8), rgba(0, 96, 100, .7))"
+
+data:
+  sections:
+    - title: Welcome to My Academic Portfolio
+      excerpt: A comprehensive collection of my journey through theoretical computer science, cryptography, software verification, and machine learning. Here you'll find projects, research, course work, lecture notes, and published articles exploring the elegant mathematics and powerful concepts that drive modern computing.
+      theme: light
+      actions:
+        - text: View Blog Posts
+          type: primary
+          url: /blog/
+        - text: Explore Courses
+          type: outline-primary
+          url: /courses/
+      background_color: "#f5f5f5"
+
+    - title: <i class="fas fa-lock"></i> Spring 2026 - Current Courses
+      excerpt: Active courses this semester focusing on cryptographic systems and software verification methods.
+      theme: dark
+      background_color: "#283593"
+      actions:
+        - text: View All Courses
+          type: outline-theme-dark
+          url: /courses/
+      children:
+        - title: <i class="fas fa-key"></i> Cryptography
+          excerpt: Advanced study of cryptographic systems, security protocols, and modern encryption techniques including symmetric/asymmetric encryption, hash functions, and public key cryptography.
+          actions:
+            - text: Course Site
+              type: info
+              url: https://cryptography.scottweeden.online
+            - text: View Posts
+              type: outline-info
+              url: /blog/?course=Cryptography
+            - text: Course Page
+              type: outline-info
+              url: /courses/cryptography/
+
+        - title: <i class="fas fa-check-circle"></i> Software Verification and Validation
+          excerpt: Methods and techniques for verifying and validating software systems, including testing strategies, formal methods, model checking, and continuous verification.
+          actions:
+            - text: Course Site
+              type: success
+              url: https://software-vv.scottweeden.online
+            - text: View Posts
+              type: outline-success
+              url: /blog/?course=Software%20Verification%20and%20Validation
+            - text: Course Page
+              type: outline-success
+              url: /courses/software-verification/
+
+    - title: <i class="fas fa-graduation-cap"></i> Completed Courses
+      excerpt: Previous coursework in intelligent systems, logic, automata theory, algorithms, and software project management.
+      theme: light
+      background_color: "#e8eaf6"
+      children:
+        - title: <i class="fas fa-robot"></i> Intelligent Systems
+          excerpt: Introduction to artificial intelligence including search algorithms, Bayesian networks, probabilistic reasoning, and reinforcement learning.
+          actions:
+            - text: Course Site
+              type: info
+              url: https://intelligent-systems.scottweeden.online
+            - text: View Posts
+              type: outline-info
+              url: /blog/?course=Intelligent%20Systems
+
+        - title: <i class="fas fa-infinity"></i> Logic for Computer Scientists
+          excerpt: Foundations of logic for computer science including propositional logic, first-order logic, resolution, Herbrand semantics, and automated reasoning.
+          actions:
+            - text: View Posts
+              type: warning
+              url: /blog/?course=Logic%20for%20Computer%20Scientists
+
+        - title: <i class="fas fa-project-diagram"></i> Theory of Automata
+          excerpt: Study of formal languages, automata theory, and computational models including finite automata, regular languages, context-free grammars, and Turing machines.
+          actions:
+            - text: View Posts
+              type: warning
+              url: /blog/?course=Theory%20of%20Automata
+
+    - title: <i class="fas fa-newspaper"></i> Recent Blog Posts
+      excerpt: Latest articles on course topics, research insights, and technical explorations in computer science.
+      theme: dark
+      background_color: "#00695c"
+      actions:
+        - text: View All Posts
+          type: outline-theme-dark
+          url: /blog/
+      children:
+        {% assign recent_posts = site.posts | limit: 6 %}
+        {% for post in recent_posts %}
+        - title: {{ post.title }}
+          excerpt: {{ post.excerpt | strip_html | truncatewords: 20 }}
+          actions:
+            - text: Read Article
+              type: success
+              url: {{ post.url }}
+        {% endfor %}
+
+    - title: <i class="fas fa-folder-open"></i> Projects & Research
+      excerpt: Technical projects, research papers, and implementations exploring various aspects of computer science.
+      theme: light
+      background_color: "#fafafa"
+      actions:
+        - text: View All Projects
+          type: primary
+          url: /projects/
+        - text: Research Page
+          type: outline-primary
+          url: /research/
+      children:
+        {% assign featured_projects = site.projects | limit: 4 %}
+        {% for project in featured_projects %}
+        - title: {{ project.title }}
+          excerpt: {{ project.excerpt | default: project.description | strip_html | truncatewords: 15 }}
+          actions:
+            - text: View Project
+              type: info
+              url: {{ project.url }}
+        {% endfor %}
+
+    - title: About This Portfolio
+      excerpt: This portfolio represents my academic journey through theoretical and applied computer science. Each project, blog post, and course reflects my exploration of the fundamental principles that make modern computing possible.
+      theme: dark
+      background_color: "#37474f"
+      actions:
+        - text: <i class="fas fa-user"></i> About Me
+          type: outline-theme-dark
+          url: /about.html
+        - text: <i class="fab fa-github"></i> GitHub
+          type: outline-theme-dark
+          url: https://github.com/sweeden-ttu
+        - text: <i class="fab fa-linkedin"></i> LinkedIn
+          type: outline-theme-dark
+          url: https://linkedin.com/in/weedens

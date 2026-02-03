@@ -1,0 +1,268 @@
+---
+layout: landing
+title: Computer Science Portfolio
+excerpt: >
+  Exploring the foundations of computation through theory, intelligent systems, and mathematical logic.
+
+article_header:
+  actions:
+    - text: View Projects
+      type: error
+      url: "#projects"
+    - text: Research & Articles
+      type: outline-theme-dark
+      url: "#research"
+  height: 100vh
+  theme: dark
+  background_color: "#1a237e"
+  background_image:
+    gradient: "linear-gradient(135deg, rgba(26, 35, 126, .9), rgba(13, 71, 161, .8), rgba(0, 96, 100, .7))"
+
+data:
+  sections:
+    - title: Welcome to My Computer Science Portfolio
+      excerpt: A comprehensive collection of my academic journey through theoretical computer science, artificial intelligence, and mathematical foundations of computing. Here you'll find projects, research papers, course work, lecture notes, and published articles exploring the elegant mathematics and powerful concepts that drive modern computing.
+      theme: light
+      actions:
+        - text: Explore My Work
+          type: primary
+          url: "#theory-automata"
+      background_color: "#f5f5f5"
+
+    - title: <i class="fas fa-project-diagram"></i> Theory of Automata
+      excerpt: Exploring the mathematical foundations of computation, formal languages, and computational complexity. From finite state machines to Turing machines, this work delves into what makes computation possible.
+      theme: dark
+      background_color: "#283593"
+      actions:
+        - text: View All Projects
+          type: outline-theme-dark
+          url: "/automata"
+      children:
+        - title: <i class="fas fa-code-branch"></i> Finite Automata Simulator
+          excerpt: Interactive web-based simulator for DFA and NFA with visual state transitions. Built with JavaScript and D3.js for real-time visualization of automaton behavior.
+          actions:
+            - text: View Project
+              type: info
+              url: "/projects/finite-automata-simulator"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-info
+              url: "#"
+
+        - title: <i class="fas fa-brain"></i> Turing Machine Implementation
+          excerpt: Python implementation of a universal Turing machine with tape visualization. Includes examples of classic computations and undecidable problems.
+          actions:
+            - text: View Project
+              type: info
+              url: "/projects/turing-machine"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-info
+              url: "#"
+
+        - title: <i class="fas fa-language"></i> Context-Free Grammar Parser
+          excerpt: Recursive descent parser for context-free grammars with ambiguity detection. Implements CYK algorithm for efficient parsing of CFG languages.
+          actions:
+            - text: View Project
+              type: info
+              url: "/projects/cfg-parser"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-info
+              url: "#"
+
+        - title: <i class="fas fa-book"></i> Lecture Notes & Coursework
+          excerpt: Comprehensive notes on regular languages, pumping lemmas, decidability, and complexity theory. Includes problem sets and theoretical proofs.
+          actions:
+            - text: Read Notes
+              type: info
+              url: "/notes/theory-automata"
+
+    - title: Remaining Theory of Automata Work
+      excerpt: Current projects and homework assignments in progress
+      theme: light
+      background_color: "#e8eaf6"
+      children:
+        - title: <i class="fas fa-tasks"></i> TODO - Pushdown Automata Project
+          excerpt: Design and implement a pushdown automaton for balanced parentheses and nested structures. Due next milestone.
+          content: '<span class="tag tag--secondary">In Progress</span>'
+
+        - title: <i class="fas fa-tasks"></i> TODO - Complexity Analysis Assignment
+          excerpt: Analyze time complexity of various algorithms using Big-O, Theta, and Omega notation. Prove P vs NP relationships.
+          content: '<span class="tag tag--warning">Pending</span>'
+
+        - title: <i class="fas fa-tasks"></i> TODO - Regular Expression Engine
+          excerpt: Build a regex engine from scratch using Thompson's construction and subset construction algorithms.
+          content: '<span class="tag tag--warning">Pending</span>'
+
+        - title: <i class="fas fa-tasks"></i> TODO - Final Research Paper
+          excerpt: Research paper on advanced topics in automata theory - exploring minimization algorithms and state complexity.
+          content: '<span class="tag tag--warning">Pending</span>'
+
+    - title: <i class="fas fa-robot"></i> Intelligent Systems
+      excerpt: Diving into artificial intelligence, machine learning, and cognitive computing. Projects span from classical AI algorithms to modern neural network architectures.
+      theme: dark
+      background_color: "#00695c"
+      actions:
+        - text: View All Projects
+          type: outline-theme-dark
+          url: "/intelligent-systems"
+      children:
+        - title: <i class="fas fa-chess"></i> Game AI - Minimax & Alpha-Beta Pruning
+          excerpt: Intelligent game-playing agents for chess, checkers, and tic-tac-toe. Implements minimax algorithm with alpha-beta pruning for optimal move selection.
+          actions:
+            - text: View Project
+              type: success
+              url: "/projects/game-ai"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-success
+              url: "#"
+
+        - title: <i class="fas fa-network-wired"></i> Neural Network from Scratch
+          excerpt: Deep learning framework built from first principles using NumPy. Includes backpropagation, various activation functions, and optimization algorithms.
+          actions:
+            - text: View Project
+              type: success
+              url: "/projects/neural-network"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-success
+              url: "#"
+
+        - title: <i class="fas fa-search"></i> Search Algorithms Visualization
+          excerpt: Visual comparison of A*, Dijkstra's, BFS, and DFS pathfinding algorithms. Interactive maze solver with performance metrics.
+          actions:
+            - text: View Project
+              type: success
+              url: "/projects/search-algorithms"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-success
+              url: "#"
+
+        - title: <i class="fas fa-comments"></i> Natural Language Processing
+          excerpt: Sentiment analysis and text classification using bag-of-words, TF-IDF, and word embeddings. Trained on multiple datasets.
+          actions:
+            - text: View Project
+              type: success
+              url: "/projects/nlp-sentiment"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-success
+              url: "#"
+
+        - title: <i class="fas fa-book-open"></i> Research & Publications
+          excerpt: Published papers on machine learning optimization techniques and comparative analysis of reinforcement learning algorithms.
+          actions:
+            - text: Read Papers
+              type: success
+              url: "/research/intelligent-systems"
+
+        - title: <i class="fas fa-graduation-cap"></i> Course Materials
+          excerpt: Lecture notes covering supervised learning, unsupervised learning, reinforcement learning, and knowledge representation.
+          actions:
+            - text: Access Notes
+              type: success
+              url: "/notes/intelligent-systems"
+
+    - title: <i class="fas fa-infinity"></i> Logic for Computer Scientists
+      excerpt: Exploring propositional logic, predicate logic, proof systems, and their applications in program verification and automated reasoning.
+      theme: dark
+      background_color: "#4527a0"
+      actions:
+        - text: View All Projects
+          type: outline-theme-dark
+          url: "/logic"
+      children:
+        - title: <i class="fas fa-calculator"></i> SAT Solver Implementation
+          excerpt: Boolean satisfiability solver using DPLL algorithm with optimizations. Tests on real-world SAT competition problems.
+          actions:
+            - text: View Project
+              type: warning
+              url: "/projects/sat-solver"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-warning
+              url: "#"
+
+        - title: <i class="fas fa-check-double"></i> Automated Theorem Prover
+          excerpt: Resolution-based theorem prover for first-order logic. Implements unification algorithm and proof by refutation.
+          actions:
+            - text: View Project
+              type: warning
+              url: "/projects/theorem-prover"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-warning
+              url: "#"
+
+        - title: <i class="fas fa-sitemap"></i> Truth Table Generator
+          excerpt: Interactive tool for generating truth tables from propositional logic formulas. Includes support for complex expressions and equivalence checking.
+          actions:
+            - text: View Project
+              type: warning
+              url: "/projects/truth-table"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-warning
+              url: "#"
+
+        - title: <i class="fas fa-project-diagram"></i> Lambda Calculus Interpreter
+          excerpt: Interpreter for untyped lambda calculus with beta reduction and normal form computation. Explores the foundations of functional programming.
+          actions:
+            - text: View Project
+              type: warning
+              url: "/projects/lambda-calculus"
+            - text: <i class="fab fa-github"></i> Code
+              type: outline-warning
+              url: "#"
+
+        - title: <i class="fas fa-file-alt"></i> Formal Methods Research
+          excerpt: Research articles on program verification, model checking, and the application of logic in software correctness.
+          actions:
+            - text: Read Articles
+              type: warning
+              url: "/research/logic"
+
+        - title: <i class="fas fa-book-reader"></i> Logic Course Notes
+          excerpt: Detailed notes on propositional logic, first-order logic, modal logic, and temporal logic. Includes proofs and exercises.
+          actions:
+            - text: View Notes
+              type: warning
+              url: "/notes/logic"
+
+    - title: <i class="fas fa-newspaper"></i> Publications & Research
+      excerpt: A collection of research papers, articles, and technical blog posts exploring theoretical and applied computer science topics.
+      theme: light
+      background_color: "#fafafa"
+      children:
+        - title: <i class="fas fa-file-pdf"></i> Complexity of Automata Minimization
+          excerpt: Published paper analyzing the computational complexity of DFA minimization algorithms and their practical implications.
+          actions:
+            - text: Read Paper
+              url: "/papers/automata-minimization"
+
+        - title: <i class="fas fa-file-pdf"></i> Neural Architecture Search Techniques
+          excerpt: Comparative study of automated neural architecture search methods and their effectiveness across different domains.
+          actions:
+            - text: Read Paper
+              url: "/papers/nas-techniques"
+
+        - title: <i class="fas fa-file-pdf"></i> Logic in Program Verification
+          excerpt: Exploring the use of temporal logic and model checking in verifying concurrent systems and distributed algorithms.
+          actions:
+            - text: Read Paper
+              url: "/papers/logic-verification"
+
+        - title: <i class="fas fa-blog"></i> Technical Blog
+          excerpt: Regular posts on computer science theory, algorithms, and implementation insights. Topics range from fundamental concepts to cutting-edge research.
+          actions:
+            - text: Visit Blog
+              url: "/blog"
+
+    - title: About This Portfolio
+      excerpt: This portfolio represents my journey through the theoretical and practical aspects of computer science. Each project is a step toward understanding the fundamental principles that make modern computing possible.
+      theme: dark
+      background_color: "#37474f"
+      actions:
+        - text: <i class="fas fa-envelope"></i> Contact Me
+          type: outline-theme-dark
+          url: "/contact"
+        - text: <i class="fab fa-github"></i> GitHub
+          type: outline-theme-dark
+          url: "https://github.com"
+        - text: <i class="fab fa-linkedin"></i> LinkedIn
+          type: outline-theme-dark
+          url: "https://linkedin.com"
+---

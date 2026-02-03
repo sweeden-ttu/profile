@@ -54,13 +54,13 @@ sync_course_content() {
     # Find assignments for this course
     if [ -d "/home/cursor/profile/_assignments/$course_name" ]; then
         echo -e "  Moving assignments to $target_repo/_assignments/"
-        cp -r /home/cursor/profile/_assignments/$course_name"/*" "$COURSEWORK_DIR/$target_repo/_assignments/" 2>/dev/null || true
+        cp -r "/home/cursor/profile/_assignments/$course_name/"* "$COURSEWORK_DIR/$target_repo/_assignments/" 2>/dev/null || true
     fi
     
     # Find course-specific data
     if [ -d "/home/cursor/profile/_data/$course_name-lectures" ]; then
         echo -e "  Moving data to $target_repo/_data/"
-        cp -r /home/cursor/profile/_data/$course_name-lectures"/*" "$COURSEWORK_DIR/$target_repo/_data/" 2>/dev/null || true
+        cp -r "/home/cursor/profile/_data/$course_name-lectures/"* "$COURSEWORK_DIR/$target_repo/_data/" 2>/dev/null || true
     fi
     
     # Commit changes if any

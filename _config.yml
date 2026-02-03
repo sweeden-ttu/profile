@@ -1,12 +1,31 @@
+# TeXt Theme Configuration (using local submodule)
+theme: null
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+  - jekyll-seo-tag
+
 # Site Settings
 title: Scott Weeden
 description: Computer Science student, researcher, and ML enthusiast at Texas Tech University
 url: "https://scottweeden.online"
 baseurl: ""
 
+# TeXt Theme Settings
+text_skin: default
+highlight_theme: tomorrow-night
+lang: en
+timezone: America/Chicago
+
 # Author Information
 author:
+  type: person
   name: Scott Weeden
+  url: https://scottweeden.online
+  avatar: /assets/images/logo.png
+  bio: Master's student at Texas Tech University exploring machine learning, cryptography, and software verification.
   email: sweeden@ttu.edu
   github: sweeden-ttu
   linkedin: weedens
@@ -44,13 +63,34 @@ kramdown:
     block:
       line_numbers: false
     css_class: 'highlight'
-  math_engine: katex
+  math_engine: mathjax
 
-# Plugins
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-feed
+# TeXt Theme - Markdown Enhancements
+mathjax: true
+mathjax_autoNumber: true
+mermaid: true
+chart: true
+
+# TeXt Theme - Post Settings
+excerpt_separator: <!--more-->
+license: false
+toc:
+  selectors: "h1,h2,h3"
+
+# TeXt Theme - Pagination
+paginate: 8
+paginate_path: /page:num
+
+# TeXt Theme - Paths
+paths:
+  root: /
+  home: /
+  archive: /archive.html
+  rss: /feed.xml
+
+# TeXt Theme - Repository
+repository: sweeden-ttu/profile
+repository_tree: stable
 
 # Feed Settings
 feed:
@@ -66,13 +106,20 @@ social:
 
 # Defaults
 defaults:
-  # Posts
+  # Posts (TeXt theme uses 'article' layout)
   - scope:
       path: "_posts"
       type: posts
     values:
-      layout: post
+      layout: article
       author: Scott Weeden
+      sharing: true
+      license: false
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: false
   # Projects
   - scope:
       path: "_projects"
@@ -109,6 +156,11 @@ defaults:
       type: pages
     values:
       layout: page
+  # Home page uses landing layout
+  - scope:
+      path: "index.html"
+    values:
+      layout: landing
 
 # Exclude from processing
 exclude:
@@ -126,14 +178,17 @@ exclude:
   - .lighthouserc.json
   - package.json
   - package-lock.json
+  - coursework
+  - courses
+  - _theme
 
 # Include files
 include:
   - _pages
 
-# Sass/SCSS Settings
+# Sass/SCSS Settings (TeXt theme)
 sass:
-  sass_dir: _sass
+  sass_dir: _sass_text
   style: compressed
 
 # Pagination (if needed in future)
