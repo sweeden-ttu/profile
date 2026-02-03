@@ -23,7 +23,7 @@
   semester: "Spring 2026"
   status: active
   completed: false
-  description: "Advanced study of cryptographic systems, security protocols, and modern encryption techniques including symmetric/asymmetric encryption, hash functions, digital signatures, and public key cryptography."
+  description: "AdvanceLangchaind study of cryptographic systems, security protocols, and modern encryption techniques including symmetric/asymmetric encryption, hash functions, digital signatures, and public key cryptography."
   start_date: "2026-01-14"
   end_date: "2026-05-15"
   syllabus_url: "https://texastech.instructure.com/courses/70714/assignments/syllabus"
