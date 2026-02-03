@@ -1,0 +1,2 @@
+The hash contained in the integrity attribute could not be decoded. localhost:4000
+None of the “sha384” hashes in the integrity attribute match the content of the subresource at “https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css”. The computed hash is “n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV”.

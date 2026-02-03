@@ -34,7 +34,6 @@ author:
 markdown: kramdown
 highlighter: rouge
 permalink: /blog/:year/:month/:day/:title/
-timezone: America/Chicago
 
 # Collections
 collections:
@@ -63,11 +62,12 @@ kramdown:
     block:
       line_numbers: false
     css_class: 'highlight'
-  math_engine: mathjax
+  math_engine: katex
 
 # TeXt Theme - Markdown Enhancements
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false  # Using KaTeX instead
+katex: true
+katex_autoNumber: true
 mermaid: true
 chart: true
 

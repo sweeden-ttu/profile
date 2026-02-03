@@ -4,14 +4,16 @@ title: "Q-Learning Pac-Man Agent"
 date: 2024-11-15
 tech_stack: [Python, Reinforcement Learning, Q-Learning, NumPy]
 status: completed
+difficulty: Intermediate
 subtitle: "Teaching an agent to play Pac-Man using reinforcement learning"
-links:
-  github: "https://github.com/[username]/qlearning-pacman"
-  demo: "#"
+tags: [machine-learning, algorithms, reinforcement-learning]
+github: "https://github.com/sweeden-ttu/qlearning-pacman"
 outcomes:
   - "Agent learns optimal navigation strategies"
   - "Demonstrates exploration vs. exploitation trade-off"
   - "Open-sourced with comprehensive documentation"
+description: "A comprehensive reinforcement learning project implementing Q-Learning algorithm to teach an agent to play Pac-Man, demonstrating fundamental RL concepts including state representation, reward shaping, and policy learning."
+---
 ---
 
 # Q-Learning Pac-Man Agent

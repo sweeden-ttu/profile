@@ -2,14 +2,17 @@
 layout: landing
 title: Scott Weeden - Computer Science Portfolio
 excerpt: >
-  Master's student at Texas Tech University exploring machine learning, cryptography, and software verification.
+  Master's student at Texas Tech University exploring the elegant intersection of machine learning, cryptography, and formal verification methods.
 
 article_header:
   actions:
-    - text: View Blog
+    - text: Explore My Work
       type: primary
+      url: /projects/
+    - text: Read Blog
+      type: outline-theme-dark
       url: /blog/
-    - text: Explore Courses
+    - text: Academic Journey
       type: outline-theme-dark
       url: /courses/
   height: 100vh
@@ -21,83 +24,93 @@ article_header:
 data:
   sections:
     - title: Welcome to My Academic Portfolio
-      excerpt: A comprehensive collection of my journey through theoretical computer science, cryptography, software verification, and machine learning. Here you'll find projects, research, course work, lecture notes, and published articles exploring the elegant mathematics and powerful concepts that drive modern computing.
+      excerpt: A comprehensive collection of my journey through theoretical computer science, exploring the elegant mathematics and powerful concepts that drive modern computing. Here you'll discover research projects, course insights, and technical implementations at the intersection of cryptography, machine learning, and formal verification.
       theme: light
       actions:
-        - text: View Blog Posts
+        - text: <i class="fas fa-rocket"></i> View Projects
           type: primary
+          url: /projects/
+        - text: <i class="fas fa-book-open"></i> Read Blog
+          type: outline-primary
           url: /blog/
-        - text: Explore Courses
+        - text: <i class="fas fa-graduation-cap"></i> Academic Journey
           type: outline-primary
           url: /courses/
       background_color: "#f5f5f5"
 
-    - title: <i class="fas fa-lock"></i> Spring 2026 - Current Courses
-      excerpt: Active courses this semester focusing on cryptographic systems and software verification methods.
+    - title: <i class="fas fa-unlock-alt"></i> Spring 2026 - Current Academic Focus
+      excerpt: Deep-diving into cryptographic systems and advanced software verification methodologies this semester. Explore cutting-edge security protocols and formal verification techniques that power modern computing infrastructure.
       theme: dark
       background_color: "#283593"
       actions:
-        - text: View All Courses
+        - text: <i class="fas fa-th-list"></i> View All Courses
           type: outline-theme-dark
           url: /courses/
       children:
-        - title: <i class="fas fa-key"></i> Cryptography
-          excerpt: Advanced study of cryptographic systems, security protocols, and modern encryption techniques including symmetric/asymmetric encryption, hash functions, and public key cryptography.
+        - title: <i class="fas fa-shield-alt"></i> Advanced Cryptography
+          excerpt: Exploring mathematical foundations of security, including symmetric/asymmetric encryption, hash functions, digital signatures, and zero-knowledge proofs. Currently implementing post-quantum cryptographic algorithms.
           actions:
-            - text: Course Site
+            - text: <i class="fas fa-external-link-alt"></i> Course Site
               type: info
               url: https://cryptography.scottweeden.online
-            - text: View Posts
+            - text: <i class="fas fa-blog"></i> Blog Posts
               type: outline-info
               url: /blog/?course=Cryptography
-            - text: Course Page
+            - text: <i class="fas fa-book"></i> Course Page
               type: outline-info
               url: /courses/cryptography/
 
-        - title: <i class="fas fa-check-circle"></i> Software Verification and Validation
-          excerpt: Methods and techniques for verifying and validating software systems, including testing strategies, formal methods, model checking, and continuous verification.
+        - title: <i class="fas fa-cogs"></i> Software Verification & Validation
+          excerpt: Advanced methodologies for ensuring software correctness through formal methods, model checking, and continuous verification. Currently working on automated theorem proving and property-based testing frameworks.
           actions:
-            - text: Course Site
+            - text: <i class="fas fa-external-link-alt"></i> Course Site
               type: success
               url: https://software-vv.scottweeden.online
-            - text: View Posts
+            - text: <i class="fas fa-blog"></i> Blog Posts
               type: outline-success
               url: /blog/?course=Software%20Verification%20and%20Validation
-            - text: Course Page
+            - text: <i class="fas fa-book"></i> Course Page
               type: outline-success
               url: /courses/software-verification/
 
-    - title: <i class="fas fa-graduation-cap"></i> Completed Courses
-      excerpt: Previous coursework in intelligent systems, logic, automata theory, algorithms, and software project management.
+    - title: <i class="fas fa-medal"></i> Academic Achievements
+      excerpt: Building strong foundations across theoretical computer science. Previous coursework spans artificial intelligence, formal logic, computational theory, algorithms, and software engineering principles.
       theme: light
       background_color: "#e8eaf6"
       children:
-        - title: <i class="fas fa-robot"></i> Intelligent Systems
-          excerpt: Introduction to artificial intelligence including search algorithms, Bayesian networks, probabilistic reasoning, and reinforcement learning.
+        - title: <i class="fas fa-brain"></i> Intelligent Systems
+          excerpt: Advanced AI concepts including search algorithms, Bayesian networks, probabilistic reasoning, and reinforcement learning. Implemented neural networks and explored deep learning architectures.
           actions:
-            - text: Course Site
+            - text: <i class="fas fa-graduation-cap"></i> Certificate
               type: info
               url: https://intelligent-systems.scottweeden.online
-            - text: View Posts
+            - text: <i class="fas fa-file-alt"></i> View Posts
               type: outline-info
               url: /blog/?course=Intelligent%20Systems
 
-        - title: <i class="fas fa-infinity"></i> Logic for Computer Scientists
-          excerpt: Foundations of logic for computer science including propositional logic, first-order logic, resolution, Herbrand semantics, and automated reasoning.
+        - title: <i class="fas fa-superscript"></i> Formal Logic
+          excerpt: Deep dive into propositional logic, first-order logic, resolution, Herbrand semantics, and automated reasoning. Mastered Prolog programming and theorem proving techniques.
           actions:
-            - text: View Posts
+            - text: <i class="fas fa-file-alt"></i> View Posts
               type: warning
               url: /blog/?course=Logic%20for%20Computer%20Scientists
 
-        - title: <i class="fas fa-project-diagram"></i> Theory of Automata
-          excerpt: Study of formal languages, automata theory, and computational models including finite automata, regular languages, context-free grammars, and Turing machines.
+        - title: <i class="fas fa-network-wired"></i> Theory of Computation
+          excerpt: Explored formal languages, automata theory, and computational models including finite automata, regular languages, context-free grammars, and Turing machines.
           actions:
-            - text: View Posts
+            - text: <i class="fas fa-file-alt"></i> View Posts
               type: warning
               url: /blog/?course=Theory%20of%20Automata
 
-    - title: <i class="fas fa-newspaper"></i> Recent Blog Posts
-      excerpt: Latest articles on course topics, research insights, and technical explorations in computer science.
+        - title: <i class="fas fa-chart-line"></i> Analysis of Algorithms
+          excerpt: Advanced study of algorithm design and complexity analysis including divide and conquer, dynamic programming, greedy algorithms, graph algorithms, and NP-completeness.
+          actions:
+            - text: <i class="fas fa-file-alt"></i> View Posts
+              type: success
+              url: /blog/?course=Analysis%20of%20Algorithms
+
+    - title: <i class="fas fa-pen-fancy"></i> Latest Technical Insights
+      excerpt: Deep-dive articles exploring advanced computer science concepts, research findings, and practical implementations. Stay updated with cutting-edge developments in cryptography, verification, and AI.
       theme: dark
       background_color: "#00695c"
       actions:
@@ -115,8 +128,8 @@ data:
               url: {{ post.url }}
         {% endfor %}
 
-    - title: <i class="fas fa-folder-open"></i> Projects & Research
-      excerpt: Technical projects, research papers, and implementations exploring various aspects of computer science.
+    - title: <i class="fas fa-flask"></i> Research & Implementation Projects
+      excerpt: Hands-on exploration of computer science concepts through practical implementations. From cryptographic algorithms to machine learning models and verification tools, discover real-world applications of theoretical knowledge.
       theme: light
       background_color: "#fafafa"
       actions:
@@ -137,8 +150,8 @@ data:
               url: {{ project.url }}
         {% endfor %}
 
-    - title: About This Portfolio
-      excerpt: This portfolio represents my academic journey through theoretical and applied computer science. Each project, blog post, and course reflects my exploration of the fundamental principles that make modern computing possible.
+    - title: Connect & Collaborate
+      excerpt: Passionate about the elegant mathematics underlying computer science and building secure, intelligent systems. Open to research collaborations, academic discussions, and exploring challenging problems at the intersection of theory and practice.
       theme: dark
       background_color: "#37474f"
       actions:
