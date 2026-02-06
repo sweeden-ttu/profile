@@ -1,4 +1,4 @@
-# Cloud Fronts Group — Texas 2025 Letterhead
+  # Cloud Fronts Group — Texas 2025 Letterhead
 
 Professional letterhead for the franchise public report submitted to the Texas Comptroller.
 
@@ -17,3 +17,4 @@ Professional letterhead for the franchise public report submitted to the Texas C
 - **Company:** Cloud Fronts Group
 - **Document:** Texas 2025 Report of Profit & Loss
 - **Recipient:** Office of the Texas Comptroller of Public Accounts (Comptroller's Office of Currency / franchise tax reporting)
+             
