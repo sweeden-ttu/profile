@@ -5,8 +5,6 @@ permalink: /formula-appendix/
 description: "Automated inventory of mathematical content from Docling exports: plain context, web math delimiters, and raw LaTeX."
 ---
 
-# Formula appendix
-
 This page lists formula-related content extracted from Docling markdown in the `markdown_library` workspace. **Rendered** blocks use the same `$` / `$$` conventions as [Math rendering rules](/math-rules/) (KaTeX on this site; equivalent LaTeX typically works in MathJax).
 
 ## Pipeline status
