@@ -14,7 +14,7 @@ tags:
 
 {% comment %} Load course and lecture data from YAML {% endcomment %}
 {% assign course_data = site.data.courses | where: "slug", page.course_slug | first %}
-{% assign lecture_data = site.data.lectures | where: "course", page.course_slug | where: "date", page.date | first %}
+{% assign lecture_data = site.data.lectures.lectures | where: "course", page.course_slug | where: "date", page.date | first %}
 
 # OpenSource Tools for Testing/Debugging AI/LLM/RL
 
