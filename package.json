@@ -1,0 +1,13 @@
+{
+  "name": "profile",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "linkinator": "^7.5.3"
+  }
+}
