@@ -1,0 +1,14 @@
+{
+  "baseline_markdown": {
+    "glob": "**/docling_md/**/*.md",
+    "formula_not_decoded_occurrences": 983,
+    "note": "Counted from Docling exports without --enrich-formula (legacy)."
+  },
+  "enriched_sample_run": {
+    "pdf": "pdfs/arxiv_2210_03629.pdf",
+    "markdown_output": "automata/docling_md_formula_runs/arxiv_2210_03629/arxiv_2210_03629.md",
+    "json_output": "automata/docling_md_formula_runs/arxiv_2210_03629_json/arxiv_2210_03629.json",
+    "cli_flags": ["--to", "md", "--enrich-formula"],
+    "formula_not_decoded_in_output": 0
+  }
+}
