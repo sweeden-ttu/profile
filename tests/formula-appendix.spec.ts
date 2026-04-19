@@ -6,7 +6,8 @@ test.describe('Formula appendix page', () => {
   });
 
   test('loads and renders KaTeX without error spans', async ({ page }) => {
-    await expect(page.locator('h1')).toContainText('Formula appendix');
+    const title = page.getByRole('heading', { name: 'Formula appendix', exact: true });
+    await expect(title).toBeVisible();
     const errors = page.locator('.katex-error');
     expect(await errors.count()).toBe(0);
     const katex = page.locator('.katex');
