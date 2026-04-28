@@ -10,11 +10,10 @@ permalink: /
     <div class="hero__container section__container">
       <div class="hero__content">
         <h1 class="hero__title">Scott Weeden</h1>
-        <p class="hero__subtitle">Computer Science Student & ML Researcher</p>
+        <p class="hero__subtitle">Master of Computer Applications (MCA), Computer Science — Texas Tech University (March 2025)</p>
         <p class="hero__description">
-          Master's student at Texas Tech University exploring machine learning,
-          cryptography, and software verification. Documenting my academic journey
-          through research, projects, and course work.
+          Making technology accessible. Based in Killeen, Texas. This site documents
+          machine learning, cryptography, software verification, and related coursework.
         </p>
         <div class="hero__actions">
           <a href="/about/" class="button button--primary">About Me</a>

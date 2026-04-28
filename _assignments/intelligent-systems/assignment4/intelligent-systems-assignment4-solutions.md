@@ -1,6 +1,7 @@
 ---
 title: "Intelligent Systems – Assignment 4 Problem Solving Solutions"
 layout: project
+permalink: /assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-solutions/
 date: 2025-12-01
 course: "Intelligent Systems"
 course_slug: intelligent-systems

@@ -1,12 +1,12 @@
 # Scott Weeden - Personal Profile & Blog
 
-Personal profile and academic blog for **Scott Weeden**, Master of Computer Science student at Texas Tech University. This Jekyll-based static site showcases research, projects, and technical writing in computer science and machine learning.
+Personal profile and academic blog for **Scott Weeden**, Master of Computer Applications (MCA), Computer Science, Texas Tech University (March 2025). This Jekyll-based static site showcases research, projects, and technical writing in computer science and machine learning.
 
 ## Overview
 
 This site features:
 - **About** - Personal introduction and academic journey
-- **Resume/CV** - Academic and professional experience
+- **Profile PDF** (`Profile.pdf`) - Exported professional profile linked from About
 - **Research & Projects** - Showcase of publications and technical projects
 - **Blog** - Technical articles on CS, ML, and algorithm analysis
 
@@ -218,7 +218,7 @@ profile/
 │       └── lighthouse-performance.yml  # Performance testing
 │
 ├── about.md                # About page
-├── resume.md               # Resume/CV page
+├── Profile.pdf             # Exported profile / CV PDF
 ├── research.md             # Research & Projects page
 ├── blog/                   # Blog index
 └── index.html              # Homepage

@@ -44,7 +44,8 @@ Advanced study of cryptographic systems, security protocols, and modern encrypti
 
 ## Resources
 
-- [Course Blog Posts](/blog/?course=CS-6343%20Cryptography)
+- [Course blog — filtered by Cryptography](/blog/?course=Cryptography)
+- [Latest cryptography posts on this page](#cryptography-course-posts) (below)
 - Canvas Course: Course ID 70714
 
 ## External Resources – Textbooks
@@ -83,6 +84,44 @@ All materials are organized in: `/coursework/Spring2026/cryptography/`
 ## Related Content
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
+
+{% comment %}Cryptography posts: site.posts is newest-first; where preserves order{% endcomment %}
+{% assign course_posts = site.posts | where: "course", "Cryptography" | limit: 15 %}
+{% if course_posts.size > 0 %}
+  <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff;">
+    <h3 id="cryptography-course-posts" style="margin-top: 0; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">Latest cryptography blog posts</h3>
+    <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0;">
+      {% for post in course_posts %}
+        <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
+          <a href="{{ post.url }}" style="color: #3b82f6; text-decoration: none; font-weight: 500; display: block;">
+            {{ post.title }}
+          </a>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.25rem;">
+            {% if post.date %}
+              <time datetime="{{ post.date | date_to_xmlschema }}" style="color: #64748b; font-size: 0.875rem;">
+                {{ post.date | date: "%B %d, %Y" }}
+              </time>
+            {% endif %}
+            {% if post.reading_time %}
+              <span style="color: #64748b; font-size: 0.875rem;">{{ post.reading_time }} min read</span>
+            {% endif %}
+          </div>
+          {% if post.excerpt %}
+            <p style="color: #64748b; font-size: 0.875rem; margin: 0.5rem 0 0 0;">
+              {{ post.excerpt | strip_html | truncatewords: 15 }}
+            </p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <a href="/blog/?course=Cryptography" style="color: #3b82f6; text-decoration: none; font-size: 0.875rem; margin-top: 1rem; display: inline-block;">View all Cryptography posts on the blog →</a>
+  </div>
+{% else %}
+  <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #f8fafc; color: #64748b;">
+    <h3 id="cryptography-course-posts" style="margin-top: 0; color: #1e293b;">Latest cryptography blog posts</h3>
+    <p style="margin: 0;">No posts available for this course.</p>
+  </div>
+{% endif %}
 
 ### Recent Drafts
 
@@ -143,45 +182,6 @@ All materials are organized in: `/coursework/Spring2026/cryptography/`
   <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #f8fafc; color: #64748b;">
     <h3 style="margin-top: 0; color: #1e293b;">Recent Projects</h3>
     <p style="margin: 0;">No projects available for this course.</p>
-  </div>
-{% endif %}
-
-### Recent Posts
-
-{% assign course_posts = site.posts | where: "course", "Cryptography" | sort: "date" | reverse | limit: 5 %}
-{% if course_posts.size > 0 %}
-  <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff;">
-    <h3 style="margin-top: 0; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">Recent Posts</h3>
-    <ul style="list-style: none; padding: 0; margin: 1rem 0 0 0;">
-      {% for post in course_posts %}
-        <li style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
-          <a href="{{ post.url }}" style="color: #3b82f6; text-decoration: none; font-weight: 500; display: block;">
-            {{ post.title }}
-          </a>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.25rem;">
-            {% if post.date %}
-              <time style="color: #64748b; font-size: 0.875rem;">
-                {{ post.date | date: "%B %d, %Y" }}
-              </time>
-            {% endif %}
-            {% if post.reading_time %}
-              <span style="color: #64748b; font-size: 0.875rem;">{{ post.reading_time }} min read</span>
-            {% endif %}
-          </div>
-          {% if post.excerpt %}
-            <p style="color: #64748b; font-size: 0.875rem; margin: 0.5rem 0 0 0;">
-              {{ post.excerpt | strip_html | truncatewords: 15 }}
-            </p>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-    <a href="/blog/?course=Cryptography" style="color: #3b82f6; text-decoration: none; font-size: 0.875rem; margin-top: 1rem; display: inline-block;">View All Posts →</a>
-  </div>
-{% else %}
-  <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #f8fafc; color: #64748b;">
-    <h3 style="margin-top: 0; color: #1e293b;">Recent Posts</h3>
-    <p style="margin: 0;">No posts available for this course.</p>
   </div>
 {% endif %}
 

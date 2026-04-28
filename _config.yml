@@ -1,13 +1,13 @@
 # Site Settings
 title: Scott Weeden
-description: Computer Science student, researcher, and ML enthusiast at Texas Tech University
+description: Making technology accessible — Master of Computer Applications (MCA), Computer Science, Texas Tech University (March 2025).
 url: "https://scottweeden.online"
 baseurl: ""
 
 # Author Information
 author:
   name: Scott Weeden
-  email: sweeden@ttu.edu
+  email: scott.weeden@gmail.com
   github: sweeden-ttu
   linkedin: weedens
 
@@ -47,6 +47,7 @@ kramdown:
   math_engine: katex
 
 # Plugins
+# jekyll-sitemap → outputs /sitemap.xml (absolute URLs via url + baseurl)
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
@@ -110,8 +111,9 @@ defaults:
     values:
       layout: page
 
-# Exclude from processing
+# Exclude from processing (also prevents *_solutions.md.backup from matching as Markdown)
 exclude:
+  - "**/*.md.backup"
   - Gemfile
   - Gemfile.lock
   - node_modules
