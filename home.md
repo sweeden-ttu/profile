@@ -126,24 +126,24 @@ permalink: /
       <div class="courses-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
 
         <div class="course-preview-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff;">
-          <h3 style="margin-top: 0; color: #1e293b;">CS-6343 Cryptography</h3>
+          <h3 style="margin-top: 0; color: #1e293b;">Cryptography</h3>
           <p style="color: #64748b; font-size: 0.95rem; margin: 0.5rem 0 1rem 0;">
             Advanced cryptographic systems, security protocols, and modern encryption techniques.
           </p>
           <div style="margin: 1rem 0;">
-            <a href="/blog/?course=CS-6343%20Cryptography" style="color: #3b82f6; text-decoration: none; font-weight: 500; margin-right: 1rem;">View Posts →</a>
-            <a href="/courses/#cs-6343" style="color: #64748b; text-decoration: none;">Course Details →</a>
+            <a href="/blog/?course=Cryptography" style="color: #3b82f6; text-decoration: none; font-weight: 500; margin-right: 1rem;">View Posts →</a>
+            <a href="/courses/cryptography/" style="color: #64748b; text-decoration: none;">Course Details →</a>
           </div>
         </div>
 
         <div class="course-preview-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff;">
-          <h3 style="margin-top: 0; color: #1e293b;">CS-5374 Software Verification</h3>
+          <h3 style="margin-top: 0; color: #1e293b;">Software Verification and Validation</h3>
           <p style="color: #64748b; font-size: 0.95rem; margin: 0.5rem 0 1rem 0;">
             Software testing, formal methods, model checking, and quality assurance.
           </p>
           <div style="margin: 1rem 0;">
-            <a href="/blog/?course=CS-5374%20Software%20Verification%20and%20Validation" style="color: #3b82f6; text-decoration: none; font-weight: 500; margin-right: 1rem;">View Posts →</a>
-            <a href="/courses/#cs-5374" style="color: #64748b; text-decoration: none;">Course Details →</a>
+            <a href="/blog/?course=Software%20Verification%20and%20Validation" style="color: #3b82f6; text-decoration: none; font-weight: 500; margin-right: 1rem;">View Posts →</a>
+            <a href="/courses/software-verification/" style="color: #64748b; text-decoration: none;">Course Details →</a>
           </div>
         </div>
 

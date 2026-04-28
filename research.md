@@ -12,16 +12,15 @@ My research focuses on machine learning applications that address real-world cha
 
 ## Research Publications
 
-### IEEE Peer Review: Microsoft Research Publication
-**Year**: [Year] | **Type**: Peer Review Article
+### Peer review exercise (Microsoft Research publication)
+**Type**: Academic peer review (course exercise)
 
-Authored a comprehensive peer review article of a Microsoft Research publication, analyzing research methodologies and contributing to the academic discourse in machine learning.
+Authored a structured review of a Microsoft Research publication, focusing on experimental design, methodology, and claims—part of graduate coursework rather than a standalone IEEE publication.
 
-**Key Contributions**:
-- Critical analysis of ML research methodologies
-- Evaluation of experimental design and statistical validity
-- Recommendations for future research directions
-- Published in IEEE proceedings
+**Key contributions**:
+- Critical analysis of ML research methodologies as presented in the paper
+- Evaluation of experimental design and statistical framing
+- Recommendations for clearer reporting and follow-on work
 
 **Topics**: Machine Learning Methodologies, Research Design, Statistical Analysis
 
@@ -77,7 +76,7 @@ Implemented a reinforcement learning agent that learns to play Pac-Man using Q-L
 
 **Technologies**: Python, Reinforcement Learning, Q-Learning, Game AI
 
-[View on GitHub](https://github.com/[username]/qlearning-pacman)
+[GitHub profile — code and coursework](https://github.com/sweeden-ttu)
 
 ---
 
@@ -120,7 +119,7 @@ Created a series of video shorts explaining reinforcement learning concepts in a
 
 **Impact**: Making complex AI concepts accessible to broader audiences, supporting self-directed learners
 
-[Watch on YouTube](https://youtube.com/[channel])
+Educational shorts cover Q-learning basics through DQN-style ideas; links to the channel can be shared on request for courses and collaborators.
 
 ---
 
@@ -142,7 +141,7 @@ Developed a browser utility for working with propositional logic, bridging forma
 
 **Technologies**: JavaScript, Chrome Extension API, Logic Programming
 
-[View on Chrome Web Store](https://chrome.google.com/webstore/[extension])
+The extension was published for logic coursework; store listing and updates are maintained as the tool evolves.
 
 ---
 
@@ -190,10 +189,10 @@ I'm always interested in discussing research ideas, potential collaborations, an
 - Algorithm analysis and optimization
 - International research partnerships
 
-**Contact**: [Your email]
-**GitHub**: [Your profile]
-**LinkedIn**: [Your profile]
+**Email**: [scott.weeden@gmail.com](mailto:scott.weeden@gmail.com)  
+**GitHub**: [github.com/sweeden-ttu](https://github.com/sweeden-ttu)  
+**LinkedIn**: [linkedin.com/in/weedens](https://www.linkedin.com/in/weedens/)
 
 ---
 
-*For detailed project descriptions, code, and documentation, please visit my [GitHub profile](https://github.com/[username]) or individual project pages.*
+*For coursework, projects, and code samples, see repositories on [GitHub](https://github.com/sweeden-ttu) and the [Projects](/research/) section of this site.*

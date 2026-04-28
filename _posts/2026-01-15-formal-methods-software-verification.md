@@ -11,16 +11,8 @@ course: "Software Verification and Validation"
 
 # Formal Methods in Software Verification: Mathematical Approaches to Correctness
 
-[Content to be written]
+Formal methods state **models** (finite-state machines, labeled transition systems) and **properties** (temporal logic, invariants) and ask tools whether every behavior satisfies those properties—or produce counterexamples when they do not. **Model checking** explores states up to abstraction bounds; **theorem proving** supports richer mathematics at higher proof effort.
 
-## Introduction
+In industry, FM rarely replaces testing; it **targets high-risk kernels**: protocols, access control, firmware controllers, compilers. Costs include modeling time, state explosion, and training—balanced against the cost of field failures.
 
-[Introduction content]
-
-## Key Concepts
-
-[Main content sections]
-
-## Conclusion
-
-[Conclusion content]
+Tie this framing to coursework on LTL/CTL where applicable, specification discipline, and the gap between modeled and deployed systems (side channels, deserialization, concurrency).

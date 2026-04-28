@@ -6,7 +6,7 @@ tech_stack: [Python, Reinforcement Learning, Q-Learning, NumPy]
 status: completed
 subtitle: "Teaching an agent to play Pac-Man using reinforcement learning"
 links:
-  github: "https://github.com/[username]/qlearning-pacman"
+  github: "https://github.com/sweeden-ttu"
   demo: "#"
 outcomes:
   - "Agent learns optimal navigation strategies"
@@ -204,7 +204,7 @@ This project demonstrates:
 
 ## Resources
 
-- [GitHub Repository](https://github.com/[username]/qlearning-pacman)
+- [GitHub Repository](https://github.com/sweeden-ttu)
 - [Sutton & Barto: Reinforcement Learning](https://incompleteideas.net/book/)
 - [UC Berkeley AI Course](https://ai.berkeley.edu/)
 

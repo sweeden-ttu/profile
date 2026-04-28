@@ -11,16 +11,8 @@ course: "Cryptography"
 
 # Public Key Cryptography: Understanding RSA and Key Exchange
 
-[Content to be written]
+Public-key cryptography separates *encryption* from *key distribution*: each party publishes a public key and keeps a private key. **RSA** rests on the hardness of factoring (or related problems) while related primitives such as **Diffie–Hellman** address agreement of shared secrets over insecure channels.
 
-## Introduction
+This post summarizes the core ideas at a graduate level: key generation, modular exponentiation, correct use of padding and hybrid encryption, and why raw RSA is insufficient in practice. For implementation, prefer well-vetted libraries and modern padding (e.g., OAEP for encryption, PSS for signatures) rather than textbook-only constructions.
 
-[Introduction content]
-
-## Key Concepts
-
-[Main content sections]
-
-## Conclusion
-
-[Conclusion content]
+See the **Cryptography** course page and later posts for rigorous treatment of attacks, parameters, and pairing with symmetric ciphers for bulk data.
