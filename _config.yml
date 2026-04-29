@@ -36,7 +36,7 @@ collections:
   drafts:
     output: false
 
-# Kramdown Settings
+# Kramdown Settings (math: kramdown-math-katex gem + katex Ruby gem; keep CDN KaTeX in default.html aligned with gem’s Katex::KATEX_VERSION)
 kramdown:
   input: GFM
   syntax_highlighter: rouge

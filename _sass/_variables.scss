@@ -18,7 +18,7 @@ $color-text-primary: #0d1329;   // Deep ink - Headlines, body
 $color-text-secondary: #344054; // Neutral 600 - Captions, meta
 $color-text-tertiary: #6b7280;  // Neutral 500 - Placeholder
 
-$color-bg-primary: #f6f8fb;     // Soft paper - Main background
+$color-bg-primary: #f3f5f9;     // Cool paper — slightly deeper than flat white
 $color-bg-secondary: #eef1f8;   // Section slabs, cards
 $color-bg-tertiary: #e6ebf5;    // Code blocks, callouts
 
@@ -42,9 +42,9 @@ $color-code-function: #2563eb;  // Blue
 // Typography
 // ============================================================================
 
-// Font Families - Technical & Editorial mix
-$font-family-heading: "Space Grotesk", "IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; // Geometric sans for headlines
-$font-family-sans: "IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;                    // Technical body copy
+// Font Families — display + editorial sans (Inter removed per design standards)
+$font-family-heading: "Space Grotesk", "Plus Jakarta Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$font-family-sans: "Plus Jakarta Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 $font-family-mono: "IBM Plex Mono", "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace;
 
 // Type Scale (1.250 - Major Third)
@@ -115,22 +115,26 @@ $border-radius-xl: 12px;
 // Shadows
 // ============================================================================
 
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.1);
-$shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.07);
-$shadow-xl: 0 10px 15px rgba(0, 0, 0, 0.1);
+// Shadows tinted with primary ink (avoid flat rgba(0,0,0) mush)
+$shadow-sm: 0 1px 2px rgba($color-primary-dark, 0.06);
+$shadow-md: 0 4px 14px rgba($color-primary-dark, 0.08);
+$shadow-lg: 0 12px 28px rgba($color-primary-dark, 0.1);
+$shadow-xl: 0 20px 40px rgba($color-primary-dark, 0.12);
 
-// Hover shadow for cards
-$shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05);
-$shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-card: 0 1px 3px rgba($color-primary-dark, 0.06);
+$shadow-card-hover: 0 12px 32px rgba($color-primary-dark, 0.12);
 
 // ============================================================================
 // Transitions
 // ============================================================================
 
-$transition-fast: 100ms ease;
-$transition-base: 150ms ease;
-$transition-slow: 300ms ease;
+// Motion — custom easing (no generic linear / ease-in-out defaults)
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+
+$transition-fast: 140ms $ease-out-expo;
+$transition-base: 220ms $ease-premium;
+$transition-slow: 420ms $ease-premium;
 
 // ============================================================================
 // Z-Index Scale

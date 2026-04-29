@@ -5,183 +5,173 @@ permalink: /
 ---
 
 <div class="homepage">
-  <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__diagonal-accent" aria-hidden="true"></div>
     <div class="hero__container section__container">
       <div class="hero__content">
-        <h1 class="hero__title">Scott Weeden</h1>
+        <h1 id="hero-heading" class="hero__title">Scott Weeden</h1>
         <p class="hero__subtitle">Master of Computer Applications (MCA), Computer Science — Texas Tech University (March 2025)</p>
         <p class="hero__description">
           Making technology accessible. Based in Killeen, Texas. This site documents
           machine learning, cryptography, software verification, and related coursework.
         </p>
         <div class="hero__actions">
-          <a href="/about/" class="button button--primary">About Me</a>
-          <a href="/research/" class="button button--secondary">Projects</a>
+          <a href="/about/" class="btn btn--primary">About me</a>
+          <a href="/research/" class="btn btn--secondary">Projects</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Recent Assignment Solutions Section -->
-  <section class="section" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+  <section class="section section--featured-solutions" aria-labelledby="solutions-heading">
     <div class="section__container">
       <div class="section__header section__header--centered">
-        <span class="section__label">📚 Featured</span>
-        <h2 class="section__title">Recent Assignment Solutions</h2>
-        <p class="section__description">Complete solutions with step-by-step explanations for recent coursework</p>
+        <span class="section__label">Featured</span>
+        <h2 id="solutions-heading" class="section__title">Recent assignment solutions</h2>
+        <p class="section__description">Worked solutions with step-by-step explanations for recent coursework</p>
       </div>
 
-      <div class="solutions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; margin-top: 3rem;">
-
-        <!-- Logic Homework 3 Solutions -->
-        <div class="solution-card" style="border: 2px solid #8b5cf6; border-radius: 12px; padding: 0; background: #ffffff; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-          <div style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); color: white; padding: 1.5rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <span style="font-size: 1.5rem;">📝</span>
-              <span style="font-size: 0.875rem; opacity: 0.9;">Logic for Computer Scientists</span>
+      <div class="solutions-grid">
+        <article class="solution-card">
+          <header class="solution-card__header">
+            <div class="solution-card__eyebrow">
+              <span class="solution-card__eyebrow-icon" aria-hidden="true">📝</span>
+              <span>Logic for Computer Scientists</span>
             </div>
-            <h3 style="margin: 0; font-size: 1.5rem;">Homework 3 Solutions</h3>
-          </div>
-          <div style="padding: 1.5rem;">
-            <ul style="margin: 0 0 1.5rem 0; padding-left: 1.25rem; color: #475569;">
-              <li style="margin-bottom: 0.5rem;">Predicate logic trees & variable scoping</li>
-              <li style="margin-bottom: 0.5rem;">Propositional proofs (Modus Ponens, Addition)</li>
-              <li style="margin-bottom: 0.5rem;">CNF conversion with algebraic steps</li>
-              <li style="margin-bottom: 0.5rem;">Predicate logic formalization</li>
+            <h3 class="solution-card__title">Homework 3 solutions</h3>
+          </header>
+          <div class="solution-card__body">
+            <ul class="solution-card__list">
+              <li>Predicate logic trees and variable scoping</li>
+              <li>Propositional proofs (Modus Ponens, Addition)</li>
+              <li>CNF conversion with algebraic steps</li>
+              <li>Predicate logic formalization</li>
             </ul>
-            <div style="display: flex; gap: 1rem;">
-              <a href="/assignments/logic-for-computer-scientists/homework3/logic-homework3-solutions" style="flex: 1; text-align: center; background: #8b5cf6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
-              <a href="/assignments/logic-for-computer-scientists/homework3/logic-homework3" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
+            <div class="solution-card__actions">
+              <a class="solution-card__btn solution-card__btn--primary" href="/assignments/logic-for-computer-scientists/homework3/logic-homework3-solutions">View solutions</a>
+              <a class="solution-card__btn solution-card__btn--ghost" href="/assignments/logic-for-computer-scientists/homework3/logic-homework3">Problems</a>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Intelligent Systems Assignment 4 Solutions -->
-        <div class="solution-card" style="border: 2px solid #3b82f6; border-radius: 12px; padding: 0; background: #ffffff; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-          <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 1.5rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <span style="font-size: 1.5rem;">🧠</span>
-              <span style="font-size: 0.875rem; opacity: 0.9;">Intelligent Systems</span>
+        <article class="solution-card">
+          <header class="solution-card__header solution-card__header--alt">
+            <div class="solution-card__eyebrow">
+              <span class="solution-card__eyebrow-icon" aria-hidden="true">🧠</span>
+              <span>Intelligent Systems</span>
             </div>
-            <h3 style="margin: 0; font-size: 1.5rem;">Assignment 4 Solutions</h3>
-          </div>
-          <div style="padding: 1.5rem;">
-            <ul style="margin: 0 0 1.5rem 0; padding-left: 1.25rem; color: #475569;">
-              <li style="margin-bottom: 0.5rem;">Probability table sizes & sums</li>
-              <li style="margin-bottom: 0.5rem;">Bayesian Network representation</li>
-              <li style="margin-bottom: 0.5rem;">D-separation & independence</li>
-              <li style="margin-bottom: 0.5rem;">Variable elimination inference</li>
+            <h3 class="solution-card__title">Assignment 4 solutions</h3>
+          </header>
+          <div class="solution-card__body">
+            <ul class="solution-card__list">
+              <li>Probability table sizes and sums</li>
+              <li>Bayesian network representation</li>
+              <li>D-separation and independence</li>
+              <li>Variable elimination inference</li>
             </ul>
-            <div style="display: flex; gap: 1rem;">
-              <a href="/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-solutions" style="flex: 1; text-align: center; background: #3b82f6; color: white; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">View Solutions</a>
-              <a href="/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-problems" style="flex: 1; text-align: center; border: 1px solid #e2e8f0; color: #64748b; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none;">Problems</a>
+            <div class="solution-card__actions">
+              <a class="solution-card__btn solution-card__btn--primary" href="/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-solutions">View solutions</a>
+              <a class="solution-card__btn solution-card__btn--ghost" href="/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-problems">Problems</a>
             </div>
           </div>
-        </div>
-
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Quick Links Section -->
-  <section class="section">
+  <section class="section" aria-labelledby="quicklinks-heading">
     <div class="section__container">
       <div class="section__header section__header--centered">
         <span class="section__label">Explore</span>
-        <h2 class="section__title">Quick Links</h2>
+        <h2 id="quicklinks-heading" class="section__title">Quick links</h2>
       </div>
 
-      <div class="quick-links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
-        <a href="/courses/" class="quick-link-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: block;">
-          <h3 style="margin-top: 0; color: #1e293b;">📚 Courses</h3>
-          <p style="color: #64748b; margin: 0.5rem 0 0 0;">View all courses including Cryptography, Software Verification, Logic, and Intelligent Systems</p>
-          <span style="color: #3b82f6; font-weight: 500; margin-top: 1rem; display: inline-block;">View Courses →</span>
+      <div class="quick-links-grid">
+        <a href="/courses/" class="quick-link-card">
+          <h3>Courses</h3>
+          <p>Course hubs for Cryptography, Software Verification, Logic, Intelligent Systems, and more.</p>
+          <span class="quick-link-card__cta">View courses →</span>
         </a>
 
-        <a href="/assignments/" class="quick-link-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: block;">
-          <h3 style="margin-top: 0; color: #1e293b;">📋 Assignments</h3>
-          <p style="color: #64748b; margin: 0.5rem 0 0 0;">Browse homework, assignments, and complete solutions with explanations</p>
-          <span style="color: #3b82f6; font-weight: 500; margin-top: 1rem; display: inline-block;">View Assignments →</span>
+        <a href="/assignments/" class="quick-link-card">
+          <h3>Assignments</h3>
+          <p>Homework, assignments, and complete solutions with explanations.</p>
+          <span class="quick-link-card__cta">View assignments →</span>
         </a>
 
-        <a href="/blog/" class="quick-link-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff; text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: block;">
-          <h3 style="margin-top: 0; color: #1e293b;">📝 Blog</h3>
-          <p style="color: #64748b; margin: 0.5rem 0 0 0;">Technical articles on CS topics, course notes, and learning insights</p>
-          <span style="color: #3b82f6; font-weight: 500; margin-top: 1rem; display: inline-block;">Read Blog →</span>
+        <a href="/blog/" class="quick-link-card">
+          <h3>Blog</h3>
+          <p>Technical notes on CS topics, course write-ups, and learning notes.</p>
+          <span class="quick-link-card__cta">Read blog →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Current Courses Section -->
-  <section class="section" style="background: #f8fafc;">
+  <section class="section section--surface-soft" aria-labelledby="courses-heading">
     <div class="section__container">
       <div class="section__header section__header--centered">
         <span class="section__label">Spring 2026</span>
-        <h2 class="section__title">Current Courses</h2>
-        <p class="section__description">Active courses this semester with blog posts and assignments</p>
+        <h2 id="courses-heading" class="section__title">Current courses</h2>
+        <p class="section__description">Active courses this semester with posts and assignments</p>
       </div>
 
-      <div class="courses-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-
-        <div class="course-preview-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff;">
-          <h3 style="margin-top: 0; color: #1e293b;">Cryptography</h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0.5rem 0 1rem 0;">
+      <div class="courses-preview-grid">
+        <div class="course-preview-card">
+          <h3>Cryptography</h3>
+          <p>
             Advanced cryptographic systems, security protocols, and modern encryption techniques.
           </p>
-          <div style="margin: 1rem 0;">
-            <a href="/blog/?course=Cryptography" style="color: #3b82f6; text-decoration: none; font-weight: 500; margin-right: 1rem;">View Posts →</a>
-            <a href="/courses/cryptography/" style="color: #64748b; text-decoration: none;">Course Details →</a>
+          <div class="course-preview-card__links">
+            <a href="/blog/?course=Cryptography">View posts</a>
+            <a href="/courses/cryptography/">Course page</a>
           </div>
         </div>
 
-        <div class="course-preview-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2rem; background: #ffffff;">
-          <h3 style="margin-top: 0; color: #1e293b;">Software Verification and Validation</h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0.5rem 0 1rem 0;">
+        <div class="course-preview-card">
+          <h3>Software Verification and Validation</h3>
+          <p>
             Software testing, formal methods, model checking, and quality assurance.
           </p>
-          <div style="margin: 1rem 0;">
-            <a href="/blog/?course=Software%20Verification%20and%20Validation" style="color: #3b82f6; text-decoration: none; font-weight: 500; margin-right: 1rem;">View Posts →</a>
-            <a href="/courses/software-verification/" style="color: #64748b; text-decoration: none;">Course Details →</a>
+          <div class="course-preview-card__links">
+            <a href="/blog/?course=Software%20Verification%20and%20Validation">View posts</a>
+            <a href="/courses/software-verification/">Course page</a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- Recent Blog Posts Section -->
-  <section class="section">
+  <section class="section" aria-labelledby="posts-heading">
     <div class="section__container">
       <div class="section__header section__header--centered">
         <span class="section__label">Latest</span>
-        <h2 class="section__title">Recent Blog Posts</h2>
-        <p class="section__description">Latest articles on course topics, research, and technical insights</p>
+        <h2 id="posts-heading" class="section__title">Recent blog posts</h2>
+        <p class="section__description">Articles on course topics, research, and technical notes</p>
       </div>
 
       {% assign recent_posts = site.posts | limit: 6 %}
       {% if recent_posts.size > 0 %}
-        <div class="blog-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+        <div class="blog-preview-grid">
           {% for post in recent_posts %}
-            <article class="blog-preview-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; font-size: 0.875rem; color: #64748b;">
+            <article class="blog-preview-card">
+              <div class="blog-preview-card__meta">
                 <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
                 {% if post.course %}
-                  <span style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 4px;">{{ post.course }}</span>
+                  <span class="blog-preview-card__badge">{{ post.course }}</span>
                 {% endif %}
               </div>
-              <h3 style="margin: 0 0 0.5rem 0;">
-                <a href="{{ post.url }}" style="color: #1e293b; text-decoration: none;">{{ post.title }}</a>
+              <h3>
+                <a href="{{ post.url }}">{{ post.title }}</a>
               </h3>
               {% if post.excerpt %}
-                <p style="color: #64748b; font-size: 0.9rem; margin: 0;">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
               {% endif %}
             </article>
           {% endfor %}
         </div>
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="/blog/" class="button button--primary">View All Posts →</a>
+        <div class="section__footer-actions">
+          <a href="/blog/" class="btn btn--primary">View all posts →</a>
         </div>
       {% endif %}
     </div>
