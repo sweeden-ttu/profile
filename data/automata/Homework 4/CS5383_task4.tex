@@ -1,0 +1,174 @@
+\documentclass[12pt, letterpaper]{article}
+
+\setlength{\topmargin}{-1.75cm} \setlength{\textheight}{22.5cm}
+\setlength{\oddsidemargin}{0.25cm}
+\setlength{\evensidemargin}{0.25cm} \setlength{\textwidth}{16.2cm}
+\author{Scott Weeden}
+% symbols 
+\usepackage{fdsymbol}
+\usepackage{stmaryrd}
+\usepackage{pifont} % check/cross marks 
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+%\usepackage{amssymb}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{graphicx}
+\usepackage[linguistics]{forest}
+% for automata 
+\usepackage{tikz} 
+\usetikzlibrary{automata,positioning}
+
+
+\usepackage{palatino, url, multicol} % for multiple columns
+
+\usepackage{pictex}
+%% in the .pictex output of xfig, there is command \colo
+%% however the old version of pictex may not define this
+%% so we define color here as empty
+\def \color#1]#2{}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\newcommand{\hwnumber} {
+    4
+}
+
+\newcommand{\hwtitle} {
+  NFA. Context Free Grammar.  
+}
+
+\newcommand{\duedate}{
+    11:59pm Fri Feb 27.
+}
+
+\date{}
+
+\begin{document}
+
+\newcommand{\hide}[1]{}
+\newcommand{\otherquestions}[1]{}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\pg}[1]{{\tt #1}}
+\newtheorem{definition}{Definition}
+\newcommand{\emptyclause}{\Box}
+\newcommand{\keyword}[1]{{\bf #1}}
+
+\newcommand{\ee}[1] {
+  \begin{enumerate}
+    #1
+  \end{enumerate}
+}
+%% \noindent test \hfill test
+
+\newcommand{\ie}[1] {
+  \begin{enumerate}
+    #1
+  \end{enumerate}
+}
+
+\newcommand{\kleene}{\wedge}
+
+\title{{\bf Task \hwnumber.} \hwtitle}
+
+\maketitle
+
+\input{hwHeader}
+
+ \noindent {\bf Submit PDF file (and Latex if you use it) of your solution to Canvas by
+  \duedate.}
+
+\ee{
+
+    \item  You must use Latex.
+    % For Latex, we will use the same policy as in HW2 and HW3. In short, everyone has a chance to practice Latex and get extra credit depending on the quality of the Latex source.  
+
+	\item (25 - basics) (NFA) Consider the NFA $M = (\Sigma, K, s, F, \Delta)$ where $\Sigma = \{a, b, c\}$, $K = \{p_1, p_2, p_3\}$, $s = p_1$, $F=\{p_3\}$  and $\Delta$ is a transition relation.   
+	\ee{
+		\item What is the alphabet of $M$? \\
+		\textbf{Solution.} The alphabet of $M$ is $\Sigma = \{a, b, c\}$.
+		\item What are the states of  $M$? \\
+		\textbf{Solution.} The states of $M$ are $K = \{p_1, p_2, p_3\}$.
+		\item What is the start state of $M$? \\
+		\textbf{Solution.} The start state is $s = p_1$.
+		\item Is $p_2$ a final state of $M$? \\
+		\textbf{Solution.} No. The set of final states is $F = \{p_3\}$, so $p_2 \notin F$.
+		\item Give an example string over alphabet of $M$. \\
+		\textbf{Solution.} For example, $abc$, $a$, $bb$, or $\varepsilon$ (if we allow the empty string over $\Sigma$).
+		\item Give an example of a configuration of $M$ with state $p_1$ in the configuration. \\
+		\textbf{Solution.} A configuration is a pair (state, remaining input). One example is $(p_1, abc)$ or $(p_1, \varepsilon)$.
+		\item Give an example of $\Delta$ with at least 1 element and at most 3 elements (recall that $\Delta$ is simply a set). \\
+		\textbf{Solution.} $\Delta$ is a subset of $K \times (\Sigma \cup \{\varepsilon\}) \times K$. For example: $\Delta = \{(p_1, a, p_2), (p_2, b, p_3)\}$, or $\Delta = \{(p_1, a, p_1)\}$ (one element).
+	}
+
+  \item (10 - basics) (Foundation) Study the {\em pumping lemma}. 
+     \ee{
+		\item List all concepts used in the lemma. Each concept should be in the format of {\em concept name} and {\em arguments} of the concept. \\
+		\textbf{Solution.} (Typical formulation for regular languages.) Concepts: \emph{language} (no arguments or language name), \emph{regular} (language), \emph{string} (e.g.\ $s$), \emph{length} (string), \emph{positive integer} (e.g.\ pumping length $p$), \emph{decomposition/concatenation} (string into $xyz$), \emph{substring} (e.g.\ $y$), \emph{repetition} (e.g.\ $xy^iz$ for $i \ge 0$), \emph{member} (string, language).
+		\item List all logical symbols used in the lemma. \\
+		\textbf{Solution.} Typically: $\forall$ (for all), $\exists$ (there exists), $\Rightarrow$ or $\rightarrow$ (implies), $\wedge$ (and), $\neg$ (not), $\in$ (member of), $\ge$, $=$. In the statement: ``If $L$ is regular then there exists $p \ge 1$ such that for every string $s \in L$ with $|s| \ge p$, there exist $x,y,z$ such that $s = xyz$, $|xy| \le p$, $|y| > 0$, and for all $i \ge 0$, $xy^iz \in L$.'' 
+	}   % Question: definitions of concepts, write statement / (Q5 of HW2) for pumping lemma, list all concepts there in the form: concept name and their arguments. List all logical connectives there.  
+
+   % 80% 
+  \item (10 - medium) (Ideas underlying Pumping Lemma) Given an NFA $M$ and a computation over it:  $(p_1, abc)    \vdash_M  (p_2, bc) \vdash_M (p_2, c) \vdash_M (p_3, e)$ where $p_1$ is the start state and $p_3$ a final state. (Hint. Not only recall what {\em accept} intuitively means, but also its formal definition. Note also the repetition of state $p_2$ in the computation.)
+	\ee{ 
+		\item is string {\em abc} accepted by $M$? \\
+		\textbf{Solution.} Yes. The given computation shows $(p_1, abc) \vdash_M^* (p_3, \varepsilon)$ with $p_3 \in F$, so by definition $abc$ is accepted by $M$.
+		\item is string {\em ac} accepted by $M$? \\
+		\textbf{Solution.} We are not told whether there is a computation from $(p_1, ac)$ to some $(q, \varepsilon)$ with $q \in F$. So we cannot conclude from the given information alone; the answer depends on $\Delta$. If there is a path $p_1 \stackrel{a}{\to} \cdots \stackrel{c}{\to} p_3$, then $ac$ is accepted; otherwise not.
+		\item is string $ab^2c$ accepted by $M$? \\
+		\textbf{Solution.} Yes. We can extend the same idea: $(p_1, abbc) \vdash_M (p_2, bbc) \vdash_M (p_2, bc) \vdash_M (p_2, c) \vdash_M (p_3, \varepsilon)$ (reading one $b$ in the middle step). So $ab^2c$ is accepted.
+		\item Explain why for any non-negative number $n$,  $ab^nc$ is accepted by $M$? \\
+		\textbf{Solution.} The computation shows that from $p_1$ we can read $a$ and reach $p_2$, then stay in $p_2$ while reading any number of $b$'s (including zero), then read $c$ and reach $p_3 \in F$. So for any $n \ge 0$, we have $(p_1, ab^nc) \vdash_M^* (p_3, \varepsilon)$. By the formal definition of accept, $ab^nc$ is accepted for every $n \ge 0$.
+	}
+
+  \item (5 -  advanced) (Comprehensive). Using pumping lemma, prove  the language $\{0^n1^n | n \ge 0\}$ over alphabet $\Sigma = \{0, 1\}$ is not regular. 
+
+\textbf{Solution.} Assume for contradiction that $L = \{0^n1^n \mid n \ge 0\}$ is regular. Then the pumping lemma holds: there exists a pumping length $p \ge 1$ such that for every $s \in L$ with $|s| \ge p$, there exist $x, y, z$ with $s = xyz$, $|xy| \le p$, $|y| > 0$, and $xy^iz \in L$ for all $i \ge 0$. Choose $s = 0^p 1^p$. Then $s \in L$ and $|s| = 2p \ge p$. So $s = xyz$ with $|xy| \le p$, $|y| > 0$. Hence $xy$ lies entirely within the block of $0$'s, so $y = 0^k$ for some $k \ge 1$. Then $xy^0 z = xz = 0^{p-k} 1^p$ has fewer $0$'s than $1$'s, so $xz \notin L$. This contradicts $xy^iz \in L$ for all $i \ge 0$. So $L$ is not regular. 
+
+ \item (35 - basics) (Context free grammar). Use the problem decomposition method to 
+	\ee{
+		\item write  a precise definition AND a context free grammar for the language of all strings whose number of 1's is one less than its number of 0's.  % palindromes over alphabet $\{0, 1\}$.  Write also the English definition before your context free grammar. 
+	} 
+	\textbf{Solution.} \emph{Definition:} $L = \{ w \in \{0,1\}^* \mid \#_0(w) - \#_1(w) = 1 \}$ (over alphabet $\Sigma = \{0,1\}$). In words: every string in $L$ has exactly one more $0$ than $1$. \\
+	\emph{Grammar (decomposition):} Decompose into ``one extra 0'' and ``equal 0s and 1s.'' Let $E$ generate strings with $\#_0 = \#_1$. Then $S$ adds exactly one $0$: either before or after such a string. 
+	\[
+	S \to 0E \mid E0 \qquad
+	E \to 0E1E \mid 1E0E \mid \varepsilon
+	\]
+	and based on the grammar,
+	\ee{
+		\item Write the right most derivation for string  $100$. \\
+		\textbf{Solution.} Rightmost derivation (always expand the rightmost nonterminal):
+		\[
+		S \Rightarrow E0 \Rightarrow 1E0E0 \Rightarrow 1E00 \Rightarrow 100.
+		\]
+		(First $S \to E0$; then rightmost nonterminal $E \to 1E0E$; then rightmost $E \to \varepsilon$ giving $1E0\varepsilon 0 = 1E00$; then $E \to \varepsilon$ giving $100$.)
+		\item Draw a parse tree for 100. \\
+		\textbf{Solution.} Parse tree: root $S$ with children $E$, $0$. The subtree for $E$ has children $1$, $E$, $0$, $E$ (from $E \to 1E0E$); both child $E$'s derive $\varepsilon$. So the tree yields $1 \cdot \varepsilon \cdot 0 \cdot \varepsilon \cdot 0 = 100$.
+		\begin{center}
+		\begin{forest}
+		[S
+			[E [1] [E [$\varepsilon$]] [0] [E [$\varepsilon$]]]
+			[0]
+		]
+		\end{forest}
+		\end{center}
+	}
+   
+	% 90% 
+	\item (5 - advanced) (Context free grammar). Following the method discussed in class, write context free grammar for the language (over alphabet $\{0, 1\}$) consisting of strings that have equal number 0's and 1's. If you follow ideas and methods other than the ones discussed in class, you will get at most 90\% for this quesiton. 
+
+	\textbf{Solution.} $L = \{ w \in \{0,1\}^* \mid \#_0(w) = \#_1(w) \}$. Grammar (start symbol $E$):
+	\[
+	E \to 0E1E \mid 1E0E \mid \varepsilon
+	\]
+	Each rule preserves the balance of 0s and 1s; $\varepsilon$ gives the base case.
+
+	% 80% 
+	\item (10 - medium) (Foundation) Give a precise definition of {\em context free language}. 
+
+	\textbf{Solution.} A language $L$ over an alphabet $\Sigma$ is a \emph{context-free language} (CFL) if there exists a context-free grammar $G = (V, \Sigma, P, S)$ such that the language generated by $G$ equals $L$, i.e.\ $L(G) = L$. Equivalently: $L$ is a CFL iff $L = \{ w \in \Sigma^* \mid S \Rightarrow^* w \}$ for some CFG $G$ with start symbol $S$.
+}
+\end{document}
+

@@ -13,7 +13,7 @@
     </li>
 
     <li class="site-nav__item">
-      <a href="{{ '/research/' | relative_url }}" class="site-nav__link {% if page.url contains '/research' %}site-nav__link--active{% endif %}">
+      <a href="{{ '/research/' | relative_url }}" class="site-nav__link {% if page.url contains '/research' or page.url contains '/projects' %}site-nav__link--active{% endif %}">
         Research & Projects
       </a>
     </li>
