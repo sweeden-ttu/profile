@@ -36,7 +36,12 @@ collections:
   drafts:
     output: false
 
-# Kramdown Settings (math: kramdown-math-katex gem + katex Ruby gem; keep CDN KaTeX in default.html aligned with gem’s Katex::KATEX_VERSION)
+# Kramdown Settings (math: kramdown-math-katex gem + katex Ruby gem; keep CDN KaTeX in _includes/katex-*.html aligned with gem’s Katex::KATEX_VERSION)
+#
+# Math in Markdown:
+# - $$ … $$ on its own lines → block math, rendered at build time via kramdown-math-katex.
+# - $$ … $$ on one line → inline math at build time (kramdown convention).
+# - $ … $, \( … \), \[ … \] → not parsed by kramdown; KaTeX auto-render runs in the browser on all pages using default.html.
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -45,6 +50,9 @@ kramdown:
       line_numbers: false
     css_class: 'highlight'
   math_engine: katex
+  math_engine_opts:
+    throw_on_error: false
+    strict: "ignore"
 
 # Plugins
 # jekyll-sitemap → outputs /sitemap.xml (absolute URLs via url + baseurl)
