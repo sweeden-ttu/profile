@@ -3,7 +3,6 @@ source "https://rubygems.org"
 # Jekyll
 gem "jekyll", "~> 4.3"
 gem "jekyll-sass-converter", "~> 3.0"
-gem "sass-embedded", "~> 1.80"
 gem "csv"
 gem "logger"
 gem "base64"

@@ -1,73 +1,84 @@
 // _variables.scss
-// Design Tokens - Technical Atlas theme
-// Clean, research-forward styling for long-form engineering writeups and series
+// Paper design tokens — source of truth: DESIGN.md at repository root.
+// Legacy SCSS names ($color-primary, etc.) are aliases for existing partials.
+
+@use "sass:color";
 
 // ============================================================================
-// Color Palette
+// Paper palette (DESIGN.md YAML)
 // ============================================================================
 
-// Primary Colors - Cobalt & Neon accents
-$color-primary: #2446b5;        // Cobalt - Links, CTAs
-$color-primary-dark: #152a73;   // Midnight - Hover states
-$color-primary-light: #e5e9ff;  // Mist Blue - Backgrounds
-$color-accent-purple: #5a4fff;  // Electric Indigo - Highlights
-$color-accent-cyan: #3cd0d3;    // Cyan accent - Inline badges, data points
-
-// Neutral Grays - Matte paper
-$color-text-primary: #0d1329;   // Deep ink - Headlines, body
-$color-text-secondary: #344054; // Neutral 600 - Captions, meta
-$color-text-tertiary: #6b7280;  // Neutral 500 - Placeholder
-
-$color-bg-primary: #f3f5f9;     // Cool paper — slightly deeper than flat white
-$color-bg-secondary: #eef1f8;   // Section slabs, cards
-$color-bg-tertiary: #e6ebf5;    // Code blocks, callouts
-
-$color-border: #d6deec;         // Clean divider
-$color-border-light: #e9eef7;   // Subtle dividers
-
-// Accent Colors - Purposeful
-$color-accent-green: #10b981;   // Success, achievements
-$color-accent-orange: #f59e0b;  // Highlights, warnings
-$color-accent-red: #ef4444;     // Errors, critical info
-
-// Code Syntax (Minimalist)
-$color-code-bg: #f8fafc;
-$color-code-text: #1e293b;
-$color-code-keyword: #7c3aed;   // Purple
-$color-code-string: #059669;    // Green
-$color-code-comment: #94a3b8;   // Gray
-$color-code-function: #2563eb;  // Blue
+$color-paper-primary: #111111;
+$color-paper-secondary: #8b5cf6;
+$color-paper-success: #16a34a;
+$color-paper-warning: #d97706;
+$color-paper-danger: #dc2626;
+$color-paper-surface: #ffffff;
+$color-paper-text: #111827;
 
 // ============================================================================
-// Typography
+// Legacy aliases (downstream partials)
 // ============================================================================
 
-// Font Families — display + editorial sans (Inter removed per design standards)
-$font-family-heading: "Space Grotesk", "Plus Jakarta Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-$font-family-sans: "Plus Jakarta Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-$font-family-mono: "IBM Plex Mono", "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace;
+$color-primary: $color-paper-primary;
+$color-primary-dark: #000000;
+$color-primary-light: #ebebed;
+$color-accent-purple: $color-paper-secondary;
+// Replaces legacy cyan accent slot — soft violet compatible with Paper
+$color-accent-cyan: color.mix($color-paper-secondary, $color-paper-surface, 78%);
 
-// Type Scale (1.250 - Major Third)
-$font-size-h1: 2.441rem;    // 39px - Page titles
-$font-size-h2: 1.953rem;    // 31px - Section headers
-$font-size-h3: 1.563rem;    // 25px - Subsection headers
-$font-size-h4: 1.25rem;     // 20px - Card titles
-$font-size-base: 1rem;      // 16px - Standard text
-$font-size-small: 0.8rem;   // 13px - Captions, metadata
+$color-text-primary: $color-paper-text;
+$color-text-secondary: #4b5563;
+$color-text-tertiary: #6b7280;
 
-// Line Heights
+$color-bg-primary: #fafafa;
+$color-bg-secondary: #f0f0f0;
+$color-bg-tertiary: #e8e8ea;
+
+$color-border: #e5e7eb;
+$color-border-light: #f3f4f6;
+
+$color-accent-green: $color-paper-success;
+$color-accent-orange: $color-paper-warning;
+$color-accent-red: $color-paper-danger;
+
+// ============================================================================
+// Code syntax
+// ============================================================================
+
+$color-code-bg: #f4f4f5;
+$color-code-text: #1f2937;
+$color-code-keyword: #7c3aed;
+$color-code-string: #059669;
+$color-code-comment: #6b7280;
+$color-code-function: #2563eb;
+
+// ============================================================================
+// Typography (DESIGN.md — Roboto / Montserrat / PT Mono, scale 14–40)
+// ============================================================================
+
+$font-family-heading: "Montserrat", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$font-family-sans: "Roboto", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$font-family-mono: "PT Mono", ui-monospace, "SF Mono", Monaco, Consolas, monospace;
+
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.5rem;
+$font-size-h4: 1.125rem;
+$font-size-base: 1rem;
+$font-size-small: 0.875rem;
+
 $line-height-heading: 1.2;
 $line-height-body: 1.6;
 $line-height-code: 1.5;
 
-// Font Weights
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 // ============================================================================
-// Spacing Scale (8px base)
+// Spacing (DESIGN.md scale 4/8/12/16/24/32 + extended rhythm)
 // ============================================================================
 
 $space-xs: 0.25rem;   // 4px
@@ -75,7 +86,7 @@ $space-sm: 0.5rem;    // 8px
 $space-md: 1rem;      // 16px
 $space-lg: 1.5rem;    // 24px
 $space-xl: 2rem;      // 32px
-$space-2xl: 3rem;     // 48px
+$space-2xl: 3rem;     // 48px — between 32 and 40 for section rhythm
 $space-3xl: 4rem;     // 64px
 $space-4xl: 6rem;     // 96px
 
@@ -83,15 +94,14 @@ $space-4xl: 6rem;     // 96px
 // Layout
 // ============================================================================
 
-$max-width-content: 768px;   // Reading comfort
-$max-width-wide: 1200px;     // Wide content (projects grid)
+$max-width-content: 768px;
+$max-width-wide: 1200px;
 
-$padding-mobile: $space-lg;    // 24px
-$padding-tablet: $space-2xl;   // 48px
-$padding-desktop: $space-3xl;  // 64px
+$padding-mobile: $space-lg;
+$padding-tablet: $space-2xl;
+$padding-desktop: $space-3xl;
 
-// Grid
-$grid-gap: $space-xl;  // 32px
+$grid-gap: $space-xl;
 
 // ============================================================================
 // Breakpoints
@@ -103,32 +113,30 @@ $breakpoint-desktop: 1024px;
 $breakpoint-wide: 1440px;
 
 // ============================================================================
-// Border Radius
+// Border radius (DESIGN.md rounded sm/md)
 // ============================================================================
 
 $border-radius-sm: 4px;
-$border-radius-md: 6px;
+$border-radius-md: 8px;
 $border-radius-lg: 8px;
-$border-radius-xl: 12px;
+$border-radius-xl: 8px;
 
 // ============================================================================
-// Shadows
+// Shadows (neutral ink, not cobalt-tinted)
 // ============================================================================
 
-// Shadows tinted with primary ink (avoid flat rgba(0,0,0) mush)
-$shadow-sm: 0 1px 2px rgba($color-primary-dark, 0.06);
-$shadow-md: 0 4px 14px rgba($color-primary-dark, 0.08);
-$shadow-lg: 0 12px 28px rgba($color-primary-dark, 0.1);
-$shadow-xl: 0 20px 40px rgba($color-primary-dark, 0.12);
+$shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.06);
+$shadow-md: 0 4px 14px rgba(17, 24, 39, 0.08);
+$shadow-lg: 0 12px 28px rgba(17, 24, 39, 0.1);
+$shadow-xl: 0 20px 40px rgba(17, 24, 39, 0.12);
 
-$shadow-card: 0 1px 3px rgba($color-primary-dark, 0.06);
-$shadow-card-hover: 0 12px 32px rgba($color-primary-dark, 0.12);
+$shadow-card: 0 1px 3px rgba(17, 24, 39, 0.06);
+$shadow-card-hover: 0 12px 32px rgba(17, 24, 39, 0.12);
 
 // ============================================================================
 // Transitions
 // ============================================================================
 
-// Motion — custom easing (no generic linear / ease-in-out defaults)
 $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 $ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
 
@@ -137,7 +145,7 @@ $transition-base: 220ms $ease-premium;
 $transition-slow: 420ms $ease-premium;
 
 // ============================================================================
-// Z-Index Scale
+// Z-index
 // ============================================================================
 
 $z-index-dropdown: 1000;

@@ -39,7 +39,7 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
     font-style: italic;
     font-weight: $font-weight-medium;
     letter-spacing: 0.04em;
-    color: color.scale($color-primary, $lightness: -8%);
+    color: $color-accent-purple;
   }
 
   .section__description {
@@ -96,11 +96,12 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
   &__label {
     display: inline-block;
+    font-family: $font-family-mono;
     font-size: 0.75rem;
     font-weight: $font-weight-semibold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: $color-primary;
+    color: $color-accent-purple;
     margin-bottom: $space-sm;
   }
 
@@ -195,12 +196,14 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
   &__label {
     display: inline-block;
-    font-size: 0.875rem;
+    font-family: $font-family-mono;
+    font-size: $font-size-small;
     font-weight: $font-weight-semibold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: $color-primary;
-    background: color.scale($color-primary, $lightness: 92%);
+    color: $color-text-primary;
+    background: $color-bg-tertiary;
+    border: 1px solid $color-border;
     padding: $space-xs $space-md;
     border-radius: $border-radius-sm;
     margin-bottom: $space-lg;
@@ -290,13 +293,13 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .section--research {
   background: linear-gradient(
     180deg,
-    color.scale($color-primary, $lightness: -75%) 0%,
-    color.scale($color-primary, $lightness: -85%) 100%
+    color.scale($color-text-primary, $lightness: -18%) 0%,
+    color.scale($color-text-primary, $lightness: -42%) 100%
   );
   color: #ffffff;
 
   .section__label {
-    color: color.scale($color-primary, $lightness: 60%);
+    color: rgba(255, 255, 255, 0.72);
   }
 
   .section__title {
@@ -326,7 +329,7 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
   transition: transform $transition-base, background $transition-base, border-color $transition-base, box-shadow $transition-base;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 12px 40px rgba($color-primary-dark, 0.25);
+    0 12px 40px rgba(0, 0, 0, 0.28);
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -334,7 +337,7 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
     transform: translateY(-4px);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.16),
-      0 18px 48px rgba($color-primary-dark, 0.32);
+      0 18px 48px rgba(0, 0, 0, 0.35);
   }
 
   &--featured {
@@ -813,11 +816,19 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
   &__header {
     padding: $space-lg $space-xl;
     color: #ffffff;
-    background: linear-gradient(135deg, color.scale($color-primary, $lightness: -6%), $color-primary-dark);
+    background: linear-gradient(
+      135deg,
+      color.scale($color-text-primary, $lightness: -8%) 0%,
+      color.scale($color-text-primary, $lightness: -28%) 100%
+    );
   }
 
   &__header--alt {
-    background: linear-gradient(135deg, $color-primary, color.scale($color-primary, $lightness: 12%));
+    background: linear-gradient(
+      135deg,
+      $color-accent-purple 0%,
+      color.scale($color-accent-purple, $lightness: -18%) 100%
+    );
   }
 
   &__eyebrow {
@@ -880,14 +891,14 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
     transition: transform $transition-fast, background $transition-base, color $transition-base, border-color $transition-base, box-shadow $transition-base;
 
     &--primary {
-      background: $color-primary;
+      background: $color-text-primary;
       color: #ffffff;
       border: 1px solid transparent;
 
       &:hover {
         background: $color-primary-dark;
         transform: translateY(-1px);
-        box-shadow: 0 6px 16px rgba($color-primary, 0.28);
+        box-shadow: 0 6px 16px rgba(17, 24, 39, 0.22);
       }
 
       &:active {
@@ -895,7 +906,7 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
       }
 
       &:focus-visible {
-        outline: 2px solid rgba($color-primary, 0.45);
+        outline: 2px solid rgba($color-accent-purple, 0.55);
         outline-offset: 2px;
       }
     }
@@ -906,9 +917,9 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
       border: 1px solid $color-border;
 
       &:hover {
-        border-color: $color-primary;
-        color: $color-primary;
-        background: rgba($color-primary, 0.04);
+        border-color: $color-accent-purple;
+        color: $color-accent-purple;
+        background: rgba($color-accent-purple, 0.06);
       }
 
       &:active {
@@ -916,7 +927,7 @@ $homepage-grain-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
       }
 
       &:focus-visible {
-        outline: 2px solid rgba($color-primary, 0.35);
+        outline: 2px solid rgba($color-accent-purple, 0.45);
         outline-offset: 2px;
       }
     }

@@ -1,0 +1,84 @@
+{%- comment -%}
+  Hero for a /lab/ sub-page.
+  Pulls index + topic from _data/lab.yml (passed in as `current`),
+  pulls hero copy from page frontmatter, optionally renders a
+  signature SVG/figure picked by `page.hero_visual`.
+{%- endcomment -%}
+<section class="lab-hero" data-reveal>
+  <div class="lab-hero__grid" aria-hidden="true"></div>
+
+  <div class="lab-hero__container">
+    <div class="lab-hero__content">
+      <p class="etr-eyebrow">
+        <span class="etr-eyebrow__dot" aria-hidden="true"></span>
+        {{ include.current.index }} · {{ include.current.topic }}
+      </p>
+
+      <h1 class="lab-hero__title">{{ page.hero_title | default: page.title }}</h1>
+
+      {%- if page.hero_lede -%}
+      <p class="lab-hero__lede">{{ page.hero_lede }}</p>
+      {%- endif -%}
+
+      {%- if page.hero_actions -%}
+      <div class="lab-hero__actions">
+        {%- for action in page.hero_actions -%}
+          <a class="etr-btn {% if forloop.first %}etr-btn--primary{% else %}etr-btn--ghost{% endif %}"
+             href="{{ action.href }}"
+             {% if action.external %}target="_blank" rel="noopener"{% endif %}>
+            {{ action.label }}
+          </a>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+
+      {%- if page.hero_metrics -%}
+      <ul class="lab-hero__metrics" role="list">
+        {%- for metric in page.hero_metrics -%}
+        <li class="etr-metric">
+          <span class="etr-metric__value">{{ metric.value }}</span>
+          <span class="etr-metric__label">{{ metric.label }}</span>
+        </li>
+        {%- endfor -%}
+      </ul>
+      {%- endif -%}
+    </div>
+
+    <figure class="lab-hero__figure" aria-label="{{ page.hero_caption | default: page.title }}">
+      {%- if page.hero_caption_id or page.hero_caption_status -%}
+      <figcaption class="etr-panel-caption">
+        <span class="etr-panel-caption__id">{{ page.hero_caption_id | default: current.topic | upcase }}</span>
+        {%- if page.hero_caption_status -%}
+        <span class="etr-panel-caption__live">
+          <span class="etr-pulse" aria-hidden="true"></span>
+          {{ page.hero_caption_status }}
+        </span>
+        {%- endif -%}
+      </figcaption>
+      {%- endif -%}
+
+      {%- case page.hero_visual -%}
+        {%- when 'spectrum' -%}{% include lab-visuals/spectrum.svg %}
+        {%- when 'orbit' -%}{% include lab-visuals/orbit.svg %}
+        {%- when 'pillars' -%}{% include lab-visuals/pillars.svg %}
+        {%- when 'sparkline' -%}{% include lab-visuals/sparkline.svg %}
+        {%- when 'globe' -%}{% include lab-visuals/globe.svg %}
+        {%- when 'cluster' -%}{% include lab-visuals/cluster.svg %}
+        {%- when 'pipeline' -%}{% include lab-visuals/pipeline.svg %}
+        {%- when 'medallion' -%}{% include lab-visuals/medallion.svg %}
+        {%- else -%}{% include lab-visuals/default.svg %}
+      {%- endcase -%}
+
+      {%- if page.hero_meta -%}
+      <div class="etr-panel-meta">
+        {%- for meta in page.hero_meta -%}
+        <div>
+          <span>{{ meta.label }}</span>
+          <strong{% if meta.tone %} class="etr-tag etr-tag--{{ meta.tone }}"{% endif %}>{{ meta.value }}</strong>
+        </div>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </figure>
+  </div>
+</section>

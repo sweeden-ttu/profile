@@ -1,0 +1,327 @@
+// _animations.scss
+// Premium animation effects and micro-interactions
+
+@use "sass:color";
+@use "variables" as *;
+
+// ============================================================================
+// Keyframe Animations
+// ============================================================================
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes border-dance {
+  0%, 100% { border-color: rgba($color-primary, 0.3); }
+  50% { border-color: rgba($color-accent-cyan, 0.5); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// ============================================================================
+// Animation Utility Classes
+// ============================================================================
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slide-in-left 0.6s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slide-in-right 0.6s ease-out forwards;
+}
+
+// Animation delay utilities
+@for $i from 1 through 10 {
+  .delay-#{$i} {
+    animation-delay: #{$i * 0.1}s;
+  }
+}
+
+// ============================================================================
+// Premium Effects
+// ============================================================================
+
+// Glow effects
+.glow-primary {
+  box-shadow: 0 0 20px rgba($color-primary, 0.3),
+              0 0 40px rgba($color-primary, 0.1);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba($color-accent-cyan, 0.3),
+              0 0 40px rgba($color-accent-cyan, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba($color-primary, 0.5),
+               0 0 20px rgba($color-primary, 0.3);
+}
+
+// Gradient text
+.gradient-text {
+  background: linear-gradient(135deg, $color-primary 0%, $color-accent-cyan 50%, $color-accent-purple 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, $color-primary, $color-accent-cyan, $color-accent-purple);
+    z-index: -1;
+    animation: border-dance 3s ease-in-out infinite;
+  }
+}
+
+// Glass morphism
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// ============================================================================
+// Hover Interactions
+// ============================================================================
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 0 30px rgba($color-primary, 0.4);
+  }
+}
+
+.hover-border {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    border-color: $color-primary;
+    box-shadow: 0 0 20px rgba($color-primary, 0.2);
+  }
+}
+
+// ============================================================================
+// Icon Animations
+// ============================================================================
+
+.icon-hover {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.icon-spin-slow {
+  animation: rotate-slow 8s linear infinite;
+  
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+// ============================================================================
+// Loading States
+// ============================================================================
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $color-bg-secondary 25%,
+    $color-bg-tertiary 50%,
+    $color-bg-secondary 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: $border-radius-md;
+}
+
+// ============================================================================
+// Interactive Cursor
+// ============================================================================
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: $color-primary;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+}
+
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 2px solid $color-primary;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease;
+}
+
+// ============================================================================
+// AOS Animation Overrides
+// ============================================================================
+
+[data-aos="fade-up-custom"] {
+  transform: translateY(40px);
+  opacity: 0;
+  transition-property: transform, opacity;
+}
+
+[data-aos="scale-up-custom"] {
+  transform: scale(0.9);
+  opacity: 0;
+  transition-property: transform, opacity;
+}
+
+[data-aos="slide-right-custom"] {
+  transform: translateX(-40px);
+  opacity: 0;
+  transition-property: transform, opacity;
+}
+
+[data-aos="slide-left-custom"] {
+  transform: translateX(40px);
+  opacity: 0;
+  transition-property: transform, opacity;
+}

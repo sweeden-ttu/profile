@@ -1,0 +1,68 @@
+# Lab sub-page registry — single source of truth for the bento grid on
+# /emerging-tech/ and the prev/next pager on each lab page.
+#
+# Order matters: the pager walks pages in this order.
+
+- slug: observability
+  index: "01"
+  topic: Observability
+  url: /lab/observability/
+  title: "High-dimensional telemetry, decomposed in real time."
+  blurb: "Streaming PCA across 1.2M-feature embeddings — variance attribution updates every 250 ms during ingest."
+
+- slug: domains
+  index: "02"
+  topic: Domains
+  url: /lab/domains/
+  title: "Where the lab focuses."
+  blurb: "Five research surfaces with shared scaffolding: agentic RL, computational biology, quantum-inspired optimisation, protocol verification, adversarial robustness."
+
+- slug: impact
+  index: "03"
+  topic: Impact
+  url: /lab/impact/
+  title: "1,247 citations across peer-reviewed venues."
+  blurb: "Year-over-year growth of 38% — and a public replication tracker for every claim that crosses 100 citations."
+
+- slug: methodology
+  index: "04"
+  topic: Methodology
+  url: /lab/methodology/
+  title: "Six-stage chain of custody."
+  blurb: "From hashed ingest to open weights — every artefact in a published claim is content-addressed and rebuildable."
+
+- slug: endorsements
+  index: "05"
+  topic: Endorsement
+  url: /lab/endorsements/
+  title: "Reviewed at the bar of national labs."
+  blurb: "What Nature Methods, NeurIPS area chairs, and the NSF Open Science office have said about the lab's reproducibility pipeline."
+
+- slug: network
+  index: "06"
+  topic: Network
+  url: /lab/network/
+  title: "32 institutions, 11 countries."
+  blurb: "Async collaboration across time zones with a 24-hour triage SLA — directory of partners, working groups, and active collaborations."
+
+- slug: recent
+  index: "07"
+  topic: Recent
+  url: /blog/
+  external: true
+  title: "From the press."
+  blurb: "Pre-prints, replications, and the occasional negative result. Cross-published in the journal."
+
+- slug: compute
+  index: "08"
+  topic: Compute
+  url: /lab/compute/
+  title: "Reproducible compute, by default."
+  blurb: "4.2 PFLOPs peak training, 612 TB archival, 100% of runs containerised — request access in one form."
+
+- slug: collaborate
+  index: "09"
+  topic: Collaborate
+  url: /lab/collaborate/
+  title: "Bring a hard problem."
+  blurb: "Three external collaborations per semester — industry, government, or academic. Submissions reviewed against fit, feasibility, and public benefit."
