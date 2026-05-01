@@ -355,6 +355,28 @@
     return panel;
   }
 
+  // ============================================================================
+  // Project hub cards — radial highlight follows pointer (Emerging-tech parity)
+  // ============================================================================
+
+  (function hubCardGlow() {
+    var reduceMotion =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
+
+    document.querySelectorAll('.js-tilt-card').forEach(function (tile) {
+      tile.addEventListener('pointermove', function (e) {
+        var r = tile.getBoundingClientRect();
+        tile.style.setProperty(
+          '--hub-mx',
+          ((e.clientX - r.left) / r.width) * 100 + '%'
+        );
+        tile.style.setProperty('--hub-my', ((e.clientY - r.top) / r.height) * 100 + '%');
+      });
+    });
+  })();
+
   function initMcpFromConfig() {
     const enabled = isTruthyString(readMeta('mcp-enabled'));
     const sseUrl = readMeta('mcp-sse-url');

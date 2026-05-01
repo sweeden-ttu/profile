@@ -7,21 +7,18 @@
 @use "typography";
 @use "layout";
 @use "components";
-@use "animations";
 @use "homepage";
 @use "print";
 @use "work-gallery";
 @use "emerging-tech";
-@use "lab-page";
+@use "site-shell";
 
 // ============================================================================
 // CSS Custom Properties (for runtime theming if needed)
 // ============================================================================
 
 :root {
-  // Colors (Paper — DESIGN.md; legacy custom property names preserved)
-  --color-surface: #{$color-paper-surface};
-  --color-secondary: #{$color-accent-purple};
+  // Colors
   --color-primary: #{$color-primary};
   --color-primary-dark: #{$color-primary-dark};
   --color-primary-light: #{$color-primary-light};
