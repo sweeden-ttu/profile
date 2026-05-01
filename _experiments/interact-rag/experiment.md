@@ -55,7 +55,7 @@ class CorpusInteractionEngine:
     def __init__(self, corpus, retrieval_model):
         self.corpus = corpus
         self.retrieval_model = retrieval_model
-    
+
     def active_retrieve(self, query, context, interaction_type):
         """
         Actively manipulate retrieval based on interaction type

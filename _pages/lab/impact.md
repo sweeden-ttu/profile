@@ -1,3 +1,4 @@
+# Impact
 ---
 layout: lab
 permalink: /lab/impact/

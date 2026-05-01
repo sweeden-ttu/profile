@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Block cipher abstraction and security intuition  
-- ECB vs. CBC vs. CTR (high-level)  
-- Initialization vectors and randomness requirements  
-- Common pitfalls (pattern leakage, replay, misuse of IVs)  
+- Block cipher abstraction and security intuition
+- ECB vs. CBC vs. CTR (high-level)
+- Initialization vectors and randomness requirements
+- Common pitfalls (pattern leakage, replay, misuse of IVs)
 
 ## Reading and Preparation
 

@@ -1,3 +1,4 @@
+# Intelligent Systems Assignment3 Rl
 ---
 title: "Intelligent Systems – Project 3: Reinforcement Learning"
 layout: project
@@ -11,13 +12,13 @@ assignment_number: 3
 
 > (Thanks to John DeNero and Dan Klein!)
 
-- **Deadline**: Monday, November 17th, 2025  
-  - Before class for 001  
+- **Deadline**: Monday, November 17th, 2025
+  - Before class for 001
   - End of the day for D01
 - **Note**: Please review the “What to Submit” section before submitting.
 
-Pacman seeks reward.  
-Should he eat or should he run?  
+Pacman seeks reward.
+Should he eat or should he run?
 When in doubt, Q-learn.
 
 ---
@@ -30,25 +31,25 @@ You can download the code from Canvas. The code for this project contains the fo
 
 #### Files you will edit
 
-- `qlearningAgents.py` – Q-learning agents for Gridworld, Crawler, and Pacman.  
+- `qlearningAgents.py` – Q-learning agents for Gridworld, Crawler, and Pacman.
 - `analysis.py` – A file to put your answers to questions given in the project.
 
 #### Files you should read but NOT edit
 
-- `valueIterationAgents.py` – A value iteration agent for solving known MDPs.  
-- `mdp.py` – Defines methods on general MDPs.  
-- `learningAgents.py` – Defines the base classes `ValueEstimationAgent` and `QLearningAgent`.  
-- `util.py` – Utilities, including `util.Counter`, which is particularly useful for Q-learners.  
-- `gridworld.py` – The Gridworld implementation.  
+- `valueIterationAgents.py` – A value iteration agent for solving known MDPs.
+- `mdp.py` – Defines methods on general MDPs.
+- `learningAgents.py` – Defines the base classes `ValueEstimationAgent` and `QLearningAgent`.
+- `util.py` – Utilities, including `util.Counter`, which is particularly useful for Q-learners.
+- `gridworld.py` – The Gridworld implementation.
 - `featureExtractors.py` – Feature extractors for \((\text{state}, \text{action})\) pairs, used for approximate Q-learning.
 
 #### Files you can ignore
 
-- `environment.py` – Abstract class for general reinforcement learning environments (used by `gridworld.py`).  
-- `graphicsGridworldDisplay.py` – Gridworld graphical display.  
-- `graphicsUtils.py` – Graphics utilities.  
-- `textGridworldDisplay.py` – Text interface for Gridworld.  
-- `crawler.py` – The crawler code and test harness (run but do not edit).  
+- `environment.py` – Abstract class for general reinforcement learning environments (used by `gridworld.py`).
+- `graphicsGridworldDisplay.py` – Gridworld graphical display.
+- `graphicsUtils.py` – Graphics utilities.
+- `textGridworldDisplay.py` – Text interface for Gridworld.
+- `crawler.py` – The crawler code and test harness (run but do not edit).
 - `graphicsCrawlerDisplay.py` – GUI for the crawler robot.
 
 ---
@@ -75,7 +76,7 @@ Please submit your own work only; otherwise we may pursue the strongest availabl
 
 If you find yourself stuck:
 
-- Use office hours, section, and Piazza.  
+- Use office hours, section, and Piazza.
 - If you can't make the scheduled office hours, let the staff know.
 
 We want these projects to be rewarding and instructional, not frustrating.
@@ -98,15 +99,15 @@ A stub of a Q-learner is provided in `QLearningAgent` in `qlearningAgents.py`, a
 
 You must implement:
 
-- `update`  
-- `getValue`  
-- `getQValue`  
+- `update`
+- `getValue`
+- `getQValue`
 - `getPolicy`
 
 **Notes**:
 
-- In `getPolicy`, break ties randomly (e.g. using `random.choice`).  
-- Unseen actions start with Q-value \(0\). If all seen actions have negative Q-values, an unseen action may be optimal.  
+- In `getPolicy`, break ties randomly (e.g. using `random.choice`).
+- Unseen actions start with Q-value \(0\). If all seen actions have negative Q-values, an unseen action may be optimal.
 - In `getValue` and `getPolicy`, access Q-values only via `getQValue`.
 
 To observe learning:
@@ -123,7 +124,7 @@ The `-k` flag controls the number of training episodes. You can disable noise wi
 
 Extend your Q-learning agent with **epsilon-greedy** action selection in `getAction`:
 
-- With probability \(\varepsilon\), choose a random action.  
+- With probability \(\varepsilon\), choose a random action.
 - With probability \(1-\varepsilon\), choose the action with the highest Q-value.
 
 Example run:
@@ -136,7 +137,7 @@ Your final Q-values should resemble those of a value iteration agent along well-
 
 Hints:
 
-- Use `random.choice` to pick uniformly from a list.  
+- Use `random.choice` to pick uniformly from a list.
 - Use `util.flipCoin(p)` to simulate a Bernoulli variable with success probability \(p\).
 
 ---
@@ -153,8 +154,8 @@ If this fails, your implementation is likely too specific to Gridworld; make it 
 
 Experiment with:
 
-- Simulation parameters (e.g. step delay).  
-- Learning parameters (\(\alpha\), \(\varepsilon\)).  
+- Simulation parameters (e.g. step delay).
+- Learning parameters (\(\alpha\), \(\varepsilon\)).
 - Discount factor \(\gamma\).
 
 Grading: 1 point (but you are encouraged to explore).
@@ -177,7 +178,7 @@ Q(s,a) = \sum_i w_i f_i(s,a),
 
 where:
 
-- \(f_i(s,a)\) are features,  
+- \(f_i(s,a)\) are features,
 - \(w_i\) are weights.
 
 Feature functions in `featureExtractors.py` return `util.Counter` objects (sparse feature vectors).
@@ -211,8 +212,8 @@ Your agent should win almost every time after training.
 
 Submit to Canvas:
 
-- `qlearningAgents.py`  
-- `qlearningAgents.txt`  
+- `qlearningAgents.py`
+- `qlearningAgents.txt`
 - `partner.txt` (if you worked with a partner; include their name there)
 
 Do **not** change or submit other distribution files.

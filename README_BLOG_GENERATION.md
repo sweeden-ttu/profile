@@ -1,6 +1,6 @@
 # Lecture and Course Notes (as a blog post)
 
-This is an automated proof checking system that verifies notes taken during course lectures against textbook materials, institutional and foundational knowledge regarding the topic, and presents each lecture in a 15-30 minute blog post format that is geared towards graduate students who are researching advanced topics in computer science. Each blog entry performs a deep-dive into examples that are worked in class, presents the material using various markdown enhancements and extensions,  provides links to research articles, IEEE publications, and institutional publications related to the research of the professor instructing the course. Each course should have an introduction and about page of the instructor. The system integrates with Canvas LMS API 
+This is an automated proof checking system that verifies notes taken during course lectures against textbook materials, institutional and foundational knowledge regarding the topic, and presents each lecture in a 15-30 minute blog post format that is geared towards graduate students who are researching advanced topics in computer science. Each blog entry performs a deep-dive into examples that are worked in class, presents the material using various markdown enhancements and extensions,  provides links to research articles, IEEE publications, and institutional publications related to the research of the professor instructing the course. Each course should have an introduction and about page of the instructor. The system integrates with Canvas LMS API
 
 ## Quick Start
 
@@ -54,7 +54,7 @@ Blog posts follow this naming pattern:
 ```
 YYYY-MM-DD-{course-slug}-{lecture-title}.md
 
-Where there should be one blog post per lecture 
+Where there should be one blog post per lecture
 ```
 
 **Examples:**

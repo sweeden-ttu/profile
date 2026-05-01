@@ -18,14 +18,14 @@ tags:
 
 # Introduction to Software Testing
 
-**Course**: Software Verification and Validation (CS-5374)  
-**Date**: January 15, 2026  
+**Course**: Software Verification and Validation (CS-5374)
+**Date**: January 15, 2026
 **Lecture Number**: 1
 
 {% if lecture_data %}
 ## Lecture Information
 
-**Status**: {{ lecture_data.status | capitalize }}  
+**Status**: {{ lecture_data.status | capitalize }}
 {% if lecture_data.module_name %}**Module**: {{ lecture_data.module_name }}{% endif %}
 
 ### Topics Covered

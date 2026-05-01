@@ -16,7 +16,7 @@ draft: true
 
 ## Topics
 
-- [To be filled in from Canvas module title and lecture notes]  
+- [To be filled in from Canvas module title and lecture notes]
 
 ## Reading and Preparation
 

@@ -1,8 +1,9 @@
+# Readme
 ---
 title: "Toxic Comment Classification Challenge – Kaggle Workspace"
 ---
 
-This folder contains notebooks and notes for the Kaggle competition  
+This folder contains notebooks and notes for the Kaggle competition
 **“Toxic Comment Classification Challenge”** (`toxic-comment-classification-challenge`).
 
 ## Dataset download (Kaggle API)
@@ -25,8 +26,8 @@ The dataset includes multi-label toxicity annotations (`toxic`, `severe_toxic`, 
 
 Several arXiv papers use or extend this dataset, for example:
 
-- **“Convolutional Neural Networks for Toxic Comment Classification”** (`arxiv:1802.09957`)  
-- **“Extended LSTM: Adaptive Feature Gating for Toxic Comment Classification”** (`xLSTM`, `arxiv:2510.17018`)  
+- **“Convolutional Neural Networks for Toxic Comment Classification”** (`arxiv:1802.09957`)
+- **“Extended LSTM: Adaptive Feature Gating for Toxic Comment Classification”** (`xLSTM`, `arxiv:2510.17018`)
 - Follow‑on work on bias and multilingual toxicity classification.
 
 These provide target architectures and metrics for benchmarking LangSmith experiments.

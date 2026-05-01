@@ -44,7 +44,7 @@ graph TD
     D --> E[Extractor Agent]
     E --> F[QA Agent]
     F --> G[Final Answer]
-    
+
     B -.coordination.-> C
     C -.coordination.-> E
     E -.coordination.-> F
@@ -80,24 +80,24 @@ class MARAGSystem:
         self.step_definer = StepDefinerAgent()
         self.extractor = ExtractorAgent()
         self.qa_agent = QAAgent()
-    
+
     def process_query(self, query, context=None):
         # Planner analyzes and breaks down query
         plan = self.planner.plan(query, context)
-        
+
         # Step definer creates retrieval steps
         steps = self.step_definer.define_steps(plan)
-        
+
         # Execute retrieval and extraction
         extracted_info = []
         for step in steps:
             retrieved = self.retrieve(step)
             extracted = self.extractor.extract(retrieved, step)
             extracted_info.append(extracted)
-        
+
         # QA agent synthesizes final answer
         answer = self.qa_agent.synthesize(extracted_info, query)
-        
+
         return answer
 ```
 

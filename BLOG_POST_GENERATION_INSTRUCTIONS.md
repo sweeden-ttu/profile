@@ -499,7 +499,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Cryptography (Spring 2026)
 
-**Front matter**: `course: "Cryptography"`  
+**Front matter**: `course: "Cryptography"`
 **Tags**: `cryptography`, `security`, `encryption`
 
 **Content Focus:**
@@ -511,7 +511,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Software Verification and Validation (Spring 2026)
 
-**Front matter**: `course: "Software Verification and Validation"`  
+**Front matter**: `course: "Software Verification and Validation"`
 **Tags**: `software-verification`, `testing`, `formal-methods`
 
 **Content Focus:**
@@ -523,7 +523,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Intelligent Systems (Fall 2025)
 
-**Front matter**: `course: "Intelligent Systems"`  
+**Front matter**: `course: "Intelligent Systems"`
 **Tags**: `artificial-intelligence`, `machine-learning`
 
 **Content Focus:**
@@ -535,7 +535,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Logic for Computer Scientists (Fall 2025)
 
-**Front matter**: `course: "Logic for Computer Scientists"`  
+**Front matter**: `course: "Logic for Computer Scientists"`
 **Tags**: `logic`, `formal-methods`, `prolog`
 
 **Content Focus:**
@@ -547,7 +547,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Theory of Automata (Fall 2025)
 
-**Front matter**: `course: "Theory of Automata"`  
+**Front matter**: `course: "Theory of Automata"`
 **Tags**: `automata`, `formal-languages`, `computation`
 
 **Content Focus:**
@@ -559,7 +559,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Analysis of Algorithms (Summer 2025)
 
-**Front matter**: `course: "Analysis of Algorithms"`  
+**Front matter**: `course: "Analysis of Algorithms"`
 **Tags**: `algorithms`, `complexity`
 
 **Content Focus:**
@@ -571,7 +571,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Software Project Management (Summer 2025)
 
-**Front matter**: `course: "Software Project Management"`  
+**Front matter**: `course: "Software Project Management"`
 **Tags**: `project-management`, `software-engineering`
 
 **Content Focus:**
@@ -583,7 +583,7 @@ Before finalizing any blog post, review against these checklists:
 
 ### Machine Learning Security (Summer 2025)
 
-**Front matter**: `course: "Machine Learning Security"`  
+**Front matter**: `course: "Machine Learning Security"`
 **Tags**: `machine-learning`, `security`
 
 **Content Focus:**

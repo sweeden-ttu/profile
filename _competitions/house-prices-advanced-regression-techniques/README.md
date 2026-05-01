@@ -2,7 +2,7 @@
 title: "House Prices: Advanced Regression Techniques – Kaggle Workspace"
 ---
 
-This folder contains notebooks and notes for the Kaggle competition  
+This folder contains notebooks and notes for the Kaggle competition
 **“House Prices: Advanced Regression Techniques”** (`house-prices-advanced-regression-techniques`).
 
 ## Dataset download (Kaggle API)
@@ -30,7 +30,7 @@ This will populate `_datasets/house-prices-advanced-regression-techniques/` with
 
 We’ll ground experiments in methods from papers such as:
 
-- **“An Optimal House Price Prediction Algorithm: XGBoost”** (`arxiv:2402.04082`)  
+- **“An Optimal House Price Prediction Algorithm: XGBoost”** (`arxiv:2402.04082`)
 - **“A Multi-Modal Deep Learning Based Approach for House Price Prediction”** (`arxiv:2409.05335`)
 
 These will inspire baseline models, feature engineering strategies, and evaluation protocols.

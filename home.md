@@ -177,5 +177,9 @@ permalink: /
       {% endif %}
     </div>
   </section>
+<<<<<<< HEAD
 </div>
 </div>
+=======
+</div>
+>>>>>>> oc-media-ux

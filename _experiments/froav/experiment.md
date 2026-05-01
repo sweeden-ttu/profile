@@ -44,15 +44,15 @@ graph TD
     B --> C[Visual Workflow Designer]
     B --> D[Evaluation Framework]
     B --> E[Python Integration Layer]
-    
+
     C --> F[Workflow Execution]
     D --> G[Metrics Collection]
     E --> H[Custom Components]
-    
+
     F --> I[Results]
     G --> I
     H --> I
-    
+
     I --> J[Visualization & Analysis]
 ```
 
@@ -102,7 +102,7 @@ metrics = evaluator.evaluate(workflow, test_dataset)
 platform.visualize(results, metrics)
 ```
 
-### Custom Component Integration
+## Custom Component Integration
 
 ```python
 from froav import CustomComponent
@@ -110,11 +110,11 @@ from froav import CustomComponent
 class DomainSpecificRetriever(CustomComponent):
     def __init__(self, domain):
         self.domain = domain
-    
+
     def retrieve(self, query):
         # Custom retrieval logic
         return retrieved_docs
-    
+
     def visualize(self):
         # Custom visualization
         return visualization

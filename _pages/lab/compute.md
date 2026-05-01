@@ -1,3 +1,4 @@
+# Compute
 ---
 layout: lab
 permalink: /lab/compute/

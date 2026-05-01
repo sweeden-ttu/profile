@@ -1,3 +1,4 @@
+# Theory Of Automata
 ---
 layout: page
 title: Theory of Automata
@@ -16,7 +17,7 @@ tags:
 permalink: /courses/theory-of-automata/
 ---
 
-**Semester**: Fall 2025  
+**Semester**: Fall 2025
 **Status**: Completed
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}

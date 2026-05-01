@@ -117,7 +117,7 @@ maintenance_eval = evaluator.evaluate_maintenance(
 )
 ```
 
-### Metrics Calculation
+## Metrics Calculation
 
 ```python
 # Development profile classification
