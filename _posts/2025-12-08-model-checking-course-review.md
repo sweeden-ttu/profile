@@ -15,7 +15,7 @@ As we approach the end of our journey in **Logic for Computer Scientists**, it i
 
 ## The Hilbert Proof System: Proving Invalidity
 
-We have spent considerable time deriving valid formulas using the Hilbert Proof System. However, an equally important skill is identifying when a formula is *not* valid. 
+We have spent considerable time deriving valid formulas using the Hilbert Proof System. However, an equally important skill is identifying when a formula is *not* valid.
 
 ### Counter-Examples and Quantifiers
 
@@ -29,7 +29,7 @@ Is this valid? Intuitively, if there is *some* $x$ that works for *all* $y$, doe
 A classic invalid implication is:
 $$ \forall x \exists y A(x, y) \to \exists x \forall y A(x, y) $$
 
-To prove this is invalid, we provide a **counter-example**. 
+To prove this is invalid, we provide a **counter-example**.
 *   **Domain:** Integers $\mathbb{Z}$
 *   **Interpretation of $A(x, y)$:** $x < y$
 *   **Premise:** "For every integer $x$, there exists an integer $y$ such that $x < y$." (True, $y = x+1$)
@@ -108,7 +108,7 @@ Standard first-order logic relies on arbitrary domains (numbers, people, graph n
 
 The core idea of Herbrand Semantics is to fix the universe of discourse to the **Herbrand Universe**—the set of all ground (variable-free) terms that can be constructed from the vocabulary.
 
-*   **Herbrand Base:** The set of all ground atoms (predicates applied to ground terms). 
+*   **Herbrand Base:** The set of all ground atoms (predicates applied to ground terms).
     *   Example: If constants are {$a, b$} and predicate is $P$, the base is {$P(a), P(b)$}.
     *   If we add a function $f$, the base becomes infinite: {$P(a), P(f(a)), P(f(f(a))), \dots$}.
 *   **Herbrand Model:** A specific interpretation is simply a subset of the Herbrand Base. If an atom is in the subset, it is True; otherwise, it is False.
@@ -144,9 +144,9 @@ stateDiagram-v2
 
 ### Checking Safety and Liveness Properties
 
-- **Safety (LTL)** — "Never grant without a request": $$\\mathbf{G} (grant \\to req)$$  
+- **Safety (LTL)** — "Never grant without a request": $$\\mathbf{G} (grant \\to req)$$
   Labeling: $L(s_0)=\\emptyset$, $L(s_1)=\\{req\\}$, $L(s_2)=\\{grant\\}$. Check: $s_0$ (holds), $s_1$ (holds), $s_2$ (grant true, req false) → **violation**. Counterexample trace: $s_0 \\to s_1 \\to s_2$.
-- **Liveness (LTL)** — "Every request is eventually granted": $$\\mathbf{G}(req \\to \\mathbf{F}\\,grant)$$  
+- **Liveness (LTL)** — "Every request is eventually granted": $$\\mathbf{G}(req \\to \\mathbf{F}\\,grant)$$
   On the current graph, every path from $s_1$ reaches $s_2$ then returns to $s_0$, so the property holds. If we add a self-loop $s_1 \\to s_1$ (stall), the infinite path $s_0 \\to s_1 \\to s_1 \\to \\dots$ violates liveness while the original safety violation at $s_2$ still exists.
 - **Branching-time (CTL)** — $$\\mathbf{AF}\\,grant$$ holds (all paths eventually see grant) on the original graph; $$\\mathbf{AG}(grant \\to req)$$ fails as shown. With the stall loop, $\\mathbf{AF}\\,grant$ fails if any path can remain in $s_1$ forever.
 

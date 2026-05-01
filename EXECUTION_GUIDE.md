@@ -13,7 +13,7 @@ python scripts/workflow_orchestrator.py --agent a --action status
 python scripts/workflow_orchestrator.py --agent b --action status
 ```
 
-### Get Next Action
+## Get Next Action
 
 ```bash
 # Get next prompt for both agents
@@ -35,7 +35,7 @@ Start a new conversation with this initialization prompt:
 I am initializing as Agent [A/B] for the blog post generation workflow.
 
 **My Assignment:**
-- Agent ID: [logic_agent_a / intelligence_agent_b]  
+- Agent ID: [logic_agent_a / intelligence_agent_b]
 - Course: [CS-5384 Logic for Computer Scientists / CS-5368 Intelligent Systems]
 - Course Path: [/Users/sdw/CS-5384-Logic-for-Computer-Scientists / /Users/sdw/CS-5368-Intelligent-Systems]
 

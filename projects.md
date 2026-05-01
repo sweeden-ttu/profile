@@ -1,9 +1,6 @@
 ---
-layout: projects-hub
+layout: work-gallery
 title: Projects
 permalink: /projects/
-description: Project write-ups and browsable PDF portfolio from coursework data.
+description: Browsable PDF portfolio from coursework data, plus project write-ups.
 ---
-
-Browse **project write-ups** in the grid above the deck, or step through **PDF coursework** thumbnails below.
-

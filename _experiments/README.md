@@ -39,27 +39,27 @@ Each experiment follows the LangSmith dataset format:
 ## Experiments
 
 ### 1. Interact-RAG: Active Retrieval Manipulation
-**Status**: Active  
+**Status**: Active
 **Focus**: Transforming LLM agents from passive query issuers to active manipulators of retrieval processes
 
 ### 2. MA-RAG: Multi-Agent Retrieval-Augmented Generation
-**Status**: Active  
+**Status**: Active
 **Focus**: Collaborative specialized AI agents for complex information-seeking tasks
 
 ### 3. SIRAG: Stable and Interpretable RAG
-**Status**: Active  
+**Status**: Active
 **Focus**: Process-supervised multi-agent framework bridging retriever and generator components
 
 ### 4. FROAV: Framework for RAG Observation and Agent Verification
-**Status**: Active  
+**Status**: Active
 **Focus**: Open-source platform for LLM-based agent workflow development and evaluation
 
 ### 5. Agent Lightning: RL Training for LLM Agents
-**Status**: Active  
+**Status**: Active
 **Focus**: Reinforcement learning-based training framework for large language model agents
 
 ### 6. Multi-Agent System Evaluation
-**Status**: Active  
+**Status**: Active
 **Focus**: Comprehensive analysis of multi-agent AI systems including LangChain
 
 ## Usage

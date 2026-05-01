@@ -33,14 +33,14 @@ graph TD
     A[User Query] --> B[Agent Execution]
     B --> C[Task Completion]
     C --> D[Reward Signal]
-    
+
     E[Training Loop] --> F[Policy Update]
     F --> G[Improved Agent]
     G --> B
-    
+
     H[LangChain Agent] -.integrate.-> B
     I[Other Frameworks] -.integrate.-> B
-    
+
     style E fill:#e1f5fe
     style B fill:#fff3e0
 ```
@@ -96,16 +96,16 @@ trainer = RLTrainer(
 for episode in range(training_episodes):
     # Execute agent
     result = trainable_agent.execute(task)
-    
+
     # Collect training data
     trainer.collect_experience(result)
-    
+
     # Update policy (separate from execution)
     if episode % update_frequency == 0:
         trainer.update_policy()
 ```
 
-### Integration with LangChain
+## Integration with LangChain
 
 ```python
 from langchain.agents import AgentExecutor

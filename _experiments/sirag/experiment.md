@@ -46,10 +46,10 @@ graph TD
     E --> F[Selected Knowledge]
     F --> G[Generator]
     G --> H[Final Answer]
-    
+
     B -.coordination.-> E
     E -.feedback.-> B
-    
+
     I[Process Supervisor] -.monitors.-> B
     I -.monitors.-> E
 ```
@@ -84,30 +84,30 @@ class SIRAGSystem:
         self.knowledge_selector = KnowledgeSelectorAgent()
         self.process_supervisor = ProcessSupervisor()
         self.generator = GeneratorAgent()
-    
+
     def process_query(self, query, require_stability=True, require_interpretability=True):
         # Decision Maker determines retrieval strategy
         strategy = self.decision_maker.plan(query)
-        
+
         # Process supervisor monitors decision
         if require_stability:
             strategy = self.process_supervisor.ensure_stability(strategy)
-        
+
         # Retrieve documents
         retrieved = self.retrieve(strategy)
-        
+
         # Knowledge Selector chooses relevant chunks
         selected = self.knowledge_selector.select(retrieved, strategy)
-        
+
         # Process supervisor ensures interpretability
         if require_interpretability:
             trajectory = self.process_supervisor.track_reasoning(
                 strategy, selected
             )
-        
+
         # Generate answer
         answer = self.generator.generate(selected, query)
-        
+
         return {
             "answer": answer,
             "reasoning_trajectory": trajectory if require_interpretability else None

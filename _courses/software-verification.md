@@ -1,3 +1,4 @@
+# Software Verification
 ---
 layout: page
 title: Software Verification and Validation
@@ -18,7 +19,7 @@ tags:
 permalink: /courses/software-verification/
 ---
 
-**Semester**: Spring 2026  
+**Semester**: Spring 2026
 **Status**: Active
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}
@@ -87,7 +88,7 @@ See course draft posts for recommended textbooks and reference materials.
 
 - **Setup Instructions**: `v0.1_LangSmith_Setup_Instructions-v1.pdf` (Downloaded)
 - **Hands-On Code**: `langsmith.zip` (Downloaded)
-- **External Links**: 
+- **External Links**:
   - [LangSmith Platform](https://www.langchain.com/langsmith)
   - [LangSmith Documentation](https://docs.smith.langchain.com/)
 

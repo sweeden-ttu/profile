@@ -1,3 +1,4 @@
+# 2025 10 08 Reinforcement Learning Introduction
 ---
 layout: post
 title: "Reinforcement Learning: An Introduction to Learning from Rewards"

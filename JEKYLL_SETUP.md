@@ -4,7 +4,7 @@
 
 **Current Setup**: Ruby 3.4.1 (as specified in `.ruby-version`)
 
-**GitHub Pages Compatibility**: 
+**GitHub Pages Compatibility**:
 - GitHub Pages currently uses **Ruby 3.0.0** or **Ruby 3.2.x** depending on the `github-pages` gem version
 - The `github-pages` gem locks Jekyll to version ~3.x or ~4.x depending on the gem version
 - For maximum compatibility, consider using Ruby 3.0.0 or 3.2.x locally to match GitHub Pages
@@ -89,7 +89,7 @@ bundle exec jekyll serve
 JEKYLL_ENV=production bundle exec jekyll build
 ```
 
-### GitHub Actions (Alternative)
+## GitHub Actions (Alternative)
 
 If you want to use newer Jekyll versions, use GitHub Actions:
 

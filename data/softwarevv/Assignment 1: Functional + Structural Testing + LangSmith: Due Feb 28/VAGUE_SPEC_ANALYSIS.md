@@ -362,4 +362,3 @@ By addressing these clarifications, the assignment should provide clearer guidan
 **Suggested interpretation:** Identify inputs, outputs, states, tape alphabet, transition function, and acceptance conditions.
 
 ---
-

@@ -1,3 +1,4 @@
+# Machine Learning Security
 ---
 layout: page
 title: Machine Learning Security
@@ -15,7 +16,7 @@ tags:
 permalink: /courses/machine-learning-security/
 ---
 
-**Semester**: Summer 2025  
+**Semester**: Summer 2025
 **Status**: Completed
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}

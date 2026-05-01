@@ -120,7 +120,7 @@ gem install bundler
 gem install jekyll
 ```
 
-### Installation
+## Installation
 
 ```bash
 # Clone repository
@@ -136,7 +136,7 @@ bundle exec jekyll serve --livereload
 # Visit http://localhost:4000
 ```
 
-### Build for Production
+## Build for Production
 
 ```bash
 # Set production environment
@@ -145,7 +145,7 @@ JEKYLL_ENV=production bundle exec jekyll build
 # Output in _site/ directory
 ```
 
-### Git Hooks
+## Git Hooks
 
 This repository uses git hooks to ensure code quality and build integrity. Hooks are stored in `.githooks/` and automatically used via `git config core.hooksPath .githooks`.
 
@@ -307,7 +307,7 @@ gem install html-proofer
 npm install -g pa11y-ci markdownlint-cli
 ```
 
-#### 3. Lighthouse Performance (`templates/ci-cd/lighthouse-performance.yml`)
+## 3. Lighthouse Performance (`templates/ci-cd/lighthouse-performance.yml`)
 Performance and SEO auditing with Google Lighthouse.
 
 **Targets:**
@@ -354,7 +354,7 @@ git commit -m "Add blog post: Your Post Title"
 git push
 ```
 
-### Creating a Project
+## Creating a Project
 
 ```bash
 # Create project file
@@ -403,7 +403,7 @@ pa11y http://localhost:4000
 markdownlint _posts _projects *.md
 ```
 
-### Performance Testing
+## Performance Testing
 
 ```bash
 # Serve production build

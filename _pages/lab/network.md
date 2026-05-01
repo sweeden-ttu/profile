@@ -1,3 +1,4 @@
+# Network
 ---
 layout: lab
 permalink: /lab/network/

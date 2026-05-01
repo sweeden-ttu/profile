@@ -149,7 +149,7 @@ Let's apply this to the MNIST digit recognition task.
 **Setup**:
 *   **Input**: 28x28 images.
 *   **Features**: We threshold pixels to be 0 (black) or 1 (white). $F_{i,j}$ corresponds to the pixel at row $i$, column $j$.
-*   **Model**: 
+*   **Model**:
     $$P(Y=d \mid \text{image}) \propto P(Y=d) \prod_{i,j} P(F_{i,j} \mid Y=d)$$
 
 **Visualization**:

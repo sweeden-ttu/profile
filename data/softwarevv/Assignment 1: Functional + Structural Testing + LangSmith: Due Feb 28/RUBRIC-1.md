@@ -446,7 +446,7 @@ python experiments/exp5_texas_data_pipeline.py --max 5
 python experiments/exp6_site_content_verification.py
 ```
 
-### 6.3 How to Run with Ollama (HPCC or Local)
+## 6.3 How to Run with Ollama (HPCC or Local)
 
 ```bash
 # Set Ollama environment
@@ -468,7 +468,7 @@ export AGENT_PROMPT="your prompt here"
 sbatch ~/ollama_agent_job.sh
 ```
 
-### 6.4 GitHub Actions CI/CD
+## 6.4 GitHub Actions CI/CD
 
 The workflow at `.github/workflows/legal-luminary-ci.yml` runs automatically on push/PR:
 
