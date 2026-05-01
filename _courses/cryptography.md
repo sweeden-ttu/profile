@@ -1,3 +1,4 @@
+# Cryptography
 ---
 layout: page
 title: Cryptography
@@ -16,7 +17,7 @@ tags:
 permalink: /courses/cryptography/
 ---
 
-**Semester**: Spring 2026  
+**Semester**: Spring 2026
 **Status**: Active
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}

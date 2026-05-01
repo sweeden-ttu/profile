@@ -1,9 +1,9 @@
 # Blog Post Review Template
 
-**Reviewer:** [Agent Name]  
-**Review Date:** [YYYY-MM-DD]  
-**Draft Version:** v[N]  
-**Lecture:** [Lecture ID] - [Lecture Title]  
+**Reviewer:** [Agent Name]
+**Review Date:** [YYYY-MM-DD]
+**Draft Version:** v[N]
+**Lecture:** [Lecture ID] - [Lecture Title]
 **Course:** [CS-5384 / CS-5368]
 
 ---
@@ -340,5 +340,5 @@
 - [ ] **Needs Major Revision** - Significant issues must be addressed
 - [ ] **Reject** - Post does not meet quality standards
 
-**Signature:** [Agent Name]  
+**Signature:** [Agent Name]
 **Date:** [YYYY-MM-DD]

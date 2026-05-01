@@ -8050,7 +8050,7 @@ oded --> We next use ( /star, /star ) , ( s 11 , 1 s 1 ) , (1 , 1),(0 , 0), and 
 ### Plain (markdown context)
 # 00110# s 00110# /star /star s s 1110# 1110# /star 1 s 110#, again using ( /star, /star ) , (1 , 1) , ( s 11 , 1 s 1 ) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( /star, /star ) , (1 , 1) , (1 s 10 , s 210), and (# , #) we get <!-- formula-not-decoded --> Using ( /star, /star ) , ( /star s 11 , s 2 /star 1) , (1 , 1) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( s 2 /star, h 0), (1 , 1) twice, (0 , 0), and (# , #) , we get <!-- formula-not-decoded --> Finally, using the pairs containing h , together with (1 , 1) , (0 , 0), and (# , #) , we …
 
-### Rendered (KaTeX / MathJax-style <code>$</code> / <code>$$</code>)
+## Rendered (KaTeX / MathJax-style <code>$</code> / <code>$$</code>)
 
 $$\text{\# 00110\# s 00110\# /star /star s s 1110\# 1110\# /star 1 s 110\#, again using ( /star, /star ) , (1 , 1) , ( s 11 , 1 s 1 ) , (0 , 0), and (\# , \#) we get <!-- formula-not-decoded --> Now using ( /star, /star ) , (1 , 1) , (1 s 10 , s 210), and (\# , \#) we get <!-- formula-not-decoded…}$$
 
@@ -8066,7 +8066,7 @@ $$\text{\# 00110\# s 00110\# /star /star s s 1110\# 1110\# /star 1 s 110\#, agai
 ```
 </details>
 <details class="formula-entry" id="ph-b6a14a0412ab33f2e5d2"><summary><strong>424. ph-b6a14a0412ab33f2e5d2</strong> — <code>automata/docling_md/AutomataTheory.md</code></summary>
-### Plain (markdown context)
+## Plain (markdown context)
 1 s 1 ) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( /star, /star ) , (1 , 1) , (1 s 10 , s 210), and (# , #) we get <!-- formula-not-decoded --> Using ( /star, /star ) , ( /star s 11 , s 2 /star 1) , (1 , 1) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( s 2 /star, h 0), (1 , 1) twice, (0 , 0), and (# , #) , we get <!-- formula-not-decoded --> Finally, using the pairs containing h , together with (1 , 1) , (0 , 0), and (# , #) , we get <!-- formula-not-decoded --> Wecan now use the fact that Post's Correspondence Problem is undecidable to sol…
 
 ### Rendered (KaTeX / MathJax-style <code>$</code> / <code>$$</code>)
@@ -16581,7 +16581,7 @@ oded --> We next use ( /star, /star ) , ( s 11 , 1 s 1 ) , (1 , 1),(0 , 0), and 
 ### Plain (markdown context)
 # 00110# s 00110# /star /star s s 1110# 1110# /star 1 s 110#, again using ( /star, /star ) , (1 , 1) , ( s 11 , 1 s 1 ) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( /star, /star ) , (1 , 1) , (1 s 10 , s 210), and (# , #) we get <!-- formula-not-decoded --> Using ( /star, /star ) , ( /star s 11 , s 2 /star 1) , (1 , 1) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( s 2 /star, h 0), (1 , 1) twice, (0 , 0), and (# , #) , we get <!-- formula-not-decoded --> Finally, using the pairs containing h , together with (1 , 1) , (0 , 0), and (# , #) , we …
 
-### Rendered (KaTeX / MathJax-style <code>$</code> / <code>$$</code>)
+## Rendered (KaTeX / MathJax-style <code>$</code> / <code>$$</code>)
 
 $$\text{\# 00110\# s 00110\# /star /star s s 1110\# 1110\# /star 1 s 110\#, again using ( /star, /star ) , (1 , 1) , ( s 11 , 1 s 1 ) , (0 , 0), and (\# , \#) we get <!-- formula-not-decoded --> Now using ( /star, /star ) , (1 , 1) , (1 s 10 , s 210), and (\# , \#) we get <!-- formula-not-decoded…}$$
 
@@ -16597,7 +16597,7 @@ $$\text{\# 00110\# s 00110\# /star /star s s 1110\# 1110\# /star 1 s 110\#, agai
 ```
 </details>
 <details class="formula-entry" id="ph-e93b20621c3db69d3056"><summary><strong>873. ph-e93b20621c3db69d3056</strong> — <code>automata/docling_md/AutomataTheory_chapters/AutomataTheory_chapter_2.3.md</code></summary>
-### Plain (markdown context)
+## Plain (markdown context)
 1 s 1 ) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( /star, /star ) , (1 , 1) , (1 s 10 , s 210), and (# , #) we get <!-- formula-not-decoded --> Using ( /star, /star ) , ( /star s 11 , s 2 /star 1) , (1 , 1) , (0 , 0), and (# , #) we get <!-- formula-not-decoded --> Now using ( s 2 /star, h 0), (1 , 1) twice, (0 , 0), and (# , #) , we get <!-- formula-not-decoded --> Finally, using the pairs containing h , together with (1 , 1) , (0 , 0), and (# , #) , we get <!-- formula-not-decoded --> Wecan now use the fact that Post's Correspondence Problem is undecidable to sol…
 
 ### Rendered (KaTeX / MathJax-style <code>$</code> / <code>$$</code>)

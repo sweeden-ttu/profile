@@ -1,3 +1,4 @@
+# Logic Homework3 Solutions
 ---
 title: "Homework 3 Solutions worked by Scott Weeden"
 layout: project
@@ -8,7 +9,7 @@ assignment_number: 3
 is_solution: true
 ---
 
-### Problem 1 [10 pts]
+## Problem 1 [10 pts]
 
 > **Question:** Consider the formula:
 >
@@ -17,7 +18,7 @@ is_solution: true
 > (a) Draw a predicate logic tree and determine bound/free variables.
 > (b) Show the scoping of all variables.
 
-#### (a) Predicate Logic Tree
+### (a) Predicate Logic Tree
 
 **Solution:**
 

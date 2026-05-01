@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Black-box vs. white-box testing  
-- Equivalence partitioning and boundary value analysis  
-- Statement, branch, and path coverage (conceptual)  
-- Common pitfalls in test design  
+- Black-box vs. white-box testing
+- Equivalence partitioning and boundary value analysis
+- Statement, branch, and path coverage (conceptual)
+- Common pitfalls in test design
 
 ## Reading and Preparation
 

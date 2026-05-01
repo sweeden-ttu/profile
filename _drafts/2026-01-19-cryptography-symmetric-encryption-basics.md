@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Symmetric vs. asymmetric cryptography  
-- Block ciphers and stream ciphers at a high level  
-- Modes of operation (ECB vs. CBC vs. CTR – conceptual overview)  
-- Threat models and basic security notions (e.g., ciphertext-only, known-plaintext)  
+- Symmetric vs. asymmetric cryptography
+- Block ciphers and stream ciphers at a high level
+- Modes of operation (ECB vs. CBC vs. CTR – conceptual overview)
+- Threat models and basic security notions (e.g., ciphertext-only, known-plaintext)
 
 ## Reading and Preparation
 

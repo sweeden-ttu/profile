@@ -1,3 +1,4 @@
+# Methodology
 ---
 layout: lab
 permalink: /lab/methodology/

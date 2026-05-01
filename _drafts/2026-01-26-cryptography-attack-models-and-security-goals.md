@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Adversary capabilities and threat models  
-- Security notions for encryption (e.g., indistinguishability) at a high level  
-- Chosen-plaintext and chosen-ciphertext attacks (intuition)  
-- Why precise goals matter before designing schemes  
+- Adversary capabilities and threat models
+- Security notions for encryption (e.g., indistinguishability) at a high level
+- Chosen-plaintext and chosen-ciphertext attacks (intuition)
+- Why precise goals matter before designing schemes
 
 ## Reading and Preparation
 

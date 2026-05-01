@@ -1,3 +1,4 @@
+# Logic For Computer Scientists
 ---
 layout: page
 title: Logic for Computer Scientists
@@ -16,7 +17,7 @@ tags:
 permalink: /courses/logic-for-computer-scientists/
 ---
 
-**Semester**: Fall 2025  
+**Semester**: Fall 2025
 **Status**: Completed
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}

@@ -10,8 +10,8 @@ assignment_number: 4
 
 # Intelligent Systems – Assignment 4 Problem Solving
 
-- **Course**: Intelligent Systems  
-- **Assignment**: 4 – Problem Solving  
+- **Course**: Intelligent Systems
+- **Assignment**: 4 – Problem Solving
 - **Due date**: December 1st
   - Before class for 001
   - By the end of the day for D01

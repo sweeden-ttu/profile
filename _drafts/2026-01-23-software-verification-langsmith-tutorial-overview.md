@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Overview of LangSmith and why we use it in a verification course  
-- Setting up the environment using the provided instructions and zip archive  
-- Instrumenting code to collect traces/telemetry (conceptual)  
-- How these tools relate to testing and verification workflows  
+- Overview of LangSmith and why we use it in a verification course
+- Setting up the environment using the provided instructions and zip archive
+- Instrumenting code to collect traces/telemetry (conceptual)
+- How these tools relate to testing and verification workflows
 
 ## Reading and Preparation
 
