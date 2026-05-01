@@ -30,14 +30,10 @@ body {
 
 .main-content {
   flex: 1;
-  padding: $padding-mobile;
+  padding: $space-lg 0 $space-4xl;
 
   @media (min-width: $breakpoint-tablet) {
-    padding: $padding-tablet;
-  }
-
-  @media (min-width: $breakpoint-desktop) {
-    padding: $padding-desktop;
+    padding-top: $space-xl;
   }
 }
 
@@ -117,10 +113,16 @@ body {
 
   &__list {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: $space-xl;
+    gap: $space-md $space-lg;
+
+    @media (min-width: $breakpoint-wide) {
+      gap: $space-lg $space-xl;
+    }
   }
 
   &__item {

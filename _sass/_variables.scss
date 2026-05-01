@@ -25,6 +25,11 @@ $color-bg-tertiary: #e6ebf5;    // Code blocks, callouts
 $color-border: #d6deec;         // Clean divider
 $color-border-light: #e9eef7;   // Subtle dividers
 
+// Paper surface aliases — used by emerging-tech bento + gradients
+$color-paper-surface: #ffffff;
+$color-paper-primary: $color-text-primary;
+$color-paper-secondary: $color-accent-purple;
+
 // Accent Colors - Purposeful
 $color-accent-green: #10b981;   // Success, achievements
 $color-accent-orange: #f59e0b;  // Highlights, warnings
@@ -83,12 +88,12 @@ $space-4xl: 6rem;     // 96px
 // Layout
 // ============================================================================
 
-$max-width-content: 768px;   // Reading comfort
-$max-width-wide: 1200px;     // Wide content (projects grid)
+$max-width-content: 880px;    // Prose + wide pages (was 768 — more canvas)
+$max-width-wide: 1400px;     // Bento / grids — maximize usable width
 
 $padding-mobile: $space-lg;    // 24px
-$padding-tablet: $space-2xl;   // 48px
-$padding-desktop: $space-3xl;  // 64px
+$padding-tablet: $space-xl;    // 32px (tighter gutters)
+$padding-desktop: $space-2xl; // 48px
 
 // Grid
 $grid-gap: $space-xl;  // 32px

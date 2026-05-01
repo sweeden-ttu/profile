@@ -10,6 +10,8 @@ author:
   email: scott.weeden@gmail.com
   github: sweeden-ttu
   linkedin: weedens
+  facebook: scotdwg81
+  instagram: websharps
 
 # Build Settings
 markdown: kramdown
@@ -71,7 +73,9 @@ social:
   name: Scott Weeden
   links:
     - https://github.com/sweeden-ttu
-    - https://linkedin.com/in/weedens
+    - https://www.linkedin.com/in/weedens/
+    - https://www.facebook.com/scotdwg81
+    - https://www.instagram.com/websharps/
 
 # Defaults
 defaults:
