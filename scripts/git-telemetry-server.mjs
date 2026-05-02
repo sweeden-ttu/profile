@@ -3,6 +3,10 @@
  * Local telemetry sink: accepts JSON POST bodies, appends NDJSON to a git repo,
  * and commits with the git CLI (object database + commit graph = Git protocol).
  *
+ * OpenTelemetry traces + logs are written under:
+ *   ${OTEL_STORAGE_ROOT:-<repo>}/opentelemetry/{spans.jsonl,logs.jsonl}
+ * Default permanent storage is the `~/profile/.telemetry` submodule (`repo`).
+ *
  * Usage: node scripts/git-telemetry-server.mjs [--port 8787] [--repo path]
  *
  * Optional push after each commit (uses `origin`, e.g. ssh:// or https://):
@@ -16,6 +20,8 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { SpanStatusCode } from "@opentelemetry/api";
+import { initProfileOtel, shutdownProfileOtel } from "./otel-storage.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -92,7 +98,7 @@ function ensureRepo(repo) {
 function appendAndCommit(repo, line) {
   const file = path.join(repo, "events.ndjson");
   fs.appendFileSync(file, line, "utf8");
-  git(repo, ["add", "events.ndjson"]);
+  git(repo, ["add", "events.ndjson", "opentelemetry"]);
   const msg = `telemetry: ${JSON.stringify({ t: new Date().toISOString() })}`.slice(0, 120);
   git(repo, ["commit", "-m", msg]);
   if (process.env.GIT_TELEMETRY_AUTO_PUSH === "1") {
@@ -107,6 +113,9 @@ function appendAndCommit(repo, line) {
 const { port, repo } = parseArgs(process.argv);
 ensureRepo(repo);
 ensureOriginRemote(repo);
+
+const otelStorageRoot = process.env.OTEL_STORAGE_ROOT || repo;
+const otel = initProfileOtel(otelStorageRoot);
 
 const server = http.createServer((req, res) => {
   if (req.method === "OPTIONS") {
@@ -131,21 +140,47 @@ const server = http.createServer((req, res) => {
     if (body.length > 2_000_000) req.destroy();
   });
   req.on("end", () => {
-    try {
-      const payload = JSON.parse(body || "{}");
-      const line = JSON.stringify({ receivedAt: new Date().toISOString(), ...payload }) + "\n";
-      appendAndCommit(repo, line);
-      res.writeHead(204, {
-        "Access-Control-Allow-Origin": "*",
-      });
-      res.end();
-    } catch (e) {
-      res.writeHead(400, { "Content-Type": "text/plain" });
-      res.end(String(e.message));
-    }
+    otel.tracer.startActiveSpan("ingest", (span) => {
+      try {
+        const payload = JSON.parse(body || "{}");
+        span.setAttribute("http.route", "/ingest");
+        span.setAttribute("telemetry.body_bytes", body.length);
+        const line =
+          JSON.stringify({ receivedAt: new Date().toISOString(), ...payload }) + "\n";
+        appendAndCommit(repo, line);
+        span.setStatus({ code: SpanStatusCode.OK });
+        otel.emitIngestLog({
+          "http.route": "/ingest",
+          "telemetry.event_type": payload.type || "event",
+        });
+        res.writeHead(204, {
+          "Access-Control-Allow-Origin": "*",
+        });
+        res.end();
+      } catch (e) {
+        span.setStatus({
+          code: SpanStatusCode.ERROR,
+          message: String(e?.message || e),
+        });
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end(String(e.message));
+      } finally {
+        span.end();
+      }
+    });
   });
 });
 
+async function shutdown(signal) {
+  console.error(`[git-telemetry] ${signal}, shutting down…`);
+  await shutdownProfileOtel();
+  server.close(() => process.exit(0));
+}
+
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT", () => shutdown("SIGINT"));
+
 server.listen(port, "127.0.0.1", () => {
   console.error(`[git-telemetry] listening on http://127.0.0.1:${port}/ingest repo=${repo}`);
+  console.error(`[git-telemetry] OTEL_STORAGE_ROOT=${otelStorageRoot}`);
 });

@@ -9,5 +9,14 @@
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "linkinator": "^7.5.3"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/api-logs": "^0.216.0",
+    "@opentelemetry/core": "^2.7.1",
+    "@opentelemetry/resources": "^2.7.1",
+    "@opentelemetry/sdk-logs": "^0.216.0",
+    "@opentelemetry/sdk-trace-node": "^2.7.1",
+    "@opentelemetry/semantic-conventions": "^1.40.0"
   }
 }
