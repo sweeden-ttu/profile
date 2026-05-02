@@ -1,6 +1,8 @@
 /**
- * OpenTelemetry trace + log export to permanent local files under
- * $OTEL_STORAGE_ROOT/opentelemetry/ (default: ~/profile/.telemetry submodule).
+ * OpenTelemetry trace + log export to permanent local NDJSON files.
+ *
+ * - If OTEL_STORAGE_ROOT is set: that directory is used directly (e.g. …/.telemetry/opentelemetry).
+ * - Otherwise: <telemetryRepoRoot>/opentelemetry/ (default submodule layout).
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -90,13 +92,23 @@ let tracerProvider = null;
 /** @type {import('@opentelemetry/sdk-logs').LoggerProvider | null} */
 let loggerProvider = null;
 
+function expandUserPath(p) {
+  if (!p) return p;
+  if (p.startsWith("~/")) {
+    return path.join(process.env.HOME || "", p.slice(2));
+  }
+  return path.resolve(p);
+}
+
 /**
  * @param {string} telemetryRepoRoot Absolute path to ~/profile/.telemetry (submodule)
  */
 export function initProfileOtel(telemetryRepoRoot) {
-  const root =
-    process.env.OTEL_STORAGE_ROOT || telemetryRepoRoot;
-  const otelDir = path.join(root, "opentelemetry");
+  const repoBase = expandUserPath(telemetryRepoRoot);
+  const explicit = process.env.OTEL_STORAGE_ROOT
+    ? expandUserPath(process.env.OTEL_STORAGE_ROOT)
+    : null;
+  const otelDir = explicit || path.join(repoBase, "opentelemetry");
   fs.mkdirSync(otelDir, { recursive: true });
   const gitkeep = path.join(otelDir, ".gitkeep");
   if (!fs.existsSync(gitkeep)) {
@@ -108,7 +120,7 @@ export function initProfileOtel(telemetryRepoRoot) {
 
   const resource = resourceFromAttributes({
     [ATTR_SERVICE_NAME]: process.env.OTEL_SERVICE_NAME || "profile-git-telemetry",
-    "telemetry.storage.root": root,
+    "telemetry.storage.root": otelDir,
   });
 
   tracerProvider = new NodeTracerProvider({
@@ -123,7 +135,9 @@ export function initProfileOtel(telemetryRepoRoot) {
   });
   logs.setGlobalLoggerProvider(loggerProvider);
 
-  console.error(`[otel] storage: ${otelDir} (OTEL_STORAGE_ROOT=${root})`);
+  console.error(
+    `[otel] storage: ${otelDir} (OTEL_STORAGE_ROOT=${process.env.OTEL_STORAGE_ROOT || "(default: <repo>/opentelemetry)"})`,
+  );
 
   return {
     tracer: trace.getTracer("profile-git-telemetry", "1.0.0"),

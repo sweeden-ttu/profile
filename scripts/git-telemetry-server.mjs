@@ -3,9 +3,8 @@
  * Local telemetry sink: accepts JSON POST bodies, appends NDJSON to a git repo,
  * and commits with the git CLI (object database + commit graph = Git protocol).
  *
- * OpenTelemetry traces + logs are written under:
- *   ${OTEL_STORAGE_ROOT:-<repo>}/opentelemetry/{spans.jsonl,logs.jsonl}
- * Default permanent storage is the `~/profile/.telemetry` submodule (`repo`).
+ * OpenTelemetry traces + logs: OTEL_STORAGE_ROOT when set (e.g. …/profile/.telemetry/opentelemetry),
+ * else `<repo>/opentelemetry/` (default). Files: spans.jsonl, logs.jsonl.
  *
  * Usage: node scripts/git-telemetry-server.mjs [--port 8787] [--repo path]
  *
@@ -114,8 +113,7 @@ const { port, repo } = parseArgs(process.argv);
 ensureRepo(repo);
 ensureOriginRemote(repo);
 
-const otelStorageRoot = process.env.OTEL_STORAGE_ROOT || repo;
-const otel = initProfileOtel(otelStorageRoot);
+const otel = initProfileOtel(repo);
 
 const server = http.createServer((req, res) => {
   if (req.method === "OPTIONS") {
@@ -182,5 +180,7 @@ process.on("SIGINT", () => shutdown("SIGINT"));
 
 server.listen(port, "127.0.0.1", () => {
   console.error(`[git-telemetry] listening on http://127.0.0.1:${port}/ingest repo=${repo}`);
-  console.error(`[git-telemetry] OTEL_STORAGE_ROOT=${otelStorageRoot}`);
+  console.error(
+    `[git-telemetry] OTEL_STORAGE_ROOT=${process.env.OTEL_STORAGE_ROOT || `${repo}/opentelemetry (default)`}`,
+  );
 });
