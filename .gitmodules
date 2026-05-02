@@ -1,3 +1,7 @@
 [submodule "_theme"]
 	path = _theme
 	url = https://github.com/sweeden-ttu/jekyll-text-theme.git
+[submodule ".telemetry"]
+	path = .telemetry
+	url = git@github.com:sweeden-ttu/profile-telemetry.git
+	branch = main

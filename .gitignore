@@ -18,6 +18,7 @@ node_modules/
 playwright-report/
 test-results/
 playwright/.cache/
+.playwright-browsers/
 
 # Lighthouse
 .lighthouseci/
