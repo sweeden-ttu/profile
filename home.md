@@ -4,7 +4,6 @@ title: Home
 permalink: /
 ---
 
-<div class="site-frame site-frame--bleed">
 <div class="homepage">
   <section class="hero" aria-labelledby="hero-heading">
     <div class="hero__diagonal-accent" aria-hidden="true"></div>
@@ -177,9 +176,4 @@ permalink: /
       {% endif %}
     </div>
   </section>
-<<<<<<< HEAD
 </div>
-</div>
-=======
-</div>
->>>>>>> oc-media-ux
