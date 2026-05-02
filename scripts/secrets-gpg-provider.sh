@@ -8,6 +8,9 @@
 # - Login sources this script and calls secrets_gpg_source; gpg-agent + pinentry
 #   decrypt with the default secret key (--default-recipient-self).
 #
+# Symmetric mode (no encryption subkey on your OpenPGP key): export SECRETS_GPG_SYMMETRIC=1
+# before sourcing. Uses gpg --symmetric (AES256); passphrase from pinentry / agent cache.
+#
 # Override recipient: export SECRETS_GPG_RECIPIENT='0xLONGID' or email@domain.
 # Encrypted file path: export SECRETS_GPG_FILE (default ~/.profile.secrets.gpg).
 #
@@ -33,7 +36,11 @@ secrets_gpg_decrypt() {
     echo "secrets_gpg: missing ${SECRETS_GPG_FILE}" >&2
     return 1
   fi
-  gpg --quiet --batch --decrypt "${SECRETS_GPG_FILE}"
+  if [[ "${SECRETS_GPG_SYMMETRIC:-}" == "1" ]]; then
+    gpg --quiet --decrypt "${SECRETS_GPG_FILE}"
+  else
+    gpg --quiet --batch --decrypt "${SECRETS_GPG_FILE}"
+  fi
 }
 
 # Decrypt and eval in the current shell (for ~/.profile).
@@ -52,9 +59,13 @@ secrets_gpg_encrypt_stdin() {
   local _tmp _a
   _tmp="$(mktemp)"
   cat >"${_tmp}"
-  # shellcheck disable=SC2046
-  _a="$(secrets_gpg__encrypt_args)"
-  gpg --quiet --batch --yes ${_a} --encrypt --output "${SECRETS_GPG_FILE}" "${_tmp}"
+  if [[ "${SECRETS_GPG_SYMMETRIC:-}" == "1" ]]; then
+    gpg --quiet --yes --symmetric --cipher-algo AES256 --output "${SECRETS_GPG_FILE}" "${_tmp}"
+  else
+    # shellcheck disable=SC2046
+    _a="$(secrets_gpg__encrypt_args)"
+    gpg --quiet --batch --yes ${_a} --encrypt --output "${SECRETS_GPG_FILE}" "${_tmp}"
+  fi
   rm -f "${_tmp}"
   echo "secrets_gpg: wrote ${SECRETS_GPG_FILE}" >&2
 }
@@ -65,9 +76,13 @@ secrets_gpg_edit() {
   _tmp="${_dir}/secrets.plain"
   secrets_gpg_decrypt >"${_tmp}"
   ${EDITOR:-vi} "${_tmp}"
-  # shellcheck disable=SC2046
-  _a="$(secrets_gpg__encrypt_args)"
-  gpg --quiet --batch --yes ${_a} --encrypt --output "${SECRETS_GPG_FILE}" "${_tmp}"
+  if [[ "${SECRETS_GPG_SYMMETRIC:-}" == "1" ]]; then
+    gpg --quiet --yes --symmetric --cipher-algo AES256 --output "${SECRETS_GPG_FILE}" "${_tmp}"
+  else
+    # shellcheck disable=SC2046
+    _a="$(secrets_gpg__encrypt_args)"
+    gpg --quiet --batch --yes ${_a} --encrypt --output "${SECRETS_GPG_FILE}" "${_tmp}"
+  fi
   rm -rf "${_dir}"
   echo "secrets_gpg: updated ${SECRETS_GPG_FILE}" >&2
 }
