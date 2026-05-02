@@ -1,0 +1,285 @@
+<!-- KaTeX Integration for Enhanced Mathematical Typesetting -->
+<!-- Faster rendering than MathJax with better performance for academic content -->
+
+<!-- KaTeX CSS - Modern, fast mathematical typesetting -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" 
+      integrity="sha384-n8MVd4RsNIU0KOVEMeaPoRhLE6mHF5BjCC4A5I7GcseBr7YhpYSm9gzZTtWyphSAW" 
+      crossorigin="anonymous">
+
+<!-- KaTeX JS for rendering mathematical expressions -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" 
+        integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzYCPNr/1iZNaE2FNNJmblGxjcoMklJGwE9" 
+        crossorigin="anonymous"></script>
+
+<!-- KaTeX Auto-render extension - automatically render LaTeX in markdown -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" 
+        integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" 
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\[', right: '\\]', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false}
+            ],
+            throwOnError: false,
+            strict: false,
+            trust: true,
+            macros: {
+                "\\RR": "\\mathbb{R}",
+                "\\NN": "\\mathbb{N}",
+                "\\ZZ": "\\mathbb{Z}",
+                "\\QQ": "\\mathbb{Q}",
+                "\\CC": "\\mathbb{C}",
+                "\\EE": "\\mathbb{E}",
+                "\\PP": "\\mathbb{P}",
+                "\\argmin": "\\operatorname{argmin}",
+                "\\argmax": "\\operatorname{argmax}",
+                "\\sign": "\\operatorname{sign}",
+                "\\softmax": "\\operatorname{softmax}",
+                "\\ReLU": "\\operatorname{ReLU}",
+                "\\Loss": "\\mathcal{L}",
+                "\\Data": "\\mathcal{D}",
+                "\\Model": "\\mathcal{M}",
+                "\\Params": "\\boldsymbol{\\theta}",
+                "\\vec": "\\mathbf",
+                "\\mat": "\\mathbf",
+                "\\norm": "\\left\\|\\right\\|",
+                "\\abs": "\\left|\\right|",
+                "\\floor": "\\left\\lfloor\\right\\rfloor",
+                "\\ceil": "\\left\\lceil\\right\\rceil",
+                "\\round": "\\left\\lfloor\\right\\rceil"
+            }
+        })"></script>
+
+<!-- KaTeX Copy Extension - Copy LaTeX source -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js" 
+        integrity="sha384-xxlQOM4OUd9Tx2NdxCFjUc543x8LVvx1S8M1DSD5y/ND5Z7E9yZgyQvZqp3ZsIUa" 
+        crossorigin="anonymous"></script>
+
+<!-- KaTeX mhchem Extension - Chemical equations support -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js" 
+        integrity="sha384-0EOU5iNB5YYdCKlQpEHffA8DEGVVAmFRvlT+fkhvUnAesKI5vdEKBPDm3RGUVBbA" 
+        crossorigin="anonymous"></script>
+
+<!-- Custom KaTeX Styles -->
+<style>
+  /* Enhanced KaTeX styling with our 2026 design system */
+  .katex {
+    font-size: 1em;
+    color: var(--color-gray-800);
+  }
+  
+  .katex-display {
+    margin: var(--space-4) 0;
+    
+    @media (min-width: 768px) {
+      margin: var(--space-6) 0;
+    }
+  }
+  
+  /* Inline math styling */
+  .katex .mathit {
+    font-family: 'KaTeX_Math', 'Times New Roman', serif;
+    font-style: italic;
+  }
+  
+  /* Display math enhancements */
+  .katex-display > .katex {
+    display: inline-block;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 var(--space-2);
+  }
+  
+  /* Math equation highlighting on hover */
+  .katex:hover {
+    background-color: var(--color-gray-50);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-bg-color);
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .katex {
+      color: var(--color-gray-200);
+    }
+    
+    .katex:hover {
+      background-color: var(--color-gray-800);
+    }
+  }
+  
+  /* Focus support for accessibility */
+  .katex:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  
+  /* Print styles */
+  @media print {
+    .katex {
+      color: #000;
+    }
+    
+    .katex:hover {
+      background: none;
+    }
+  }
+  
+  /* Copy to clipboard button styling */
+  .katex-copy-btn {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    background: var(--color-gray-100);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+    opacity: 0;
+    transition: var(--transition-opacity) var(--transition-normal);
+    z-index: 1;
+  }
+  
+  .katex-display:hover .katex-copy-btn {
+    opacity: 1;
+  }
+  
+  .katex-copy-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+  
+  /* Equation numbering for academic papers */
+  .katex-eq-no {
+    float: right;
+    margin-left: var(--space-4);
+    font-size: 0.8em;
+    color: var(--color-gray-500);
+    font-family: var(--font-body);
+  }
+  
+  /* Responsive math sizing */
+  @media (max-width: 768px) {
+    .katex {
+      font-size: 0.9em;
+    }
+    
+    .katex-display > .katex {
+      font-size: 0.85em;
+    }
+  }
+  
+  /* Large screens */
+  @media (min-width: 1200px) {
+    .katex-display > .katex {
+      font-size: 1.1em;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .katex {
+      font-weight: var(--font-weight-medium);
+    }
+    
+    .katex:hover {
+      border: 2px solid var(--color-accent);
+    }
+  }
+</style>
+
+<!-- KaTeX Performance Optimizations -->
+<script>
+  // Preload KaTeX fonts for better performance
+  function preloadKatexFonts() {
+    const fonts = [
+      'KaTeX_Main-Regular.woff2',
+      'KaTeX_Main-Bold.woff2',
+      'KaTeX_Math-Italic.woff2',
+      'KaTeX_Size1-Regular.woff2',
+      'KaTeX_Size2-Regular.woff2',
+      'KaTeX_Size3-Regular.woff2',
+      'KaTeX_Size4-Regular.woff2'
+    ];
+    
+    fonts.forEach(font => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'font';
+      link.type = 'font/woff2';
+      link.crossOrigin = 'anonymous';
+      link.href = `https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/fonts/${font}`;
+      document.head.appendChild(link);
+    });
+  }
+  
+  // Preload fonts early
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', preloadKatexFonts);
+  } else {
+    preloadKatexFonts();
+  }
+  
+  // Enhanced math rendering with error handling
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add loading indicator for complex equations
+    const mathElements = document.querySelectorAll('.katex-display');
+    mathElements.forEach(element => {
+      element.style.minHeight = '2em';
+      element.style.position = 'relative';
+    });
+    
+    // Add equation copying functionality
+    if (typeof renderMathInElement !== 'undefined') {
+      // Custom render options for better performance
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false}
+        ],
+        throwOnError: false,
+        strict: false,
+        trust: true,
+        errorCallback: function(msg, err) {
+          console.warn('KaTeX rendering error:', msg, err);
+          // Fallback to plain text if KaTeX fails
+          const element = err.element;
+          if (element) {
+            element.style.color = 'var(--color-error)';
+            element.title = 'Math rendering error: ' + msg;
+          }
+        }
+      });
+    }
+  });
+  
+  // Keyboard navigation support for math equations
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+      const katexElements = document.querySelectorAll('.katex, .katex-display');
+      const currentIndex = Array.from(katexElements).indexOf(document.activeElement);
+      
+      if (currentIndex !== -1 || (e.shiftKey && currentIndex === 0)) {
+        e.preventDefault();
+        let nextIndex;
+        
+        if (e.shiftKey) {
+          nextIndex = currentIndex > 0 ? currentIndex - 1 : katexElements.length - 1;
+        } else {
+          nextIndex = (currentIndex + 1) % katexElements.length;
+        }
+        
+        katexElements[nextIndex].focus();
+      }
+    }
+  });
+</script>

@@ -1,5 +1,5 @@
 ---
-# Front matter required for Jekyll to process this file
+# Only the main Sass file needs front matter (the dashes are enough)
 ---
 
 // Import Design Tokens and Styles using modern @use syntax
@@ -13,36 +13,74 @@
 @use "emerging-tech";
 @use "site-shell";
 
-// ============================================================================
-// CSS Custom Properties (for runtime theming if needed)
-// ============================================================================
+    "skins/{{ site.text_skin | default: site.data.variables.default.text_skin }}",
+    // "skins/chocolate",
+    // "skins/dark",
+    // "skins/default",
+    // "skins/forest",
+    // "skins/ocean",
+    // "skins/orange",
 
-:root {
-  // Colors
-  --color-primary: #{$color-primary};
-  --color-primary-dark: #{$color-primary-dark};
-  --color-primary-light: #{$color-primary-light};
-  --color-accent-purple: #{$color-accent-purple};
-  --color-accent-cyan: #{$color-accent-cyan};
+    "skins/highlight/{{ site.highlight_theme | default: site.data.variables.default.highlight_theme }}",
+    // "skins/highlight/tomorrow",
+    // "skins/highlight/tomorrow-night",
+    // "skins/highlight/tomorrow-night-eighties",
+    // "skins/highlight/tomorrow-night-blue",
+    // "skins/highlight/tomorrow-night-bright",
 
-  --color-text-primary: #{$color-text-primary};
-  --color-text-secondary: #{$color-text-secondary};
-  --color-text-tertiary: #{$color-text-tertiary};
 
-  --color-bg-primary: #{$color-bg-primary};
-  --color-bg-secondary: #{$color-bg-secondary};
-  --color-bg-tertiary: #{$color-bg-tertiary};
+    "common/variables",
+    "common/function",
+    "common/classes",
+    "common/reset",
+    "common/print",
+    "common/components/button",
+    "common/components/image",
+    "common/components/card",
+    "common/components/gallery",
+    "common/components/hero",
+    "common/components/menu",
+    "common/components/modal",
+    "common/components/toc",
+    "common/components/item",
+    "common/components/swiper",
 
-  --color-border: #{$color-border};
-  --color-border-light: #{$color-border-light};
+    "animate/fade-in",
+    "animate/fade-in-down",
+    "animate/fade-in-up",
 
-  // Spacing
-  --space-xs: #{$space-xs};
-  --space-sm: #{$space-sm};
-  --space-md: #{$space-md};
-  --space-lg: #{$space-lg};
-  --space-xl: #{$space-xl};
-  --space-2xl: #{$space-2xl};
-  --space-3xl: #{$space-3xl};
-  --space-4xl: #{$space-4xl};
-}
+    "components/main",
+    "components/header",
+    "components/navigation-dropdown",
+    "components/coursework-section",
+    "components/hero-responsive",
+    "components/footer",
+    "components/article-list",
+    "components/article-info",
+    "components/article-header",
+    "components/article-content",
+    "components/article-footer",
+    "components/author-links",
+    "components/author-profile",
+    "components/tags",
+    "components/search",
+    "components/lightbox",
+    "components/extensions",
+
+
+    "additional/alert",
+    "additional/tag",
+    "additional/photo-frame",
+
+    "layout/base",
+    "layout/page",
+
+    "layout/article",
+    "layout/articles",
+    "layout/archive",
+    "layout/home",
+    "layout/landing",
+    "layout/404",
+
+    "custom"
+;

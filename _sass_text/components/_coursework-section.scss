@@ -1,0 +1,239 @@
+// Coursework Section with Term Filtering
+// =======================================
+// Responsive grid layout for course cards
+// Filter tabs for organizing courses by semester
+
+.coursework-section {
+  padding: map-get($spacers, 5) 0;
+  background-color: $background-color;
+  
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 map-get($spacers, 3);
+    
+    @include media-breakpoint-up(md) {
+      padding: 0 map-get($spacers, 4);
+    }
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: map-get($spacers, 5);
+  }
+  
+  &__title {
+    font-size: clamp(1.953rem, 4vw, 2.441rem);
+    font-weight: map-get($base, font-weight-bold);
+    color: $text-color-d;
+    margin-bottom: map-get($spacers, 2);
+  }
+  
+  &__description {
+    font-size: map-get($base, font-size);
+    color: $text-color;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  // Filter Tabs
+  &__filters {
+    @include flexbox();
+    @include justify-content(center);
+    @include flex-wrap(wrap);
+    gap: map-get($spacers, 2);
+    margin-bottom: map-get($spacers, 5);
+    border-bottom: 2px solid $border-color-l;
+    padding-bottom: map-get($spacers, 3);
+    
+    @include media-breakpoint-down(md) {
+      @include justify-content(flex-start);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: map-get($spacers, 2);
+    }
+  }
+  
+  &__content {
+    position: relative;
+  }
+}
+
+// Filter Button
+.coursework-filter {
+  padding: map-get($spacers, 2) map-get($spacers, 4);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: $text-color;
+  font-size: map-get($base, font-size);
+  font-weight: map-get($base, font-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  @include flexbox();
+  @include align-items(center);
+  gap: map-get($spacers, 2);
+  white-space: nowrap;
+  
+  &:hover,
+  &:focus {
+    color: $main-color-1;
+    outline: none;
+  }
+  
+  &:focus {
+    outline: 2px solid $main-color-1;
+    outline-offset: 2px;
+  }
+  
+  &--active {
+    color: $main-color-1;
+    border-bottom-color: $main-color-1;
+    font-weight: map-get($base, font-weight-bold);
+  }
+  
+  &__count {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba($main-color-1, 0.1);
+    border-radius: 12px;
+    font-size: map-get($base, font-size-xs);
+    font-weight: map-get($base, font-weight-bold);
+    color: $main-color-1;
+  }
+}
+
+// Course Grid
+.coursework-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: map-get($spacers, 4);
+  
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &[hidden] {
+    display: none;
+  }
+}
+
+// Course Card
+.coursework-card {
+  background: $background-color;
+  border: 1px solid $border-color-l;
+  border-radius: map-get($base, border-radius-lg);
+  padding: map-get($spacers, 4);
+  transition: all 0.3s ease;
+  @include flexbox();
+  @include flex-direction(column);
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: $main-color-1;
+  }
+  
+  &__content {
+    @include flexbox();
+    @include flex-direction(column);
+    height: 100%;
+  }
+  
+  &__header {
+    margin-bottom: map-get($spacers, 3);
+  }
+  
+  &__title {
+    font-size: map-get($base, font-size-h4);
+    font-weight: map-get($base, font-weight-bold);
+    color: $text-color-d;
+    margin-bottom: map-get($spacers, 2);
+    line-height: 1.3;
+  }
+  
+  &__meta {
+    @include flexbox();
+    @include align-items(center);
+    @include flex-wrap(wrap);
+    gap: map-get($spacers, 2);
+  }
+  
+  &__semester {
+    font-size: map-get($base, font-size-sm);
+    color: $text-color-l;
+  }
+  
+  &__badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: map-get($base, font-size-xs);
+    font-weight: map-get($base, font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    
+    &--active {
+      background: rgba($green, 0.1);
+      color: $green;
+    }
+    
+    &--completed {
+      background: rgba($text-color-l, 0.1);
+      color: $text-color-l;
+    }
+  }
+  
+  &__body {
+    @include flex(1);
+    margin-bottom: map-get($spacers, 4);
+  }
+  
+  &__description {
+    font-size: map-get($base, font-size);
+    color: $text-color;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  &__footer {
+    margin-top: auto;
+  }
+  
+  &__actions {
+    @include flexbox();
+    @include flex-wrap(wrap);
+    gap: map-get($spacers, 2);
+  }
+  
+  &__action {
+    @include flexbox();
+    @include align-items(center);
+    gap: map-get($spacers, 1);
+    
+    i {
+      font-size: 0.875em;
+    }
+  }
+}
+
+// Responsive adjustments
+@include media-breakpoint-down(md) {
+  .coursework-card {
+    padding: map-get($spacers, 3);
+    
+    &__actions {
+      @include flex-direction(column);
+      
+      .button {
+        width: 100%;
+        @include justify-content(center);
+      }
+    }
+  }
+}

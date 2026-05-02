@@ -30,6 +30,8 @@
   canvas_url: "https://texastech.instructure.com/courses/70714"
   media_site_url: null
   calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_tPfa5STeKYoJe9DlOXVO5CKezugv193nXP3IAfnI.ics"
+  course_site: "https://cryptography.scottweeden.online"
+  repository: "https://github.com/sweeden-ttu/cryptography"
   landing_pages:
     course_page: "/courses/cryptography/"
     media_links: "/courses/cryptography/media"
@@ -55,6 +57,8 @@
   canvas_url: "https://texastech.instructure.com/courses/70713"
   media_site_url: "https://engrmediacast.ttu.edu/Mediasite/Channel/96542-cs5374-d01-namin-spring-2026"
   calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_StkXgOD3d2Rw2tv46ad0H4DyetiapkEA4bz1rUd1.ics"
+  course_site: "https://software-vv.scottweeden.online"
+  repository: "https://github.com/sweeden-ttu/software-vv"
   landing_pages:
     course_page: "/courses/software-verification/"
     media_links: "/courses/software-verification/media"
@@ -82,6 +86,8 @@
   end_date: "2025-12-15"
   syllabus_url: "https://texastech.instructure.com/courses/58606/assignments/syllabus"
   media_site_url: null
+  course_site: "https://intelligent-systems.scottweeden.online"
+  repository: "https://github.com/sweeden-ttu/intelligent-systems"
   calendar_ics: "https://texastech.instructure.com/feeds/calendars/course_03HZU9NLrq7VTIiGq5FL2utb4YUDwMQqM4nBrgjZ.ics"
   tags:
     - artificial-intelligence

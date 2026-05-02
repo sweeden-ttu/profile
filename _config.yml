@@ -1,11 +1,27 @@
+# TeXt Theme Configuration (using local submodule)
+theme: null
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+  - jekyll-seo-tag
+
 # Site Settings
 title: Scott Weeden
 description: Making technology accessible — Master of Computer Applications (MCA), Computer Science, Texas Tech University (March 2025).
 url: "https://scottweeden.online"
 baseurl: ""
 
+# TeXt Theme Settings
+text_skin: default
+highlight_theme: tomorrow-night
+lang: en
+timezone: America/Chicago
+
 # Author Information
 author:
+  type: person
   name: Scott Weeden
   email: scott.weeden@gmail.com
   github: sweeden-ttu
@@ -17,7 +33,6 @@ author:
 markdown: kramdown
 highlighter: rouge
 permalink: /blog/:year/:month/:day/:title/
-timezone: America/Chicago
 
 # Collections
 collections:
@@ -79,13 +94,20 @@ social:
 
 # Defaults
 defaults:
-  # Posts
+  # Posts (TeXt theme uses 'article' layout)
   - scope:
       path: "_posts"
       type: posts
     values:
-      layout: post
+      layout: article
       author: Scott Weeden
+      sharing: true
+      license: false
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: false
   # Projects
   - scope:
       path: "_projects"
@@ -122,6 +144,11 @@ defaults:
       type: pages
     values:
       layout: page
+  # Home page uses landing layout
+  - scope:
+      path: "index.html"
+    values:
+      layout: landing
 
 # Exclude from processing (also prevents *_solutions.md.backup from matching as Markdown)
 exclude:
@@ -133,20 +160,24 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - docs
   - CLAUDE.md
   - README.md
   - templates/
   - .lighthouserc.json
   - package.json
   - package-lock.json
+  - coursework
+  - courses
+  - _theme
 
 # Include files
 include:
   - _pages
 
-# Sass/SCSS Settings
+# Sass/SCSS Settings (TeXt theme)
 sass:
-  sass_dir: _sass
+  sass_dir: _sass_text
   style: compressed
 
 # Pagination (if needed in future)
