@@ -2,94 +2,98 @@
 layout: default
 ---
 
-<article class="post">
-  <header class="post__header">
-    <h1 class="post__title">{{ page.title }}</h1>
+<div class="site-frame surface-page">
+  {% if page.surface_kicker %}
+    <p class="surface-page__kicker" data-reveal>{{ page.surface_kicker }}</p>
+  {% endif %}
+  <article class="post">
+    <header class="post__header">
+      <h1 class="post__title">{{ page.title }}</h1>
 
-    <div class="post__meta">
-      <time class="post__date" datetime="{{ page.date | date_to_xmlschema }}">
-        {{ page.date | date: "%B %-d, %Y" }}
-      </time>
+      <div class="post__meta">
+        <time class="post__date" datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%B %-d, %Y" }}
+        </time>
 
-      {% if page.reading_time %}
-        <span class="post__reading-time">{{ page.reading_time }} min read</span>
+        {% if page.reading_time %}
+          <span class="post__reading-time">{{ page.reading_time }} min read</span>
+        {% endif %}
+
+        {% if page.categories %}
+          <div class="post__categories">
+            {% for category in page.categories %}
+              <span class="post__category">{{ category }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if page.excerpt %}
+        <p class="post__excerpt">{{ page.excerpt }}</p>
       {% endif %}
+    </header>
 
-      {% if page.categories %}
-        <div class="post__categories">
-          {% for category in page.categories %}
-            <span class="post__category">{{ category }}</span>
+    {% if page.series %}
+      {% assign series_posts = site.posts | where: "series", page.series | sort: "date" %}
+      <section class="series-callout" aria-label="Series navigation">
+        <p class="badge">Series</p>
+        <h2 class="series-callout__title">{{ page.series }}</h2>
+
+        {% if page.series_index or page.series_length %}
+          <p class="series-callout__meta">
+            {% if page.series_index %}Part {{ page.series_index }}{% endif %}
+            {% if page.series_length %} of {{ page.series_length }}{% endif %}
+          </p>
+        {% endif %}
+
+        {% if series_posts and series_posts.size > 0 %}
+          <ol class="series-callout__list">
+            {% for post in series_posts %}
+              <li>
+                {% if post.url == page.url %}
+                  <span class="badge">Current</span>
+                  <span>{{ post.title }}</span>
+                {% else %}
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </section>
+    {% endif %}
+
+    <div class="post__content">
+      {{ content }}
+    </div>
+
+    {% if page.tags %}
+      <footer class="post__footer">
+        <div class="post__tags">
+          <span class="post__tags-label">Tags:</span>
+          {% for tag in page.tags %}
+            <a href="{{ '/blog/tags/' | append: tag | relative_url }}" class="post__tag">{{ tag }}</a>
           {% endfor %}
         </div>
-      {% endif %}
-    </div>
-
-    {% if page.excerpt %}
-      <p class="post__excerpt">{{ page.excerpt }}</p>
+      </footer>
     {% endif %}
-  </header>
+  </article>
 
-  {% if page.series %}
-    {% assign series_posts = site.posts | where: "series", page.series | sort: "date" %}
-    <section class="series-callout" aria-label="Series navigation">
-      <p class="badge">Series</p>
-      <h2 class="series-callout__title">{{ page.series }}</h2>
-
-      {% if page.series_index or page.series_length %}
-        <p class="series-callout__meta">
-          {% if page.series_index %}Part {{ page.series_index }}{% endif %}
-          {% if page.series_length %} of {{ page.series_length }}{% endif %}
-        </p>
-      {% endif %}
-
-      {% if series_posts and series_posts.size > 0 %}
-        <ol class="series-callout__list">
-          {% for post in series_posts %}
-            <li>
-              {% if post.url == page.url %}
-                <span class="badge">Current</span>
-                <span>{{ post.title }}</span>
-              {% else %}
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ol>
-      {% endif %}
-    </section>
-  {% endif %}
-
-  <div class="post__content">
-    {{ content }}
-  </div>
-
-  {% if page.tags %}
-    <footer class="post__footer">
-      <div class="post__tags">
-        <span class="post__tags-label">Tags:</span>
-        {% for tag in page.tags %}
-          <a href="{{ '/blog/tags/' | append: tag | relative_url }}" class="post__tag">{{ tag }}</a>
+  {% if site.related_posts.size > 0 %}
+    <section class="related-posts">
+      <h2 class="related-posts__title">Related Posts</h2>
+      <div class="related-posts__grid">
+        {% for post in site.related_posts limit:3 %}
+          <article class="related-post-card">
+            <h3 class="related-post-card__title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <time class="related-post-card__date" datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%B %-d, %Y" }}
+            </time>
+          </article>
         {% endfor %}
       </div>
-    </footer>
+    </section>
   {% endif %}
-</article>
-
-<!-- Related Posts -->
-{% if site.related_posts.size > 0 %}
-  <section class="related-posts">
-    <h2 class="related-posts__title">Related Posts</h2>
-    <div class="related-posts__grid">
-      {% for post in site.related_posts limit:3 %}
-        <article class="related-post-card">
-          <h3 class="related-post-card__title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </h3>
-          <time class="related-post-card__date" datetime="{{ post.date | date_to_xmlschema }}">
-            {{ post.date | date: "%B %-d, %Y" }}
-          </time>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
+</div>

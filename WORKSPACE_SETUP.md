@@ -16,7 +16,7 @@ This guide explains the workspace configuration for Ruby/Jekyll (GitHub Pages) a
    ```bash
    # macOS (using Homebrew)
    brew install ruby
-   
+
    # Or use rbenv/rvm for version management
    ```
 
@@ -41,7 +41,7 @@ bundle exec jekyll serve --livereload
 
 The site will be available at `http://localhost:4000`
 
-### Workspace Settings for Ruby/Jekyll
+## Workspace Settings for Ruby/Jekyll
 
 - **Language Server**: Ruby LSP enabled
 - **Linting**: RuboCop (via Bundler)
@@ -74,7 +74,7 @@ The following are excluded from file watching and search:
    ```bash
    # macOS/Linux
    source .venv/bin/activate
-   
+
    # Windows
    .venv\Scripts\activate
    ```
@@ -92,7 +92,7 @@ The following are excluded from file watching and search:
 ### Workspace Settings for Python
 
 - **Formatter**: Black (line length: 88)
-- **Linting**: 
+- **Linting**:
   - Flake8 (enabled)
   - MyPy (type checking, enabled)
   - Pylint (disabled)
@@ -128,7 +128,7 @@ bundle exec jekyll build
 bundle exec jekyll serve
 ```
 
-### Playwright Testing
+## Playwright Testing
 
 Run Playwright tests (which start Jekyll server automatically):
 ```bash
@@ -216,7 +216,7 @@ npm test                           # Run Playwright tests
 bundle exec htmlproofer _site      # Check HTML links
 ```
 
-### File Structure
+## File Structure
 
 ```
 .

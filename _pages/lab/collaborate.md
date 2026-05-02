@@ -1,3 +1,4 @@
+# Collaborate
 ---
 layout: lab
 permalink: /lab/collaborate/

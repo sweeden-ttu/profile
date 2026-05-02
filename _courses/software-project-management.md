@@ -1,3 +1,4 @@
+# Software Project Management
 ---
 layout: page
 title: Software Project Management
@@ -15,7 +16,7 @@ tags:
 permalink: /courses/software-project-management/
 ---
 
-**Semester**: Summer 2025  
+**Semester**: Summer 2025
 **Status**: Completed
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}

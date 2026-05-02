@@ -1,3 +1,4 @@
+# Domains
 ---
 layout: lab
 permalink: /lab/domains/

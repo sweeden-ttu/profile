@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Verification vs. validation: what each term means in practice  
-- Types of testing (unit, integration, system, regression)  
-- Test oracles, test cases, and coverage criteria  
-- Limits of testing and motivation for formal methods  
+- Verification vs. validation: what each term means in practice
+- Types of testing (unit, integration, system, regression)
+- Test oracles, test cases, and coverage criteria
+- Limits of testing and motivation for formal methods
 
 ## Reading and Preparation
 

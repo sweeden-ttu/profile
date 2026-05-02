@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Why testing alone is not enough for critical systems  
-- High-level view of model checking and theorem proving  
-- Examples of properties we might want to prove (safety, liveness)  
-- How formal methods integrate with testing in a verification pipeline  
+- Why testing alone is not enough for critical systems
+- High-level view of model checking and theorem proving
+- Examples of properties we might want to prove (safety, liveness)
+- How formal methods integrate with testing in a verification pipeline
 
 ## Reading and Preparation
 

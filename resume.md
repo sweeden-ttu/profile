@@ -1,7 +1,8 @@
 ---
-layout: page
-title: Scott Weeden Resume
+layout: resume
+title: Scott Weeden Résumé
 permalink: /resume/
+avatar: https://github.com/sweeden-ttu.png
 ---
 
 ## Contact
@@ -24,15 +25,9 @@ Algorithm Design
 
 Next.js
 
-## Scott Weeden
-
-11,432 followers
-
-Killeen, Texas, United States
-
 ## Summary
 
-Making technology accessible
+Making technology accessible. Based in Killeen, Texas.
 
 {% include profile-experience-education.md %}
 

@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Designing experiments to probe system behavior  
-- Using traces and logs to diagnose failures and flaky tests  
-- Connecting observability data to test oracles and specifications  
-- How LangSmith (and similar tools) fit into modern verification workflows  
+- Designing experiments to probe system behavior
+- Using traces and logs to diagnose failures and flaky tests
+- Connecting observability data to test oracles and specifications
+- How LangSmith (and similar tools) fit into modern verification workflows
 
 ## Reading and Preparation
 

@@ -149,6 +149,9 @@ def main() -> int:
         print('No Markdown files found.')
         return 0
     for p in md_files:
+        # Skip generated/publication artifacts and non-source folders
+        if any(part == '_site' for part in p.parts):
+            continue
         if not p.is_file():
             continue
         changed = process_file(p, root)

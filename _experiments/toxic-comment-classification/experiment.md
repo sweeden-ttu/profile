@@ -1,3 +1,4 @@
+# Experiment
 ---
 title: "Toxic Comment Classification – LangSmith Experiment Design"
 competition: "toxic-comment-classification-challenge"
@@ -17,26 +18,26 @@ Benchmark toxic comment classifiers on Kaggle’s **Toxic Comment Classification
 
 ## Research grounding (arXiv)
 
-- **“Convolutional Neural Networks for Toxic Comment Classification”** (`arxiv:1802.09957`)  
-- **“Extended LSTM: Adaptive Feature Gating for Toxic Comment Classification”** (`arxiv:2510.17018`)  
+- **“Convolutional Neural Networks for Toxic Comment Classification”** (`arxiv:1802.09957`)
+- **“Extended LSTM: Adaptive Feature Gating for Toxic Comment Classification”** (`arxiv:2510.17018`)
 - **“Detecting Unintended Social Bias in Toxic Language Datasets”** (ToxicBias, based on Jigsaw data, `arxiv:2210.11762`) – for bias analysis dimensions.
 
 ## Experiment matrix
 
-1. **CNN baseline (paper-style)**  
-   - Token-level CNN with pre-trained embeddings (e.g., GloVe).  
-   - Multi-label sigmoid outputs for the 6 toxicity categories.  
+1. **CNN baseline (paper-style)**
+   - Token-level CNN with pre-trained embeddings (e.g., GloVe).
+   - Multi-label sigmoid outputs for the 6 toxicity categories.
 
-2. **LSTM / xLSTM-style model**  
-   - BiLSTM or gated LSTM with character-level features (inspired by xLSTM).  
-   - Focus on long-range dependencies and rare words.  
+2. **LSTM / xLSTM-style model**
+   - BiLSTM or gated LSTM with character-level features (inspired by xLSTM).
+   - Focus on long-range dependencies and rare words.
 
-3. **Transformer baseline (e.g., DistilBERT)**  
-   - Fine-tuned transformer on the Kaggle labels.  
+3. **Transformer baseline (e.g., DistilBERT)**
+   - Fine-tuned transformer on the Kaggle labels.
    - Serves as a modern comparison point to older CNN/LSTM models.
 
-4. **Bias-focused evaluation subset**  
-   - Subsample comments containing identity terms (following ToxicBias categories).  
+4. **Bias-focused evaluation subset**
+   - Subsample comments containing identity terms (following ToxicBias categories).
    - Compare model behavior across identity groups for equalized odds / disparate impact style metrics.
 
 ## LangSmith instrumentation
@@ -75,12 +76,12 @@ def log_toxic_example(example_id, text, y_true, y_pred, meta):
 ## Evaluation & analysis
 
 - Standard metrics:
-  - Macro/micro F1, ROC-AUC per label, PR-AUC.  
+  - Macro/micro F1, ROC-AUC per label, PR-AUC.
 - Bias metrics:
-  - Performance gaps across identity slices (e.g., F1 for comments mentioning different groups).  
-  - Rate of false positives/negatives on identity-bearing vs. neutral comments.  
+  - Performance gaps across identity slices (e.g., F1 for comments mentioning different groups).
+  - Rate of false positives/negatives on identity-bearing vs. neutral comments.
 - Use LangSmith to:
-  - Drill into high-confidence errors (false positives/negatives).  
-  - Compare traces between CNN/LSTM/transformer runs on the *same* comment.  
-  - Attach confusion matrices and calibration plots as run artifacts.  
+  - Drill into high-confidence errors (false positives/negatives).
+  - Compare traces between CNN/LSTM/transformer runs on the *same* comment.
+  - Attach confusion matrices and calibration plots as run artifacts.
 

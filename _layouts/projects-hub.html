@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+{% assign lede = content | strip %}
+{% assign sorted_projects = site.projects | sort: "date" | reverse %}
+
+<div class="projects-hub">
+  <header class="projects-hub__hero" data-reveal>
+    <p class="etr-eyebrow">
+      <span class="etr-eyebrow__dot" aria-hidden="true"></span>
+      Research &amp; build log
+    </p>
+    <h1 class="projects-hub__title">{{ page.title }}</h1>
+    {% if lede != "" %}
+      <div class="projects-hub__lede">{{ content }}</div>
+    {% else %}
+      <p class="projects-hub__lede">
+        Project write-ups from the <code class="work-gallery__code">_projects</code> collection, plus a PDF deck of coursework outputs.
+      </p>
+    {% endif %}
+  </header>
+
+  {% if sorted_projects.size > 0 %}
+    <section aria-labelledby="projects-writeups-heading">
+      <div class="projects-hub__cards-head" data-reveal>
+        <h2 id="projects-writeups-heading" class="projects-hub__section-title">Project write-ups</h2>
+      </div>
+      <ul class="projects-hub__cards" role="list">
+        {% for p in sorted_projects %}
+          <li data-reveal style="--reveal-delay: {{ forloop.index0 | times: 40 }}ms;">
+            <article class="project-hub-card js-tilt-card">
+              <a class="project-hub-card__link" href="{{ p.url | relative_url }}">
+                <span class="project-hub-card__meta">
+                  {% if p.date %}{{ p.date | date: "%Y · %b" }}{% endif %}
+                  {% if p.status %} · {{ p.status }}{% endif %}
+                </span>
+                <h3 class="project-hub-card__title">{{ p.title }}</h3>
+                {% if p.subtitle %}
+                  <p class="project-hub-card__sub">{{ p.subtitle }}</p>
+                {% elsif p.excerpt %}
+                  <p class="project-hub-card__sub">{{ p.excerpt | strip_html | truncate: 160 }}</p>
+                {% endif %}
+                <span class="project-hub-card__cta">Open project →</span>
+              </a>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% include projects-pdf-gallery.html %}
+</div>
