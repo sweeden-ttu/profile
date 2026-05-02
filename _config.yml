@@ -9,7 +9,7 @@ plugins:
 
 # Site Settings
 title: Scott Weeden
-description: Computer Science student, researcher, and ML enthusiast at Texas Tech University
+description: Making technology accessible — Master of Computer Applications (MCA), Computer Science, Texas Tech University (March 2025).
 url: "https://scottweeden.online"
 baseurl: ""
 
@@ -23,12 +23,11 @@ timezone: America/Chicago
 author:
   type: person
   name: Scott Weeden
-  url: https://scottweeden.online
-  avatar: /assets/images/logo.png
-  bio: Master's student at Texas Tech University exploring machine learning, cryptography, and software verification.
-  email: sweeden@ttu.edu
+  email: scott.weeden@gmail.com
   github: sweeden-ttu
   linkedin: weedens
+  facebook: scotdwg81
+  instagram: websharps
 
 # Build Settings
 markdown: kramdown
@@ -54,7 +53,12 @@ collections:
   drafts:
     output: false
 
-# Kramdown Settings
+# Kramdown Settings (math: kramdown-math-katex gem + katex Ruby gem; keep CDN KaTeX in _includes/katex-*.html aligned with gem’s Katex::KATEX_VERSION)
+#
+# Math in Markdown:
+# - $$ … $$ on its own lines → block math, rendered at build time via kramdown-math-katex.
+# - $$ … $$ on one line → inline math at build time (kramdown convention).
+# - $ … $, \( … \), \[ … \] → not parsed by kramdown; KaTeX auto-render runs in the browser on all pages using default.html.
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -63,34 +67,16 @@ kramdown:
       line_numbers: false
     css_class: 'highlight'
   math_engine: katex
+  math_engine_opts:
+    throw_on_error: false
+    strict: "ignore"
 
-# TeXt Theme - Markdown Enhancements
-mathjax: false  # Using KaTeX instead
-katex: true
-katex_autoNumber: true
-mermaid: true
-chart: true
-
-# TeXt Theme - Post Settings
-excerpt_separator: <!--more-->
-license: false
-toc:
-  selectors: "h1,h2,h3"
-
-# TeXt Theme - Pagination
-paginate: 8
-paginate_path: /page:num
-
-# TeXt Theme - Paths
-paths:
-  root: /
-  home: /
-  archive: /archive.html
-  rss: /feed.xml
-
-# TeXt Theme - Repository
-repository: sweeden-ttu/profile
-repository_tree: stable
+# Plugins
+# jekyll-sitemap → outputs /sitemap.xml (absolute URLs via url + baseurl)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
 
 # Feed Settings
 feed:
@@ -102,7 +88,9 @@ social:
   name: Scott Weeden
   links:
     - https://github.com/sweeden-ttu
-    - https://linkedin.com/in/weedens
+    - https://www.linkedin.com/in/weedens/
+    - https://www.facebook.com/scotdwg81
+    - https://www.instagram.com/websharps/
 
 # Defaults
 defaults:
@@ -162,8 +150,9 @@ defaults:
     values:
       layout: landing
 
-# Exclude from processing
+# Exclude from processing (also prevents *_solutions.md.backup from matching as Markdown)
 exclude:
+  - "**/*.md.backup"
   - Gemfile
   - Gemfile.lock
   - node_modules

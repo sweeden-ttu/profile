@@ -11,16 +11,8 @@ course: "Cryptography"
 
 # Cryptography Fundamentals: An Introduction to Secure Communication
 
-[Content to be written]
+Secure communication rests on precise definitions: confidentiality, integrity, authenticity, and resistance to chosen-message and ciphertext attacks. Classical and modern cryptography translate those goals into **primitives** (block ciphers, streams, hashes, MACs), **modes**, and **protocols**.
 
-## Introduction
+This introductory note anchors the terminology used throughout the Cryptography sequence: symmetric vs asymmetric settings, Kerckhoffs’ principle, keys vs algorithms, and the role of randomness (IVs, nonces, salt). Subsequent posts revisit each layer with proofs, constructions, and implementation pitfalls.
 
-[Introduction content]
-
-## Key Concepts
-
-[Main content sections]
-
-## Conclusion
-
-[Conclusion content]
+Use it as a map: when a lecture cites IND-CPA or EUF-CMA security, return here for the intuition before digging into proofs and exercises on Canvas.

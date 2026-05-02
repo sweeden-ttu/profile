@@ -18,12 +18,17 @@ $color-text-primary: #0d1329;   // Deep ink - Headlines, body
 $color-text-secondary: #344054; // Neutral 600 - Captions, meta
 $color-text-tertiary: #6b7280;  // Neutral 500 - Placeholder
 
-$color-bg-primary: #f6f8fb;     // Soft paper - Main background
+$color-bg-primary: #f3f5f9;     // Cool paper — slightly deeper than flat white
 $color-bg-secondary: #eef1f8;   // Section slabs, cards
 $color-bg-tertiary: #e6ebf5;    // Code blocks, callouts
 
 $color-border: #d6deec;         // Clean divider
 $color-border-light: #e9eef7;   // Subtle dividers
+
+// Paper surface aliases — used by emerging-tech bento + gradients
+$color-paper-surface: #ffffff;
+$color-paper-primary: $color-text-primary;
+$color-paper-secondary: $color-accent-purple;
 
 // Accent Colors - Purposeful
 $color-accent-green: #10b981;   // Success, achievements
@@ -42,9 +47,9 @@ $color-code-function: #2563eb;  // Blue
 // Typography
 // ============================================================================
 
-// Font Families - Technical & Editorial mix
-$font-family-heading: "Space Grotesk", "IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; // Geometric sans for headlines
-$font-family-sans: "IBM Plex Sans", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;                    // Technical body copy
+// Font Families — display + editorial sans (Inter removed per design standards)
+$font-family-heading: "Space Grotesk", "Plus Jakarta Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$font-family-sans: "Plus Jakarta Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 $font-family-mono: "IBM Plex Mono", "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace;
 
 // Type Scale (1.250 - Major Third)
@@ -83,12 +88,12 @@ $space-4xl: 6rem;     // 96px
 // Layout
 // ============================================================================
 
-$max-width-content: 768px;   // Reading comfort
-$max-width-wide: 1200px;     // Wide content (projects grid)
+$max-width-content: 880px;    // Prose + wide pages (was 768 — more canvas)
+$max-width-wide: 1400px;     // Bento / grids — maximize usable width
 
 $padding-mobile: $space-lg;    // 24px
-$padding-tablet: $space-2xl;   // 48px
-$padding-desktop: $space-3xl;  // 64px
+$padding-tablet: $space-xl;    // 32px (tighter gutters)
+$padding-desktop: $space-2xl; // 48px
 
 // Grid
 $grid-gap: $space-xl;  // 32px
@@ -115,22 +120,26 @@ $border-radius-xl: 12px;
 // Shadows
 // ============================================================================
 
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 1px 3px rgba(0, 0, 0, 0.1);
-$shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.07);
-$shadow-xl: 0 10px 15px rgba(0, 0, 0, 0.1);
+// Shadows tinted with primary ink (avoid flat rgba(0,0,0) mush)
+$shadow-sm: 0 1px 2px rgba($color-primary-dark, 0.06);
+$shadow-md: 0 4px 14px rgba($color-primary-dark, 0.08);
+$shadow-lg: 0 12px 28px rgba($color-primary-dark, 0.1);
+$shadow-xl: 0 20px 40px rgba($color-primary-dark, 0.12);
 
-// Hover shadow for cards
-$shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05);
-$shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-card: 0 1px 3px rgba($color-primary-dark, 0.06);
+$shadow-card-hover: 0 12px 32px rgba($color-primary-dark, 0.12);
 
 // ============================================================================
 // Transitions
 // ============================================================================
 
-$transition-fast: 100ms ease;
-$transition-base: 150ms ease;
-$transition-slow: 300ms ease;
+// Motion — custom easing (no generic linear / ease-in-out defaults)
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+
+$transition-fast: 140ms $ease-out-expo;
+$transition-base: 220ms $ease-premium;
+$transition-slow: 420ms $ease-premium;
 
 // ============================================================================
 // Z-Index Scale

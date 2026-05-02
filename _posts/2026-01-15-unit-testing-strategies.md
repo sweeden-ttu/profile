@@ -11,16 +11,8 @@ course: "Software Verification and Validation"
 
 # Unit Testing Strategies: Writing Effective Test Cases
 
-[Content to be written]
+Unit tests exercise the smallest verifiable behavior: pure functions, isolated classes, and modules with dependencies replaced by **test doubles** (fakes, stubs, mocks). Good suites are **fast**, **deterministic**, and **readable**, with names that read like specifications.
 
-## Introduction
+Design tests around **arrange / act / assert**, prefer table-driven cases for combinatorial behavior, and measure **coverage** as a guide—not a goal in isolation. Pair coverage with mutation or code review to catch “assertions that never fail.”
 
-[Introduction content]
-
-## Key Concepts
-
-[Main content sections]
-
-## Conclusion
-
-[Conclusion content]
+The Software Verification and Validation thread builds from here to integration tests, contracts, and CI—use this post as the foundation when refactoring for testability (dependency injection, seams, and smaller modules).

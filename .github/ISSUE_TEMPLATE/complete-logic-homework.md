@@ -1,3 +1,4 @@
+# Complete Logic Homework
 ---
 name: Complete Logic Homework Assignment
 about: Complete homework assignment for Logic for Computer Scientists

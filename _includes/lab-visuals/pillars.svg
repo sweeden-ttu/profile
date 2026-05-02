@@ -1,0 +1,35 @@
+<svg class="lab-visual lab-visual--pillars" viewBox="0 0 360 220" role="img" aria-label="Six-stage chain of custody">
+  <defs>
+    <linearGradient id="labPillarGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+
+  <g class="lab-visual__grid">
+    <line x1="0" y1="190" x2="360" y2="190"/>
+  </g>
+
+  <g class="lab-visual__pillars">
+    <g transform="translate(20,0)"><rect x="0" y="150" width="34" height="40"/><text x="17" y="206">01</text></g>
+    <g transform="translate(76,0)"><rect x="0" y="120" width="34" height="70"/><text x="17" y="206">02</text></g>
+    <g transform="translate(132,0)"><rect x="0" y="90"  width="34" height="100"/><text x="17" y="206">03</text></g>
+    <g transform="translate(188,0)"><rect x="0" y="64"  width="34" height="126"/><text x="17" y="206">04</text></g>
+    <g transform="translate(244,0)"><rect x="0" y="40"  width="34" height="150"/><text x="17" y="206">05</text></g>
+    <g transform="translate(300,0)"><rect x="0" y="20"  width="34" height="170"/><text x="17" y="206">06</text></g>
+  </g>
+
+  <path class="lab-visual__line"
+        d="M37,170 C90,150 130,120 165,100 S260,60 317,30"
+        fill="none" stroke="url(#labPillarGrad)" stroke-width="2"
+        stroke-linecap="round"/>
+
+  <g class="lab-visual__labels">
+    <text x="20"  y="148">acquire</text>
+    <text x="76"  y="118">audit</text>
+    <text x="132" y="88">model</text>
+    <text x="188" y="62">stress</text>
+    <text x="244" y="38">review</text>
+    <text x="300" y="18">publish</text>
+  </g>
+</svg>

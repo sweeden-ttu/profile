@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Symmetric vs. public-key tradeoffs  
-- High-level structure of public-key encryption and digital signatures  
-- Trust and key distribution at a conceptual level  
-- How number theory supports these constructions  
+- Symmetric vs. public-key tradeoffs
+- High-level structure of public-key encryption and digital signatures
+- Trust and key distribution at a conceptual level
+- How number theory supports these constructions
 
 ## Reading and Preparation
 

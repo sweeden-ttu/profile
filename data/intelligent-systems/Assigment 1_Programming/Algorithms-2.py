@@ -1,0 +1,165 @@
+# Algorithms.py
+# --------------
+# Concrete search algorithm implementations used by the Pacman project.
+# 
+# This module provides simple, readable graph-search implementations for:
+# - Depth-First Search (DFS)
+# - Breadth-First Search (BFS)
+# - Uniform Cost Search (UCS)
+# - A* Search (A star)
+#
+# Author: Scott Douglas Weeden
+# Date: 2025-10-01
+#
+# Design notes
+# - All algorithms operate over a `problem` adhering to `search.SearchProblem`.
+# - Each algorithm returns a list of actions that leads from the start state to
+#  a goal state, or an empty list if no solution is found.
+# - We implement GRAPH SEARCH (not tree search): already-expanded states are
+#  tracked to avoid infinite loops and redundant work.
+# - For UCS/A*, maintain best-known path costs to support optimality.
+# 
+# Author: Scott Douglas Weeden
+# Date: 2025-10-03
+import util
+
+class DFS(object):
+    # Depth-First Search (stack-based graph search).
+
+    # Explores a path as deep as possible before backtracking. Uses a LIFO
+    # frontier (`util.Queue`) and a `visited` set to avoid revisiting states.
+    # Returns a sequence of actions from start to a goal, optimally ordered by h
+    def depthFirstSearch(self, problem):
+        # Frontier stores tuples: (state, actions_taken_so_far)
+        frontier = util.Stack()
+        start_state = problem.getStartState()
+        frontier.push((start_state, []))
+        visited = set()
+
+        while not frontier.isEmpty():
+            state, actions = frontier.pop()
+
+            # Skip if this state was already expanded
+            if state in visited:
+                continue
+
+            # Goal check on expansion
+            if problem.isGoalState(state):
+                return actions
+
+            visited.add(state)
+
+            # Push successors with extended path
+            for successor, action, _ in problem.getSuccessors(state):
+                if successor not in visited:
+                    frontier.push((successor, actions + [action]))
+
+        # No solution found
+        return []
+
+class BFS(object):
+    """Breadth-First Search (queue-based graph search).
+
+    Expands the shallowest nodes first using a FIFO frontier (`util.Queue`).
+    Suitable for unweighted shortest path in terms of number of steps.
+    """
+
+    def breadthFirstSearch(self, problem):
+        start_state = problem.getStartState()
+        if problem.isGoalState(start_state):
+            return []
+
+        # Frontier stores tuples: (state, actions_taken_so_far)
+        frontier = util.Queue()
+        frontier.push((start_state, []))
+        visited = set()
+
+        while not frontier.isEmpty():
+            state, actions = frontier.pop()
+
+            if state in visited:
+                continue
+
+            if problem.isGoalState(state):
+                return actions
+
+            visited.add(state)
+
+            for successor, action, _ in problem.getSuccessors(state):
+                if successor not in visited:
+                    frontier.push((successor, actions + [action]))
+
+        return []
+
+class UCS(object):
+    """Uniform Cost Search (Dijkstra-style graph search).
+
+    Expands the cheapest (lowest path-cost) node first. Uses a min-heap
+    frontier (`util.PriorityQueue`) keyed by cumulative cost g(n). Tracks the
+    best-known g(n) for each state to guarantee optimality.
+    """
+
+    def uniformCostSearch(self, problem):
+        frontier = util.PriorityQueue()
+        start_state = problem.getStartState()
+        frontier.push((start_state, [], 0), 0)
+        visited = {}  # state -> best known path cost g
+
+        while not frontier.isEmpty():
+            state, actions, cost = frontier.pop()
+
+            # Prune if we already have a cheaper or equal path to this state
+            if state in visited and visited[state] <= cost:
+                continue
+            visited[state] = cost
+
+            if problem.isGoalState(state):
+                return actions
+
+            for successor, action, step_cost in problem.getSuccessors(state):
+                new_cost = cost + step_cost
+                recorded_cost = visited.get(successor)
+                if recorded_cost is None or new_cost < recorded_cost:
+                    frontier.push((successor, actions + [action], new_cost), new_cost)
+
+        return []
+
+class aSearch(object):
+    """A* Search.
+
+    Like UCS, but prioritizes nodes by f(n) = g(n) + h(n), where h(n) is a
+    heuristic estimate of the cost to the goal. For optimality, h must be
+    admissible and preferably consistent.
+    """
+
+    def nullHeuristic(state, problem=None):
+        """Trivial heuristic that returns 0 for all states."""
+        return 0
+
+    def aStarSearch(self, problem, heuristic=nullHeuristic):
+        """Searches using a priority queue ordered by f = g + h."""
+        frontier = util.PriorityQueue()
+        start_state = problem.getStartState()
+        start_cost = heuristic(start_state, problem)
+        frontier.push((start_state, [], 0), start_cost)
+        visited = {}  # state -> best known path cost g
+
+        while not frontier.isEmpty():
+            state, actions, cost = frontier.pop()
+
+            # Standard A* pruning: skip if we have a cheaper/equal g already
+            if state in visited and visited[state] <= cost:
+                continue
+            visited[state] = cost
+
+            if problem.isGoalState(state):
+                return actions
+
+            for successor, action, step_cost in problem.getSuccessors(state):
+                new_cost = cost + step_cost
+                recorded_cost = visited.get(successor)
+                if recorded_cost is None or new_cost < recorded_cost:
+                    priority = new_cost + heuristic(successor, problem)
+                    frontier.push((successor, actions + [action], new_cost), priority)
+
+        return []

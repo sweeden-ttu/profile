@@ -1,0 +1,62 @@
+---
+layout: default
+---
+
+{% assign lede = page.content | strip %}
+
+<article class="work-gallery" data-work-gallery>
+  <header class="work-gallery__intro">
+    <h1 class="work-gallery__title">{{ page.title | default: "Projects" }}</h1>
+    {% if lede != "" %}
+      <div class="work-gallery__lede">{{ content }}</div>
+    {% else %}
+      <p class="work-gallery__lede">
+        PDF coursework and reports from <code class="work-gallery__code">data/</code>, grouped by topic. Use the deck controls or keyboard arrows to move; click a thumbnail to jump in the deck or open the PDF.
+      </p>
+    {% endif %}
+  </header>
+
+  <section class="work-gallery__deck-wrap" aria-labelledby="work-gallery-deck-heading">
+    <h2 id="work-gallery-deck-heading" class="visually-hidden">Slide deck</h2>
+    <div class="work-gallery__deck" data-deck>
+      <div class="work-gallery__slides" data-slides></div>
+      <div class="work-gallery__empty" data-deck-empty hidden>
+        <p>No portfolio data found. Run <kbd class="work-gallery__kbd">python3 scripts/generate_work_portfolio.py</kbd> from the repository root.</p>
+      </div>
+    </div>
+    <div class="work-gallery__deck-meta" aria-live="polite" data-deck-live></div>
+    <div class="work-gallery__controls">
+      <button type="button" class="work-gallery__btn work-gallery__btn--ghost" data-action="prev" aria-label="Previous slide">
+        <span aria-hidden="true">←</span> Previous
+      </button>
+      <button type="button" class="work-gallery__btn work-gallery__btn--primary" data-action="next" aria-label="Next slide">
+        Next <span aria-hidden="true">→</span>
+      </button>
+      <a class="work-gallery__btn work-gallery__btn--link" data-open-pdf href="#" target="_blank" rel="noopener">Open PDF</a>
+    </div>
+  </section>
+
+  {% if site.projects.size > 0 %}
+    <section class="work-gallery__writeups" aria-labelledby="work-gallery-writeups-heading">
+      <h2 id="work-gallery-writeups-heading" class="work-gallery__section-title">Project write-ups</h2>
+      <ul class="work-gallery__writeups-list">
+        {% assign sorted_projects = site.projects | sort: "date" | reverse %}
+        {% for p in sorted_projects %}
+          <li>
+            <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+            {% if p.subtitle %}<span class="work-gallery__writeups-meta">{{ p.subtitle }}</span>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  <section class="work-gallery__topics" aria-labelledby="work-gallery-topics-heading">
+    <h2 id="work-gallery-topics-heading" class="work-gallery__section-title">By topic</h2>
+    <div class="work-gallery__topics-inner" data-topic-regions></div>
+  </section>
+
+  <script type="application/json" id="work-portfolio-json">{% if site.data.work_portfolio %}{{ site.data.work_portfolio | jsonify }}{% else %}{"topics":[]}{% endif %}</script>
+</article>
+
+<script src="{{ '/assets/js/work-gallery.js' | relative_url }}" defer></script>

@@ -11,16 +11,8 @@ course: "Cryptography"
 
 # Cryptographic Hash Functions: Ensuring Data Integrity
 
-[Content to be written]
+Cryptographic hashes compress arbitrary data to fixed-size digests with **preimage resistance**, **second-preimage resistance**, and **collision resistance**. Those properties underpin integrity checks, commitment schemes, HMAC-style authentication, and Merkle structures used in protocols and blockchains.
 
-## Introduction
+In practice, deprecated algorithms (e.g., MD5, SHA-1 for collision-sensitive uses) must be avoided. Modern designs use SHA-256 / SHA-384 / SHA-512 in the SHA-2 family or SHA-3 where policy requires. Password storage requires **slow, salted** password hashes (e.g., bcrypt, scrypt, Argon2), never raw SHAs.
 
-[Introduction content]
-
-## Key Concepts
-
-[Main content sections]
-
-## Conclusion
-
-[Conclusion content]
+Hashes also appear inside digital signature and “hash-then-sign” pipelines; pair this note with posts on RSA-PSS, ECDSA, and domain separation so implementation choices stay consistent with your threat model.

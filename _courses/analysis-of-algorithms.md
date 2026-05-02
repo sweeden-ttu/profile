@@ -1,3 +1,4 @@
+# Analysis Of Algorithms
 ---
 layout: page
 title: Analysis of Algorithms
@@ -15,7 +16,7 @@ tags:
 permalink: /courses/analysis-of-algorithms/
 ---
 
-**Semester**: Summer 2025  
+**Semester**: Summer 2025
 **Status**: Completed
 
 {% comment %} Course data from _data/courses.yaml {% endcomment %}

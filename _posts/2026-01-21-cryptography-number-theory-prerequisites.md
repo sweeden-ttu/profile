@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Modular arithmetic and congruences  
-- Greatest common divisor and Euclid’s algorithm  
-- Modular inverses (conceptual)  
-- How these tools show up in cryptographic schemes  
+- Modular arithmetic and congruences
+- Greatest common divisor and Euclid’s algorithm
+- Modular inverses (conceptual)
+- How these tools show up in cryptographic schemes
 
 ## Reading and Preparation
 

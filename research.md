@@ -330,132 +330,15 @@ keywords: [research, publications, papers, academic, computer science, cryptogra
     <span class="topic-tag">Computational Complexity</span>
   </div>
 
-  <!-- Tab Navigation -->
-  <div class="research-tabs" role="tablist">
-    <button class="research-tab active" data-tab="all" role="tab">All Publications</button>
-    <button class="research-tab" data-tab="conference" role="tab">Conference Papers</button>
-    <button class="research-tab" data-tab="journal" role="tab">Journal Articles</button>
-    <button class="research-tab" data-tab="thesis" role="tab">Theses</button>
-    <button class="research-tab" data-tab="preprint" role="tab">Preprints</button>
-  </div>
+### Peer review exercise (Microsoft Research publication)
+**Type**: Academic peer review (course exercise)
 
-  <!-- All Publications -->
-  <div class="research-section" id="all-publications" role="tabpanel">
-    {% assign all_publications = site.posts | where_exp: "post", "post.publication == true" | sort: 'date' | reverse %}
-    
-    {% if all_publications.size > 0 %}
-      {% for post in all_publications %}
-        <div class="publication-card" data-type="{{ post.publication_type | default: 'preprint' }}">
-          <span class="publication-type type-{{ post.publication_type | default: 'preprint' }}">
-            {{ post.publication_type | default: 'Preprint' }}
-          </span>
-          
-          <h3 class="publication-title">{{ post.title }}</h3>
-          
-          <div class="publication-authors">
-            {% if post.authors %}
-              {{ post.authors }}
-            {% else %}
-              <strong>{{ post.author | default: site.author.name }}</strong>
-            {% endif %}
-          </div>
-          
-          {% if post.venue %}
-            <div class="publication-venue">
-              {{ post.venue }}{% if post.date %}, {{ post.date | date: "%B %Y" }}{% endif %}
-            </div>
-          {% endif %}
-          
-          {% if post.abstract %}
-            <div class="publication-abstract">
-              <strong>Abstract:</strong> {{ post.abstract | strip_html | truncatewords: 100 }}
-            </div>
-          {% endif %}
-          
-          <div class="publication-links">
-            {% if post.url %}
-              <a href="{{ post.url }}" class="publication-link link-primary">
-                <i class="fas fa-file-pdf"></i> PDF
-              </a>
-            {% endif %}
-            {% if post.arxiv %}
-              <a href="{{ post.arxiv }}" class="publication-link link-outline">
-                <i class="fas fa-external-link-alt"></i> arXiv
-              </a>
-            {% endif %}
-            {% if post.github %}
-              <a href="{{ post.github }}" class="publication-link link-outline">
-                <i class="fab fa-github"></i> Code
-              </a>
-            {% endif %}
-            {% if post.doi %}
-              <a href="https://doi.org/{{ post.doi }}" class="publication-link link-outline">
-                <i class="fas fa-external-link-alt"></i> DOI
-              </a>
-            {% endif %}
-          </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <div class="no-content">
-        <h3 class="text-2xl font-semibold mb-2">No Publications Yet</h3>
-        <p>Research publications and papers will appear here as they are completed.</p>
-      </div>
-    {% endif %}
-  </div>
+Authored a structured review of a Microsoft Research publication, focusing on experimental design, methodology, and claims—part of graduate coursework rather than a standalone IEEE publication.
 
-  <!-- Research Projects Section -->
-  <section class="research-section">
-    <h2 class="text-3xl font-semibold mb-8">Research Projects</h2>
-    
-    <div class="publication-card">
-      <span class="publication-type type-conference">Project</span>
-      <h3 class="publication-title">Master's Theorem in Algorithm Analysis</h3>
-      <div class="publication-authors"><strong>Scott Weeden</strong></div>
-      <div class="publication-venue">Completed | Focus: Algorithm Complexity</div>
-      <div class="publication-abstract">
-        <strong>Abstract:</strong> Perfected the Master's theorem for analyzing divide-and-conquer algorithms, developing a comprehensive understanding of recursive algorithm complexity through rigorous mathematical proofs and practical applications.
-      </div>
-      <div class="publication-links">
-        <a href="/projects/masters-theorem" class="publication-link link-primary">
-          <i class="fas fa-external-link-alt"></i> View Project
-        </a>
-      </div>
-    </div>
-    
-    <div class="publication-card">
-      <span class="publication-type type-conference">Project</span>
-      <h3 class="publication-title">Q-Learning Pac-Man Demonstration</h3>
-      <div class="publication-authors"><strong>Scott Weeden</strong></div>
-      <div class="publication-venue">Open Source | Reinforcement Learning</div>
-      <div class="publication-abstract">
-        <strong>Abstract:</strong> Implemented a reinforcement learning agent that learns to play Pac-Man using Q-Learning, demonstrating convergence and optimization in a classic game environment with epsilon-greedy exploration strategies.
-      </div>
-      <div class="publication-links">
-        <a href="/projects/qlearning-pacman" class="publication-link link-primary">
-          <i class="fas fa-external-link-alt"></i> View Project
-        </a>
-        <a href="https://github.com/sweeden-ttu/qlearning-pacman" class="publication-link link-outline">
-          <i class="fab fa-github"></i> GitHub
-        </a>
-      </div>
-    </div>
-    
-    <div class="publication-card">
-      <span class="publication-type type-workshop">Kaggle</span>
-      <h3 class="publication-title">Machine Learning Competitions</h3>
-      <div class="publication-authors"><strong>Scott Weeden</strong></div>
-      <div class="publication-venue">Ongoing | Active Participation</div>
-      <div class="publication-abstract">
-        <strong>Abstract:</strong> Active participation in Kaggle competitions applying machine learning techniques to diverse real-world datasets, developing skills in data preprocessing, model selection, hyperparameter tuning, and ensemble methods.
-      </div>
-      <div class="publication-links">
-        <a href="/projects/kaggle-competitions" class="publication-link link-primary">
-          <i class="fas fa-external-link-alt"></i> View Projects
-        </a>
-      </div>
-    </div>
-  </section>
+**Key contributions**:
+- Critical analysis of ML research methodologies as presented in the paper
+- Evaluation of experimental design and statistical framing
+- Recommendations for clearer reporting and follow-on work
 
   <!-- Academic Assignments Section -->
   <section class="research-section">
@@ -507,40 +390,173 @@ keywords: [research, publications, papers, academic, computer science, cryptogra
   </section>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const tabs = document.querySelectorAll('.research-tab');
-  const publications = document.querySelectorAll('.publication-card');
-  
-  tabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      const filter = this.dataset.tab;
-      
-      tabs.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      
-      publications.forEach(pub => {
-        const type = pub.dataset.type;
-        
-        if (filter === 'all' || type === filter) {
-          pub.style.display = 'block';
-          pub.classList.add('fade-in');
-          setTimeout(() => pub.classList.remove('fade-in'), 500);
-        } else {
-          pub.style.display = 'none';
-        }
-      });
-    });
-  });
-  
-  publications.forEach(pub => {
-    pub.addEventListener('mouseenter', function() {
-      this.classList.add('hover-lift');
-    });
-    
-    pub.addEventListener('mouseleave', function() {
-      this.classList.remove('hover-lift');
-    });
-  });
-});
-</script>
+## Academic Projects & Assignments
+
+### Course Assignments
+
+#### Intelligent Systems
+- [Assignment 3: Problem Solving](/assignments/intelligent-systems/assignment3/intelligent-systems-assignment3-problems) - Model-based RL, TD learning, and feature-based Q-learning
+- [Assignment 4: Problem Solving](/assignments/intelligent-systems/assignment4/intelligent-systems-assignment4-problems) - Probabilities, Bayesian Networks, and Inference
+- [Assignment 3: Reinforcement Learning](/assignments/intelligent-systems/assignment3/intelligent-systems-assignment3-rl) - Q-Learning and RL applications
+
+#### Logic for Computer Scientists
+- [Homework 3: Logic Problems](/assignments/logic-for-computer-scientists/logic-homework3) - Propositional logic, Herbrand semantics, and CNF
+- [Homework 3: Solutions](/assignments/logic-for-computer-scientists/logic-homework3-solutions) - Complete solutions with explanations
+
+### Research Projects
+
+### Master's Theorem in Algorithm Analysis
+**Status**: Completed | **Focus**: Algorithm Complexity
+
+Perfected the Master's theorem for analyzing divide-and-conquer algorithms, developing a comprehensive understanding of recursive algorithm complexity.
+
+**Achievements**:
+- Rigorous mathematical proofs and derivations
+- Practical applications to common algorithms (merge sort, binary search, Strassen's algorithm)
+- Educational materials for teaching complexity analysis
+- Case studies demonstrating theorem application
+
+**Technical Skills**: Algorithm Analysis, Computational Complexity, Mathematical Proof
+
+[View Project Details](/projects/masters-theorem)
+
+---
+
+### Q-Learning Pac-Man Demonstration
+**Platform**: GitHub | **Status**: Open Source
+
+Implemented a reinforcement learning agent that learns to play Pac-Man using Q-Learning, demonstrating convergence and optimization in a classic game environment.
+
+**Technical Implementation**:
+- Q-Learning algorithm with epsilon-greedy exploration
+- State space representation and feature engineering
+- Reward shaping for efficient learning
+- Visualization of learning progress and policy evolution
+
+**Results**:
+- Agent successfully learns optimal navigation strategies
+- Demonstrated balance between exploration and exploitation
+- Published with comprehensive documentation and tutorials
+
+**Technologies**: Python, Reinforcement Learning, Q-Learning, Game AI
+
+[GitHub profile — code and coursework](https://github.com/sweeden-ttu)
+
+---
+
+## Kaggle Competition Participation
+
+### Machine Learning Competitions
+**Platform**: Kaggle | **Status**: Ongoing
+
+Active participation in Kaggle competitions, applying machine learning techniques to diverse real-world datasets.
+
+**Competitions & Approaches**:
+- Data preprocessing and feature engineering
+- Model selection and hyperparameter tuning
+- Ensemble methods and stacking
+- Cross-validation and performance optimization
+
+**Skills Developed**:
+- End-to-end ML pipeline development
+- Working with messy, real-world data
+- Model interpretability and evaluation
+- Collaborative problem-solving
+
+[View Projects](/projects/kaggle-competitions)
+
+---
+
+## Educational & Outreach
+
+### Reinforcement Learning Video Series
+**Platform**: YouTube | **Format**: Educational Shorts
+
+Created a series of video shorts explaining reinforcement learning concepts in accessible, intuitive ways.
+
+**Topics Covered**:
+- Q-Learning fundamentals
+- Exploration vs. exploitation trade-off
+- Temporal difference learning
+- Deep Q-Networks (DQN)
+- Practical RL applications
+
+**Impact**: Making complex AI concepts accessible to broader audiences, supporting self-directed learners
+
+Educational shorts cover Q-learning basics through DQN-style ideas; links to the channel can be shared on request for courses and collaborators.
+
+---
+
+## Software Development
+
+### Propositional Logic Chrome Extension
+**Platform**: Chrome Web Store | **Status**: Published
+
+Developed a browser utility for working with propositional logic, bridging formal logic with practical web development.
+
+**Features**:
+- Truth table generation
+- Logical equivalence checking
+- Formula simplification
+- CNF/DNF conversion
+- Interactive logic gate visualization
+
+**Use Cases**: Logic education, formal verification, discrete mathematics coursework
+
+**Technologies**: JavaScript, Chrome Extension API, Logic Programming
+
+The extension was published for logic coursework; store listing and updates are maintained as the tool evolves.
+
+---
+
+## Research Interests
+
+### Current Focus Areas
+
+**Machine Learning Applications**
+- Reinforcement learning in complex environments
+- Transfer learning and domain adaptation
+- Interpretable AI and explainability
+
+**Social & Environmental Impact**
+- ML for social good and community development
+- Environmental monitoring and sustainability
+- Healthcare accessibility and outcome prediction
+
+**Algorithmic Foundations**
+- Complexity theory and optimization
+- Algorithm design for resource-constrained environments
+- Theoretical guarantees in machine learning
+
+### Future Directions
+
+**Study Abroad Research (Australia)**
+- International collaboration opportunities
+- Cross-cultural perspectives on AI ethics
+- Environmental ML applications in unique ecosystems
+
+**Open Questions**
+- How can we make ML more accessible and interpretable?
+- What are the most pressing social challenges that ML can address?
+- How do we ensure AI systems are fair, transparent, and beneficial?
+
+---
+
+## Collaboration & Contact
+
+I'm always interested in discussing research ideas, potential collaborations, and opportunities to apply machine learning to meaningful problems.
+
+**Areas of Interest for Collaboration**:
+- Machine learning for social impact
+- Environmental sustainability applications
+- Healthcare ML research
+- Algorithm analysis and optimization
+- International research partnerships
+
+**Email**: [scott.weeden@gmail.com](mailto:scott.weeden@gmail.com)  
+**GitHub**: [github.com/sweeden-ttu](https://github.com/sweeden-ttu)  
+**LinkedIn**: [linkedin.com/in/weedens](https://www.linkedin.com/in/weedens/)
+
+---
+
+*For coursework, projects, and code samples, see repositories on [GitHub](https://github.com/sweeden-ttu) and the [Projects](/research/) section of this site.*

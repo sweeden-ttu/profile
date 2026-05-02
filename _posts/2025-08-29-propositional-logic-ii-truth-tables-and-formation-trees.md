@@ -1,3 +1,4 @@
+# 2025 08 29 Propositional Logic Ii Truth Tables And Formation Trees
 ---
 layout: post
 title: "Propositional Logic II: Truth Tables and Formation Trees"

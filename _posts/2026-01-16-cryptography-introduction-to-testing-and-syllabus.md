@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Administrative details and course structure  
-- What problems cryptography solves (and does not solve)  
-- Basic security properties: confidentiality, integrity, authenticity, non-repudiation  
-- Real-world examples of cryptographic failures and successes  
+- Administrative details and course structure
+- What problems cryptography solves (and does not solve)
+- Basic security properties: confidentiality, integrity, authenticity, non-repudiation
+- Real-world examples of cryptographic failures and successes
 
 ## Reading and Preparation
 

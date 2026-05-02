@@ -6,7 +6,7 @@
 #
 # Each lecture entry includes a 'course' field matching the course slug
 # for filtering in Jekyll templates:
-# {% assign lecture_data = site.data.lectures | where: "course", page.course_slug | where: "date", page.date | first %}
+# {% assign lecture_data = site.data.lectures.lectures | where: "course", page.course_slug | where: "date", page.date | first %}
 
 lectures:
   # Software Verification and Validation (CS-5374) lectures

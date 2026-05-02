@@ -16,10 +16,10 @@ draft: true
 
 ## Topics
 
-- Informal vs. formal requirements  
-- Functional vs. non-functional requirements  
-- Properties we might want to verify (safety, liveness, invariants)  
-- How specifications drive test cases and verification goals  
+- Informal vs. formal requirements
+- Functional vs. non-functional requirements
+- Properties we might want to verify (safety, liveness, invariants)
+- How specifications drive test cases and verification goals
 
 ## Reading and Preparation
 

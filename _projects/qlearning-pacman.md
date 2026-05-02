@@ -6,8 +6,9 @@ tech_stack: [Python, Reinforcement Learning, Q-Learning, NumPy]
 status: completed
 difficulty: Intermediate
 subtitle: "Teaching an agent to play Pac-Man using reinforcement learning"
-tags: [machine-learning, algorithms, reinforcement-learning]
-github: "https://github.com/sweeden-ttu/qlearning-pacman"
+links:
+  github: "https://github.com/sweeden-ttu"
+  demo: "#"
 outcomes:
   - "Agent learns optimal navigation strategies"
   - "Demonstrates exploration vs. exploitation trade-off"
@@ -206,7 +207,7 @@ This project demonstrates:
 
 ## Resources
 
-- [GitHub Repository](https://github.com/[username]/qlearning-pacman)
+- [GitHub Repository](https://github.com/sweeden-ttu)
 - [Sutton & Barto: Reinforcement Learning](https://incompleteideas.net/book/)
 - [UC Berkeley AI Course](https://ai.berkeley.edu/)
 

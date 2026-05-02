@@ -1,8 +1,9 @@
+# 2025 11 14 Unification Algorithm
 ---
 layout: post
 title: "The Unification Algorithm: Finding Most General Unifiers in First-Order Logic"
 date: 2025-11-14
-categories: 
+categories:
   - "Logic for Computer Scientists"
 tags:
   - logic-for-computer-scientists
@@ -76,7 +77,7 @@ The unification algorithm works by **structural induction**, recursively decompo
 
 ```
 UNIFY(s, t) returns (substitution, success/failure):
-    
+
     if s is a variable:
         if s == t:
             return (empty substitution, SUCCESS)
@@ -84,13 +85,13 @@ UNIFY(s, t) returns (substitution, success/failure):
             return (failure, OCCUR_CHECK_ERROR)
         else:
             return ({s ↦ t}, SUCCESS)
-    
+
     if t is a variable:
         if t occurs in s:
             return (failure, OCCUR_CHECK_ERROR)
         else:
             return ({t ↦ s}, SUCCESS)
-    
+
     if s = f(s₁, ..., sₙ) and t = f(t₁, ..., tₙ) [same function symbol]:
         σ ← empty substitution
         for i from 1 to n:
@@ -99,7 +100,7 @@ UNIFY(s, t) returns (substitution, success/failure):
                 return (failure, result)
             σ ← σ ∘ σᵢ
         return (σ, SUCCESS)
-    
+
     else:
         return (failure, SYMBOL_MISMATCH)
 ```
@@ -282,7 +283,7 @@ graph TD
     E --> G["σ₂ = {y → z}"]
     F --> H["Final: σ = {x → h(a), y → z}"]
     G --> H
-    
+
     style A fill:#e1f5fe
     style B fill:#fff3e0
     style C fill:#f3e5f5
@@ -331,7 +332,7 @@ In Hindley-Milner type systems, unification matches type constraints:
 
 ```
 Expression: map(f, list)
-Type constraints: 
+Type constraints:
   f: α → β
   list: [α]
   map: (α → β) → [α] → [β]

@@ -29,7 +29,7 @@ Faculty members teaching courses in Spring 2026.
 <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; background: #ffffff;">
   <h3 style="margin-top: 0; color: #1e293b;">Hasan Al-Qudah</h3>
   <p style="color: #64748b; font-size: 0.9rem; margin: 0.5rem 0;">Co-Instructor</p>
-  <p style="color: #475569; font-size: 0.95rem; margin: 1rem 0;">Co-instructor for CS-5374: Software Verification and Validation (Spring 2026).</p>
+  <p style="color: #475569; font-size: 0.95rem; margin: 1rem 0;">Co-instructor for Software Verification and Validation (Spring 2026).</p>
   <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
     <a href="/faculty/hasan-al-qudah/" style="color: #3b82f6; text-decoration: none; font-weight: 500;">View Profile →</a>
   </div>
@@ -39,16 +39,16 @@ Faculty members teaching courses in Spring 2026.
 
 ## Courses Taught
 
-### Software Verification and Validation (CS-5374)
+### Software Verification and Validation
 
 - **Primary Instructor**: [Akbar Siami Namin, Ph.D.](/faculty/akbar-siami-namin/)
 - **Co-Instructor**: [Hasan Al-Qudah](/faculty/hasan-al-qudah/)
 - **Semester**: Spring 2026
 - **Course Page**: [Software Verification and Validation](/courses/software-verification/)
 
-### Cryptography (CS-6343)
+### Cryptography
 
-- **Instructor**: TBD
+- **Instructor**: See the [Canvas course roster and syllabus](https://texastech.instructure.com/courses/70714) for the official instructor of record.
 - **Semester**: Spring 2026
 - **Course Page**: [Cryptography](/courses/cryptography/)
 

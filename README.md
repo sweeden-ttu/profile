@@ -1,12 +1,12 @@
 # Scott Weeden - Personal Profile & Blog
 
-Personal profile and academic blog for **Scott Weeden**, Master of Computer Science student at Texas Tech University. This Jekyll-based static site showcases research, projects, and technical writing in computer science and machine learning.
+Personal profile and academic blog for **Scott Weeden**, Master of Computer Applications (MCA), Computer Science, Texas Tech University (March 2025). This Jekyll-based static site showcases research, projects, and technical writing in computer science and machine learning.
 
 ## Overview
 
 This site features:
 - **About** - Personal introduction and academic journey
-- **Resume/CV** - Academic and professional experience
+- **Profile PDF** (`Profile.pdf`) - Exported professional profile linked from About
 - **Research & Projects** - Showcase of publications and technical projects
 - **Blog** - Technical articles on CS, ML, and algorithm analysis
 
@@ -120,7 +120,7 @@ gem install bundler
 gem install jekyll
 ```
 
-### Installation
+## Installation
 
 ```bash
 # Clone repository
@@ -136,7 +136,7 @@ bundle exec jekyll serve --livereload
 # Visit http://localhost:4000
 ```
 
-### Build for Production
+## Build for Production
 
 ```bash
 # Set production environment
@@ -145,7 +145,7 @@ JEKYLL_ENV=production bundle exec jekyll build
 # Output in _site/ directory
 ```
 
-### Git Hooks
+## Git Hooks
 
 This repository uses git hooks to ensure code quality and build integrity. Hooks are stored in `.githooks/` and automatically used via `git config core.hooksPath .githooks`.
 
@@ -218,7 +218,7 @@ profile/
 │       └── lighthouse-performance.yml  # Performance testing
 │
 ├── about.md                # About page
-├── resume.md               # Resume/CV page
+├── Profile.pdf             # Exported profile / CV PDF
 ├── research.md             # Research & Projects page
 ├── blog/                   # Blog index
 └── index.html              # Homepage
@@ -307,7 +307,7 @@ gem install html-proofer
 npm install -g pa11y-ci markdownlint-cli
 ```
 
-#### 3. Lighthouse Performance (`templates/ci-cd/lighthouse-performance.yml`)
+## 3. Lighthouse Performance (`templates/ci-cd/lighthouse-performance.yml`)
 Performance and SEO auditing with Google Lighthouse.
 
 **Targets:**
@@ -354,7 +354,7 @@ git commit -m "Add blog post: Your Post Title"
 git push
 ```
 
-### Creating a Project
+## Creating a Project
 
 ```bash
 # Create project file
@@ -403,7 +403,7 @@ pa11y http://localhost:4000
 markdownlint _posts _projects *.md
 ```
 
-### Performance Testing
+## Performance Testing
 
 ```bash
 # Serve production build

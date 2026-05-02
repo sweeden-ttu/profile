@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: $color-bg-primary;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -30,14 +30,10 @@ body {
 
 .main-content {
   flex: 1;
-  padding: $padding-mobile;
+  padding: $space-lg 0 $space-4xl;
 
   @media (min-width: $breakpoint-tablet) {
-    padding: $padding-tablet;
-  }
-
-  @media (min-width: $breakpoint-desktop) {
-    padding: $padding-desktop;
+    padding-top: $space-xl;
   }
 }
 
@@ -60,13 +56,13 @@ body {
 // ============================================================================
 
 .site-header {
-  background: linear-gradient(135deg, rgba($color-bg-primary, 0.9), rgba($color-bg-secondary, 0.9));
-  border-bottom: 1px solid $color-border;
+  background: linear-gradient(135deg, rgba($color-bg-primary, 0.94), rgba($color-bg-secondary, 0.92));
+  border-bottom: 1px solid $color-border-light;
   position: sticky;
   top: 0;
   z-index: $z-index-sticky;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 30px rgba(21, 42, 115, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(17, 24, 39, 0.06);
 
   &__container {
     max-width: $max-width-wide;
@@ -117,10 +113,16 @@ body {
 
   &__list {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: $space-xl;
+    gap: $space-md $space-lg;
+
+    @media (min-width: $breakpoint-wide) {
+      gap: $space-lg $space-xl;
+    }
   }
 
   &__item {
@@ -134,16 +136,22 @@ body {
     font-size: 0.9375rem; // 15px
     padding: $space-sm 0;
     border-bottom: 2px solid transparent;
-    transition: all $transition-base;
+    transition: color $transition-base, border-color $transition-base;
 
     &:hover {
       color: $color-text-primary;
-      border-bottom-color: rgba($color-primary, 0.5);
+      border-bottom-color: rgba($color-accent-purple, 0.55);
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba($color-accent-purple, 0.45);
+      outline-offset: 4px;
+      border-radius: $border-radius-sm;
     }
 
     &--active {
-      color: $color-primary;
-      border-bottom-color: $color-primary;
+      color: $color-text-primary;
+      border-bottom-color: $color-accent-purple;
     }
   }
 }
