@@ -1,13 +1,8 @@
 ---
-layout: page
-title: 404
-show_title: false
+layout: default
 ---
-<div class="layout--404">
-  <div class="sign">
-    <h1>404</h1>
-    <p>Page not found :(</p>
-  </div>
-</div>
-
-{{ content }}
+<section class="container container--reading" style="padding-block: 96px;">
+  <span class="eyebrow">Error 404</span>
+  <h1 class="display" style="margin: 24px 0;">Not found.</h1>
+  <p class="lede">That URL doesn't resolve to anything on this site. Try the <a href="{{ '/' | relative_url }}">homepage</a> or the <a href="{{ '/blog/' | relative_url }}">writing index</a>.</p>
+</section>

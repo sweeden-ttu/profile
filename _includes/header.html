@@ -1,26 +1,38 @@
-{%- if include.theme == 'dark' -%}
-  <header class="header header--dark" {%- if include.background -%} style="background: {{ include.background }};" {%- endif -%}>
-{%- elsif include.theme == 'light' -%}
-  <header class="header header--light" {%- if include.background -%} style="background: {{ include.background }};" {%- endif -%}>
-{%- else -%}
-  <header class="header" {%- if include.background -%} style="background: {{ include.background }};" {%- endif -%}>
-{%- endif -%}
-    <div class="main">
-      <div class="header__title">
-        <div class="header__brand">
-          {%- include svg/logo.svg -%}
-          {%- assign _paths_root = site.paths.root | default: site.data.variables.default.paths.root  -%}
-          {%- include snippets/get-nav-url.html path=_paths_root -%}
-          {%- if site.title -%}
-            <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="{{ __return }}">{{ site.title }}</a>
-          {%- endif -%}
-        </div>
-        {%- if site.search.provider -%}
-          <button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button>
-        {%- endif -%}
-      </div>
-      {%- if site.data.navigation.header -%}
-        {%- include navigation-dropdown.html -%}
-      {%- endif -%}
+{%- assign current = page.url -%}
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="site-header__inner">
+      <a class="site-mark" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+        <span class="site-mark__sigil" aria-hidden="true"></span>
+        <span>Scott&nbsp;Weeden</span>
+        <span class="site-mark__suffix">notebook</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="{{ '/blog/' | relative_url }}"{% if current contains '/blog/' %} aria-current="page"{% endif %}>Writing</a>
+        <a href="{{ '/projects/' | relative_url }}"{% if current contains '/projects/' %} aria-current="page"{% endif %}>Projects</a>
+        <a href="{{ '/courses/' | relative_url }}"{% if current contains '/courses/' %} aria-current="page"{% endif %}>Courses</a>
+        <a href="{{ '/research/' | relative_url }}"{% if current contains '/research/' %} aria-current="page"{% endif %}>Research</a>
+        <a href="{{ '/about/' | relative_url }}"{% if current contains '/about/' %} aria-current="page"{% endif %}>About</a>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square">
+          <line x1="4" y1="7"  x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
     </div>
-  </header>
+
+    <div id="mobile-nav" class="mobile-nav" data-mobile-nav>
+      <ul class="mobile-nav__list">
+        <li><a href="{{ '/blog/' | relative_url }}">Writing</a></li>
+        <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
+        <li><a href="{{ '/courses/' | relative_url }}">Courses</a></li>
+        <li><a href="{{ '/research/' | relative_url }}">Research</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+      </ul>
+    </div>
+  </div>
+</header>

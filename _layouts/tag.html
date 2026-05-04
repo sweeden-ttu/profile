@@ -1,31 +1,36 @@
 ---
 layout: default
 ---
+{%- assign tag_name = page.tag | default: page.title -%}
+<div class="container container--reading">
+  <header class="page-header">
+    <span class="eyebrow page-header__eyebrow">Tag</span>
+    <h1 class="page-header__title">#{{ tag_name }}</h1>
+    {%- if page.description %}<p class="lede page-header__lede">{{ page.description }}</p>{% endif %}
+  </header>
 
-<div class="site-frame surface-page">
-  <article class="page">
-    <header class="page__header">
-      <p class="eyebrow">Tag</p>
-      <h1 class="page__title">{{ page.title }}</h1>
-      {% if page.description %}
-        <p class="lead">{{ page.description }}</p>
-      {% endif %}
-    </header>
+  {%- assign tagged = site.posts | where_exp: "post", "post.tags contains tag_name" -%}
+  {%- if tagged.size > 0 %}
+  <div class="post-list">
+    {%- for post in tagged %}
+    <article class="post-list__item">
+      <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+      <div class="post-list__body">
+        <h2 class="post-list__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {%- if post.description or post.excerpt %}
+        <p class="post-list__excerpt">{{ post.description | default: post.excerpt | strip_html | truncate: 200 }}</p>
+        {%- endif %}
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <div class="prose">
+    <p>No posts tagged <code>{{ tag_name }}</code> yet.</p>
+  </div>
+  {%- endif %}
 
-    <section class="content-slab">
-      {% assign tagged_posts = site.posts | where_exp: "post", "post.tags contains page.tag" %}
-      {% if tagged_posts and tagged_posts.size > 0 %}
-        <ul class="toc-card__list">
-          {% for post in tagged_posts %}
-            <li>
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              <span class="text-muted"> · {{ post.date | date: "%b %-d, %Y" }}</span>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p class="text-muted">No posts published for this tag yet.</p>
-      {% endif %}
-    </section>
-  </article>
+  <div class="prose">
+    {{ content }}
+  </div>
 </div>

@@ -1,0 +1,105 @@
+// Reset + base — minimal, opinionated
+@use "tokens" as *;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: $paper;
+  color: $ink;
+  font-family: $serif;
+  font-size: $fs-body;
+  line-height: $lh-body;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+// Reset margins on common block elements; restore via typography layer
+h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, figure, pre, hr {
+  margin: 0;
+}
+ul, ol { padding: 0; list-style: none; }
+
+// Media
+img, svg, video, canvas, picture { display: block; max-width: 100%; height: auto; }
+
+// Forms
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+
+// Links — base, refined per-component
+a {
+  color: $accent;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba($accent, 0.4);
+  transition: color $dur-fast $ease, text-decoration-color $dur-fast $ease;
+}
+a:hover { color: $accent-hover; text-decoration-color: $accent-hover; }
+
+// Selection
+::selection { background: $accent-mark; color: $ink; }
+
+// Focus — high-contrast, square ring
+:focus-visible {
+  outline: 2px solid $accent;
+  outline-offset: 3px;
+  border-radius: $r-1;
+}
+
+// Hairline rule
+hr {
+  height: 1px;
+  border: 0;
+  background: $rule;
+  margin: $s-7 0;
+}
+
+// Small print
+small { font-size: $fs-small; color: $ink-3; }
+
+// Mark / highlight
+mark {
+  background: $accent-mark;
+  color: $ink;
+  padding: 0.05em 0.15em;
+}
+
+// Quote
+blockquote {
+  border-left: 2px solid $accent;
+  padding-left: $s-5;
+  color: $ink-2;
+  font-style: italic;
+}
+
+// Dark mode — automatic
+@media (prefers-color-scheme: dark) {
+  body {
+    background: $dk-paper;
+    color: $dk-ink;
+  }
+  a { color: $dk-accent; text-decoration-color: rgba($dk-accent, 0.4); }
+  a:hover { color: $dk-accent-hover; text-decoration-color: $dk-accent-hover; }
+  ::selection { background: $dk-accent-mark; color: $dk-ink; }
+  :focus-visible { outline-color: $dk-accent; }
+  hr { background: $dk-rule; }
+  mark { background: $dk-accent-mark; color: $dk-ink; }
+  blockquote { border-left-color: $dk-accent; color: $dk-ink-2; }
+  small { color: $dk-ink-3; }
+}
