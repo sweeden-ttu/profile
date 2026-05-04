@@ -1,17 +1,19 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Jekyll Site Tests', () => {
+  // Desktop (>=768px) shows .site-nav; below that, .nav-toggle reveals .mobile-nav
   const openNavIfHidden = async (page: any) => {
-    const nav = page.locator('.site-nav');
-    const toggle = page.getByRole('button', { name: /toggle menu/i });
+    const desktopNav = page.locator('.site-nav');
+    const mobileNav = page.locator('.mobile-nav');
+    const toggle = page.getByRole('button', { name: /toggle navigation/i });
 
     if (await toggle.isVisible()) {
       await toggle.click();
-      await expect(nav.first()).toHaveClass(/site-nav--open/, { timeout: 7000 });
-    } else {
-      await expect(nav.first()).toBeVisible({ timeout: 7000 });
+      await expect(mobileNav).toHaveClass(/is-open/, { timeout: 7000 });
+      return mobileNav;
     }
-    return nav.first();
+    await expect(desktopNav).toBeVisible({ timeout: 7000 });
+    return desktopNav;
   };
 
   test('homepage loads successfully', async ({ page }) => {
@@ -23,9 +25,9 @@ test.describe('Jekyll Site Tests', () => {
   test('navigation works', async ({ page }) => {
     await page.goto('/');
 
-    // Check if about link exists and is clickable
-    await openNavIfHidden(page);
-    const aboutLink = page.locator('.site-nav a[href*="about"]').first();
+    // Check if about link exists and is clickable in whichever nav is visible
+    const visibleNav = await openNavIfHidden(page);
+    const aboutLink = visibleNav.locator('a[href*="about"]').first();
     if (await aboutLink.count() > 0) {
       await aboutLink.click();
       await expect(page).toHaveURL(/.*about/);
