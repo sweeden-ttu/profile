@@ -13,6 +13,8 @@ main.site-main {
   padding-bottom: $s-10;
 }
 
+main.site-main--tight-top { padding-top: $s-4; }
+
 // ── Containers ────────────────────────────────────────────────────────────
 .container {
   margin-inline: auto;

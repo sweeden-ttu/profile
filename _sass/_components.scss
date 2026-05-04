@@ -375,6 +375,95 @@
   &:hover { color: $accent; }
 }
 
+// ── About hero ────────────────────────────────────────────────────────────
+.about-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $s-5;
+  align-items: center;
+  padding-block: $s-5 $s-6;
+  margin-bottom: $s-6;
+  border-bottom: 1px solid $rule;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: auto 1fr;
+    gap: $s-7;
+    padding-block: $s-6 $s-7;
+  }
+}
+
+.about-hero__avatar {
+  width: 144px;
+  height: 144px;
+  border-radius: $r-pill;
+  border: 1px solid $rule;
+  background: $paper-raise;
+  object-fit: cover;
+  display: block;
+
+  @media (min-width: $bp-md) {
+    width: 192px;
+    height: 192px;
+  }
+}
+
+.about-hero__body { min-width: 0; }
+
+.about-hero__eyebrow {
+  display: block;
+  margin-bottom: $s-2;
+}
+
+.about-hero__name {
+  margin: 0 0 $s-2;
+  font-family: $serif;
+  font-size: $fs-h1;
+  line-height: $lh-heading;
+  letter-spacing: $ls-heading;
+}
+
+.about-hero__location {
+  margin: 0 0 $s-2;
+  font-family: $sans;
+  font-size: $fs-small;
+  color: $ink-3;
+}
+
+.about-hero__summary {
+  margin: 0 0 $s-4;
+  font-family: $serif;
+  font-size: $fs-h4;
+  color: $ink-2;
+  line-height: $lh-tight;
+}
+
+.about-hero__links {
+  margin: 0 0 $s-5;
+  font-family: $sans;
+  font-size: $fs-small;
+  color: $ink-3;
+
+  a {
+    color: $ink-2;
+    text-decoration: none;
+    border-bottom: 1px solid $rule;
+    padding-bottom: 1px;
+    &:hover { color: $accent; border-bottom-color: $accent; }
+  }
+}
+
+.about-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $s-3;
+  margin: 0;
+}
+
+@media print {
+  .about-hero { border-bottom-color: $rule; padding-block: $s-4 $s-5; margin-bottom: $s-5; }
+  .about-hero__cta { display: none; }
+}
+
 // ── Dark mode ─────────────────────────────────────────────────────────────
 @media (prefers-color-scheme: dark) {
   .site-header { background: rgba($dk-paper, 0.86); border-bottom-color: $dk-rule; }
@@ -418,4 +507,14 @@
   .section-rule__label { color: $dk-accent; }
 
   .tag { color: $dk-ink-3; &::before { color: $dk-ink-4; } &:hover { color: $dk-accent; } }
+
+  .about-hero { border-bottom-color: $dk-rule; }
+  .about-hero__avatar { border-color: $dk-rule; background: $dk-paper-raise; }
+  .about-hero__name { color: $dk-ink; }
+  .about-hero__location { color: $dk-ink-3; }
+  .about-hero__summary { color: $dk-ink-2; }
+  .about-hero__links {
+    color: $dk-ink-3;
+    a { color: $dk-ink-2; border-bottom-color: $dk-rule; &:hover { color: $dk-accent; border-bottom-color: $dk-accent; } }
+  }
 }

@@ -2,7 +2,7 @@
 layout: default
 ---
 <article class="container container--reading">
-  {%- if page.title %}
+  {%- if page.title and page.hide_page_header != true %}
   <header class="page-header">
     {%- if page.eyebrow %}<span class="eyebrow page-header__eyebrow">{{ page.eyebrow }}</span>{% endif %}
     <h1 class="page-header__title">{{ page.title }}</h1>
