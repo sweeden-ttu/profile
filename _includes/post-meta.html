@@ -1,0 +1,18 @@
+{%- assign words = include.post.content | strip_html | number_of_words -%}
+{%- assign reading_minutes = words | divided_by: 220 | at_least: 1 -%}
+<div class="page-header__meta">
+  {%- if include.post.date %}
+  <span class="page-header__meta-item">
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%B %-d, %Y" }}</time>
+  </span>
+  {% endif -%}
+  <span class="page-header__meta-item">{{ reading_minutes }} min read</span>
+  {%- if include.post.author %}
+  <span class="page-header__meta-item">By {{ include.post.author }}</span>
+  {% endif -%}
+  {%- if include.post.tags and include.post.tags.size > 0 %}
+  <span class="page-header__meta-item" style="gap: 6px;">
+    {%- for tag in include.post.tags %}<a class="tag" href="{{ '/blog/?tag=' | append: tag | relative_url }}">{{ tag }}</a>{% endfor -%}
+  </span>
+  {% endif -%}
+</div>

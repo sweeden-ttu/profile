@@ -1,24 +1,41 @@
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15120c" media="(prefers-color-scheme: dark)">
 
-{%- include snippets/get-article-title.html article=page -%}
-<title>{%- if __return -%}{{ __return }} - {{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}</title>
+{%- assign page_title = page.title | default: site.title -%}
+{%- assign page_desc = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 200 -%}
 
-<meta name="description" content="{%- if page.excerpt -%}{{ page.excerpt | strip_html | strip_newlines | strip | truncate: 160 }}{%- else -%}{{ site.description }}{%- endif -%}">
-<link rel="canonical" href="{%- include snippets/page-url.html -%}">
+<title>{% if page.title and page.title != site.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }} · {{ site.description | truncate: 60 }}{% endif %}</title>
+<meta name="description" content="{{ page_desc }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
 
-{%- assign _paths_rss = site.paths.rss | default: site.data.variables.default.paths.rss -%}
-{%- include snippets/get-nav-url.html path=_paths_rss -%}
-<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ __return }}">
+<!-- Open Graph -->
+<meta property="og:type" content="{% if page.layout == 'post' or page.layout == 'article' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_desc }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+{%- if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}">{% endif %}
 
-{%- include head/favicon.html -%}
+<!-- Fonts: serif body (Source Serif 4) + sans (Inter) + mono (JetBrains Mono) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="stylesheet" href="/assets/css/2026-design-system.css">
+<!-- Site stylesheet -->
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-{%- include snippets/get-sources.html -%}
-{%- assign _sources = __return -%}
-<link rel="stylesheet" href="{{ _sources.font_awesome }}" >
+<!-- KaTeX CSS (server-rendered + client auto-render fallback) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
-{%- include head/custom.html -%}
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+
+<!-- RSS -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+
+{% feed_meta %}
+{% seo title=false %}

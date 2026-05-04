@@ -1,0 +1,131 @@
+@use "tokens" as *;
+
+// ── Inline code ───────────────────────────────────────────────────────────
+.prose :not(pre) > code,
+:not(pre) > code {
+  font-family: $mono;
+  font-size: 0.9em;
+  background: $code-bg;
+  color: $code-text;
+  padding: 1px 6px;
+  border-radius: $r-2;
+  border: 1px solid $code-rule;
+  font-feature-settings: "calt" 0;
+}
+
+// ── Code blocks ───────────────────────────────────────────────────────────
+pre {
+  font-family: $mono;
+  font-size: $fs-small;
+  line-height: $lh-code;
+  background: $code-bg;
+  color: $code-text;
+  padding: $s-5 $s-6;
+  margin: $s-6 0;
+  border-radius: $r-3;
+  border: 1px solid $code-rule;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  tab-size: 2;
+  position: relative;
+}
+pre code {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  font-size: inherit;
+  color: inherit;
+}
+
+// Rouge / Prism token colors (match light theme)
+.highlight {
+  background: $code-bg;
+  border-radius: $r-3;
+  border: 1px solid $code-rule;
+  margin: $s-6 0;
+  overflow: hidden;
+  pre { margin: 0; border: 0; border-radius: 0; }
+  // Common Rouge classes
+  .c, .c1, .cm, .cp, .cs { color: $code-comment; font-style: italic; }
+  .k, .kc, .kd, .kn, .kp, .kr, .kt { color: $code-keyword; font-weight: 600; }
+  .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss { color: $code-string; }
+  .m, .mf, .mh, .mi, .mo, .mb, .il { color: $code-number; }
+  .nf, .nx, .nb { color: $code-fn; }
+  .o, .p { color: $code-text; }
+  .nt { color: $code-keyword; }
+  .na { color: $code-fn; }
+}
+
+// ── Math (KaTeX) ──────────────────────────────────────────────────────────
+.katex {
+  font-size: 1.04em;
+  font-feature-settings: normal;
+}
+.katex-display {
+  margin: $s-6 0;
+  padding: $s-5 $s-4;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: $paper-raise;
+  border-radius: $r-3;
+  border: 1px solid $rule-2;
+  > .katex { font-size: 1.18em; }
+}
+.katex-display::-webkit-scrollbar { height: 6px; }
+.katex-display::-webkit-scrollbar-thumb { background: $rule; border-radius: $r-pill; }
+
+// Inline math should sit naturally with the serif body
+p .katex,
+li .katex,
+td .katex { font-size: 1.0em; }
+
+// Equation labels (kramdown produces (1), (2)…)
+.katex-display > .katex > .katex-html > .tag { color: $ink-3; }
+
+// ── Mermaid diagrams ──────────────────────────────────────────────────────
+.mermaid {
+  margin: $s-6 0;
+  padding: $s-5;
+  background: $paper-raise;
+  border-radius: $r-3;
+  border: 1px solid $rule-2;
+  text-align: center;
+  font-family: $sans;
+  overflow-x: auto;
+  &.is-rendering { color: $ink-4; font-family: $mono; font-size: $fs-tiny; }
+}
+
+// ── Dark mode ─────────────────────────────────────────────────────────────
+@media (prefers-color-scheme: dark) {
+  :not(pre) > code,
+  .prose :not(pre) > code {
+    background: $dk-code-bg;
+    color: $dk-code-text;
+    border-color: $dk-code-rule;
+  }
+  pre {
+    background: $dk-code-bg;
+    color: $dk-code-text;
+    border-color: $dk-code-rule;
+  }
+  .highlight {
+    background: $dk-code-bg;
+    border-color: $dk-code-rule;
+    .c, .c1, .cm, .cp, .cs { color: $dk-code-comment; }
+    .k, .kc, .kd, .kn, .kp, .kr, .kt { color: $dk-code-keyword; }
+    .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss { color: $dk-code-string; }
+    .m, .mf, .mh, .mi, .mo, .mb, .il { color: $dk-code-number; }
+    .nf, .nx, .nb { color: $dk-code-fn; }
+    .o, .p { color: $dk-code-text; }
+    .nt { color: $dk-code-keyword; }
+    .na { color: $dk-code-fn; }
+  }
+  .katex-display {
+    background: $dk-paper-raise;
+    border-color: $dk-rule-2;
+  }
+  .katex-display::-webkit-scrollbar-thumb { background: $dk-rule; }
+  .katex-display > .katex > .katex-html > .tag { color: $dk-ink-3; }
+  .mermaid { background: $dk-paper-raise; border-color: $dk-rule-2; }
+  .mermaid svg .label, .mermaid svg .nodeLabel, .mermaid svg .edgeLabel text { fill: $dk-ink !important; }
+}

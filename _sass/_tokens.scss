@@ -1,0 +1,136 @@
+// ─────────────────────────────────────────────────────────────────────────
+// Design tokens — Research Journal Modernism
+// Single source of truth. No hardcoded values anywhere else.
+// ─────────────────────────────────────────────────────────────────────────
+
+// Palette — light (paper)
+$ink:           #0f0f0f;
+$ink-2:         #2a2522;
+$ink-3:         #5a534c;
+$ink-4:         #8a8278;
+$paper:         #f5f1e8;
+$paper-raise:   #faf7ef;
+$paper-sink:    #ebe5d4;
+$rule:          #d8cfb8;
+$rule-2:        #e8e1cc;
+$accent:        #8b1e1e;
+$accent-hover:  #6e1717;
+$accent-soft:   rgba(139, 30, 30, 0.08);
+$accent-mark:   rgba(139, 30, 30, 0.14);
+$success:       #3a6b3a;
+$warn:          #8b6b1e;
+
+// Palette — dark (overrides via prefers-color-scheme)
+$dk-ink:        #ece4cf;
+$dk-ink-2:      #d6cdb4;
+$dk-ink-3:      #a59c87;
+$dk-ink-4:      #6e6757;
+$dk-paper:      #15120c;
+$dk-paper-raise:#1f1b13;
+$dk-paper-sink: #0c0a06;
+$dk-rule:       #2f2a1f;
+$dk-rule-2:     #221e15;
+$dk-accent:     #d97a7a;
+$dk-accent-hover:#e89393;
+$dk-accent-soft:rgba(217, 122, 122, 0.10);
+$dk-accent-mark:rgba(217, 122, 122, 0.18);
+
+// Code (light)
+$code-bg:       #efe9d6;
+$code-text:     #1a1a1a;
+$code-comment:  #8b8275;
+$code-keyword:  #8b1e1e;
+$code-string:   #4a6b3a;
+$code-number:   #5b4a3a;
+$code-fn:       #2a4a6b;
+$code-rule:     #d8cfb8;
+
+// Code (dark)
+$dk-code-bg:    #0f0d08;
+$dk-code-text:  #ece4cf;
+$dk-code-comment:#7a7263;
+$dk-code-keyword:#e89393;
+$dk-code-string:#a8c48a;
+$dk-code-number:#d6b88a;
+$dk-code-fn:    #8aafd6;
+$dk-code-rule:  #2f2a1f;
+
+// Typography stacks
+$serif:    'Source Serif 4', 'Source Serif Pro', Charter, 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+$sans:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+$mono:     'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+// Type scale (fluid where it helps; fixed where rhythm matters)
+$fs-display: clamp(2.75rem, 5.5vw, 4.25rem);
+$fs-h1:      clamp(2rem, 3.4vw, 2.75rem);
+$fs-h2:      clamp(1.5rem, 2.4vw, 1.875rem);
+$fs-h3:      1.375rem;
+$fs-h4:      1.125rem;
+$fs-body:    1.0625rem;
+$fs-small:   0.9375rem;
+$fs-tiny:    0.8125rem;
+$fs-eyebrow: 0.75rem;
+
+// Line heights
+$lh-display: 1.05;
+$lh-heading: 1.18;
+$lh-body:    1.65;
+$lh-tight:   1.4;
+$lh-code:    1.55;
+
+// Letter spacing
+$ls-display:  -0.02em;
+$ls-heading:  -0.012em;
+$ls-eyebrow:  0.14em;
+
+// Spacing — 4px grid
+$s-1:  4px;
+$s-2:  8px;
+$s-3:  12px;
+$s-4:  16px;
+$s-5:  24px;
+$s-6:  32px;
+$s-7:  48px;
+$s-8:  64px;
+$s-9:  96px;
+$s-10: 128px;
+$s-11: 160px;
+
+// Layout widths
+$measure-narrow: 600px;
+$measure:        680px;
+$measure-wide:   920px;
+$measure-page:   1180px;
+
+// Page padding (responsive)
+$pad-mobile:   24px;
+$pad-tablet:   48px;
+$pad-desktop:  64px;
+
+// Header
+$header-h: 64px;
+
+// Border radii — restrained, mostly hairline-square aesthetic
+$r-1: 2px;
+$r-2: 4px;
+$r-3: 6px;
+$r-pill: 999px;
+
+// Z-index
+$z-nav:     50;
+$z-overlay: 100;
+$z-modal:   200;
+
+// Motion
+$ease:        cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+$dur-fast:    120ms;
+$dur-base:    220ms;
+$dur-slow:    400ms;
+
+// Breakpoints (use as media-min)
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1536px;

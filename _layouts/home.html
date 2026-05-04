@@ -1,43 +1,87 @@
 ---
-layout: articles
-titles:
-  # @start locale config
-  en      : &EN       Home
-  en-GB   : *EN
-  en-US   : *EN
-  en-CA   : *EN
-  en-AU   : *EN
-  zh-Hans : &ZH_HANS  主页
-  zh      : *ZH_HANS
-  zh-CN   : *ZH_HANS
-  zh-SG   : *ZH_HANS
-  zh-Hant : &ZH_HANT  主頁
-  zh-TW   : *ZH_HANT
-  zh-HK   : *ZH_HANT
-  ko      : &KO       홈
-  ko-KR   : *KO
-  fr      : &FR       Accueil
-  fr-BE   : *FR
-  fr-CA   : *FR
-  fr-CH   : *FR
-  fr-FR   : *FR
-  fr-LU   : *FR
-  tr      : &TR       Ana Sayfa
-  # @end locale config
-show_title: false
-articles:
-  data_source: paginator.posts
-  article_type: BlogPosting
-  show_cover: false
-  show_excerpt: true
-  show_readmore: true
-  show_info: true
+layout: default
 ---
-<div class="layout--home">
-  {%- include paginator.html -%}
-</div>
-<script>
-  {%- include scripts/home.js -%}
-</script>
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow hero__eyebrow">{{ page.eyebrow | default: 'Notebook · Texas Tech University' }}</span>
+    <h1 class="hero__title">{{ page.headline | default: 'Notes from a working CS graduate program.' }}</h1>
+    <p class="hero__lede">{{ page.lede | default: site.description }}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="{{ '/blog/' | relative_url }}">Read the writing <span class="btn__arrow">→</span></a>
+      <a class="btn btn--secondary" href="{{ '/projects/' | relative_url }}">See projects</a>
+    </div>
+  </div>
+</section>
 
-{{ content }}
+<section class="section">
+  <div class="container">
+    <div class="section-rule"><span class="section-rule__label">Recent writing</span></div>
+
+    <div class="post-list">
+      {%- assign recent = site.posts | slice: 0, 8 -%}
+      {%- for post in recent %}
+      <article class="post-list__item">
+        <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+        <div class="post-list__body">
+          <h2 class="post-list__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+          {%- if post.description or post.excerpt %}
+          <p class="post-list__excerpt">{{ post.description | default: post.excerpt | strip_html | truncate: 200 }}</p>
+          {%- endif %}
+          {%- if post.tags and post.tags.size > 0 %}
+          <div class="post-list__tags">
+            {%- for tag in post.tags limit: 4 %}<span class="tag">{{ tag }}</span>{% endfor -%}
+          </div>
+          {%- endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+
+    <div style="margin-top: 48px;">
+      <a class="btn btn--ghost" href="{{ '/blog/' | relative_url }}">All writing <span class="btn__arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+{%- assign current_courses = site.data.courses | where: 'status', 'active' -%}
+{%- if current_courses and current_courses.size > 0 %}
+<section class="section section--bordered">
+  <div class="container">
+    <div class="section-rule"><span class="section-rule__label">This semester</span></div>
+    <div class="grid grid--2">
+      {%- for course in current_courses %}
+      <article class="card">
+        <span class="card__eyebrow">{{ course.semester | default: 'Spring 2026' }}</span>
+        <h3 class="card__title"><a href="{{ '/courses/' | append: course.slug | append: '/' | relative_url }}">{{ course.display_name }}</a></h3>
+        {%- if course.description %}<p class="card__excerpt">{{ course.description }}</p>{% endif %}
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- assign featured_projects = site.projects | slice: 0, 3 -%}
+{%- if featured_projects and featured_projects.size > 0 %}
+<section class="section section--bordered">
+  <div class="container">
+    <div class="section-rule"><span class="section-rule__label">Selected projects</span></div>
+    <div class="grid grid--3">
+      {%- for project in featured_projects %}
+      <article class="card">
+        {%- if project.tags and project.tags.size > 0 %}<span class="card__eyebrow">{{ project.tags | first }}</span>{% endif %}
+        <h3 class="card__title"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+        {%- if project.description %}<p class="card__excerpt">{{ project.description | truncate: 140 }}</p>{% endif %}
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section section--bordered">
+  <div class="container container--reading">
+    <div class="section-rule"><span class="section-rule__label">Colophon</span></div>
+    <p class="lede">A working notebook — half draft, half archive. The site indexes coursework, project write-ups, and longer pieces on cryptography and verification. Source on <a href="https://github.com/{{ site.author.github }}">GitHub</a>.</p>
+  </div>
+</section>

@@ -1,110 +1,33 @@
-
-<footer class="footer py-4 js-page-footer">
-  <div class="main">
-
-          {% if site.author.linkedin %}
-            <li>
-              <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
-                </svg>
-                <span>LinkedIn</span>
-              </a>
-            </li>
-          {% endif %}
-
-          {% if site.author.facebook %}
-            <li>
-              <a href="https://www.facebook.com/{{ site.author.facebook }}" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M24 12.073C24 5.406 18.627 0 12 0S0 5.406 0 12.073c0 6.036 4.388 11.056 10.125 11.973v-8.474H7.078v-3.5h3.047V9.407c0-3.006 1.792-4.669 4.533-4.669 1.314 0 2.688.236 2.688.236v2.953h-1.513c-1.491 0-1.957.925-1.957 1.874v2.25h3.328l-.532 3.5h-2.797V24C19.612 23.129 24 18.109 24 12.073z" fill="currentColor"/>
-                </svg>
-                <span>Facebook</span>
-              </a>
-            </li>
-          {% endif %}
-
-          {% if site.author.instagram %}
-            <li>
-              <a href="https://www.instagram.com/{{ site.author.instagram }}/" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.849.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.204-.011 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.058 1.645-.07 4.849-.07zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.015 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.779 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.199 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.782-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="currentColor"/>
-                </svg>
-                <span>Instagram</span>
-              </a>
-            </li>
-          {% endif %}
-
-          {% if site.author.twitter %}
-            <li>
-              <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" rel="noopener" aria-label="Twitter" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
-                </svg>
-                <span>Twitter</span>
-              </a>
-            </li>
-          {% endif %}
-
-          {% if site.author.youtube %}
-            <li>
-              <a href="https://youtube.com/{{ site.author.youtube }}" target="_blank" rel="noopener" aria-label="YouTube" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="currentColor"/>
-                </svg>
-                <span>YouTube</span>
-              </a>
-            </li>
-          {% endif %}
-
-          {% if site.author.kaggle %}
-            <li>
-              <a href="https://kaggle.com/{{ site.author.kaggle }}" target="_blank" rel="noopener" aria-label="Kaggle" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.358" fill="currentColor"/>
-                </svg>
-                <span>Kaggle</span>
-              </a>
-            </li>
-          {% endif %}
-
-          {% if site.author.email %}
-            <li>
-              <a href="mailto:{{ site.author.email }}" aria-label="Email" class="social-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
-                </svg>
-                <span>Email</span>
-              </a>
-            </li>
-          {% endif %}
-        </ul>
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="site-footer__inner">
+      <div>
+        <h2>{{ site.title }}</h2>
+        <p style="margin: 0; max-width: 40ch;">{{ site.description }}</p>
       </div>
-
-      <div class="site-footer__navigation">
-        <h4 class="site-footer__nav-title">Navigation</h4>
-        <ul class="site-footer__nav">
-          <li><a href="{{ '/' | relative_url }}">Home</a></li>
-          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-          <li><a href="{{ '/emerging-tech/' | relative_url }}">Emerging Tech</a></li>
-          <li><a href="{{ '/research/' | relative_url }}">Research</a></li>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="{{ '/blog/' | relative_url }}">Writing</a></li>
           <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
           <li><a href="{{ '/courses/' | relative_url }}">Courses</a></li>
-          <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-          <li><a href="{{ '/resume/' | relative_url }}">Résumé</a></li>
+          <li><a href="{{ '/research/' | relative_url }}">Research</a></li>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Elsewhere</h2>
+        <ul>
+          {%- if site.author.github %}<li><a href="https://github.com/{{ site.author.github }}" rel="me">GitHub</a></li>{% endif %}
+          {%- if site.author.linkedin %}<li><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" rel="me">LinkedIn</a></li>{% endif %}
+          {%- if site.author.email %}<li><a href="mailto:{{ site.author.email }}">Email</a></li>{% endif %}
         </ul>
       </div>
     </div>
-    {%- include snippets/get-locale-string.html key='COPYRIGHT_DATES' -%}
-    {%- assign _locale_copyright_dates = __return -%}
-    <div class="site-info mt-2">
-      <div>
-        {%- include snippets/get-locale-string.html key='COPYRIGHT_DATES' -%}
-        {%- assign _locale_copyright_dates = __return -%}
-        © {{ site.title }} {{ _locale_copyright_dates }},
-        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
-        title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
-      </div>
+    <div class="site-footer__colophon">
+      © {{ 'now' | date: "%Y" }} {{ site.author.name | default: site.title }} ·
+      Built with Jekyll · Set in Source Serif 4, Inter, and JetBrains Mono.
     </div>
   </div>
 </footer>

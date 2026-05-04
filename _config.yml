@@ -1,21 +1,10 @@
-# TeXt Theme Configuration (using local submodule)
 theme: null
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jemoji
-  - jekyll-seo-tag
 
 # Site Settings
 title: Scott Weeden
-description: Making technology accessible — Master of Computer Applications (MCA), Computer Science, Texas Tech University (March 2025).
+description: Master of Computer Science student at Texas Tech University. Notes on cryptography, formal verification, machine learning.
 url: "https://scottweeden.online"
 baseurl: ""
-
-# TeXt Theme Settings
-text_skin: default
-highlight_theme: tomorrow-night
 lang: en
 timezone: America/Chicago
 
@@ -72,11 +61,12 @@ kramdown:
     strict: "ignore"
 
 # Plugins
-# jekyll-sitemap → outputs /sitemap.xml (absolute URLs via url + baseurl)
 plugins:
+  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-feed
+  - jekyll-paginate
+  - jemoji
 
 # Feed Settings
 feed:
@@ -94,61 +84,42 @@ social:
 
 # Defaults
 defaults:
-  # Posts (TeXt theme uses 'article' layout)
   - scope:
       path: "_posts"
       type: posts
     values:
-      layout: article
+      layout: post
       author: Scott Weeden
-      sharing: true
-      license: false
-      aside:
-        toc: true
-      show_edit_on_github: true
-      show_subscribe: true
-      pageview: false
-  # Projects
   - scope:
       path: "_projects"
       type: projects
     values:
       layout: project
-  # Courses
   - scope:
       path: "_courses"
       type: courses
     values:
       layout: page
-  # Faculty
   - scope:
       path: "_faculty"
       type: faculty
     values:
       layout: page
-  # Assignments
   - scope:
       path: "_assignments"
       type: assignments
     values:
       layout: project
-  # Drafts
   - scope:
       path: "_drafts"
       type: drafts
     values:
       layout: post
-  # Pages
   - scope:
       path: ""
       type: pages
     values:
       layout: page
-  # Home page uses landing layout
-  - scope:
-      path: "index.html"
-    values:
-      layout: landing
 
 # Exclude from processing (also prevents *_solutions.md.backup from matching as Markdown)
 exclude:
@@ -170,14 +141,15 @@ exclude:
   - coursework
   - courses
   - _theme
+  - "**/*.archive"
 
 # Include files
 include:
   - _pages
 
-# Sass/SCSS Settings (TeXt theme)
+# Sass/SCSS Settings
 sass:
-  sass_dir: _sass_text
+  sass_dir: _sass
   style: compressed
 
 # Pagination (if needed in future)
