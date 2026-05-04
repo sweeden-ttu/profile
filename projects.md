@@ -2,5 +2,6 @@
 layout: work-gallery
 title: Projects
 permalink: /projects/
-description: Browsable PDF portfolio from coursework data, plus project write-ups.
+eyebrow: "Coursework portfolio"
+description: "Browsable PDF artifacts from graduate coursework, organized by topic, plus longer-form project write-ups."
 ---

@@ -1,4 +1,68 @@
 ---
-layout: page
+layout: default
 ---
-{{ content }}
+{%- assign portfolio = site.data.work_portfolio -%}
+{%- assign topic_count = portfolio.topics | size -%}
+{%- assign item_count = 0 -%}
+{%- for t in portfolio.topics %}{% assign item_count = item_count | plus: t.items.size %}{% endfor -%}
+
+<article class="container">
+  <header class="page-header">
+    {%- if page.eyebrow %}<span class="eyebrow page-header__eyebrow">{{ page.eyebrow }}</span>{% endif %}
+    <h1 class="page-header__title">{{ page.title }}</h1>
+    {%- if page.description %}<p class="lede page-header__lede">{{ page.description }}</p>{% endif %}
+    <div class="page-header__meta">
+      <span class="page-header__meta-item">{{ item_count }} artifacts</span>
+      <span class="page-header__meta-item">{{ topic_count }} topics</span>
+    </div>
+  </header>
+
+  {%- if site.projects and site.projects.size > 0 %}
+  <section class="section section--tight">
+    <div class="section-rule"><span class="section-rule__label">Featured write-ups</span></div>
+    <div class="grid grid--3">
+      {%- for project in site.projects %}
+      <article class="card">
+        {%- if project.tags and project.tags.size > 0 %}<span class="card__eyebrow">{{ project.tags | first }}</span>{% endif %}
+        <h3 class="card__title"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+        {%- if project.description %}<p class="card__excerpt">{{ project.description | truncate: 140 }}</p>{% endif %}
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
+  <nav class="topic-chips" aria-label="Jump to topic">
+    {%- for topic in portfolio.topics %}
+    <a class="topic-chips__link" href="#{{ topic.slug }}">{{ topic.label }} <span class="topic-chips__count">{{ topic.items.size }}</span></a>
+    {%- endfor %}
+  </nav>
+
+  {%- for topic in portfolio.topics %}
+  <section class="gallery-topic" id="{{ topic.slug }}">
+    <div class="section-rule"><span class="section-rule__label">{{ topic.label }}</span></div>
+    <ul class="gallery-grid" role="list">
+      {%- for item in topic.items %}
+      <li class="gallery-card">
+        <a class="gallery-card__link" href="{{ item.pdf_url }}" target="_blank" rel="noopener">
+          <figure class="gallery-card__thumb">
+            <img loading="lazy" src="{{ item.thumb_url | relative_url }}" alt="{{ item.title }} (preview)" width="893" height="1263">
+          </figure>
+          <div class="gallery-card__body">
+            <h3 class="gallery-card__title">{{ item.title }}</h3>
+            <span class="gallery-card__meta">PDF · {{ topic.label }}</span>
+          </div>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endfor %}
+
+  {%- if content and content != "" %}
+  <section class="section">
+    <div class="section-rule"><span class="section-rule__label">Notes</span></div>
+    <div class="prose">{{ content }}</div>
+  </section>
+  {%- endif %}
+</article>
