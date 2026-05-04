@@ -11,124 +11,152 @@ course: "Cryptography"
 
 # The Great Cryptographic Shift: From Classical Diffie-Hellman to Elliptic Curves
 
-1. Introduction: The Scalability Crisis in Asymmetric Cryptography
+If you've used HTTPS, SSH, Signal, or your phone's iMessage in the last decade, you've used **elliptic curve cryptography** (ECC). It replaced the classical Diffie-Hellman (DH) and (mostly) RSA — but *why* it replaced them is a story worth telling slowly. This post explains the shift in plain English: what classical DH was, why it stopped scaling, what ECC actually does, and why a 256-bit ECC key is as strong as a 3072-bit RSA key.
 
-The architectural foundation of modern cybersecurity is currently undergoing a fundamental transition. For decades, asymmetric encryption relied on multiplicative groups over finite fields—the basis for the RSA algorithm and the classical Diffie-Hellman (DH) exchange. However, this model has reached a "scalability crisis."
+> **Background you'll want.** A *group* is a set with one operation that's associative, has an identity, and has inverses (think clock arithmetic: 7 + 5 mod 12 = 0). The *order* of an element is how many times you can combine it with itself before you cycle back to the identity. The *order* of a group is just the size of the set. We'll write integers mod $p$ (the prime) as $\mathbb{Z}_p$, and the non-zero ones (which form a group under multiplication) as $\mathbb{Z}_p^*$.
 
-As computational power increases, traditional systems require exponentially larger keys to maintain security. This necessity arises from the sub-exponential complexity of attacks like the Index Calculus, defined in L-notation as $L_p[1/3, c]$. This complexity allows adversaries to solve discrete logarithm problems much faster than a brute-force search would suggest. In response, Elliptic Curve Cryptography (ECC) has emerged as the standard for "security density," providing equivalent protection with significantly smaller keys.
+---
 
-The following table, derived from NIST standards, illustrates the growing disparity between traditional Finite Field Diffie-Hellman (FFDH)/RSA and ECC:
+## 1. Why classical DH is running out of room
 
-Symmetric Security (bits)	FFDH / RSA Key Size (bits)	ECC Key Size (bits)	Efficiency Ratio (RSA:ECC)
-80	1024	160	6.4:1
-112	2048	224	9.1:1
-128	3072	256	12.0:1
-192	7680	384	20.0:1
-256	15360	521	29.5:1
+Diffie–Hellman, published in 1976, was a cryptographic miracle: two strangers shouting across a public channel can agree on a shared secret that nobody listening can compute. The original construction lives inside $\mathbb{Z}_p^*$ — multiplicative integers mod a large prime. Its security rests on the **Discrete Logarithm Problem (DLP)**: given $g$ and $g^a \bmod p$, find $a$. Easy to compute $g^a$ forward; believed hard to invert.
 
-2. The Mechanics of Classical Diffie-Hellman (DH)
+The problem is that "believed hard" depends on what attacks we know. Over time, mathematicians built better DLP attacks for $\mathbb{Z}_p^*$ — the most important being the **index calculus** family. Index calculus exploits the fact that integers can be factored into small primes, letting an attacker collect equations and solve them with linear algebra.
 
-Established in 1976, classical DH provided the first viable solution for two parties to derive a shared secret over an insecure channel. Its security is anchored in the multiplicative group of integers modulo a large prime $p$, denoted as $\mathbb{Z}_p^*$.
+Concretely, index calculus runs in *sub-exponential* time, written as $L_p[1/3, c]$ — somewhere between polynomial and exponential. As an attacker's compute grows, $\mathbb{Z}_p^*$ has to grow too, just to stay ahead. That's the **scalability crisis**: defenders are stuck doubling key sizes faster than they want to.
 
-The Role of Primitive Roots
+The NIST recommendations make the cost concrete:
 
-The protocol requires a base $g$ that acts as a primitive root modulo $p$. In group theory terms, $g$ must be a generator of $\mathbb{Z}_p^*$, ensuring its powers $(g^1, g^2, g^3, \dots)$ cycle through every non-zero residue modulo $p$. This provides maximum entropy; if $g$ were confined to a smaller subgroup, the search space for an attacker would shrink proportionally. The number of such generators is given by $\phi(\phi(p))$.
+| Symmetric strength | RSA / classical-DH key size | ECC key size | Ratio |
+| --- | --- | --- | --- |
+| 80 bits | 1024 | 160 | 6.4× |
+| 112 bits | 2048 | 224 | 9.1× |
+| 128 bits | 3072 | 256 | 12× |
+| 192 bits | 7680 | 384 | 20× |
+| 256 bits | 15360 | 521 | 29.5× |
 
-The Exchange Process
+A 128-bit-strength RSA key is **3072 bits**. The equivalent ECC key is **256 bits** — twelve times shorter, and the gap *widens* at higher security levels. That difference matters everywhere keys live: TLS handshakes, device certificates, smart-card storage, IoT sensors with kilobytes of RAM.
 
-1. Public Parameters: Alice and Bob agree on a large prime $p$ and a generator $g$.
-2. Private/Public Keys: Alice selects a private key $a$ and computes $A = g^a \pmod p$. Bob selects $b$ and computes $B = g^b \pmod p$.
-3. Shared Secret: Alice computes $s = B^a \pmod p$ and Bob computes $s = A^b \pmod p$. By the laws of indices, $g^{ba} \equiv g^{ab} \pmod p$, establishing the secret.
+---
 
-Architectural Optimization: The Reduction Bottleneck
+## 2. Classical DH, briefly
 
-While the "Square-and-Multiply" algorithm (Binary Exponentiation) reduces the operation count to $O(\log n)$, the true tactical bottleneck in hardware is modular reduction. A standard integer division can consume 15–90 clock cycles, whereas multiplication and bit-shifts take fewer than 5. For example, computing $7^{13} \pmod{55}$ involves the bit pattern $1101_2$, triggering squarings and conditional multiplications. To optimize this, industrial implementations utilize Montgomery Reduction (REDC). By transforming coordinates into "Montgomery Space," we replace expensive divisions with rapid bitwise AND and shift operations, achieving up to a 6x speedup in execution.
+Just so the comparison with ECC lands clearly, here's the classical version in four lines:
 
-3. The Calculus of Vulnerability: Why Traditional DLP is Weakening
+1. Alice and Bob agree publicly on a large prime $p$ and a number $g$ that's a **generator** of $\mathbb{Z}_p^*$ — meaning the powers $g^1, g^2, g^3, \dots$ cycle through every non-zero number mod $p$.
+2. Alice picks a secret $a$, sends $A = g^a \bmod p$.
+3. Bob picks a secret $b$, sends $B = g^b \bmod p$.
+4. Alice computes $B^a = g^{ba} \bmod p$. Bob computes $A^b = g^{ab} \bmod p$. Same number — the shared secret.
 
-The fundamental weakness of $\mathbb{Z}_p^*$ lies in its multiplicative structure, which is susceptible to Index Calculus attacks. Unlike general brute-force, Index Calculus exploits the fact that integers in a finite field can be factored into a "factor base" of small prime numbers—a property known as "smoothness."
+> **Why a generator?** If $g$ only reached half of $\mathbb{Z}_p^*$, an attacker's brute-force search would also be cut in half. A primitive root maximizes the search space. The number of primitive roots of $p$ turns out to be $\phi(p-1)$ (Euler's totient of $p-1$).
 
-By collecting enough "relations" (equations where group elements are factored into the factor base), an attacker can use linear algebra to solve for the logarithms. Because this attack is sub-exponential, traditional DH keys must balloon to 3072 bits or more to maintain 128-bit security. The mathematical "porosity" of the finite field multiplicative group simply cannot compete with the geometric complexity of curves.
+The expensive operation is computing $g^a$ for a 3000-bit $a$. The standard trick — **square-and-multiply** — handles the exponent in binary and runs in $O(\log a)$ multiplications instead of $a$. For example, $7^{13} = 7^{1101_2}$, which means: square, multiply, square, square, multiply, square, multiply.
 
-4. The Geometric Leap: Mathematical Architecture of Elliptic Curves
+The bottleneck *inside* each multiplication is the modular reduction step. Plain integer division is slow on a CPU (15–90 cycles), so production crypto libraries use **Montgomery reduction** — a representation trick that replaces division with cheap shifts and AND operations. It makes large-number modular multiplication 6× faster in practice.
 
-ECC solves the scaling crisis by moving the discrete logarithm problem to a group where no "factor base" or "smoothness" exists.
+---
 
-The Short Weierstrass Form
+## 3. The structural weakness of $\mathbb{Z}_p^*$
 
-In a cryptographic context, we define our curve over a finite field (specifically where the field characteristic is not 2 or 3) using the equation:
+The reason index calculus works is that the elements of $\mathbb{Z}_p^*$ are just integers, and integers factor into smaller integers. An attacker picks a "factor base" of small primes, then looks for relations: numbers $g^k \bmod p$ that happen to factor entirely into the factor base (we say such numbers are *smooth*). Each relation gives one linear equation in unknown discrete logs. Collect enough relations and you can solve the system.
+
+This works because $\mathbb{Z}_p^*$ has a *multiplicative* structure that respects factoring. To make index calculus stop working, you need a group whose elements *don't* factor in any useful way. That's exactly what elliptic curves provide.
+
+---
+
+## 4. Elliptic curves: a different kind of group
+
+An **elliptic curve** over a finite field $\mathbb{F}_p$ (with characteristic not 2 or 3) is the set of points $(x, y)$ satisfying
 
 $$y^2 = x^3 + ax + b$$
 
-For the curve to be non-singular—ensuring no cusps or self-intersections—the discriminant $\Delta$ must be non-zero:
+…together with one extra "point at infinity," written $\mathcal{O}$.
+
+For the math to work without weird singularities, we need the **discriminant** to be non-zero:
 
 $$\Delta = -16(4a^3 + 27b^2) \neq 0$$
 
-The Point at Infinity ($\mathcal{O}$)
+The geometric picture is the same one you may have seen in calculus: a smooth curve in the plane. We're going to build a *group* out of these points.
 
-A group requires an identity element. In ECC, this is the Point at Infinity ($\mathcal{O}$), imagined at the vertical extremities of the $y$-axis. It satisfies the group law $P + \mathcal{O} = P$. Geometrically, when we add a point $P$ to its reflection $-P$ (vertical alignment), the resulting line does not intersect the curve a third time in the Cartesian plane; instead, it meets at $\mathcal{O}$.
+### Adding two points: chord-and-tangent
 
-5. ECDH Mechanics: Point Addition and Scalar Multiplication
+Two distinct points $P$ and $Q$ on the curve define a line. That line crosses the curve at exactly one third point. Reflect that third point across the x-axis, and you get $P + Q$.
 
-While classical DH relies on exponentiation, ECDH uses geometric addition defined by the chord-and-tangent rule.
+If $P = Q$, we use the tangent line at $P$ instead of a chord — same idea: tangent crosses the curve at one other point, reflect across the x-axis.
 
-Chord and Tangent Rules
+The point at infinity $\mathcal{O}$ plays the role of the additive identity: $P + \mathcal{O} = P$. And the inverse of $(x, y)$ is just $(x, -y)$ — the vertical reflection.
 
-To add points $P(x_1, y_1)$ and $Q(x_2, y_2)$, we calculate a slope $m$ and determine the third intersection point, which is then reflected across the $x$-axis.
+In formulas (working in $\mathbb{F}_p$):
 
-Operation	Geometric Logic	Slope ($m$) Calculation
-Point Addition ($P \neq Q$)	Chord Method: A line through two distinct points.	$m = (y_2 - y_1)(x_2 - x_1)^{-1} \pmod p$
-Point Doubling ($P = Q$)	Tangent Method: A line tangent to the curve at $P$.	$m = (3x_1^2 + a)(2y_1)^{-1} \pmod p$
+| Operation | Slope $m$ |
+| --- | --- |
+| Addition ($P \neq Q$) | $m = (y_2 - y_1)(x_2 - x_1)^{-1} \pmod p$ |
+| Doubling ($P = Q$) | $m = (3x_1^2 + a)(2y_1)^{-1} \pmod p$ |
 
-The resulting coordinates $R(x_3, y_3)$ are:
+Then $x_3 = m^2 - x_1 - x_2$ and $y_3 = m(x_1 - x_3) - y_1$, all mod $p$.
 
-* $x_3 = m^2 - x_1 - x_2 \pmod p$
-* $y_3 = m(x_1 - x_3) - y_1 \pmod p$
+### Multiplying by a scalar
 
-Scalar Multiplication ($kP$)
+The ECC analogue of "raise to a power" is "add a point to itself many times." We write $kP$ for $P + P + \dots + P$ ($k$ copies). And just like classical DH uses square-and-multiply, ECC uses **double-and-add**: walk through the binary expansion of $k$, double the running sum at each bit, add $P$ when the bit is 1.
 
-The operation $Q = kP$ (adding $P$ to itself $k$ times) is the ECC equivalent of modular exponentiation. It is computed via the Double-and-Add algorithm, ensuring logarithmic efficiency.
+ECDH then mirrors classical DH exactly:
 
-6. The Security Advantage: ECDLP vs. DLP
+* Public parameters: a curve and a base point $G$.
+* Alice picks secret scalar $a$, sends $aG$.
+* Bob picks secret scalar $b$, sends $bG$.
+* Both compute $abG$ — the shared point. (They use the x-coordinate of that point as the actual key material.)
 
-ECC is significantly more "security dense" because the Elliptic Curve Discrete Logarithm Problem (ECDLP) lacks the multiplicative structure required for Index Calculus. There is no natural way to "factor" a point on a curve into smaller "prime points."
+---
 
-Consequently, the most efficient classical attack against ECDLP is Pollard’s Rho, a fully exponential attack with complexity $O(\sqrt{n})$. This gap in attack efficiency is precisely why a 256-bit ECC key offers the same security as a 3072-bit RSA/DH key.
+## 5. Why ECC is so much stronger per bit
 
-7. Worked Example: Point Arithmetic on $\mathbb{F}_{23}$
+Index calculus relied on $\mathbb{Z}_p^*$ elements factoring nicely. Points on an elliptic curve don't factor — there's no "factor base" for an attacker to build, no smoothness, no equations to collect. So index calculus simply doesn't apply.
 
-Consider the curve $y^2 = x^3 + x + 1 \pmod{23}$ ($a=1, b=1, p=23$).
+The best classical attack on the **Elliptic Curve Discrete Logarithm Problem (ECDLP)** is **Pollard's rho**, which is *fully exponential*: $O(\sqrt n)$ for a group of order $n$. To get 128 bits of security, you need a group of size around $2^{256}$ — i.e., 256-bit keys. To get the same 128 bits with classical DH and index calculus, you need 3072 bits.
 
-Step 1: Point Addition ($P + Q$)
+That gap is the entire reason ECC took over.
 
-Let $P = (3, 10)$ and $Q = (9, 7)$.
+---
 
-1. Slope ($s$): $s = (7 - 10) \cdot (9 - 3)^{-1} = -3 \cdot 6^{-1} \pmod{23}$.
-2. Modular Inverse: Using the Extended Euclidean Algorithm, $6^{-1} \pmod{23} = 4$ (since $6 \times 4 = 24 \equiv 1$).
-3. Resulting Slope: $s = -3 \times 4 = -12 \equiv 11 \pmod{23}$.
-4. Coordinates:
-  * $x_3 = 11^2 - 3 - 9 = 109 \equiv 17 \pmod{23}$.
-  * $y_3 = 11(3 - 17) - 10 = -164 \equiv 20 \pmod{23}$.
-  * $P + Q = (17, 20)$.
+## 6. Worked example: arithmetic on $\mathbb{F}_{23}$
 
-Step 2: Point Doubling ($2P$)
+Tiny example so the formulas don't stay abstract. Take the curve $y^2 = x^3 + x + 1$ over $\mathbb{F}_{23}$ (so $a = 1$, $b = 1$, $p = 23$).
 
-For $P = (3, 10)$:
+### Adding $P = (3, 10)$ and $Q = (9, 7)$
 
-1. Slope ($s$): $s = (3(3^2) + 1) \cdot (2 \cdot 10)^{-1} = 28 \cdot 20^{-1} \pmod{23}$.
-2. Modular Inverse: $20 \equiv -3 \pmod{23}$. To find $(-3)^{-1} \pmod{23}$, we note $-3 \times 15 = -45 \equiv 1$. Thus, $20^{-1} = 15$.
-3. Resulting Slope: $s = 28 \cdot 15 = 5 \cdot 15 = 75 \equiv 6 \pmod{23}$.
-4. Coordinates:
-  * $x_3 = 6^2 - 3 - 3 = 30 \equiv 7 \pmod{23}$.
-  * $y_3 = 6(3 - 7) - 10 = -34 \equiv 12 \pmod{23}$.
-  * $2P = (7, 12)$.
+$$s = (y_2 - y_1)(x_2 - x_1)^{-1} = (7 - 10)(9 - 3)^{-1} = -3 \cdot 6^{-1} \pmod{23}$$
 
-Step 3: Group and Subgroup Properties
+To find $6^{-1} \pmod{23}$, we need an integer $x$ with $6x \equiv 1 \pmod{23}$. Try $x = 4$: $6 \times 4 = 24 \equiv 1$ ✓. So $6^{-1} = 4$.
 
-The total order of this group is 28 points. Per Lagrange’s Theorem, the possible orders of any subgroup are divisors of the group order: $\{1, 2, 4, 7, 14, 28\}$. While the generator $(0, 1)$ yields the full group, point $P = (11, 3)$ generates a smaller subgroup of order 4, where $4P = \mathcal{O}$.
+$$s = -3 \cdot 4 = -12 \equiv 11 \pmod{23}$$
+$$x_3 = 11^2 - 3 - 9 = 109 \equiv 17 \pmod{23}$$
+$$y_3 = 11(3 - 17) - 10 = -164 \equiv 20 \pmod{23}$$
 
-8. Conclusion: Implementation Realities and the Quantum Future
+So $P + Q = (17, 20)$. Sanity check: $20^2 = 400 \equiv 9$, and $17^3 + 17 + 1 = 4931 \equiv 9$. ✓
 
-The shift to ECC has facilitated a revolution in resource-constrained environments. Smaller keys lead to faster handshakes and lower power consumption, which is critical for the Internet of Things (IoT).
+### Doubling $P = (3, 10)$
 
-However, we must prepare for the Quantum Challenge. Shor’s algorithm threatens to break both RSA and ECC by solving discrete logarithms in polynomial time. To counter this, the field is moving toward Hybrid Key Encapsulation Mechanisms (KEMs), where ECDH co-exists with Post-Quantum Cryptography (PQC). In these models, ECDH provides a "residual security contribution," ensuring that even if the PQC component is found to have classical flaws, the data remains protected by the proven geometric complexity of the elliptic curve.
+$$s = (3 \cdot 3^2 + 1)(2 \cdot 10)^{-1} = 28 \cdot 20^{-1} \pmod{23}$$
+
+Note $20 \equiv -3 \pmod{23}$, so $20^{-1}$ is the same as $(-3)^{-1}$. Since $-3 \times 15 = -45 \equiv 1$, we get $20^{-1} = 15$.
+
+$$s = 28 \cdot 15 \equiv 5 \cdot 15 = 75 \equiv 6 \pmod{23}$$
+$$x_3 = 6^2 - 3 - 3 = 30 \equiv 7,\quad y_3 = 6(3 - 7) - 10 = -34 \equiv 12 \pmod{23}$$
+
+So $2P = (7, 12)$.
+
+### Group order and subgroups
+
+This curve has exactly **28 points** (you can verify by enumerating all $(x, y)$ with $y^2 \equiv x^3 + x + 1 \pmod{23}$ and adding $\mathcal{O}$). By **Lagrange's theorem**, every subgroup of a finite group has order dividing the group's order. So the possible subgroup orders here are the divisors of 28: $\{1, 2, 4, 7, 14, 28\}$.
+
+The point $(0, 1)$ generates the whole group of 28 points. But the point $P = (11, 3)$ only reaches 4 points before cycling back: $4P = \mathcal{O}$. So $P$ generates a subgroup of order 4 — and any scalar multiplication by an attacker-chosen multiplier of $P$ stays trapped in those 4 points. This is the kind of "subgroup confinement" that breaks protocols, which we'll explore in detail in the next post.
+
+---
+
+## 7. Looking ahead: smaller keys, then post-quantum
+
+ECC's small keys made entirely new product categories possible: TLS on tiny devices, fast handshakes on slow networks, certificate chains that fit in a single radio packet for IoT. The math is also kinder to constant-time implementation, which helped close some of the side-channel holes that plagued RSA.
+
+The next disruption is quantum. **Shor's algorithm** breaks both RSA and ECDH in polynomial time on a sufficiently large quantum computer. The community is responding with **hybrid key exchange**: combine ECDH with a post-quantum key encapsulation mechanism (KEM) like ML-KEM (Kyber). If the post-quantum scheme has an unknown classical flaw, ECDH still protects you; if quantum hardware arrives, the post-quantum side carries the load. TLS 1.3 already supports this, and Chrome enabled hybrid X25519+ML-KEM by default in 2024.
+
+The classical-to-elliptic shift took roughly two decades to roll through the internet's plumbing. The post-quantum shift is happening faster — but the lessons from the ECC transition (validate everything, prefer constant-time primitives, plan for hybrid deployments) all carry forward.

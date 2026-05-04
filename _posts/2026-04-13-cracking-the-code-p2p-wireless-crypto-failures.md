@@ -11,131 +11,132 @@ course: "Cryptography"
 
 # Cracking the Code: A Review of Cryptographic Failures in Peer-to-Peer and Wireless Protocols
 
-In the discipline of secure systems architecture, we often distinguish between the "cryptographic ideal"—the clean, symbolic math found in academic proofs—and the "implementation reality," where integers are decomposed into machine-word limbs and processed by physical hardware. This gap is not merely a theoretical curiosity; it is the primary breeding ground for modern protocol exploits. As security architects, we must understand that a protocol can be "proven" secure in a tool like Tamarin or ProVerif, yet remain catastrophically vulnerable if the underlying implementation fails to preserve the symbolic invariants of the group.
+There's a recurring pattern in cryptography failures: a protocol gets a clean math proof on paper, ships, and then breaks anyway. The proof wasn't wrong — it just described a *cleaner* world than the one the code actually runs in. This post walks through three real cases of that gap (Secure Scuttlebutt, Bluetooth pairing, and OpenSSL nonce leaks), with enough background that you don't need to be a crypto researcher to follow along.
 
+> **Quick refresher.** Two parties agreeing on a shared secret over an insecure channel is called *Diffie-Hellman key exchange* (DH). Modern systems use *Elliptic Curve* Diffie-Hellman (ECDH) — same idea, but the math happens with points on an elliptic curve over a finite field. The thing each party multiplies a public point by — its private key — is called a *scalar*.
 
---------------------------------------------------------------------------------
+---
 
+## 1. The "Perfect Group" That Doesn't Exist
 
-1. The Illusion of the "Perfect Group": Theory vs. Implementation
+When researchers prove a protocol secure, they often use tools like **Tamarin** or **ProVerif**. These are programs that take a protocol description and try to find an attack — if they can't, they output "verified." The catch is that they reason at the *symbolic* level: they assume the math behaves perfectly. In particular, they typically assume the group of points used by the protocol has *prime order*, meaning the number of elements is prime.
 
-The primary friction point in modern Elliptic Curve Cryptography (ECC) lies in the assumption of prime-order groups. Symbolic analysis tools historically abstract Diffie-Hellman (DH) operations as occurring in a perfect mathematical vacuum. In this vacuum, every element (save for the identity) is a generator, and subgroups do not exist. In the field, however, developers frequently select non-prime order groups—such as Curve25519—to leverage implementation efficiencies like the Montgomery ladder, or they inadvertently operate in composite structures because of malformed inputs.
+Why does prime order matter? Two reasons:
 
-The Symbolic Assumption (Ideal) vs. The Implementation Reality (Actual)
+1. **No internal subgroups.** A prime-order group has only two subgroups: the trivial one (just the identity element) and the whole group. So there's nowhere a value can get "trapped."
+2. **Every non-identity element is a generator.** Pick any element other than the identity, and you can reach every other element by repeatedly combining it with itself. There are no second-class citizens.
 
-Feature	The Symbolic Assumption (Ideal)	The Implementation Reality (Actual)
-Group Order	Prime Order: ProVerif and Tamarin traditionally assume the group has no internal structure; subgroups are mathematically impossible.	Non-Prime/Composite Order: Groups often contain small subgroups (cofactors), allowing for "subgroup confinement" where secrets are "multiplied away."
-Input Validation	Perfect Parsing: Protocols are assumed to implicitly reject any input that does not belong to the intended prime-order group.	Implicit Trust: High-performance libraries often skip curve equation checks, accepting "invalid points" that exist on a curve's twist.
-Identity Element	Abstractly Ignored: The identity element (gid) is assumed to be unreachable or systematically rejected by the protocol logic.	Silently Processed: Implementations often process the identity element, which acts as a fixed point, causing the shared secret to collapse to a constant.
-Numeric Logic	Atomic Operations: Scalar multiplication is viewed as a single, opaque mathematical step in a symbolic trace.	Bignumber Limbs: Math is performed on machine-word limbs. Memory management (resizing) and branching leak secret bits via side-channels.
+Real curves used in practice don't always have prime order. **Curve25519**, the curve behind Signal, WhatsApp, TLS 1.3, and SSH, has order $8 \cdot p$ for a large prime $p$. The factor 8 is called the **cofactor**. It exists because curves with a small cofactor are faster to implement using the *Montgomery ladder* — an x-coordinate-only multiplication algorithm that's both fast and naturally resistant to timing attacks.
 
-While these theoretical gaps seem academic, they manifest as devastating vulnerabilities when real-world protocols encounter untrusted inputs.
+That tradeoff — performance for a slightly messier group — is the seam where every attack we'll see today gets in.
 
+| Aspect | What the proof assumes | What the implementation actually does |
+| --- | --- | --- |
+| Group order | Prime — no subgroups exist | Composite (e.g. $8p$) — small subgroups exist |
+| Inputs | Always valid curve points | High-performance libraries may skip the "is this on the curve?" check |
+| Identity element | Never appears | Sometimes accepted; can pin the shared secret to a constant |
+| Numbers | Atomic integers | Big integers stored as arrays of 64-bit "limbs" — memory layout leaks information |
 
---------------------------------------------------------------------------------
+Now let's see what actually goes wrong.
 
+---
 
-2. Case Study: The Secure Scuttlebutt "Secret Handshake" Identity Theft
+## 2. Case Study: Secure Scuttlebutt's "Secret Handshake"
 
-Secure Scuttlebutt (SSB) is a decentralized gossip protocol that utilizes a "Secret Handshake" for mutual authentication. While previously verified as secure in a coarse symbolic model, the protocol’s reliance on Curve25519 without proper low-order checks created a critical flaw. Even when using "formally verified" libraries like HACL*, a protocol is only as strong as its handling of group properties.
+**Secure Scuttlebutt (SSB)** is a decentralized social-feed protocol — think of it as a federated Twitter where each user replicates their friends' posts directly. To talk to a friend, two SSB clients run a "Secret Handshake" that proves they each hold a long-term Curve25519 keypair. SSB had been analyzed in symbolic models and looked fine. The flaw was in how the protocol handled *attacker-supplied* points.
 
-Step-by-Step Identity Theft Attack
+A **low-order point** is a curve point that, when multiplied by any scalar, produces only a tiny set of outputs. Curve25519's cofactor of 8 means there's a subgroup of order 8 — and every point in it is "low-order." If you compute $k \cdot P$ where $P$ has order 8, the result lands somewhere in those 8 points no matter what $k$ is.
 
-1. Selection of Low-Order Points: The attacker initiates a handshake by sending a low-order point (e.g., a point with order 8) as their ephemeral public key, rather than a point generated from a random scalar.
-2. Shared Secret Confinement: Because the attacker’s point belongs to a small subgroup, the resulting shared secret $g^{xy}$ is confined to that same subgroup. The Handshake Contributivity is violated: the responder’s secret contribution is effectively "multiplied away," and the shared secret collapses to a predictable constant.
-3. Predictable Challenge Generation: In the SSB protocol, the challenge value used for the final authentication signature is derived from this shared secret. Because the secret is now a known constant, the challenge becomes constant and predictable to the attacker.
-4. Signature Forgery via Constant Challenge: The attacker must prove knowledge of the responder’s public key by signing the challenge. Since the challenge is constant, the attacker can provide a valid signature (exploiting Ed25519’s signature properties) without ever possessing the responder's long-term secret key.
-5. Identity Impersonation: The handshake completes. The attacker is successfully authenticated as a "friend," allowing them to drain the victim’s private state and gossip logs. Authentication Integrity is completely bypassed.
+Here is how the attack works:
 
-The Scuttlebutt incident proves that even modern, formally verified primitives like Curve25519 can be misused if low-order points aren't handled with care at the protocol layer.
+1. **Attacker sends a low-order point.** Instead of sending a normal ephemeral public key (a random point on the curve), the attacker sends a point $P$ of order 8.
+2. **Shared secret collapses.** The shared secret in ECDH is computed as $k \cdot P$, where $k$ is the responder's secret. Because $P$ is low-order, $k \cdot P$ can only land in 8 possible values — and the attacker can guess them all.
+3. **Challenge becomes predictable.** SSB derives a session-binding "challenge" from this collapsed secret. The attacker now knows the challenge in advance.
+4. **Signature forgery.** The handshake's last step requires the attacker to sign that challenge with the responder's *long-term* key. Normally this is impossible — but because the challenge is constant and the protocol re-uses the same long-term key, the attacker can produce a valid signature without the secret key.
+5. **Authentication bypassed.** The handshake completes; the attacker is "authenticated as your friend" and can read your private feed.
 
+The deeper lesson: even when a protocol uses a verified-correct library like **HACL\*** for the math primitives, the *protocol logic* still has to reject low-order public keys. The Go standard library originally accepted them; libsodium rejects them. That single library-level decision was the difference between vulnerable and safe.
 
---------------------------------------------------------------------------------
+---
 
+## 3. Case Study: Bluetooth's Invalid-Point Attack
 
-3. Case Study: Bluetooth’s Fixed-Coordinate Invalid Curve Attack
+Bluetooth devices pair using ECDH. Bluetooth Low Energy Secure Connections (LESC, the modern variant) uses the **NIST P-256** curve. P-256 is "twist-secure" — both the curve and its mirror image (its quadratic twist) are mathematically strong. So the attack we're about to describe isn't a twist attack. It's something different: an **invalid-point attack**, where the attacker sends an $(x, y)$ pair that isn't on *either* the curve or its twist.
 
-The Biham and Neumann attack on Bluetooth Secure Simple Pairing (SSP) and Low Energy Secure Connections (LESC) (disclosed July 2018 as CVE-2018-5383; full paper [eprint 2019/1043](https://eprint.iacr.org/2019/1043), CT-RSA 2020) exposed a failure to validate projective coordinates. This impacted top-tier vendors including Qualcomm, Broadcom, and Intel.
+The vulnerability was disclosed in July 2018 (CVE-2018-5383), with the full Biham–Neumann paper published as [eprint 2019/1043](https://eprint.iacr.org/2019/1043) and presented at CT-RSA 2020. Affected vendors included Qualcomm, Broadcom, and Intel.
 
-The Vulnerability: Bluetooth LESC uses the NIST P-256 curve for ECDH key exchange (legacy SSP from BT 2.1 used P-192). Although P-256 is twist-secure, this attack is not a twist attack — it is an Invalid Curve Attack: the manipulated point lies on neither the main curve nor its twist.
+Here's the trick:
 
-The Exploit:
+* The two devices exchange $(x, y)$ coordinates of their public points.
+* The "Numeric Comparison" step (the 6-digit code that pops up on your phone) only authenticates the **x-coordinate** — not the y-coordinate.
+* An attacker in the middle keeps the legitimate x-coordinate but **sets y = 0** in transit.
+* The point $(x, 0)$ does not satisfy the curve equation $y^2 = x^3 + ax + b$ — it's invalid. But cryptographic libraries that skip the curve check just accept it.
+* When you multiply *any* point with $y = 0$ by a scalar, the math collapses: such a point is its own additive inverse, so it has order 2. The shared secret ends up being one of just two possible values.
 
-* The protocol exchanges $(x, y)$ coordinates, but the "Numeric Comparison" authentication step only authenticates the $x$-coordinate.
-* An attacker intercepts the exchange and replaces the victim's $y$-coordinate with 0.
-* The point $(x, 0)$ does not generally satisfy $y^2 \equiv x^3 + ax + b$; it is an invalid point. However, because $y=0$ implies the point is its own additive inverse, scalar multiplication of any such point produces an order-2 group element, forcing the resulting shared key to collapse into a set of only two possible values.
+| Affected Vendors | What Was Exploited | Outcome |
+| --- | --- | --- |
+| Qualcomm, Broadcom, Intel | Accepting $(x, 0)$ as a valid P-256 point | Shared secret confined to two values |
+| Google (Android) | No y-coordinate validation | Attacker decrypts the link silently |
 
-Affected Vendors	Curve Property Exploited	Attack Consequence
-Qualcomm, Broadcom, Intel	P-256 Invalid Point ($y=0$)	Shared Secret Confinement
-Google (Android)	Lack of $y$-coordinate validation	Silent Link Decryption
+The attacker can guess the session key, decrypt the Bluetooth traffic, and inject data — even though the user correctly compared the 6-digit code. The fix is one extra check: verify each received point actually satisfies $y^2 \equiv x^3 + ax + b \pmod{p}$ before doing any scalar multiplication.
 
-The Result: The attacker can determine the session key and decrypt the link even if the user correctly confirms the 6-digit code on their device screen.
+---
 
-These coordinate-based attacks highlight a broader issue in how cryptographic libraries represent and process large numbers under the hood.
+## 4. The Hidden Leak: How Big Numbers Betray Secrets
 
+The curves in elliptic curve crypto have prime fields with hundreds of bits — far more than fits in a single CPU register. Libraries store these numbers as arrays of 64-bit chunks called **limbs**. A 256-bit number takes 4 limbs; a 521-bit number takes 9.
 
---------------------------------------------------------------------------------
+OpenSSL and LibreSSL traditionally used a "minimal representation": they only allocated as many limbs as the value currently needed. If a number's top limb became zero (because the value got smaller after some operation), the library would shrink the buffer.
 
+That sounds harmless — until you realize an attacker on the same machine (or with a network position) can *measure* when allocations happen.
 
-4. The Hidden Leak: Bignumbers and Side-Channel Vulnerabilities
+Here is the leak that became **CVE-2018-0734** (DSA) and **CVE-2018-0735** (ECDSA):
 
-Cryptographic secrets are processed as "Bignumbers" decomposed into machine-word limbs (64-bit words). The memory management of these limbs is a high-fidelity signal for side-channel attackers. In libraries like OpenSSL and LibreSSL, the pursuit of "minimal representation" created a fundamental side-channel invariant.
+1. ECDSA picks a per-signature random nonce $k$.
+2. To make $k$'s bit-length uniform, the library computes $k + q$ (where $q$ is the curve order).
+3. If $k$ happens to be just below a 64-bit boundary, the addition triggers a carry that needs an extra limb. The library calls `malloc` to grow the buffer.
+4. An attacker using **Flush+Reload** (a cache side-channel) or **controlled-channel attacks** in Intel SGX can detect that allocation. They've just learned the top bits of $k$.
 
-Vulnerable Lazy Resizing vs. Secure Constant-Time Alignment
+Recover enough of those tops bits across enough signatures, and you can recover the long-term ECDSA private key using lattice techniques (covered in a later post in this series).
 
-Vulnerable Lazy Resizing (OpenSSL — CVE-2018-0734 (DSA), CVE-2018-0735 (ECDSA); LibreSSL inherited the same BIGNUM minimal-representation pattern from its OpenSSL fork)
+The fix, used by **BoringSSL**, is to allocate a fixed-width buffer up front: every nonce takes exactly the same number of limbs regardless of its value. No conditional allocation, no leak.
 
-* Mechanical Trigger: The library only allocates the minimum number of limbs required to represent a value. If a nonce is close to a word boundary, an operation like k+q might trigger a carry that requires an additional limb.
-* Dynamic Allocation: The library invokes malloc or realloc to resize the Bignumber.
-* The Leak: An attacker using Flush+Reload or controlled-channel attacks (SGX) can detect these memory allocations. Because the allocation only occurs when the nonce crosses a word boundary, the resize operation acts as a precise leak for the bit-length and topmost bits of the secret.
+| Vulnerable (OpenSSL/LibreSSL pre-fix) | Hardened (BoringSSL) |
+| --- | --- |
+| Buffer size depends on the secret value | Buffer size is fixed by the curve, not the value |
+| `malloc` calls leak information | No conditional allocations |
+| `bn_fix_top` strips leading zeros — leaks bit length | Leading zeros stay in place |
 
-Secure Constant-Time Alignment (BoringSSL)
+---
 
-* Fixed-Width Invariant: BoringSSL utilizes a width field to ensure that sensitive Bignumbers occupy a fixed number of limbs regardless of their value.
-* No Conditional Resizing: By pre-allocating the maximum required limb-space, the library eliminates the need for dynamic resizing during scalar multiplication or inversion.
-* The Result: Memory access patterns and allocation traces remain identical, closing the side-channel for nonce leakage.
+## 5. Defender's Toolbox
 
-If the implementation itself leaks the secrets we are trying to protect, we must look to the protocol layer for robust defensive mitigations.
+If you're implementing a protocol that uses ECDH or ECDSA, four mitigations cover most of the failures above:
 
+| Mitigation | What it stops | Tradeoff |
+| --- | --- | --- |
+| **Reject the identity element** on every public-key input | Prevents the shared secret from being pinned to a constant | Negligible performance cost; should always be on |
+| **Curve equation check** $y^2 \equiv x^3 + ax + b$ on every received point | Stops invalid-point attacks like Bluetooth's | Extra field arithmetic per point — usually worth it |
+| **Cofactor clamping** (for Curve25519, X25519): zero out the low 3 bits of the scalar | Forces math into the prime-order subgroup | Small-subgroup inputs all map to identity; pair with identity rejection |
+| **Fermat inversion** $k^{q-2} \pmod q$ instead of Extended Euclidean | Constant-time modular inverse | A bit slower than the variable-time alternative — but no timing leak |
 
---------------------------------------------------------------------------------
+---
 
+## 6. Takeaways
 
-5. The Defender's Toolbox: Strategies for Mitigation
+Security is a full-stack problem. A clean mathematical proof says one thing; the bytes flying through your CPU's cache say another. A few things worth remembering:
 
-Architects must evaluate mitigations not just for their security, but for their impact on the constant-time invariants of the system.
+1. **Proofs assume what they don't verify.** A Tamarin proof of "prime-order group" doesn't help if your real curve has cofactor 8 and your protocol accepts low-order public keys.
+2. **Validate every point.** Even on twist-secure curves like P-256, skipping the "is this on the curve?" check is fatal. (For curves whose twist *isn't* secure, like P-224, the situation is even worse — its twist has combined attack cost around $2^{58}$ per SafeCurves.)
+3. **Memory access patterns are public.** "Lazy" optimizations that resize buffers based on secret values are side channels.
+4. **Handshakes need contributivity.** Both parties' secrets must influence the shared key in a way that *cannot* be cancelled by a small-subgroup input from the other side.
 
-Mitigation Matrix
+### Checklist for protocol designers
 
-Mitigation Technique	Security Benefit	Potential Trade-off
-Rejecting Identity Elements	Prevents the shared secret from collapsing to a constant (gid).	Negligible performance hit; essential for all DH-based handshakes.
-Curve Equation Checks	Validates (x, y) coordinates to stop invalid curve attacks on non-twist-secure curves.	Computationally expensive; requires additional field arithmetic for every received point.
-Cofactor Clamping	Zeros out low-order bits to ensure math stays in the prime-order subgroup.	Risk: While it clears low-order info, it can exacerbate confinement by forcing all low-order inputs to the identity element.
-Fermat Inversion	Replaces the Binary Extended Euclidean Algorithm (BEEA) with $k^{q-2} \bmod q$.	Performance: Slower than BEEA, but provides a guaranteed constant-time alternative for modular inversion.
-
-Choosing the right mitigation is not just a matter of security, but of understanding the specific group properties of the curve in use.
-
-
---------------------------------------------------------------------------------
-
-
-6. Final Synthesis: Key Takeaways for the Aspiring Learner
-
-Security is a full-stack challenge. It begins at the mathematical choice of a prime field and extends down to the way the CPU handles a carry bit at a word boundary. A "formally verified" protocol can still be broken if the implementer assumes the group is prime when the curve's twist is composite.
-
-Lessons Learned:
-
-1. Implicit Assumptions are Vulnerabilities: Tools like Tamarin assume prime order. If your curve (or its twist) is composite, the symbolic proof is incomplete.
-2. Validate Every Public-Key Point: Even on twist-secure curves like P-256, the Bluetooth attack shows that omitting an "is this point on the curve?" check is fatal. NIST P-224 — which separately has a non-twist-secure quadratic twist (combined attack cost ~$2^{58}$ per SafeCurves) — is a cautionary tale for any single-coordinate ladder used without twist analysis.
-3. The Side-Channel is in the Allocation: Memory management is a side-channel. "Lazy" operations are the enemy of constant-time execution.
-4. Handshake Contributivity: Always verify that both parties contribute entropy to the session key in a way that cannot be "multiplied away" by a small subgroup point.
-
-## Checklist for Protocol Designers
-
-- Reject the identity element (gid) on all public key inputs.
-- Implement explicit Curve Equation Checks ($y^2 = x^3 + ax + b$).
-- Use fixed-width Bignumber representations (Disable lazy resizing).
-- Enforce constant-time modular inversion via Fermat Inversion.
-- Ensure Twist Security if using x-coordinate-only ladders.
-- Include all public keys and identities in the Key Derivation Function (KDF).
-- Apply cofactor clamping but monitor for identity-confinement side effects.
+- [ ] Reject the identity element on all public-key inputs.
+- [ ] Implement explicit curve equation checks ($y^2 = x^3 + ax + b$).
+- [ ] Use fixed-width big-integer representations; disable lazy resizing.
+- [ ] Use Fermat-style modular inversion (constant-time).
+- [ ] If you use an x-only ladder, make sure the curve is twist-secure.
+- [ ] Include both peers' identities in the key-derivation function (KDF).
+- [ ] Apply cofactor clamping, but pair it with identity-element rejection.

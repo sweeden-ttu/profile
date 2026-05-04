@@ -11,129 +11,155 @@ course: "Cryptography"
 
 # The Fragility of Raw RSA: From Mathematical Elegance to Existential Forgery
 
-1. Introduction: The Concept of Digital Integrity
+RSA is the algorithm most students see first in a cryptography course — and it's beautiful. Pick two big primes, multiply them, and you get a function that's easy to evaluate but apparently hard to invert without the factorization. The catch: the textbook version is also catastrophically broken, in a way that has nothing to do with factoring.
 
-In the evolution of asymmetric cryptography, digital signatures serve a critical dual purpose: attribution and integrity. Attribution ensures a message is linked to a specific entity, while integrity guarantees it has remained unaltered. While RSA (Rivest-Shamir-Adleman) is a cornerstone of modern public-key infrastructure, there exists a perilous gap between the algorithm’s mathematical elegance and its secure implementation.
+This post explains why "raw" RSA fails as a signature scheme, walks through a forgery attack you can do with paper and pencil, and shows how the **hash-then-sign** paradigm (and modern padding like RSA-PSS) fixes it.
 
-"Textbook" or "raw" RSA—where the algorithm is applied directly to a message without preprocessing—is a common starting point for students, yet it is fundamentally deficient. From a cryptanalytic perspective, raw RSA lacks signature indistinguishability under chosen-message attacks. It is not merely a theoretical concern; a landmark 2012 USENIX Security study (Heninger et al., "Mining Your Ps and Qs") found that 0.75% of TLS certificates shared keys due to insufficient entropy, and the authors were able to recover the private keys for 0.50% of TLS hosts via shared-prime GCD factoring — most of those failures traced back to poorly seeded entropy in embedded devices. This document explores why the raw mathematical structure of RSA is insufficient for existential security.
+> **Background.** A *digital signature* is a small bit of data that proves a particular party authorized a particular message. Forging a signature without the secret key should be infeasible. RSA is one signature algorithm; ECDSA (covered in a different post) is another.
 
-2. Mechanics of the Textbook RSA Signature
+---
 
-The security of RSA is predicated on the difficulty of integer factorization and the relationship between public and private exponents within a modular environment.
+## 1. Two jobs of a digital signature
 
-Key Components
+A signature on a message has to do two things:
 
-* Modulus $n$: The product of two large, distinct primes $p$ and $q$.
-* Public Exponent $e$: Often chosen as $e = 65537 = 2^{16}+1$ for computational efficiency using the Square and Multiply (Binary Exponentiation) algorithm, which reduces complexity from $O(e)$ to $O(\log e)$. Smaller exponents like $e=3$ are mathematically elegant but risky without proper padding.
-* Private Exponent $d$: The multiplicative inverse of $e$ modulo $\phi(n)$, where $\phi(n) = (p-1)(q-1)$. The value $d$ must be kept strictly secret.
+* **Attribution.** Whoever holds the private key signed this. Nobody else could have.
+* **Integrity.** The message hasn't been tampered with since it was signed.
 
-The RSA Operations
+If a signature scheme allows an attacker to take signatures the legitimate signer made and combine them into a *new* signature on a message the signer never approved, both properties fail. We'll see exactly that happen with raw RSA in section 3.
 
-The signer uses their private view to generate a signature, which the verifier confirms using only public parameters.
+A note on real-world breakage: even when the algorithm itself is sound, key generation can ruin everything. The 2012 study **"Mining Your Ps and Qs"** by Heninger et al. found that 0.75% of TLS certificates *shared keys* due to insufficient entropy at boot, and they directly recovered private keys for 0.50% of TLS hosts using the **GCD attack** — taking pairwise greatest common divisors of millions of public moduli and finding shared primes. Most of the failures were embedded devices with predictable boot-time entropy. RSA's math wasn't the bug; the dice were.
 
-1. Signing Equation: The signer computes the signature $\sigma$ for a message $m$:
+---
 
-   $$\sigma = m^d \pmod n$$
+## 2. RSA in five lines
 
-2. Verification Equation: The verifier recovers the message (or verifies the congruence):
+For a non-cryptographer audience, RSA is short enough to write out:
 
-   $$m \equiv \sigma^e \pmod n$$
+* **Pick two big primes** $p$ and $q$.
+* **Compute the modulus** $n = pq$. Make $n$ public.
+* **Pick a public exponent** $e$. The most common choice is $e = 65537 = 2^{16} + 1$ — small enough to make the public-key operation fast (just a few squarings via square-and-multiply: $O(\log e)$ instead of $O(e)$), but large enough to avoid the small-exponent attacks we'll mention in section 5.
+* **Compute the private exponent** $d$ as the modular inverse of $e$ mod $\phi(n) = (p-1)(q-1)$ — i.e., $de \equiv 1 \pmod{\phi(n)}$. Keep $d$, $p$, and $q$ secret.
 
-Summary of Views
+To sign a message $m$, the signer computes
 
-View	Components	Purpose	Secret?
-Signer's Private View	$p, q, d$	Generating signatures via modular exponentiation.	Yes
-Verifier's Public View	$n, e$	Confirming signatures using the public exponent.	No
+$$\sigma = m^d \pmod n$$
 
-3. The Multiplicative Homomorphism Vulnerability
+To verify, anyone with the public key $(n, e)$ checks
 
-The existential threat to raw RSA lies in its status as a group homomorphism from $(\mathbb{Z}_n^*, \cdot)$ to itself. Because the signing operation is a simple modular exponentiation, it preserves the multiplicative structure of the underlying messages. This allows an adversary to perform an "Existential Forgery" without ever recovering the private key $d$.
+$$m \equiv \sigma^e \pmod n$$
 
-Step-by-Step Demonstration of Forgery
+This works because $(m^d)^e = m^{de} = m^{1 + k\phi(n)}$, and Euler's theorem says $m^{\phi(n)} \equiv 1$ for $m$ coprime to $n$, so $m^{de} \equiv m$.
 
-Assume an attacker observes two valid signatures for messages $m_1$ and $m_2$ signed by the same private key:
+| | Public knows | Secret to signer |
+| --- | --- | --- |
+| Components | $n, e$ | $p, q, d$ |
+| Operation | Verify: $\sigma^e \bmod n$ | Sign: $m^d \bmod n$ |
 
-1. Adversary captures $\sigma_1 = m_1^d \pmod n$
-2. Adversary captures $\sigma_2 = m_2^d \pmod n$
+---
 
-The attacker can generate a valid signature $\sigma_3$ for a new message $m_3 = m_1 \cdot m_2 \pmod n$ by simply multiplying the observed signatures:
+## 3. The fatal flaw: RSA preserves multiplication
 
-$$\sigma_3 = \sigma_1 \cdot \sigma_2 \pmod n$$
+Here's the property nobody warned you about. RSA's signing function $\sigma(m) = m^d \bmod n$ is a **group homomorphism** from $\mathbb{Z}_n^*$ to itself under multiplication. In English: signing a product equals the product of the signatures.
 
-The Mathematical Proof
+$$\sigma(m_1 \cdot m_2) = (m_1 m_2)^d = m_1^d m_2^d = \sigma(m_1) \cdot \sigma(m_2) \pmod n$$
 
-We prove that $\sigma_3$ is a valid signature for $m_1 \cdot m_2$:
+That single property breaks raw RSA as a signature scheme. Here's the concrete attack.
+
+### Existential forgery in three steps
+
+Suppose the attacker has obtained two valid signatures $\sigma_1$ and $\sigma_2$ from the legitimate signer:
+
+1. $\sigma_1 = m_1^d \bmod n$ (a real signature on $m_1$)
+2. $\sigma_2 = m_2^d \bmod n$ (a real signature on $m_2$)
+
+The attacker computes $\sigma_3 = \sigma_1 \cdot \sigma_2 \bmod n$ and claims it's a signature on the new message $m_3 = m_1 \cdot m_2 \bmod n$.
+
+Verification check:
 
 $$
 \begin{aligned}
-\sigma_3 &\equiv \sigma_1 \cdot \sigma_2 \pmod n \\
-         &\equiv (m_1^d) \cdot (m_2^d) \pmod n \\
-         &\equiv (m_1 \cdot m_2)^d \pmod n
+\sigma_3^e &\equiv (\sigma_1 \sigma_2)^e \pmod n \\
+&\equiv (m_1^d m_2^d)^e \pmod n \\
+&\equiv m_1^{de} m_2^{de} \pmod n \\
+&\equiv m_1 \cdot m_2 \pmod n \\
+&\equiv m_3 \pmod n
 \end{aligned}
 $$
 
-Upon verification, the verifier computes:
+The verification passes. The attacker just produced a valid signature on a message the signer never saw — without knowing the private key $d$.
 
-$$
-\begin{aligned}
-m &= \sigma_3^e \pmod n \\
-  &= ((m_1 \cdot m_2)^d)^e \pmod n \\
-  &= (m_1 \cdot m_2)^{de} \pmod n
-\end{aligned}
-$$
+The attack is called **existential forgery**: the attacker can produce signatures, but only on specific messages dictated by the algebra (products of messages they already have signatures for). That sounds limited, until you realize an attacker can request *chosen* signatures (any unprivileged party can ask the signer to sign things) and combine them into a forgery on, say, an attacker-crafted message that *also* happens to be a valid contract.
 
-Since $de \equiv 1 \pmod{\phi(n)}$, the result is $m_1 \cdot m_2$. The attacker has successfully forged a signature for a composite message.
+---
 
-4. The "Hash-then-Sign" Paradigm as a Defense
+## 4. Hash-then-sign breaks the homomorphism
 
-To mitigate algebraic manipulation, modern cryptography employs the "Hash-then-Sign" paradigm. This introduces a cryptographic hash function $H$ (e.g., SHA-256) into the pipeline.
+The fix is so simple it's almost a cheat: **don't sign the message — sign a hash of the message**.
 
-* Hiding Algebraic Structure: Instead of signing $m$ directly, the signer signs the hash:
+$$\sigma = H(m)^d \pmod n, \quad \text{verify: } H(m) \stackrel{?}{\equiv} \sigma^e \pmod n$$
 
-  $$\sigma = (H(m))^d \pmod n$$
+Here $H$ is a cryptographic hash function — SHA-256, SHA-3, BLAKE3, etc. The crucial property is that $H$ is *not* multiplicative:
 
-  The verifier then checks:
+$$H(m_1 \cdot m_2) \neq H(m_1) \cdot H(m_2) \pmod n$$
 
-  $$H(m) \equiv \sigma^e \pmod n$$
+So the attacker can compute $\sigma_1 \cdot \sigma_2 \bmod n$, but the result is a signature on $H(m_1) \cdot H(m_2)$, not on $H(m_1 \cdot m_2)$ — and there's no message $m_3$ whose hash equals the product. Mathematically, the relation between hashes and message contents is "random" (modeled as a random oracle in proofs), severing the algebraic link the attacker needed.
 
-* Breaking the Homomorphism: Hashing makes the input to the RSA function essentially random. Because hash functions are not multiplicative—$H(m_1 \cdot m_2) \neq H(m_1) \cdot H(m_2)$—the attacker cannot predict the hash of a product from the hashes of its factors. This breaks the mathematical link required for forgery.
+Hash-then-sign is the foundation of every real-world RSA signature standard.
 
-5. Why Encoding Matters: Padding and Oracles
+---
 
-Signing a hash is necessary but insufficient. The encoding of that hash—the padding scheme—provides the final layer of defense against sophisticated attacks.
+## 5. Padding: the second layer of defense
 
-Padding Vulnerabilities vs. Protections
+Hashing is necessary but not sufficient. The hash output also has to be *encoded* into the right shape for RSA. That encoding is the **padding scheme**. Two notorious examples of why this matters:
 
-* Bleichenbacher-style Padding Oracles: These attacks exploit the deterministic nature of error messages or timing differences in systems using improper padding. If a system leaks whether a decrypted block is "properly padded," an attacker can iteratively recover the plaintext or forge signatures.
-* Håstad’s Broadcast Attack: If a small exponent like $e=3$ is used to sign the same message for multiple recipients ($N_1, N_2, N_3$) without randomized padding, an attacker can use the Chinese Remainder Theorem (CRT) to solve for $m^3$ and recover $m$ via a simple cube root, bypassing the modular hardness entirely.
-* PKCS#1 v1.5: A legacy standard that is susceptible to certain oracle attacks because it is deterministic.
-* RSA-PSS (Probabilistic Signature Scheme): The gold standard for RSA signatures. It provides a tight security proof in the random oracle model, meaning the security of the signature is directly reducible to the hardness of the RSA problem itself without a significant loss of security margin. By introducing randomness, it ensures that signing the same message twice yields different signatures.
+### Bleichenbacher's padding oracle (1998)
 
-6. Solving Practice Exam 3: Research Question 3
+PKCS#1 v1.5 is the legacy padding standard. Some systems leak whether a decrypted ciphertext was "correctly padded" via different error messages or response timing. If you can ask the system "is this random ciphertext correctly padded?" repeatedly, Bleichenbacher showed in 1998 that you could iteratively recover the original plaintext — or, in TLS, recover session keys. Variants of the attack (ROBOT, 2017) still hit production systems today. The takeaway: deterministic padding plus an information leak equals broken.
 
-The following Q&A addresses the core vulnerabilities identified in cryptographic research assessments.
+### Håstad's broadcast attack (1985)
 
-Question: What algebraic property of RSA makes [forgery] possible, and how does hashing prevent it?
+If you use a tiny public exponent like $e = 3$ and sign the same message $m$ for three different recipients with three different moduli $N_1, N_2, N_3$, an attacker collecting all three signatures can use the **Chinese Remainder Theorem** to recover $m^3$ in the integers (not modulo anything!), then take the regular cube root. The modular structure provided no protection because the message was small enough that $m^3 < N_1 N_2 N_3$.
 
-Answer: Forgery is facilitated by the multiplicative homomorphism of the RSA function, where the signature of a product is the product of the signatures: $\sigma(m_1 \cdot m_2) = \sigma(m_1) \cdot \sigma(m_2)$. Hashing prevents this by hiding the algebraic structure of the input. Since $H(m)$ is computationally independent of $m$'s algebraic properties, the relationship $H(m_1 \cdot m_2) = H(m_1) \cdot H(m_2)$ does not hold. This ensures that an attacker cannot algebraically combine signatures to produce a valid signature for a new, meaningful hash value.
+This attack is why $e = 3$ is risky and why production RSA uses **randomized padding**: each signature on the same message produces a different ciphertext.
 
-7. Conclusion: Lessons in Cryptographic Rigor
+### RSA-PSS, the modern answer
 
-Textbook RSA is a beautiful mathematical abstraction, but in production, it is a liability. As demonstrated by the 2012 USENIX study, real-world failures often stem from implementation oversights, such as low-entropy seeds in embedded devices leading to factorable moduli.
+**RSA-PSS** (Probabilistic Signature Scheme), defined in PKCS#1 v2.1, is the gold standard. It hashes the message, mixes in a fresh random salt, applies a mask-generation function, and then signs. Every signature on the same message is different. PSS has a *tight* security proof in the random oracle model — meaning the signature is provably as hard to forge as the underlying RSA problem is to invert, with no significant security loss in the reduction. (PKCS#1 v1.5 has no such proof.)
 
-To ensure cryptographic survival:
+If you're writing a new system today: use PSS. If you're stuck with v1.5 for legacy reasons, treat any padding-error oracle as a key-compromise.
 
-1. Never Use Raw RSA: All implementations must use "Hash-then-Sign" with robust padding.
-2. Prefer RSA-PSS: Use probabilistic schemes that offer tight security reductions.
-3. Entropy is Paramount: Ensure CSPRNGs are seeded with high-entropy sources, particularly on hardware-constrained IoT devices, to prevent the "GCD attacks" that compromised thousands of real-world certificates.
-4. Use Trusted Libraries: Rely on vetted libraries like OpenSSL that implement constant-time operations to mitigate side-channel and oracle attacks.
+---
 
-8. References
+## 6. Question-and-answer recap
 
-1. Heninger, N., et al. (2012). "Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices." USENIX Security.
-2. "Toy RSA," Course Document 9.3.
-3. "Understanding RSA Algorithm," Course Document 9.4.
-4. "GCD Attack," Course Document 9.6.
-5. "Architectural Optimization of Modular Arithmetic," Research Summary.
-6. "Cryptographic Evolution," Comparative Study of DH and ECC.
-7. Practice Exam 3, Research Question Framing G3.1–G3.4.
+A common exam-style framing of this material:
+
+> **Question.** What algebraic property of RSA makes existential forgery possible, and how does hashing prevent it?
+>
+> **Answer.** RSA's signing function is a **multiplicative homomorphism**: $\sigma(m_1 m_2) = \sigma(m_1) \sigma(m_2)$. So an attacker can multiply two valid signatures and obtain a third valid signature, on the product of the original messages, without the private key.
+>
+> Hashing breaks this because cryptographic hash functions are **not multiplicative**: $H(m_1 m_2) \neq H(m_1) H(m_2)$. Combining the signatures $\sigma_1$ and $\sigma_2$ now produces a value that's a "signature" on $H(m_1) H(m_2)$ — but no message $m_3$ has $H(m_3)$ equal to that product, so the forgery isn't a signature on any meaningful message. The algebraic shortcut is gone.
+
+---
+
+## 7. Survival rules
+
+Four rules from this post you should carry forward:
+
+1. **Never use raw RSA.** Always hash first; never sign or encrypt the message bytes directly.
+2. **Prefer RSA-PSS** for new signature deployments. It has a tight proof and resists Bleichenbacher-style oracles by being randomized.
+3. **Entropy is paramount.** The Heninger 2012 study showed that even a perfectly correct RSA implementation collapses if the random number generator that picks $p$ and $q$ is broken. Embedded devices that generate keys at first boot need a real entropy source — collecting from sensors, network jitter, or seeded by the manufacturer.
+4. **Use audited libraries.** OpenSSL, BoringSSL, and libsodium implement padding, hashing, and constant-time exponentiation correctly. Don't roll your own — even with a textbook in hand. Especially with a textbook in hand.
+
+The textbook version of RSA is a great teaching tool. It's also a great way to learn why every textbook footnote that says "for production, use a real padding scheme" is the most important sentence in the chapter.
+
+---
+
+## References
+
+1. Heninger, Durumeric, Wustrow, Halderman. **"Mining Your Ps and Qs: Detection of Widespread Weak Keys in Network Devices."** USENIX Security 2012. [factorable.net](https://factorable.net/weakkeys12.extended.pdf)
+2. Bleichenbacher. **"Chosen Ciphertext Attacks Against Protocols Based on the RSA Encryption Standard PKCS #1."** CRYPTO 1998.
+3. Håstad. **"Solving simultaneous modular equations of low degree."** SIAM J. Computing, 1988.
+4. Bellare, Rogaway. **"The Exact Security of Digital Signatures: How to Sign with RSA and Rabin."** EUROCRYPT 1996. (PSS construction.)
+5. PKCS#1 v2.2 / RFC 8017. **"PKCS#1: RSA Cryptography Specifications Version 2.2."**
