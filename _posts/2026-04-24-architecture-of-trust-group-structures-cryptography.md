@@ -13,14 +13,14 @@ course: "Cryptography"
 
 1. The Mathematical Bedrock: Why Group Order Governs Security
 
-The security of modern public-key cryptography—specifically the Diffie-Hellman (DH) construction—is anchored in the perceived intractability of the Discrete Logarithm Problem (DLP). In a secure group, it is computationally trivial to perform exponentiation but nearly impossible to reverse the operation to find the exponent. As architects, we leverage the Group Order (the total number of elements, n) to define the boundaries of our trust.
+The security of modern public-key cryptography—specifically the Diffie-Hellman (DH) construction—is anchored in the perceived intractability of the Discrete Logarithm Problem (DLP). In a secure group, it is computationally trivial to perform exponentiation but nearly impossible to reverse the operation to find the exponent. As architects, we leverage the Group Order (the total number of elements, $n$) to define the boundaries of our trust.
 
 However, mathematical theory often collides with implementation reality. In libraries like OpenSSL and LibreSSL, the abstract "order" is expressed through Bignumber (BIGNUM) structures. These structures use "limbs" (machine words) and a "top" field to track the number of used limbs. This physical representation is where side-channel leakage begins; "lazy resizing" of these structures during operations like BN_add reveals bits of the secret nonce, effectively bridging the gap between theoretical group theory and exploitable software flaws.
 
 To understand why certain groups are dangerous, we must look to two foundational theorems:
 
 * Lagrange’s Theorem: Dictates that the order of any subgroup must be a divisor of the total group order. This limits the "mini-groups" that can exist within our system.
-* Cauchy’s Theorem: Guarantees that if a prime p divides the group order, an element (and thus a subgroup) of order p must exist.
+* Cauchy’s Theorem: Guarantees that if a prime $p$ divides the group order, an element (and thus a subgroup) of order $p$ must exist.
 
 Why should a student care about these abstract theorems? Cauchy’s Theorem is a mathematical "guarantee of danger." If a group’s order is not a prime number, these theorems prove that dangerous subgroups definitely exist. These are not just theoretical curiosities; they are exploitable via side-channels (like Flush+Reload) that allow an attacker to "trap" a cryptographic operation in a tiny subset of values, rendering the DLP trivial to solve.
 
@@ -34,7 +34,7 @@ Cryptographic design is a balance between mathematical purity and performance. W
 
 Group Type	Internal Structure (Subgroups)	Common Examples	Primary Security Risk
 Prime Order	Identity element and the group itself.	NIST P-256, P-384	Identity element (fixed point) attacks.
-Nearly-Prime	n = hp (Small cofactor h, large prime p).	Curve25519 (X25519), Ed448	Subgroup confinement; Point mangling.
+Nearly-Prime	$n = hp$ (Small cofactor $h$, large prime $p$).	Curve25519 (X25519), Ed448	Subgroup confinement; Point mangling.
 Composite	Highly composite; many small prime factors.	DSA groups, Finite Field (FFDH)	Full key recovery (Lim-Lee attacks).
 
 The Rationale for Nearly-Prime Groups
@@ -69,14 +69,14 @@ In Elliptic Curve Cryptography (ECC), we must account for Invalid Points—coord
 
 Twist Security and Implementation Traps
 
-Modern single-coordinate ladders (like those in Curve25519) only use the x-coordinate. Mathematically, every x lies either on the intended curve or its Quadratic Twist.
+Modern single-coordinate ladders (like those in Curve25519) only use the $x$-coordinate. Mathematically, every $x$ lies either on the intended curve or its Quadratic Twist.
 
 * Twist Security: A curve is "twist secure" if its twist is also mathematically strong.
 * The Trap: NIST P-256 has a nearly-prime twist and is considered twist-secure. However, NIST P-224 has a composite twist and is not twist-secure. Using a single-coordinate ladder on P-224 without validation is a critical error.
 
 The Point Addition Vulnerability (V7)
 
-Architects must also watch for the "Point Addition" leak found in BoringSSL and OpenSSL. During constant-time scalar multiplication, a short-circuit evaluation in the point addition formula (checking x_equal and y_equal) can leak whenever a nonce window is zero. This tiny timing difference is a "gold" insight for attackers using instruction-level single-stepping in secure enclaves.
+Architects must also watch for the "Point Addition" leak found in BoringSSL and OpenSSL. During constant-time scalar multiplication, a short-circuit evaluation in the point addition formula (checking `x_equal` and `y_equal`) can leak whenever a nonce window is zero. This tiny timing difference is a "gold" insight for attackers using instruction-level single-stepping in secure enclaves.
 
 
 --------------------------------------------------------------------------------
