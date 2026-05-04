@@ -4,6 +4,7 @@ title: "Symbolic Execution with KLEE: Automated Test Generation and Bug Finding"
 date: 2025-12-18 10:00:00 -0500
 categories: [software-verification, testing, formal-methods]
 tags: [klee, symbolic-execution, llvm, testing, verification, bugs]
+course: "Software Verification and Validation"
 ---
 
 ## Introduction

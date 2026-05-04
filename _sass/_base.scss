@@ -3,6 +3,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+// HTML hidden attribute must beat author display:* rules
+[hidden] { display: none !important; }
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

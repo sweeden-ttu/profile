@@ -1,4 +1,3 @@
-# 2025 10 08 Reinforcement Learning Introduction
 ---
 layout: post
 title: "Reinforcement Learning: An Introduction to Learning from Rewards"
@@ -14,6 +13,7 @@ tags:
 excerpt: "Discover reinforcement learning—the paradigm where agents learn to maximize expected rewards through experience, from robot locomotion to DeepRacer vehicles."
 reading_time: 14
 author: "Scott Weeden"
+course: "Intelligent Systems"
 ---
 
 In our exploration of intelligent systems, we've examined approaches where the correct answer is known (supervised learning) and where patterns emerge from data without labels (unsupervised learning). Today, we explore a fundamentally different paradigm: **reinforcement learning (RL)**, where an agent learns to make decisions by receiving feedback in the form of rewards.

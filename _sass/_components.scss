@@ -294,7 +294,206 @@
   margin: 0;
   line-height: 1.55;
 }
+.post-list__topic {
+  font-family: $sans;
+  font-size: $fs-eyebrow;
+  letter-spacing: $ls-eyebrow;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: $accent;
+  margin: 0;
+}
 .post-list__tags { display: flex; gap: $s-2; flex-wrap: wrap; margin-top: $s-2; }
+
+// ── Writing index — search / topic chips / pagination ────────────────────
+.writing-controls {
+  display: flex;
+  flex-direction: column;
+  gap: $s-4;
+  margin: 0 0 $s-6;
+  padding-bottom: $s-5;
+  border-bottom: 1px solid $rule-2;
+}
+
+.writing-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.writing-search__icon {
+  position: absolute;
+  left: $s-3;
+  color: $ink-3;
+  pointer-events: none;
+}
+
+.writing-search__input {
+  width: 100%;
+  padding: $s-3 $s-7 $s-3 $s-7;
+  font-family: $sans;
+  font-size: $fs-body;
+  color: $ink;
+  background: $paper-raise;
+  border: 1px solid $rule;
+  border-radius: $r-2;
+  transition: border-color $dur-fast $ease, background $dur-fast $ease;
+
+  &::placeholder { color: $ink-4; }
+  &:hover { border-color: $ink-4; }
+  &:focus {
+    outline: none;
+    border-color: $accent;
+    background: $paper;
+    box-shadow: 0 0 0 3px $accent-soft;
+  }
+  &::-webkit-search-cancel-button { display: none; }
+}
+
+.writing-search__clear {
+  position: absolute;
+  right: $s-2;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $sans;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: $ink-3;
+  background: transparent;
+  border: 0;
+  border-radius: $r-pill;
+  cursor: pointer;
+  transition: background $dur-fast $ease, color $dur-fast $ease;
+  &:hover { background: $accent-soft; color: $accent; }
+}
+
+.writing-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $s-2;
+}
+
+.writing-topic {
+  display: inline-flex;
+  align-items: center;
+  gap: $s-2;
+  padding: $s-2 $s-4;
+  font-family: $sans;
+  font-size: $fs-small;
+  font-weight: 500;
+  color: $ink-2;
+  background: transparent;
+  border: 1px solid $rule;
+  border-radius: $r-pill;
+  cursor: pointer;
+  transition: background $dur-fast $ease, color $dur-fast $ease, border-color $dur-fast $ease;
+
+  &:hover { border-color: $ink-3; color: $ink; }
+  &.is-active {
+    background: $ink;
+    color: $paper;
+    border-color: $ink;
+  }
+}
+
+.writing-topic__count {
+  font-family: $mono;
+  font-size: $fs-tiny;
+  font-weight: 400;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+
+.writing-status {
+  font-family: $sans;
+  font-size: $fs-small;
+  color: $ink-3;
+  margin: 0 0 $s-3;
+  font-variant-numeric: tabular-nums;
+}
+
+.writing-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $s-4;
+  padding: $s-9 $s-4;
+  text-align: center;
+  color: $ink-3;
+  border-top: 1px solid $rule-2;
+
+  p { font-family: $serif; font-size: $fs-h4; margin: 0; }
+}
+
+.writing-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $s-3;
+  margin-top: $s-7;
+  padding-top: $s-5;
+  border-top: 1px solid $rule-2;
+}
+
+.writing-page-list {
+  display: flex;
+  align-items: center;
+  gap: $s-1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.writing-page-list__gap {
+  padding: 0 $s-2;
+  color: $ink-4;
+  font-family: $sans;
+  font-size: $fs-small;
+}
+
+.writing-page-num,
+.writing-page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 $s-3;
+  font-family: $sans;
+  font-size: $fs-small;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: $ink-2;
+  background: transparent;
+  border: 1px solid $rule;
+  border-radius: $r-2;
+  cursor: pointer;
+  transition: background $dur-fast $ease, color $dur-fast $ease, border-color $dur-fast $ease;
+
+  &:hover:not(:disabled) { border-color: $ink-3; color: $ink; }
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+  &.is-active {
+    background: $ink;
+    color: $paper;
+    border-color: $ink;
+    cursor: default;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 // ── Hero (homepage) ───────────────────────────────────────────────────────
 .hero {
@@ -516,5 +715,38 @@
   .about-hero__links {
     color: $dk-ink-3;
     a { color: $dk-ink-2; border-bottom-color: $dk-rule; &:hover { color: $dk-accent; border-bottom-color: $dk-accent; } }
+  }
+
+  .post-list__topic { color: $dk-accent; }
+
+  .writing-controls { border-bottom-color: $dk-rule-2; }
+  .writing-search__icon { color: $dk-ink-3; }
+  .writing-search__input {
+    color: $dk-ink;
+    background: $dk-paper-raise;
+    border-color: $dk-rule;
+    &::placeholder { color: $dk-ink-4; }
+    &:hover { border-color: $dk-ink-4; }
+    &:focus { background: $dk-paper; border-color: $dk-accent; box-shadow: 0 0 0 3px $dk-accent-soft; }
+  }
+  .writing-search__clear { color: $dk-ink-3; &:hover { background: $dk-accent-soft; color: $dk-accent; } }
+
+  .writing-topic {
+    color: $dk-ink-2;
+    border-color: $dk-rule;
+    &:hover { border-color: $dk-ink-3; color: $dk-ink; }
+    &.is-active { background: $dk-ink; color: $dk-paper; border-color: $dk-ink; }
+  }
+
+  .writing-status { color: $dk-ink-3; }
+  .writing-empty { border-top-color: $dk-rule-2; color: $dk-ink-3; }
+  .writing-pagination { border-top-color: $dk-rule-2; }
+  .writing-page-list__gap { color: $dk-ink-4; }
+  .writing-page-num,
+  .writing-page-btn {
+    color: $dk-ink-2;
+    border-color: $dk-rule;
+    &:hover:not(:disabled) { border-color: $dk-ink-3; color: $dk-ink; }
+    &.is-active { background: $dk-ink; color: $dk-paper; border-color: $dk-ink; }
   }
 }

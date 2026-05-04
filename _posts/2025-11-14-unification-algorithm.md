@@ -1,4 +1,3 @@
-# 2025 11 14 Unification Algorithm
 ---
 layout: post
 title: "The Unification Algorithm: Finding Most General Unifiers in First-Order Logic"

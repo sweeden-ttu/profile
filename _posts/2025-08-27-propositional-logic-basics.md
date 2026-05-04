@@ -1,4 +1,3 @@
-# 2025 08 27 Propositional Logic Basics
 ---
 layout: post
 title: "Propositional Logic Basics: Building the Foundation for Logical Reasoning"

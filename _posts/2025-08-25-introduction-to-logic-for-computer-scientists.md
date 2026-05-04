@@ -1,4 +1,3 @@
-# 2025 08 25 Introduction To Logic For Computer Scientists
 ---
 layout: post
 title: "Introduction to Logic for Computer Scientists"
