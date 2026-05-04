@@ -1,4 +1,3 @@
-# Cryptography
 ---
 layout: page
 title: Cryptography

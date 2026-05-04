@@ -1,4 +1,3 @@
-# Software Project Management
 ---
 layout: page
 title: Software Project Management

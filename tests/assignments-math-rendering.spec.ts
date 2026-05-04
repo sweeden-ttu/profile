@@ -23,7 +23,7 @@ test.describe('Assignments - math rendering', () => {
     },
     {
       name: 'Logic for Computer Scientists - Homework 3 (problems)',
-      path: '/assignments/logic-for-computer-scientists/logic-homework3/',
+      path: '/assignments/logic-for-computer-scientists/homework3/logic-homework3/',
       minKatexCount: 5,
       screenshot: 'analysis_output/assignments-logic-homework3-problems.png',
     },

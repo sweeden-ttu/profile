@@ -1,4 +1,3 @@
-# Analysis Of Algorithms
 ---
 layout: page
 title: Analysis of Algorithms

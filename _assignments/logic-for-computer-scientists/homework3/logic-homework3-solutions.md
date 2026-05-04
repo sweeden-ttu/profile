@@ -1,4 +1,3 @@
-# Logic Homework3 Solutions
 ---
 title: "Homework 3 Solutions worked by Scott Weeden"
 layout: project

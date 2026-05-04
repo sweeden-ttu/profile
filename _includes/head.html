@@ -7,16 +7,10 @@
 {%- assign page_desc = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 200 -%}
 
 <title>{% if page.title and page.title != site.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }} · {{ site.description | truncate: 60 }}{% endif %}</title>
-<meta name="description" content="{{ page_desc }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-
-<!-- Open Graph -->
-<meta property="og:type" content="{% if page.layout == 'post' or page.layout == 'article' %}article{% else %}website{% endif %}">
-<meta property="og:title" content="{{ page_title }}">
-<meta property="og:description" content="{{ page_desc }}">
-<meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="og:site_name" content="{{ site.title }}">
 {%- if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}">{% endif %}
+{%- comment %}meta description, og:title, og:description, og:type, og:url
+   are emitted by jekyll-seo-tag below — don't duplicate them here.{% endcomment %}
 
 <!-- Fonts: serif body (Source Serif 4) + sans (Inter) + mono (JetBrains Mono) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

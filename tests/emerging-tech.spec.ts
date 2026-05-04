@@ -79,20 +79,25 @@ test.describe('Emerging Tech Page - JavaScript Errors', () => {
     setupErrorListeners(page);
 
     await page.goto('/emerging-tech/');
-    await page.waitForLoadState('networkidle');
+    // Don't wait for networkidle — the page lazy-loads Mermaid as a chain of
+    // ES module chunks that never quite settle within the test budget. Wait
+    // for DOMContentLoaded plus a short stabilization tick instead.
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(800);
 
     // Try scrolling to trigger lazy-loaded scripts
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(800);
 
-    // Try clicking any interactive elements
+    // Try hovering a few interactive elements; ignore individual hover errors
+    // (e.g. an element scrolled out of view between locate and hover).
     const buttons = page.locator('button, a[href]');
     const count = await buttons.count();
     for (let i = 0; i < Math.min(count, 3); i++) {
       try {
-        await buttons.nth(i).hover();
+        await buttons.nth(i).hover({ timeout: 1500 });
       } catch {
-        // Ignore errors from hovering
+        // ignore
       }
     }
 

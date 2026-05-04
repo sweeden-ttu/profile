@@ -1,4 +1,3 @@
-# Software Verification
 ---
 layout: page
 title: Software Verification and Validation

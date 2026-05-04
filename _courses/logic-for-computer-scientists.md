@@ -1,4 +1,3 @@
-# Logic For Computer Scientists
 ---
 layout: page
 title: Logic for Computer Scientists
@@ -75,8 +74,8 @@ Foundations of logic for computer science including propositional logic, first-o
 {% endif %}
 
 **PDF Materials:**
-- [Homework 3 (PDF)](/assignments/logic-for-computer-scientists/cs5384_2025_fall_homework3_111725-1.pdf)
-- [Homework 3 Solutions (PDF)](/assignments/logic-for-computer-scientists/cs5384_2025_fall_homework3_solution_111725-1.pdf)
+- [Homework 3 (PDF)](/assignments/logic-for-computer-scientists/homework3/cs5384_2025_fall_homework3_111725-1.pdf)
+- [Homework 3 Solutions (PDF)](/assignments/logic-for-computer-scientists/homework3/cs5384_2025_fall_homework3_solution_111725-1.pdf)
 
 ---
 

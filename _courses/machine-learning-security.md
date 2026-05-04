@@ -1,4 +1,3 @@
-# Machine Learning Security
 ---
 layout: page
 title: Machine Learning Security

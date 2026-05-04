@@ -1,4 +1,3 @@
-# Intelligent Systems Assignment3 Rl
 ---
 title: "Intelligent Systems – Project 3: Reinforcement Learning"
 layout: project

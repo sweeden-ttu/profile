@@ -54,6 +54,14 @@ const SKIP_PATTERNS = [
   // Analytics
   /google-analytics\.com/,
   /googletagmanager\.com/,
+
+  // Linkinator follows literal substrings inside PDFs and other static files
+  // (e.g. PDFs that mention "research.md" or "about.md" in their text). These
+  // are not real anchors — Jekyll renders Markdown to .html, so any URL ending
+  // in .md or .docx under /data/ is a false positive from PDF text-extraction.
+  /\.md$/i,
+  /\.docx$/i,
+  /\/data\/.+\.(md|docx|txt)$/i,
 ];
 
 interface BrokenLinkReport {

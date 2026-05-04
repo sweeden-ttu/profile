@@ -1,4 +1,3 @@
-# Masters Theorem
 ---
 layout: project
 title: "Master's Theorem Visual Guide"

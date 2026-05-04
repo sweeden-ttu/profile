@@ -1,4 +1,3 @@
-# Kaggle Competitions
 ---
 layout: project
 title: "Kaggle Competition Playbook"

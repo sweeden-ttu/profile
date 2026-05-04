@@ -1,4 +1,3 @@
-# Experiment
 ---
 title: "House Prices – LangSmith Experiment Design"
 competition: "house-prices-advanced-regression-techniques"

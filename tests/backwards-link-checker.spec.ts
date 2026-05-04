@@ -19,10 +19,12 @@ interface ContentFile {
   title?: string;
 }
 
-// Jekyll collection URL patterns
-const COLLECTION_URL_PATTERNS: Record<string, (filename: string, slug: string) => string[]> = {
+// Jekyll collection URL patterns. `relativePath` is the path inside the
+// collection folder (e.g. for `_assignments/foo/bar/baz.md` it is
+// `foo/bar/baz.md`). Some collections (assignments, experiments) use the
+// permalink `/{collection}/:path/` so nested files end up at nested URLs.
+const COLLECTION_URL_PATTERNS: Record<string, (filename: string, slug: string, relativePath: string) => string[]> = {
   '_posts': (filename, slug) => {
-    // Posts: _posts/YYYY-MM-DD-slug.md → /blog/YYYY/MM/DD/slug/ or /blog/slug/
     const match = filename.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/);
     if (match) {
       const [, year, month, day, postSlug] = match;
@@ -48,30 +50,46 @@ const COLLECTION_URL_PATTERNS: Record<string, (filename: string, slug: string) =
     `/project/${slug}/`,
     `/project/${slug}`,
   ],
-  '_experiments': (filename, slug) => [
-    `/experiments/${slug}/`,
-    `/experiments/${slug}`,
-    `/experiment/${slug}/`,
-    `/experiment/${slug}`,
-  ],
-  '_competitions': (filename, slug) => [
-    `/competitions/${slug}/`,
-    `/competitions/${slug}`,
-    `/competition/${slug}/`,
-    `/competition/${slug}`,
-  ],
-  '_datasets': (filename, slug) => [
-    `/datasets/${slug}/`,
-    `/datasets/${slug}`,
-    `/dataset/${slug}/`,
-    `/dataset/${slug}`,
-  ],
-  '_assignments': (filename, slug) => [
-    `/assignments/${slug}/`,
-    `/assignments/${slug}`,
-    `/assignment/${slug}/`,
-    `/assignment/${slug}`,
-  ],
+  '_experiments': (filename, slug, relativePath) => {
+    // Permalink: /experiments/:path/, files often live at <slug>/experiment.md
+    const dirSlug = relativePath.split('/')[0];
+    const pathSlug = relativePath.replace(/\.md$/, '');
+    return [
+      `/experiments/${pathSlug}/`,
+      `/experiments/${dirSlug}/`,
+      `/experiments/${slug}/`,
+      `/experiment/${slug}/`,
+    ];
+  },
+  '_competitions': (filename, slug, relativePath) => {
+    const dirSlug = relativePath.split('/')[0];
+    const pathSlug = relativePath.replace(/\.md$/, '');
+    return [
+      `/competitions/${pathSlug}/`,
+      `/competitions/${dirSlug}/`,
+      `/competitions/${slug}/`,
+    ];
+  },
+  '_datasets': (filename, slug, relativePath) => {
+    const dirSlug = relativePath.split('/')[0];
+    const pathSlug = relativePath.replace(/\.md$/, '');
+    return [
+      `/datasets/${pathSlug}/`,
+      `/datasets/${dirSlug}/`,
+      `/datasets/${slug}/`,
+    ];
+  },
+  '_assignments': (filename, slug, relativePath) => {
+    // Permalink: /assignments/:path/, e.g. /assignments/intelligent-systems/assignment3/foo/
+    const pathSlug = relativePath.replace(/\.md$/, '');
+    return [
+      `/assignments/${pathSlug}/`,
+      `/assignments/${pathSlug}`,
+      `/assignments/${slug}/`,
+      `/assignments/${slug}`,
+      `/assignment/${slug}/`,
+    ];
+  },
 };
 
 // Collections to skip (not published or index files)
@@ -114,8 +132,10 @@ function findMarkdownFiles(dir: string, baseDir: string = ''): ContentFile[] {
       
       const slug = getSlugFromFilename(entry.name);
       const urlGenerator = COLLECTION_URL_PATTERNS[collection];
-      const possibleUrls = urlGenerator 
-        ? urlGenerator(entry.name, slug)
+      // baseDir is the path inside the collection (e.g. "intelligent-systems/assignment3")
+      const relativePath = path.join(baseDir, entry.name).split(path.sep).join('/');
+      const possibleUrls = urlGenerator
+        ? urlGenerator(entry.name, slug, relativePath)
         : [`/${slug}/`, `/${slug}`];
       
       files.push({
@@ -141,30 +161,20 @@ function getAllUnderscoreFolders(): string[] {
 
 test.describe('Backwards Link Checker', () => {
   let contentFiles: ContentFile[] = [];
-  let allSiteLinks: Set<string> = new Set();
-  
-  test.beforeAll(async ({ browser }) => {
-    // Collect all markdown files from underscore folders
+
+  test.beforeAll(() => {
+    // Collect all markdown files from underscore folders. The previous
+    // implementation also pre-crawled the entire site recursively to populate
+    // an `allSiteLinks` set — but that set was never consulted by any of the
+    // assertions (which all call checkIfLinked() and re-crawl from a fixed
+    // page list). Removing the dead crawl avoids beforeAll timeouts on a
+    // 100+ post site.
     const underscoreFolders = getAllUnderscoreFolders();
-    
     for (const folder of underscoreFolders) {
       const files = findMarkdownFiles(folder);
       contentFiles.push(...files);
     }
-    
     console.log(`Found ${contentFiles.length} content files to check`);
-    
-    // Crawl the site to collect all links
-    const page = await browser.newPage();
-    
-    try {
-      await page.goto('/');
-      await crawlSiteLinks(page, allSiteLinks, new Set(['/']));
-    } finally {
-      await page.close();
-    }
-    
-    console.log(`Found ${allSiteLinks.size} unique links on the site`);
   });
   
   test('all posts are linked somewhere', async ({ page }) => {
@@ -377,8 +387,14 @@ async function crawlSiteLinks(
 async function checkIfLinked(page: Page, file: ContentFile): Promise<boolean> {
   const slug = getSlugFromFilename(path.basename(file.sourcePath));
   const urlGenerator = COLLECTION_URL_PATTERNS[file.collection];
-  const possibleUrls = urlGenerator 
-    ? urlGenerator(path.basename(file.sourcePath), slug)
+  // Derive the path inside the collection from sourcePath (e.g. for
+  // _assignments/intelligent-systems/assignment3/foo.md → "intelligent-systems/assignment3/foo.md")
+  const collectionIdx = file.sourcePath.indexOf(file.collection + path.sep);
+  const relativePath = collectionIdx >= 0
+    ? file.sourcePath.slice(collectionIdx + file.collection.length + 1).split(path.sep).join('/')
+    : path.basename(file.sourcePath);
+  const possibleUrls = urlGenerator
+    ? urlGenerator(path.basename(file.sourcePath), slug, relativePath)
     : [`/${slug}/`, `/${slug}`];
   
   // Check if any of the possible URLs exist in site links

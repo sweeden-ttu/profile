@@ -1,4 +1,3 @@
-# Experiment
 ---
 title: "Toxic Comment Classification – LangSmith Experiment Design"
 competition: "toxic-comment-classification-challenge"

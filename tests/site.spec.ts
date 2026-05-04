@@ -228,14 +228,13 @@ test.describe('Accessibility Tests', () => {
   test('skip to main content link present', async ({ page }) => {
     await page.goto('/');
 
-    // Check for skip link (common accessibility pattern)
-    const skipLink = page.locator('a[href="#main"], a[href="#content"]');
-    const count = await skipLink.count();
-
-    // Not required, but good practice - just check if present
-    if (count > 0) {
-      await expect(skipLink.first()).toBeInViewport();
-    }
+    // Skip link is visually hidden until focused (translateY off-screen) —
+    // tab once and confirm it's the first focusable element and now visible.
+    const skipLink = page.locator('a[href="#main"], a[href="#content"]').first();
+    await expect(skipLink).toHaveCount(1);
+    await page.keyboard.press('Tab');
+    await expect(skipLink).toBeFocused();
+    await expect(skipLink).toBeInViewport();
   });
 
   test('focus is visible on interactive elements', async ({ page }) => {

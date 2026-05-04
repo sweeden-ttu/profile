@@ -362,7 +362,7 @@ Authored a structured review of a Microsoft Research publication, focusing on ex
       <div class="publication-authors"><strong>Scott Weeden</strong></div>
       <div class="publication-venue">Course Assignment | Fall 2025</div>
       <div class="publication-links">
-        <a href="/assignments/logic-for-computer-scientists/logic-homework3" class="publication-link link-primary">
+        <a href="/assignments/logic-for-computer-scientists/homework3/logic-homework3" class="publication-link link-primary">
           <i class="fas fa-external-link-alt"></i> View Homework
         </a>
       </div>
@@ -400,8 +400,8 @@ Authored a structured review of a Microsoft Research publication, focusing on ex
 - [Assignment 3: Reinforcement Learning](/assignments/intelligent-systems/assignment3/intelligent-systems-assignment3-rl) - Q-Learning and RL applications
 
 #### Logic for Computer Scientists
-- [Homework 3: Logic Problems](/assignments/logic-for-computer-scientists/logic-homework3) - Propositional logic, Herbrand semantics, and CNF
-- [Homework 3: Solutions](/assignments/logic-for-computer-scientists/logic-homework3-solutions) - Complete solutions with explanations
+- [Homework 3: Logic Problems](/assignments/logic-for-computer-scientists/homework3/logic-homework3) - Propositional logic, Herbrand semantics, and CNF
+- [Homework 3: Solutions](/assignments/logic-for-computer-scientists/homework3/logic-homework3-solutions) - Complete solutions with explanations
 
 ### Research Projects
 

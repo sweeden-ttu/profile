@@ -1,4 +1,3 @@
-# Theory Of Automata
 ---
 layout: page
 title: Theory of Automata

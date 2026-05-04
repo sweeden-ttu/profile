@@ -1,4 +1,3 @@
-# Intelligent Systems
 ---
 layout: page
 title: Intelligent Systems

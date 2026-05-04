@@ -1,4 +1,3 @@
-# Readme
 ---
 title: "Toxic Comment Classification Dataset Folder"
 ---

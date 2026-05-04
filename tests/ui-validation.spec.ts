@@ -117,19 +117,16 @@ test.describe('Article rendering', () => {
 });
 
 test.describe('Code highlighting', () => {
-  test('highlighted code blocks render somewhere in writing', async ({ page }) => {
-    await page.goto('/blog/');
-    // First post that has a code block
-    const links = await page.locator('.post-list__title a').evaluateAll(els => els.slice(0, 6).map(a => (a as HTMLAnchorElement).href));
-    let foundHighlight = false;
-    for (const href of links) {
-      await page.goto(href);
-      const count = await page.locator('.highlight, pre code').count();
-      if (count > 0) { foundHighlight = true; break; }
-    }
-    // It is not a hard requirement that every post has code, but at least
-    // one of the first six should — this catches accidental pipeline breakage.
-    expect(foundHighlight).toBeTruthy();
+  // Pin to a post known to contain fenced code blocks. Iterating the most
+  // recent posts is unreliable: weeks of math-only cryptography posts ship
+  // without any code, which previously caused this test to flap.
+  const postWithCode = '/blog/2025/12/18/symbolic-execution-klee/';
+
+  test('highlighted code blocks render with rouge classes', async ({ page }) => {
+    await page.goto(postWithCode);
+    // Rouge wraps fenced blocks in .highlight > pre.highlight > code.language-*
+    expect(await page.locator('.highlight').count()).toBeGreaterThan(0);
+    expect(await page.locator('pre.highlight').count()).toBeGreaterThan(0);
   });
 });
 
