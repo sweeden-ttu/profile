@@ -14,7 +14,8 @@ hide_page_header: true
     <p class="about-hero__summary">Making technology accessible.</p>
     <p class="about-hero__links">
       <a href="https://www.linkedin.com/in/weedens">LinkedIn</a> ·
-      <a href="https://legalluminary.com">Portfolio</a> ·
+      <a href="https://legalluminary.com">Legal Luminary</a> ·
+      <a href="https://cloudfrontsgroup.org">Cloud Fronts Group</a> ·
       <a href="mailto:scott.weeden@gmail.com">Email</a> ·
       <a href="https://github.com/sweeden-ttu">GitHub</a>
     </p>
