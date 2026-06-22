@@ -12,7 +12,38 @@
 # page headers, navigation) should use the display_name without course numbers.
 
 # =============================================================================
-# Spring 2026 Courses (Current Semester)
+# Summer 2026 Courses (Current Semester)
+# =============================================================================
+
+- slug: multi-processor-systems
+  display_name: "Multi-Processor Systems"
+  course_number: "CS-5365"
+  canvas_id: 81392
+  enrollment_term_id: 143
+  semester: "Summer 2026"
+  status: active
+  completed: false
+  description: "Advanced study of multi-processor systems, vector computing, parallel programming, HPCC deployment, memory management, and AI workload optimization."
+  start_date: "2026-05-30"
+  end_date: "2026-08-08"
+  syllabus_url: "https://texastech.instructure.com/courses/81392/assignments/syllabus"
+  canvas_url: "https://texastech.instructure.com/courses/81392"
+  media_site_url: null
+  calendar_ics: null
+  course_site: "https://multi-processor.scottweeden.online"
+  repository: "https://github.com/sweeden-ttu/multi-processor-systems"
+  landing_pages:
+    course_page: "/courses/multi-processor-systems/"
+    media_links: "/courses/multi-processor-systems/media"
+    canvas_instructure: "https://texastech.instructure.com/courses/81392"
+  tags:
+    - multi-processor
+    - parallel-computing
+    - hpcc
+    - summer-2026
+
+# =============================================================================
+# Spring 2026 Courses (Completed)
 # =============================================================================
 
 - slug: cryptography
@@ -21,8 +52,8 @@
   canvas_id: 70714
   enrollment_term_id: 140
   semester: "Spring 2026"
-  status: active
-  completed: false
+  status: completed
+  completed: true
   description: "Advanced study of cryptographic systems, security protocols, and modern encryption techniques including symmetric/asymmetric encryption, hash functions, digital signatures, and public key cryptography."
   start_date: "2026-01-14"
   end_date: "2026-05-15"
@@ -48,8 +79,8 @@
   canvas_id: 70713
   enrollment_term_id: 140
   semester: "Spring 2026"
-  status: active
-  completed: false
+  status: completed
+  completed: true
   description: "Methods and techniques for verifying and validating software systems, including testing strategies, formal methods, model checking, specification analysis, and continuous verification."
   start_date: "2026-01-14"
   end_date: "2026-05-15"
