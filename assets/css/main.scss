@@ -1,6 +1,7 @@
 ---
 # Front matter required to trigger Jekyll's SCSS compilation
 ---
+@use "fonts";
 
 @use "tokens" as *;
 @use "base";
