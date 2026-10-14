@@ -5,9 +5,8 @@ date: 2026-09-19
 categories: ["software-verification", "formal-methods", "machine-learning"]
 tags: ["aaai", "ilrt", "iml", "ieee", "formal-verification", "agent-verification", "continuous-improvement"]
 author: "Scott Weeden"
+excerpt: "Eight recent papers from AAAI, ILRT, IML and IEEE on LLM planning, formal verification and agent trace analysis, with notes on how each relates to verifiable-agent research."
 ---
-
-*Generated: 2026-09-19 19:04*
 
 > **Monitored Venues:** AAAI, ILRT, IML, IEEE  
 > **Focus:** Continuous Improvement, Verification & Validation, Machine Learning Security, Trace Analysis

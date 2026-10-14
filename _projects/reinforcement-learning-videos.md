@@ -4,6 +4,7 @@ title: "Reinforcement Learning Video Notes"
 date: 2024-08-01
 tech_stack: [Python, RL, Video Editing]
 status: planned
+description: "Short explainer videos and notes on policy gradients, Q-learning and evaluation, with worked examples and recorded demos."
 subtitle: "Curated clips explaining policy gradients, Q-learning, and evaluation"
 links:
   youtube: "https://youtube.com/cs-advanced-topics"

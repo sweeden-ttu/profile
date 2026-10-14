@@ -4,6 +4,7 @@ title: "Master's Theorem Visual Guide"
 date: 2024-10-01
 tech_stack: [Jekyll, Diagrams, Markdown]
 status: planned
+description: "A visual guide to the Master Theorem for divide-and-conquer recurrences, with worked examples and a quick-reference table for the a, b and f(n) cases."
 subtitle: "Interactive notes for solving divide-and-conquer recurrences"
 links:
   github: "https://github.com/sweeden-ttu"

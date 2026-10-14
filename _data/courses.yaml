@@ -21,8 +21,8 @@
   canvas_id: 81392
   enrollment_term_id: 143
   semester: "Summer 2026"
-  status: active
-  completed: false
+  status: completed
+  completed: true
   description: "Advanced study of multi-processor systems, vector computing, parallel programming, HPCC deployment, memory management, and AI workload optimization."
   start_date: "2026-05-30"
   end_date: "2026-08-08"
@@ -236,7 +236,7 @@
   canvas_id: null
   enrollment_term_id: null
   semester: null
-  status: active
+  status: general
   completed: false
   description: "General posts, updates, and content not specific to a particular course."
   start_date: null

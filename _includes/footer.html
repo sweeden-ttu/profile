@@ -21,6 +21,9 @@
         <ul>
           {%- if site.author.github %}<li><a href="https://github.com/{{ site.author.github }}" rel="me">GitHub</a></li>{% endif %}
           {%- if site.author.linkedin %}<li><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" rel="me">LinkedIn</a></li>{% endif %}
+          {%- if site.author.kaggle %}<li><a href="https://www.kaggle.com/{{ site.author.kaggle }}" rel="me">Kaggle</a></li>{% endif %}
+          {%- if site.author.huggingface %}<li><a href="https://huggingface.co/{{ site.author.huggingface }}" rel="me">Hugging Face</a></li>{% endif %}
+          {%- if site.author.orcid %}<li><a href="https://orcid.org/{{ site.author.orcid }}" rel="me">ORCID</a></li>{% endif %}
           {%- if site.author.email %}<li><a href="mailto:{{ site.author.email }}">Email</a></li>{% endif %}
         </ul>
       </div>

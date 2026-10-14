@@ -2,7 +2,7 @@ theme: null
 
 # Site Settings
 title: Scott Weeden
-description: Master of Computer Science student at Texas Tech University. Notes on cryptography, formal verification, machine learning.
+description: Master of Computer Applications student at Texas Tech University. Notes on cryptography, formal verification, machine learning.
 url: "https://scottweeden.online"
 baseurl: ""
 lang: en
@@ -15,6 +15,9 @@ author:
   email: scott.weeden@gmail.com
   github: sweeden-ttu
   linkedin: weedens
+  kaggle: scottweeden
+  huggingface: sweeden-ttu
+  orcid: 0009-0007-2623-2175
   facebook: scotdwg81
   instagram: websharps
 
@@ -79,6 +82,9 @@ social:
   links:
     - https://github.com/sweeden-ttu
     - https://www.linkedin.com/in/weedens/
+    - https://www.kaggle.com/scottweeden
+    - https://huggingface.co/sweeden-ttu
+    - https://orcid.org/0009-0007-2623-2175
     - https://www.facebook.com/scotdwg81
     - https://www.instagram.com/websharps/
 

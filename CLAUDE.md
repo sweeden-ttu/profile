@@ -2,7 +2,7 @@
 
 ## Site Summary
 
-This is a **static Jekyll site** hosted on **GitHub Pages**. The site serves as a personal academic profile and blog for Scott Weeden, a Master of Computer Science student at Texas Tech University.
+This is a **static Jekyll site** hosted on **GitHub Pages**. The site serves as a personal academic profile and blog for Scott Weeden, a Master of Computer Applications student at Texas Tech University.
 
 ### Site Architecture
 

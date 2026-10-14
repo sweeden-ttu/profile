@@ -5,7 +5,7 @@
 ## Honors & Activities
 
 **Graduation with Honors** — Texas Tech University, Whitacre College of Engineering
-*Master of Computer Science candidate (expected 2027)*
+*Master of Computer Applications candidate (expected 2027)*
 
 **Honors Society** — Texas Tech University, Whitacre College of Engineering
 *Recognized for academic excellence in graduate-level computer science studies*

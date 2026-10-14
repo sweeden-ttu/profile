@@ -296,8 +296,12 @@ keywords: [research, publications, papers, academic, computer science, cryptogra
   <!-- Research Statistics -->
   <div class="research-stats">
     <div class="stat-box">
-      <div class="stat-value">{{ site.posts | size }}+</div>
-      <div class="stat-label">Publications</div>
+      <div class="stat-value">1</div>
+      <div class="stat-label">Paper under review (AAAI 2027)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value">{{ site.posts | size }}</div>
+      <div class="stat-label">Blog posts &amp; lecture notes</div>
     </div>
     <div class="stat-box">
       <div class="stat-value">4</div>

@@ -12,7 +12,7 @@ outcomes:
   - "Baseline notebook templates for tabular tasks"
   - "Checklists for feature engineering and validation"
   - "Model ensembling patterns for leaderboard improvement"
-description: "A comprehensive collection of Kaggle competition solutions featuring reusable Python notebooks, feature engineering patterns, cross-validation strategies, and ensemble methods for improving leaderboard rankings."
+description: "Reusable Kaggle notebooks covering baselines, feature engineering, cross-validation and ensembling, applied to RSNA knee imaging and Gemma 4 agent competitions."
 ---
 
 # Kaggle Competition Playbook

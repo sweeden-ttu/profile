@@ -11,7 +11,7 @@ course: "General"
 
 # Welcome to My Blog
 
-Welcome! I'm Scott Weeden, a Master of Computer Science student at Texas Tech University, and this is where I'll be sharing my journey through the fascinating world of machine learning, algorithm analysis, and computer science research.
+Welcome! I'm Scott Weeden, a Master of Computer Applications student at Texas Tech University, and this is where I'll be sharing my journey through the fascinating world of machine learning, algorithm analysis, and computer science research.
 
 ## What This Blog Is About
 

@@ -12,7 +12,7 @@ Computer Science Master's student at Texas Tech University with **15+ years of e
 
 ## Education
 
-**Master of Computer Science** — *Texas Tech University*, March 2025 – Present
+**Master of Computer Applications** — *Texas Tech University*, March 2025 – Present
 *Expected graduation:* 2027. Whitacre College of Engineering. Coursework annotated below for research relevance.
 
 **Bachelor of Science, Computer Science** — *The Ohio State University*, 2000 – 2004
