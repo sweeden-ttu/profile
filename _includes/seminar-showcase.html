@@ -1,0 +1,26 @@
+{%- assign seminars = site.posts | where_exp: "p", "p.categories contains 'seminar'" | slice: 0, 3 | sort: "date" -%}
+{%- if seminars.size > 0 %}
+<section class="seminars" aria-labelledby="seminars-title">
+  <div class="container">
+    <div class="pinned__head">
+      <span class="eyebrow">Seminar series · Fall 2026</span>
+      <h2 id="seminars-title" class="pinned__title">Three graduate-seminar talks, written up</h2>
+      <p class="pinned__lede">Routing inside and between AI models, NVIDIA's Realm runtime, and wearable sensing for older adults. Each post has charts rebuilt from the slides and an interactive figure.</p>
+    </div>
+    <div class="pinned__grid">
+      {%- for post in seminars %}
+      <article class="pin-card">
+        <span class="pin-card__badge">{{ post.categories | first | replace: '-', ' ' }}</span>
+        {%- if post.image %}<img class="pin-card__media pin-card__media--chart" src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: 'Chart from the post' }}" loading="lazy" width="640" height="320">{% endif %}
+        <h3 class="pin-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        {%- if post.speaker %}<p class="pin-card__meta">{{ post.speaker }}</p>{% endif %}
+        <p class="pin-card__text">{{ post.summary | default: post.description | strip_html | truncate: 220 }}</p>
+        <div class="pin-card__links">
+          <a href="{{ post.url | relative_url }}">Read · {{ post.content | number_of_words | divided_by: 230 }} min →</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}

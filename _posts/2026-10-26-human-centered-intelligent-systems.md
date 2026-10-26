@@ -7,6 +7,9 @@ tags: [wearable-sensing, activity-recognition, contrastive-learning, edge-ai, vi
 author: "Scott Weeden"
 description: "Notes on Dr. Sreenivasan Ramasamy Ramamurthy's graduate-seminar talk. Wristband data from older adults at home, self-taught and contrastive multitask learning, an impairment indicator that turns misclassifications into a cognitive cue, and small vision-language models on Jetson boards. Charts are rebuilt from the slides, with an interactive impairment-indicator calculator."
 image: /assets/images/seminars/sensing/s2_f1_impairment.png
+speaker: "Dr. Sreenivasan Ramasamy Ramamurthy, Bowie State University · 29 Sep"
+image_alt: "Two bar charts: self-taught features raise F1 from 54% to 86%; the impairment indicator is highest for mild cognitive impairment"
+summary: "Wristband data from older adults at home, contrastive multitask learning, and an impairment indicator that treats a classifier's mistakes as a cognitive signal."
 ---
 
 On 29 September, Dr. Sreenivasan Ramasamy Ramamurthy (Bowie State University) closed our September seminars with **"Toward Human-Centered Intelligent Systems: From Sensing to Collaborative Autonomy."** The other two talks this month were about making big models cheaper ([routing](/blog/2026/10/26/routing-in-modern-ai-systems/)) and big machines faster ([Realm](/blog/2026/10/26/realm-explicit-task-runtime/)). This one was about data from people that most machine-learning papers never reach: older adults with dementia symptoms, in their own homes, wearing a wristband.

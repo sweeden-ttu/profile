@@ -48,7 +48,8 @@
 
 // ── Pinned work (homepage) ────────────────────────────────────────────────
 .pinned {
-  padding-block: $s-8 $s-7;
+  padding-top: 0;
+  padding-bottom: $s-7;
   border-bottom: 1px solid var(--rule);
 }
 .pinned__head {
@@ -180,6 +181,11 @@
 }
 .widget__legend { display: flex; flex-wrap: wrap; gap: $s-2 $s-4; font-size: $fs-tiny; color: var(--ink-3);
   i { display: inline-block; width: 10px; height: 10px; border-radius: $r-1; margin-right: $s-1; vertical-align: -1px; } }
+// Seminar showcase on the homepage: wide charts, so letterbox instead of crop.
+.seminars { padding-block: $s-7; border-bottom: 1px solid var(--rule); }
+.pin-card__media--chart { aspect-ratio: 2 / 1; object-fit: contain; background: var(--paper); padding: $s-1; }
+.pin-card__meta { font-family: $sans; font-size: $fs-tiny; color: var(--ink-3); margin: 0; }
+
 .pinned__more { text-align: center; font-family: $sans; font-size: $fs-small; margin: $s-6 0 0; }
 
 // ── Small-screen hygiene for long-form pages ──────────────────────────────
