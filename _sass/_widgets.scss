@@ -66,6 +66,10 @@
   color: var(--ink);
 }
 .pinned__lede { color: var(--ink-3); font-size: $fs-body; margin: 0; }
+.pinned__subtitle {
+  font-family: $sans; font-size: $fs-body; font-weight: 600; color: var(--ink);
+  margin: 0 0 $s-2;
+}
 .pinned__grid {
   display: grid;
   gap: $s-5;

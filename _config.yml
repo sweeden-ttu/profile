@@ -141,6 +141,7 @@ exclude:
   - CLAUDE.md
   - README.md
   - templates/
+  - services/
   - apps-src/
   - toolkit-src/
   - notebooks/
