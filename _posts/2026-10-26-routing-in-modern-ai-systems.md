@@ -7,7 +7,9 @@ tags: [mixture-of-experts, llm-routing, diffusion, efficiency, seminar]
 author: "Scott Weeden"
 description: "Notes on Dr. Shangqian Gao's graduate-seminar talk on routing in modern AI systems. ToMoE carves experts out of a dense LLM, a prompt router picks sub-networks of a diffusion model, a contrastive router picks the cheapest LLM that will still be right, and ALTER skips U-Net layers per timestep. Charts are rebuilt from the talk's tables, with an interactive router to play with."
 image: /assets/images/seminars/routing/g2_tomoe.png
-speaker: "Dr. Shangqian Gao, Florida State University · 15 Sep"
+speaker: "Dr. Shangqian Gao"
+speaker_affiliation: "Florida State University"
+seminar_date: 2026-09-15
 image_alt: "Bar chart: ToMoE on LLaMA-3 8B keeps more zero-shot accuracy than ShortGPT, SliceGPT and ModeGPT"
 summary: "One embedding can decide how much of a model, or which model, an input needs: MoE experts carved from a dense LLM, prompt-routed diffusion, cost-aware LLM routing and timestep-adaptive U-Nets."
 ---

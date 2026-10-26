@@ -7,7 +7,9 @@ tags: [realm, legion, cuda, task-based-runtime, cupynumeric, seminar]
 author: "Scott Weeden"
 description: "Notes on Dr. Wei Wu's (NVIDIA) graduate-seminar talk on Realm, the explicit event-driven runtime under Legion and cuPyNumeric. The post follows one linear layer through tasks, events, the machine model, RegionInstances and the DMA engine, with an animated schedule comparing explicit events to global barriers."
 image: /assets/images/seminars/realm/w1_weak_scaling.png
-speaker: "Dr. Wei Wu, NVIDIA · 22 Sep"
+speaker: "Dr. Wei Wu"
+speaker_affiliation: "NVIDIA"
+seminar_date: 2026-09-22
 image_alt: "Log-log chart: cuPyNumeric weak scaling of Richardson–Lucy deconvolution from 1 to 1,024 GPUs"
 summary: "How Realm, the runtime under Legion and cuPyNumeric, uses explicit events, a machine model and a DMA engine to overlap work, followed through a single linear layer."
 ---
