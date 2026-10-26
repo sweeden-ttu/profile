@@ -189,6 +189,6 @@ The format is a code competition with a hidden test set, and the scorer runs det
 - **Leakage.** Corruptions of a single archetype are easy to memorise, so hold out families *and* anatomy.
 - **Metric validity.** CLIP-style semantic scores agree only weakly with human judgement ([3DGen-Bench](https://arxiv.org/html/2503.21745v2)), so validate `usdfid` against a small expert-rated set before trusting it.
 - **Tooling.** It is unverified whether the `usd-core` wheel ships the `usdcat`/`usdchecker` CLIs; the Python APIs above do the same jobs. Megatron-Bridge needs Python 3.12. Gemma 4 support in Bridge is partial.
-- **Model naming.** My arena notebook lists a "Gemma 4 12B". That size isn't in the published Gemma 4 line-up (E2B, E4B, 26B-A4B, 31B) and needs checking.
+- **Model naming.** My arena notebook lists a "Gemma 4 12B". That size is real: the Gemma 4 Developer Agent competition allows `gemma-4-12b-it-qat-w4a16-ct` alongside the 31B, E4B and E2B checkpoints. Pin the exact checkpoint name in every config so results stay comparable.
 
 *Research for this page was compiled on 26 October 2026. The full annotated source list (≈70 links) is in the [plan's research notes](https://github.com/sweeden-ttu/profile/blob/stable/notebooks/usd-llm/RESEARCH.md).*

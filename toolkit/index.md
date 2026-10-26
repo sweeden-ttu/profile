@@ -32,4 +32,19 @@ description: "Reference material and runnable templates for evaluating small loc
       </div>
     </article>
   </div>
+
+  <h2 class="tk-section-title">Kaggle competition cheat sheets</h2>
+  <p>Reference notes for the open competitions I have entered: rules, scoring, compute limits and checklists, taken from the official pages and my own runs.</p>
+  <div class="grid grid--3 tk-cards">
+    <article class="card">
+      <span class="card__eyebrow">ARC Prize 2026 · due 2 Nov</span>
+      <h3 class="card__title"><a href="{{ '/toolkit/notes/arc-agi-2/' | relative_url }}">ARC-AGI-2</a></h3>
+      <p class="card__excerpt">Submission format, exact-match scoring, measured data statistics and a verified baseline scorer that shows why fixed transforms score zero.</p>
+    </article>
+    <article class="card">
+      <span class="card__eyebrow">ARC Prize 2026 · due 2 Nov</span>
+      <h3 class="card__title"><a href="{{ '/toolkit/notes/arc-agi-3/' | relative_url }}">ARC-AGI-3</a></h3>
+      <p class="card__excerpt">Interactive games, frames and actions, the squared-efficiency score with worked examples, and the agent interface.</p>
+    </article>
+  </div>
 </div>
