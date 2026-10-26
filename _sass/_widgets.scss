@@ -194,6 +194,10 @@
   dt { color: var(--ink-3); text-transform: uppercase; letter-spacing: $ls-eyebrow; font-weight: 600; }
   dd { margin: 0; color: var(--ink); }
 }
+.seminar-signoff {
+  margin-top: $s-7; padding-top: $s-4; border-top: 1px solid var(--rule);
+  font-family: $sans; font-size: $fs-small; color: var(--ink-2);
+}
 .seminar-credit {
   font-family: $sans; font-size: $fs-small; line-height: $lh-tight + 0.1; color: var(--ink-2);
   margin: $s-4 0 0; padding: $s-3 $s-4;

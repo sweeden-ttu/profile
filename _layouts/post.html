@@ -10,12 +10,15 @@ layout: default
     {%- endif %}
     {%- include post-meta.html post=page -%}
     {%- if page.speaker %}
-    <p class="seminar-credit">Notes on a graduate-seminar talk by <strong>{{ page.speaker }}</strong>{% if page.speaker_affiliation %} ({{ page.speaker_affiliation }}){% endif %}{% if page.seminar_date %}, given on <time datetime="{{ page.seminar_date | date: '%Y-%m-%d' }}">{{ page.seminar_date | date: "%-d %B %Y" }}</time>{% endif %}. The ideas and results are the presenter's; the charts are my reconstructions from the slides.</p>
+    <p class="seminar-credit">Presented by <strong>{{ page.speaker }}</strong>{% if page.speaker_affiliation %} ({{ page.speaker_affiliation }}){% endif %} at the Texas Tech Computer Science Graduate Seminar (CS 5120){% if page.seminar_date %} on <time datetime="{{ page.seminar_date | date: '%Y-%m-%d' }}">{{ page.seminar_date | date: "%-d %B %Y" }}</time>{% endif %}. The content, claims and results are the presenter's. This journal-style write-up is adapted from the recorded talk and slides, and its figures are redrawn from the slides.</p>
     {%- endif %}
   </header>
 
   <div class="prose">
     {{ content }}
+    {%- if page.speaker %}
+    <p class="seminar-signoff">{{ page.speaker }}, &ldquo;{{ page.title }},&rdquo; delivered <time datetime="{{ page.seminar_date | date: '%Y-%m-%d' }}">{{ page.seminar_date | date: "%-d %B %Y" }}</time>, {{ page.speaker_affiliation }}.</p>
+    {%- endif %}
   </div>
 
   <nav class="page-header" style="border-top: 1px solid; border-bottom: 0; padding-top: 32px; margin-top: 64px;">

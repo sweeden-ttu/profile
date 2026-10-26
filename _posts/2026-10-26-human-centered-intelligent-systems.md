@@ -1,174 +1,205 @@
 ---
 layout: post
-title: "When a classifier's mistakes are the signal: sensing, edge VLMs and collaborative autonomy"
+title: "Toward Human-Centered Intelligent Systems: From Sensing to Collaborative Autonomy"
 date: 2026-10-26 00:15:00 -0500
 categories: [machine-learning, seminar]
 tags: [wearable-sensing, activity-recognition, contrastive-learning, edge-ai, vision-language-models, seminar]
 author: "Scott Weeden"
-description: "Notes on Dr. Sreenivasan Ramasamy Ramamurthy's graduate-seminar talk. Wristband data from older adults at home, self-taught and contrastive multitask learning, an impairment indicator that turns misclassifications into a cognitive cue, and small vision-language models on Jetson boards. Charts are rebuilt from the slides, with an interactive impairment-indicator calculator."
+description: "Dr. Sreenivasan Ramasamy Ramamurthy's seminar talk on recognizing older adults' activities from wearable sensors, an impairment indicator derived from model errors, and small vision-language models with distillation and knowledge graphs on edge devices."
 image: /assets/images/seminars/sensing/s2_f1_impairment.png
 speaker: "Dr. Sreenivasan Ramasamy Ramamurthy"
 speaker_affiliation: "Bowie State University"
 seminar_date: 2026-09-29
-image_alt: "Two bar charts: self-taught features raise F1 from 54% to 86%; the impairment indicator is highest for mild cognitive impairment"
-summary: "Wristband data from older adults at home, contrastive multitask learning, and an impairment indicator that treats a classifier's mistakes as a cognitive signal."
+image_alt: "Two bar charts redrawn from the presenter's slides: weighted F1 without and with self-taught features, and the impairment indicator by cognitive group"
+summary: "The talk covered in-home wearable sensing of older adults, self-taught and contrastive multitask learning for activity recognition, an impairment indicator built from model errors, and small vision-language models running on edge devices."
 ---
 
-On 29 September, Dr. Sreenivasan Ramasamy Ramamurthy (Bowie State University) closed our September seminars with **"Toward Human-Centered Intelligent Systems: From Sensing to Collaborative Autonomy."** The other two talks this month were about making big models cheaper ([routing](/blog/2026/10/26/routing-in-modern-ai-systems/)) and big machines faster ([Realm](/blog/2026/10/26/realm-explicit-task-runtime/)). This one was about data from people that most machine-learning papers never reach: older adults with dementia symptoms, in their own homes, wearing a wristband.
+Dr. Sreenivasan Ramasamy Ramamurthy, Bowie State University. Seminar talk "Toward Human-Centered Intelligent Systems: From Sensing to Collaborative Autonomy," Texas Tech University Computer Science Graduate Seminar (CS 5120), 29 September 2026.
 
-Its central idea is one I keep coming back to. **When the activity is misclassified but the person's health status is classified correctly, the miss itself tracks cognitive impairment.** Errors, normally something to minimise, become a biomarker.
+**Abstract.** We envision a human-centered intelligent system that senses a person at home, goes beyond classifying their activity, and uses a reasoning "brain" with persistent memory, all on a resource-constrained device. In Part 1, wrist-worn sensor data from the homes of 25 older adults with symptoms of dementia or neurodegenerative disorders, mostly unlabeled, are used for activity recognition. Self-taught learning raises the weighted F1-score from 54% to 86%. A contrastive multitask network predicts activity and health status together, and its missed activity detections form an impairment indicator that is highest (10–23%) for mild cognitive impairment. In Part 2, small vision-language models on Jetson Orin hardware narrate manipulation tasks and give instructions; contact-sheet inputs are 1.4–9.4× faster with no loss of quality, but no small model detects mistakes reliably yet. Ongoing work adds knowledge distillation and a knowledge graph.
 
-## The system he is building toward
+*This article is a journal-style write-up of the seminar as delivered. Its content, claims and results are the presenter's; the wording is an adaptation of the recorded talk and slides.*
 
-Ramamurthy's opening scenario was a robot in an older adult's home. It watches the person go about the day, looks at gait and posture without asking them to "walk again for me" (which makes people correct themselves and spoils the measurement), and pulls the wristband's data when something looks off. Then it *asks*, at a level of severity that matches what it sensed: "Are you okay?", then "Would you like me to check in with someone?", and only then an alert to a caregiver.
+## 1. Introduction
 
-He then built up what such a system needs, one box at a time:
+The research is in human-centered intelligent systems with a focus on health: using sensors to detect people's activities and asking what more those activities reveal, such as an underlying disease. The newer direction is to feed sensor information into a "brain" that correlates it and makes decisions, which raises questions of human-machine and machine-machine collaboration on resource-constrained devices.
+
+Interaction with sensors has moved from reading a thermostat, through touchscreens and immersive VR, to wearables and sensors throughout the home. The talk proposes using home sensors for something more important than turning off lights: health. The slide summarized: "Reliance of Sensor System → Greater Awareness → Informed decisions [specifically personalized and with less effort]."
+
+### 1.1 Many scenarios
+
+Besides the smart home, the main subject of the talk, Ramamurthy showed a robot on a collaborator's farm in Maryland that records data about the plants, such as whether they need water, with the goal of navigating autonomously and returning a report. He also showed the smart soldier, from research funded by the Army Research Lab. In both, sensors augment human limits.
+
+### 1.2 Scenario #1: Older adults
+
+Older adults Ramamurthy met during data collection were receptive to sensor systems at home. The slide reported that 75% of U.S. adults aged 50 and over want to remain in their current home as they age (AARP 2024 Home & Community Preferences Survey). He added that falls become more common with age and that a study found 65% of adults aged 50 and over willing to use a system that monitors them and keeps them safe. In one story, a very active participant fell without their wearable call button and was helped only when a routine check-in came hours later.
+
+In the motivating scenario ("Let me go about my day"), a robot observes ordinary movement, analyzing gait, standing and walking "without asking the person to perform a separate test," since a person asked to walk again corrects themselves. If something looks wrong, it compares the person's watch data with their baseline, asks "Are you OK?", then whether they would like to check in with someone, and depending on severity alerts a caregiver. This requires a wearable that detects activities against a baseline, a networked decision-making brain, and a robot camera that recognizes activity, all on a small edge device.
+
+## 2. A framework for human-centered intelligent systems
+
+A human goes about their life; multi-modal sensing (wearables, cameras, LiDAR, mmWave radar, Wi-Fi) captures their activities or intent; algorithms estimate them. Alone, this is "a one-way street." Going *beyond classification* extracts more, such as signs of a health condition, and feeding that back to the human makes a loop, but one that cannot adapt. Adaptation needs a brain that asks questions, learns, and updates a persistent memory, and "this framework should fit on a resource constrained device." Part 1 of the talk covers sensing through beyond-classification; Part 2 covers the brain and memory.
 
 ```mermaid
-flowchart LR
-  H["Human<br/>goes about their day"] --> S["Multi-modal sensing<br/>wristband IMU · ambient sensors · camera"]
-  S --> A["Algorithms<br/>activity / intent"]
-  A --> B["Beyond classification<br/>how well was it done?"]
-  B --> R["Reasoning brain<br/>ask · adapt"]
-  R <--> Mem[("Persistent memory<br/>encoded, learned information")]
-  R -. "questions, feedback" .-> H
+flowchart TD
+  H["Human<br/>goes about their life"] --> S["Multi-modal Sensing<br/>captures human's activities or intent"]
+  S --> A["Algorithms<br/>estimate human's activities or intent"]
+  A --> B["Beyond Classification"]
+  B --> R["Ask Questions<br/>Reasoning Brain → Adaptation"]
+  R <--> M[("Encode Learned Information –<br/>Persistent Memory")]
+  R -.-> H
 ```
 
-A pipeline that stops at a prediction is a one-way street, and adding feedback to the human still doesn't make it adaptive. His point was that the *brain and memory* loop is what makes the system intelligent, and that all of it has to run within the resource budget of an edge device. The talk was in two parts: the sensing-to-beyond-classification path, then the brain.
+*Figure 1. Redrawn from the presenter's framework slide. Part 1 is the path from the human to beyond classification; Part 2 is the reasoning brain and persistent memory.*
 
-Why older adults: his slide cited an AARP survey finding that **75% of U.S. adults aged 50 and over want to remain in their current home as they age**. He also told a story from his own data collection. A participant fell while not wearing the alert button they had been given, and lay on the floor for hours until a routine check-in.
+Part 1 tests two hypotheses from the slide:
 
-## The data, and why it is hard
+- **H1:** In-the-wild wearable sensor streams from older adults contain enough signal to reliably recognize ADLs and IADLs, even when labeled data is limited.
+- **H2:** Beyond identifying the activity, wearable sensor streams also capture how well an activity is performed, and these performance errors reflect underlying cognitive and functional impairment.
 
-- **Cohort:** 25 adults over 65, all showing symptoms associated with neurodegenerative disorders, recorded in their own homes.
-- **Sensors:** an Empatica E4 research wristband (accelerometer, gyroscope, magnetometer, skin temperature, electrodermal activity), plus ambient reed switches, PIR sensors and sensor tags.
-- **Clinical scales:** a social worker administered SLUMS (dementia screening), Barthel (functional performance of daily activities) and Lawton IADL (instrumental activities).
-- **Ground truth:** cameras, but the IRB allowed only **four hours of video per participant**. Each participant wore the wristband for 24 hours, so about twenty of those hours have no labels.
+The data are in the wild: collected in each participant's own home rather than a controlled environment. For H2, walking while limping still contains the accelerometer pattern of walking plus extra signal, which can grow large enough that the activity is detected incorrectly.
+
+## 3. Background
+
+### 3.1 Human activities
+
+People perform the same activity differently. Simple activities (activities of daily living, ADLs) such as walking or jogging repeat a pattern; for jogging, signal power is consistent across the time scale. Complex activities (instrumental activities of daily living, IADLs) such as cooking or laundry are simpler activities aligned in time: walking to the clothes, carrying them, bending, loading the machine. Because laundry contains walking, it can be detected as walking.
+
+### 3.2 Reasons that hurt classification algorithms
+
+1. **Limited labeled data**, with much more unlabeled data, restricts which algorithms can be used.
+2. **Imbalanced classes:** people walk often but brush their hair perhaps once a day, and "imagine brushing your hair for like 20 minutes" to collect more samples.
+3. **Overlap:** t-SNE plots of the raw input show some structure with 4 activities, more overlap with 8, and "completely inseparable" data with 14.
 
 ![Labelled vs unlabelled data, and the activity class distribution](/assets/images/seminars/sensing/s1_label_imbalance.svg)
 
-Three things make this hard:
+*Figure 2. Redrawn from the presenter's slide 20 ("Reasons That Hurt Classification Algorithms"): share of labeled and unlabeled data, and distribution of the 14 activity classes. Values were read off the chart and are approximate.*
 
-1. **Simple and complex activities overlap.** Walking or jogging produce a periodic accelerometer signal with consistent power over time. Doing laundry is a sequence of sub-activities: walk to the basket, bend, carry, walk to the machine, load. Because it *contains* walking, it gets misread as walking.
-2. **Classes are lopsided.** People walk many times a day and brush their hair once, and you can't ask anyone to brush their hair for twenty minutes to balance the classes.
-3. **Separability collapses as classes grow.** His t-SNE plots of the raw input showed four activities forming visible clusters, eight overlapping heavily, and fourteen collapsing into a single blob.
+## 4. Methods
 
-## Method 1 · Self-taught learning
+### 4.1 Data collection
 
-The first method uses the twenty unlabelled hours. A **deep belief network** is a stack of restricted Boltzmann machines (RBMs). Each RBM models visible units $$\mathbf v$$ (wavelet features of the accelerometer stream) and hidden units $$\mathbf h$$ with the energy
+Inclusion criteria were N = 25, age over 65, and symptoms of dementia or neurodegenerative disorders. Ramamurthy noted that dementia is not a disease but a set of symptoms, such as forgetfulness and confusion, associated with neurodegenerative disorders. Ten participants lived with mild cognitive impairment (MCI), eight lived with dementia, and the rest were normal controls, itself an uneven distribution.
 
-$$
-E(\mathbf v, \mathbf h) = -\mathbf a^{\top}\mathbf v - \mathbf b^{\top}\mathbf h - \mathbf v^{\top} W \mathbf h,
-\qquad p(\mathbf v, \mathbf h) \propto e^{-E(\mathbf v, \mathbf h)} .
-$$
+- **Wearable:** Empatica E4 research-grade wristband with an inertial measurement unit (accelerometer, gyroscope, magnetometer), skin temperature, and electrodermal activity, which reflects the body's response to stressors.
+- **Ambient sensors:** reed switches, PIR sensors and sensor tags, shown on the home layout with the cameras.
+- **Clinical data:** a social worker administered the SLUMS examination (screening for dementia, e.g. drawing a clock and recalling five words), the Barthel scale (functional performance of ADLs) and the Lawton IADL examination, whose scripted activities were recorded with the sensors.
+- **Ground truth:** under IRB regulations, cameras could record only four hours per participant, covering the scripted and then unscripted activities. The wristband stayed on for 24 hours, giving about 4 hours of labeled and 20 hours of unlabeled data.
 
-The layers are pre-trained greedily, one at a time, on unlabelled data. The aim is to strip noise and keep the core movement patterns. The network is then fine-tuned on the four labelled hours. In the learned representation, similar instances cluster, and the labelled examples fall into those clusters.
+### 4.2 Self-taught learning
 
-**Weighted F1 rose from 54% to 86%.** He reported weighted F1 because of the class imbalance above.
+The first method uses the unlabeled data through self-taught learning. Discrete wavelet transform (DWT) features feed a deep belief network (DBN), a stack of restricted Boltzmann machines trained greedily, layer by layer, until each layer's loss is acceptable. The hypothesis is that this pre-training removes noise and keeps the core activity patterns. Weights are then transferred to supervised training on the labeled data and a classifier. In the learned space, previously overlapping points group by pattern and the labeled examples fall into those groups.
 
-## Method 2 · Contrastive multitask learning, and the impairment indicator
+### 4.3 Contrastive multitask learning
 
-Layer-wise pre-training is slow, so the second method skips it and uses only labelled data. A shared encoder on accelerometer windows feeds two heads:
+Layer-wise pre-training is computationally costly, so the second method uses only labeled data, and pushes same-class points together and different-class points apart. Ramamurthy said his group was "one of the first groups to talk about contrastive multitask learning." For two inputs, $$v_i = F_{\text{shared}}(x_i)$$ and $$v_j = F_{\text{shared}}(x_j)$$. For a positive pair, same class but possibly far apart in input space, the mutual information between $$v_i$$ and $$v_j$$ is maximized, approximated using cosine similarity or max margin; for a negative pair it is minimized.
 
-- a **primary task (PT)** head that predicts the activity;
-- an **auxiliary task (AT)** head that predicts health status. In one setup this is normal cognition, mild cognitive impairment (MCI) or dementia; in another it is activity-performance scores.
+Accelerometer data enter a shared encoder (CNN and fully connected layers) with two heads, each with a categorical cross-entropy loss:
 
-Each head has its own cross-entropy loss. A contrastive term on randomly paired samples uses only whether the two samples are in the same class. It pulls same-class pairs together and pushes different-class pairs apart, with a margin $$m$$:
+- **Primary task (PT):** activity labels.
+- **Auxiliary task (AT):** health labels, either activity performance score or dementia stage (normal, MCI, dementia).
 
-$$
-\mathcal L = \mathcal L_{\text{CE}}^{\text{PT}} + \mathcal L_{\text{CE}}^{\text{AT}} + \lambda\,\Big[\, y_{ij}\, d_{ij}^2 + (1-y_{ij})\,\max(0,\, m - d_{ij})^2 \Big],
-\qquad d_{ij} = \lVert f(\mathbf x_i) - f(\mathbf x_j)\rVert .
-$$
+A pair sampler draws random data points and uses only whether two points are similar, not their labels; the method draws on self-supervised learning but remains supervised. The contrastive loss is tied to the primary task, biasing learning toward activities.
 
-(The talk described the pull–push behaviour; the margin form above is the standard way to write it, not necessarily his exact loss.) He described his group as among the first to apply contrastive multitask learning to wearable sensing.
+### 4.4 Impairment indicator
 
-Now the key move. The network is trained to detect activities well, so **when it gets an activity wrong while still getting the health label right, the error is attributed to how the activity was performed.** For an activity class $$c$$ with $$M$$ instances:
+Because the network is biased toward activities, a missed activity detection is hypothesized to reflect the person's health condition. The impairment indicator counts missed detections of the primary task where the auxiliary task is detected correctly. For activity class $$c \in Y_{PT}$$ with instances $$m \in [1, M]$$:
 
 $$
-\zeta_c = \frac{100}{M} \sum_{m=1}^{M} \delta\!\left[y^{\text{PT}}_m \neq \hat y^{\text{PT}}_m\right]\cdot\delta\!\left[y^{\text{AT}}_m = \hat y^{\text{AT}}_m\right].
+\zeta_c = \frac{1}{M}\left[\sum_{m=1}^{M} \left\{ \delta\!\left[y^{PT}_m \neq \widehat{y^{PT}_m}\right] \cdot \delta\!\left[y^{AT}_m = \widehat{y^{AT}_m}\right] \right\}\right] \times 100,
 $$
 
-The first factor is a missed detection on the primary task; the second is a correct detection on the auxiliary task.
+where $$\delta[\langle\text{condition}\rangle] = 1$$ if the condition is true. It was tested in two scenarios: **functional impairment assessment** (auxiliary task: activity performance scores, "how well the activity was performed") and **cognitive impairment assessment** (auxiliary task: dementia status).
 
-![F1 with self-taught features, and the impairment indicator by cognitive group](/assets/images/seminars/sensing/s2_f1_impairment.svg)
+### 4.5 Small vision-language models at the edge
+
+Part 2 asks whether small vision-language models housed on a robot can understand human manipulation tasks within a limited resource budget. In the motivating scenario a student begins making coffee without the cup in place, and the robot (on-board NVIDIA Jetson Orin AGX: perceive → VLM → intervention) says: "No cup under the spout. Place the cup on the tray before starting the brew." Listed applications included independent living for patients with neurodegenerative conditions and equipment maintenance.
+
+The robot should answer "What have I been doing so far?" (narration), "Did I miss a step?" (mistake detection) and "How do I do this?" (actionable instructions). Frames sampled from HoloAssist videos were given either as a **sequence of 224 × 224 images** or as a **contact sheet**, one 448 × 448 grid. Prompts were either **decomposed** (three calls: narration, mistake detection, instruction generation) or **combined** into one. SmolVLM, LLaVA-Interleave, Qwen2-VL, LLaVA-1.5 and LLaVA-NeXT ran on a 64 GB Jetson AGX Orin, with time, memory, power and energy measured.
+
+### 4.6 RoboSViM v2 (ongoing work)
+
+Failure cases showed that videos contain many objects (nouns) and actions on them (verbs), both of which must be detected. The ongoing work adds a student-teacher model and a knowledge graph as memory. The hypothesis: distilling knowledge from a video-encoder teacher into a VideoMAE-base student will improve noun and verb recognition over the baseline while approaching teacher-level accuracy. The teacher (326 M parameters on the slide) masks parts of the video and learns the objects present. The student (86.2 M parameters, deployed size about 0.17 GB) was trained with "the simplest of all knowledge distillation," minimizing the KL divergence between the final softmax layers:
+
+$$
+\mathcal{L}_{\text{KD}} = \mathrm{KL}\!\left(\operatorname{softmax}(\mathbf{z}_T)\,\big\|\,\operatorname{softmax}(\mathbf{z}_S)\right).
+$$
+
+Each video is split into two-second clips with one action and one object each. The student's predictions go into the knowledge graph, which keeps actions and objects that repeat across clips as a sign of correct detection and discards the rest.
+
+## 5. Results
+
+### 5.1 Self-taught learning
+
+The weighted F1-score, reported because of class imbalance, rose from 54% without self-taught features to 86% with them, with high per-activity detection rates in the confusion matrix.
+
+### 5.2 Impairment indicator
+
+**Functional impairment.** A score of 1 means the person was highly dependent on someone else for the activity. As activity scores decrease, the impairment indicator increases: "dependent people execute activities less typically."
+
+**Cognitive impairment.** The indicator changes as the stage moves from normal cognition to MCI or from MCI to dementia, and is elevated for MCI:
 
 | Group | Impairment indicator ζ |
 |---|---|
-| Normal cognition | ≈ 0% |
-| Mild cognitive impairment | **10–23%** |
-| Dementia | ≈ 0–2% |
+| Normal cognition (NOR) | ≈ 0% |
+| Mild cognitive impairment (MCI) | 10–23% |
+| Dementia (DEM) | ≈ 0–2% |
 
-The signal is strongest for MCI, the stage where early detection matters most. His explanation came from the fieldwork. Participants with MCI, asked to make a sandwich, would open the fridge, take out honey, get distracted and wander off task. Their activities really were *performed* differently, and the classifier tripped on exactly those. In the functional-impairment scenario, people who were more dependent on help (lower Barthel scores) also had more missed detections.
+This matches the "confusion and failing to follow instructions" observed during data collection: participants with MCI asked to make a sandwich would take honey from the fridge and drift from the task. The slide concluded: "We capture errors in the model that indicate health impairment," and "The signal is strongest for MCI, where early intervention matters most." The pipeline's error thus serves as a digital biomarker.
 
-Why is dementia near zero rather than highest? The formula requires the *health* label to be right. One reading is that for participants with dementia, the activity head and the health head fail together, so the product term rarely fires. You can explore that below. Each cell is one instance of an activity class; click a cell to cycle its (activity, health) correctness. The presets are synthetic, chosen to show the three regimes, not the study's data.
+![F1 with self-taught features, and the impairment indicator by cognitive group](/assets/images/seminars/sensing/s2_f1_impairment.svg)
 
-<figure class="figure-wide">
-<div id="impairment-indicator" class="widget">
-  <div class="widget__row">
-    <span class="widget__mono">preset</span>
-    <button type="button" data-preset="NOR" aria-pressed="false">mostly correct (NOR-like)</button>
-    <button type="button" data-preset="MCI" aria-pressed="true">activity misses, health right (MCI-like)</button>
-    <button type="button" data-preset="DEM" aria-pressed="false">both heads struggle (DEM-like)</button>
-  </div>
-  <div class="ii-grid" role="group" aria-label="instances of one activity class"></div>
-  <div class="widget__legend"><span>each cell: activity ✓/✗ then health ✓/✗</span><span><i style="background:var(--accent)"></i>counts toward ζ (activity ✗, health ✓)</span></div>
-  <p class="widget__note ii-out" aria-live="polite"></p>
-</div>
-<figcaption>Interactive: the impairment indicator for one activity class with M = 48 instances. Only misses where the health label is still right count, so ζ is not just an error rate.</figcaption>
-</figure>
+*Figure 3. Redrawn from the presenter's slides 23 and 29: weighted F1-score without and with self-taught features (left), and impairment indicator by cognitive group (right). Shaded bars show the reported range across activity classes.*
 
-## Part 2 · A brain that runs on a Jetson
+### 5.3 Small vision-language models
 
-The second half asked whether **small vision-language models**, running on a robot, can understand someone doing a manipulation task. Can they narrate it ("what have I done so far?"), detect mistakes ("did I miss a step?") and give corrective instructions ("how do I do this?")? The test bed was the HoloAssist dataset. The models were small VLMs (SmolVLM, LLaVA-Interleave 500M, Qwen2-VL 2B, LLaVA-1.5 and LLaVA-NeXT 7B) on Jetson Orin boards, compared along two axes:
+- Qwen2-VL 2B performed well at narrating the activity and providing instructions, but the small models could not yet detect mistakes.
+- Contact sheets were 1.4 to 9.4× faster and used up to 9× less energy per video, and matched individual frames on narration similarity and instruction quality; both forms made mistakes equally.
+- Combined prompts were 2.3–4× faster but could not provide corrective instructions as good as decomposed prompts.
+- The heaviest model, the 7-billion-parameter LLaVA-1.5, needed about 19–20 GB, so the method can be deployed on the AGX Orin.
 
-- **Input:** a sequence of individual 224×224 frames, or one 448×448 **contact sheet** tiling the frames.
-- **Prompting:** three **decomposed** calls (narration, mistake detection, instruction generation), or one **combined** prompt.
+In the demonstration, LLaVA-Interleave (500M) with a contact sheet, decomposed prompts and K(=3)-shot examples ran on the robot, which spoke its instruction aloud. In a failure case (Qwen2-VL 2B, zero-shot, individual frames), with many objects in view, the output "has nothing to do with whatever the person is doing" and repeats the task instruction; the slide labels it "RAMBLE."
 
-The findings, on his slide:
+### 5.4 RoboSViM v2
 
-- **Contact sheets were 1.4–9.4× faster and used up to 9× less energy per video**, with *no loss* in narration similarity or instruction quality compared with individual frames.
-- **Combined prompts were 2.3–4× faster but could not produce good corrective instructions.** Decomposed prompts could.
-- Even the heaviest model, LLaVA-1.5 7B, fit in about **20 GB** on an AGX Orin, so the approach is deployable.
-- **No small model could reliably detect mistakes yet.** In cluttered scenes they ramble. His favourite failure case answered a question about the user's error by restating the task instructions back.
-
-The demo clip was memorable. A student starts brewing coffee without a cup on the tray, and the robot, running LLaVA-Interleave with a contact sheet and decomposed prompts, says out loud: *"place the cup on the tray before brewing."*
-
-### RoboSViM v2: distil, then remember
-
-The fix in progress is twofold. First, **knowledge distillation**: a 326-million-parameter video encoder (the teacher) is distilled into a small student by matching output distributions,
-
-$$
-\mathcal L_{\text{KD}} = \tau^2\,\mathrm{KL}\!\left(\operatorname{softmax}(\mathbf z_T/\tau)\,\big\|\,\operatorname{softmax}(\mathbf z_S/\tau)\right).
-$$
-
-Second, a **knowledge graph** acts as memory. The student's noun and verb predictions per two-second clip go into the graph, which keeps the ones that repeat across clips.
+Against the dataset paper's baseline (action accuracy 0.628, object 0.750), the teacher reached 0.706 and 0.817 and the student 0.694 and 0.791: 10.51% and 5.47% above the baseline, and 1.70% and 3.18% below the teacher, while being much smaller and deployable. Moments named correctly rose from 12% (action) and 19% (object) with no graph to 56% and 47% with a graph from the model's predictions, annotated on the slide as +44% and +38%. A graph from correct labels gave 100% for both, so the graph works, and the gap lies in the student's lower detection rates. "There's still so much work to be done in this area of research."
 
 ![RoboSViM v2: distillation and the knowledge graph](/assets/images/seminars/sensing/s3_robosvim.svg)
 
-- **The student holds up.** It improves on the HoloAssist baseline by 10.5% in action accuracy and 5.5% in object accuracy, and stays within 1.7% and 3.2% of the teacher at a fraction of the size.
-- **The graph is what moves the needle.** With a graph built from the model's own predictions, correctly named moments rise from 12% to 56% for actions and from 19% to 47% for objects. A graph built from correct labels recovers 100%, so the remaining gap sits in the student's perception rather than in the graph.
+*Figure 4. Redrawn from the presenter's slide 43 (RoboSViM v2): action and object accuracy for baseline, teacher and student (left), and moments named correctly with no graph, a graph from model predictions, and a graph from correct labels (right).*
 
-*A note on the numbers:* the slide labels the graph gains "+44%" and "+38%". The bars themselves give +44 and **+28** percentage points, and my redraw shows the bars.
+## 6. Future directions
 
-## Where it goes next
+**Fewer sensors, a fuller picture.** Clinicians consider gait, sleep, speech, hand movements, daily activity and patient-reported symptoms. Can a minimal set of sensors (on the slide: one wearable, brief phone check-ins, patient or caregiver reports) capture a similarly broad picture, with a reasoning layer over the detected symptoms? Parkinson's disease was the example.
 
-The future-directions slides had three threads:
+**Adaptive human-machine teaming.** From assessing human performance to deciding when and how to help: which signals reveal fatigue, a missed step or a hazard; when a robotic assistant should intervene, ask, or let the human continue; and how far assistance should adapt to expertise, workload, uncertainty and trust.
 
-- **Fewer sensors, fuller picture.** Clinicians look across gait, sleep, speech, hand movements and daily activity. How much of that can one wristband plus one camera capture?
-- **Adaptive human–machine teaming.** Decide when to intervene and how to escalate, and adapt the assistance to the person's skill and workload.
-- **Heterogeneous machine collaboration.** Robots, drones and IoT devices share partial views, so which device senses, which reasons, and when does a problem escalate from the edge to HPC?
+**Heterogeneous machine collaboration.** Coordinating robots, drones, IoT devices and computing systems with limited sensing, communication, computation and energy: which machine should sense or act, when uncertainty should trigger escalation to edge or HPC resources, and what knowledge to share. Ramamurthy called this a long-term goal.
 
-## What I'm taking away
+## 7. Conclusion
 
-1. **Read the classifier, not just its accuracy.** The impairment indicator is a new way to read a model: a *structured* error, conditioned on another head being right, becomes a measurement. The same pattern shows up in verification work. When a trace is rejected by the activity model but accepted by the context model, the disagreement is the information.
-2. **Real deployment data is the contribution.** Few labels, lopsided classes, activities that blur together and an IRB cap on video are what the problem actually looks like. Most activity-recognition papers use healthy volunteers in a lab and never see any of it.
-3. **Be careful with the claim.** These are 25 participants, and ζ ranges are reported per group, so the result is a promising digital-biomarker *signal*, not a diagnostic test. The talk framed it that way too.
+On in-home data from older adults, self-taught learning improves activity recognition under limited labels, and contrastive multitask learning turns the model's errors into a digital biomarker whose signal is strongest for mild cognitive impairment. Small vision-language models can narrate and instruct on edge hardware, but mistake detection is not yet reliable; distillation and a knowledge graph are the ongoing work.
 
-**References and context**
-- HoloAssist: an egocentric human–AI assistance dataset (Microsoft, ICCV 2023).
-- SLUMS (Saint Louis University Mental Status) examination; Barthel Index; Lawton Instrumental Activities of Daily Living scale.
-- Hinton, Osindero & Teh, *A Fast Learning Algorithm for Deep Belief Nets* (2006), for the DBN pre-training.
+## Acknowledgements
 
-*Charts are rebuilt from the talk's slides (slides 20, 29, 35 and 43). Values on slide 20 were read off a chart and are approximate; the rest are printed on the slides.*
+The presenter thanked his collaborators, listed on the slide at the University of Maryland, Baltimore County, the University of Maryland School of Nursing, IIT Kharagpur, Nokia Bell Labs, the University of Virginia, the University at Buffalo and the New Jersey Institute of Technology, and his students. The host noted support from the U.S. Department of Energy and the Army Research Lab.
 
-<script defer src="{{ '/assets/js/seminar-widgets.js' | relative_url }}"></script>
+## Questions from the seminar
+
+**Q: Does the knowledge graph raise or lower performance in percentage terms, and how do the no-graph figures relate to the baseline?**
+
+Ramamurthy explained that the left chart shows the student's action and object accuracy against the baseline from the HoloAssist dataset paper (HoloAssist was run as a competition). The teacher beat the baseline, and the student, distilled to about 86 million parameters by minimizing the KL divergence between final softmax layers, came close to the teacher; this is ongoing work by his PhD student. For the right chart, each two-second clip has one action and object; without the graph the outputs vary from clip to clip, while the graph keeps repeated values and discards the rest, and recalls perfectly when given the ground truth.
+
+The questioner noted that the numbers include repetitions across clips and suggested this affects the estimate. Ramamurthy said he would look into it; his understanding is that without the graph the predictions also include synonyms and variations, which the graph consolidates.
+
+## References
+
+- AARP, *2024 Home & Community Preferences Survey* (U.S. adults age 50+), as cited on the presenter's slide.
+- Empatica E4 research-grade wristband.
+- SLUMS (Saint Louis University Mental Status) examination.
+- Barthel scale (functional performance of activities of daily living).
+- Lawton Instrumental Activities of Daily Living (IADL) examination.
+- HoloAssist dataset and the baseline reported in its paper.
+- VideoMAE (VideoMAE-base student).
+- Vision-language models evaluated: SmolVLM, LLaVA-Interleave (500M), Qwen2-VL 2B, LLaVA-1.5 (7B), LLaVA-NeXT.
+- NVIDIA Jetson AGX Orin.
