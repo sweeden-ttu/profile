@@ -2,7 +2,7 @@ theme: null
 
 # Site Settings
 title: Scott Weeden
-description: Master of Computer Applications student at Texas Tech University. Notes on cryptography, formal verification, machine learning.
+description: Scott Weeden, Texas Tech University. Applications built for interdisciplinary research — planning agents, medical imaging and 3-D scene models — with measured results, plus notes on cryptography, verification and machine learning.
 url: "https://scottweeden.online"
 baseurl: ""
 lang: en

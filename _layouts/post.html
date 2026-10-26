@@ -9,6 +9,9 @@ layout: default
       <p class="lede page-header__lede">{{ page.description | default: page.excerpt | strip_html | truncate: 220 }}</p>
     {%- endif %}
     {%- include post-meta.html post=page -%}
+    {%- if page.speaker %}
+    <p class="seminar-credit">Notes on a graduate-seminar talk by <strong>{{ page.speaker }}</strong>{% if page.speaker_affiliation %} ({{ page.speaker_affiliation }}){% endif %}{% if page.seminar_date %}, given on <time datetime="{{ page.seminar_date | date: '%Y-%m-%d' }}">{{ page.seminar_date | date: "%-d %B %Y" }}</time>{% endif %}. The ideas and results are the presenter's; the charts are my reconstructions from the slides.</p>
+    {%- endif %}
   </header>
 
   <div class="prose">

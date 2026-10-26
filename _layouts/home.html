@@ -1,27 +1,19 @@
 ---
 layout: default
 ---
-<section class="hero">
-  <div class="container">
-    <span class="eyebrow hero__eyebrow">{{ page.eyebrow | default: 'Notebook · Texas Tech University' }}</span>
-    <h1 class="hero__title">{{ page.headline | default: 'Notes from a working CS graduate program.' }}</h1>
-    <p class="hero__lede">{{ page.lede | default: site.description }}</p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="{{ '/blog/' | relative_url }}">Read the writing <span class="btn__arrow">→</span></a>
-      <a class="btn btn--secondary" href="{{ '/projects/' | relative_url }}">See projects</a>
-    </div>
-  </div>
-</section>
-
 {% include pinned-work.html %}
+
+{% include seminar-showcase.html %}
 
 <section class="section">
   <div class="container">
     <div class="section-rule"><span class="section-rule__label">Recent writing</span></div>
 
     <div class="post-list">
-      {%- assign recent = site.posts | slice: 0, 8 -%}
-      {%- for post in recent %}
+      {%- assign shown = 0 -%}
+      {%- for post in site.posts %}
+      {%- if post.categories contains 'seminar' or shown >= 8 %}{% continue %}{% endif -%}
+      {%- assign shown = shown | plus: 1 %}
       <article class="post-list__item">
         <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
         <div class="post-list__body">
