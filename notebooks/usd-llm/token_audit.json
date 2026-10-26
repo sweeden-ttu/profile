@@ -1,0 +1,42 @@
+{
+ "counts": {
+  "inline, full float": {
+   "Llama-3.x": 22970,
+   "Gemma 4": 32954,
+   "Qwen3": 32880,
+   "Mistral": 33111
+  },
+  "inline, 3 dp": {
+   "Llama-3.x": 19954,
+   "Gemma 4": 26403,
+   "Qwen3": 26329,
+   "Mistral": 26560
+  },
+  "inline, 1 dp": {
+   "Llama-3.x": 19762,
+   "Gemma 4": 23215,
+   "Qwen3": 23141,
+   "Mistral": 23372
+  },
+  "inline, integer mm": {
+   "Llama-3.x": 16958,
+   "Gemma 4": 20443,
+   "Qwen3": 20369,
+   "Mistral": 20600
+  },
+  "payload reference": {
+   "Llama-3.x": 922,
+   "Gemma 4": 1127,
+   "Qwen3": 1054,
+   "Mistral": 1279
+  }
+ },
+ "chars": {
+  "inline, full float": 38268,
+  "inline, 3 dp": 31717,
+  "inline, 1 dp": 28529,
+  "inline, integer mm": 25757,
+  "payload reference": 3698
+ },
+ "toy_vertices": 720
+}

@@ -1,0 +1,89 @@
+{
+ "generated_at": "2026-10-26T07:52:55+00:00",
+ "model": "llama3.2:1b",
+ "backend": "mock",
+ "trigger": "local",
+ "repository": null,
+ "run_id": null,
+ "run_number": null,
+ "run_url": null,
+ "sha": null,
+ "ref": null,
+ "examples": [
+  {
+   "name": "react_calculator",
+   "title": "ReAct: docs search + calculator",
+   "file": "01_react_calculator.py",
+   "ok": true,
+   "final_answer": "34302",
+   "steps": 5,
+   "llm_calls": 3,
+   "tool_calls": 2,
+   "tool_errors": 0,
+   "latency_ms": 3206.8,
+   "completion_tokens": 53,
+   "transcript": "/assets/toolkit/agent-runs/latest/transcripts/react_calculator.json"
+  },
+  {
+   "name": "json_extraction",
+   "title": "Structured JSON extraction + validate/retry",
+   "file": "02_json_extraction.py",
+   "ok": true,
+   "final_answer": {
+    "name": "Priya Natarajan",
+    "email": "priya.n@lakeside-robotics.example",
+    "company": "Lakeside Robotics",
+    "meeting_date": "2026-11-05",
+    "topics": [
+     "drift monitoring",
+     "on-device Llama inference"
+    ]
+   },
+   "steps": 4,
+   "llm_calls": 2,
+   "tool_calls": 0,
+   "tool_errors": 0,
+   "latency_ms": 2382.4,
+   "completion_tokens": 43,
+   "transcript": "/assets/toolkit/agent-runs/latest/transcripts/json_extraction.json"
+  },
+  {
+   "name": "planner_executor",
+   "title": "Planner -> executor -> synthesizer",
+   "file": "03_planner_executor.py",
+   "ok": true,
+   "final_answer": "Llama 3.1 8B has about 6.5 times more parameters than Llama 3.2 1B (8 / 1.24 = 6.45).",
+   "steps": 7,
+   "llm_calls": 3,
+   "tool_calls": 3,
+   "tool_errors": 0,
+   "latency_ms": 3036.0,
+   "completion_tokens": 57,
+   "transcript": "/assets/toolkit/agent-runs/latest/transcripts/planner_executor.json"
+  },
+  {
+   "name": "self_critique",
+   "title": "Self-critique: draft -> critique -> revise",
+   "file": "04_self_critique.py",
+   "ok": true,
+   "final_answer": "Data drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.",
+   "steps": 6,
+   "llm_calls": 4,
+   "tool_calls": 0,
+   "tool_errors": 0,
+   "latency_ms": 6956.4,
+   "completion_tokens": 166,
+   "transcript": "/assets/toolkit/agent-runs/latest/transcripts/self_critique.json"
+  }
+ ],
+ "report": "/assets/toolkit/agent-runs/latest/report.html",
+ "spans_file": "/assets/toolkit/agent-runs/latest/spans.jsonl",
+ "tests": {
+  "passed": 16,
+  "total": 16
+ },
+ "spans": 26,
+ "rows": 12,
+ "passed": 4,
+ "total": 4
+}

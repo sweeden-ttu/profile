@@ -1,0 +1,101 @@
+[
+  {
+    "trace_id": "2ef1d2cab2cbf6fe210314b16f240052",
+    "span_id": "ec65241a2cfc837c",
+    "parent_id": "16b775e73300d32b",
+    "name": "route",
+    "start": "2026-10-26T07:44:11.464784+00:00",
+    "end": "2026-10-26T07:44:11.464814+00:00",
+    "duration_ms": 0.031,
+    "status": "UNSET",
+    "attributes": {
+      "kind": "route",
+      "statement": "pick skill",
+      "input": "A team runs 14 evals per day for 23 days. How many evals is that in total?",
+      "output": "calculator"
+    }
+  },
+  {
+    "trace_id": "2ef1d2cab2cbf6fe210314b16f240052",
+    "span_id": "034bbc95e92c992e",
+    "parent_id": "16b775e73300d32b",
+    "name": "llm",
+    "start": "2026-10-26T07:44:11.465003+00:00",
+    "end": "2026-10-26T07:44:11.465059+00:00",
+    "duration_ms": 0.057,
+    "status": "UNSET",
+    "attributes": {
+      "kind": "llm",
+      "statement": "chat completion",
+      "input": "Task: A team runs 14 evals per day for 23 days. How many evals is that in total?",
+      "output": "TOOL calc: 14*23",
+      "latency_ms": 502.9,
+      "prompt_tokens": 149,
+      "completion_tokens": 3,
+      "model": "llama3.2:1b",
+      "backend": "replay",
+      "replay_match": "exact"
+    }
+  },
+  {
+    "trace_id": "2ef1d2cab2cbf6fe210314b16f240052",
+    "span_id": "5489e9e2c7bffff0",
+    "parent_id": "16b775e73300d32b",
+    "name": "tool.calc",
+    "start": "2026-10-26T07:44:11.465159+00:00",
+    "end": "2026-10-26T07:44:11.465382+00:00",
+    "duration_ms": 0.223,
+    "status": "UNSET",
+    "attributes": {
+      "kind": "tool",
+      "statement": "call calc",
+      "input": "14*23",
+      "output": "322",
+      "ok": true
+    }
+  },
+  {
+    "trace_id": "2ef1d2cab2cbf6fe210314b16f240052",
+    "span_id": "7c71cc547a165937",
+    "parent_id": "16b775e73300d32b",
+    "name": "llm",
+    "start": "2026-10-26T07:44:11.465490+00:00",
+    "end": "2026-10-26T07:44:11.465538+00:00",
+    "duration_ms": 0.048,
+    "status": "UNSET",
+    "attributes": {
+      "kind": "llm",
+      "statement": "chat completion",
+      "input": "Tool result: 322\nNow give the final answer.",
+      "output": "322 evals",
+      "latency_ms": 485.6,
+      "prompt_tokens": 164,
+      "completion_tokens": 2,
+      "model": "llama3.2:1b",
+      "backend": "replay",
+      "replay_match": "exact"
+    }
+  },
+  {
+    "trace_id": "2ef1d2cab2cbf6fe210314b16f240052",
+    "span_id": "16b775e73300d32b",
+    "parent_id": null,
+    "name": "agent.run",
+    "start": "2026-10-26T07:44:11.464723+00:00",
+    "end": "2026-10-26T07:44:11.465606+00:00",
+    "duration_ms": 0.883,
+    "status": "UNSET",
+    "attributes": {
+      "kind": "agent",
+      "statement": "task t01",
+      "input": "A team runs 14 evals per day for 23 days. How many evals is that in total?",
+      "task_id": "t01",
+      "prompt_name": "agent-system",
+      "prompt_version": 2,
+      "output": "322 evals",
+      "skill": "calculator",
+      "llm_calls": 2,
+      "tool_calls": 1
+    }
+  }
+]

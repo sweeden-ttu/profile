@@ -1,0 +1,31 @@
+{%- assign pinned = site.projects | where_exp: "p", "p.pinned" | sort: "pinned" -%}
+{%- if pinned.size > 0 %}
+<section class="pinned" aria-labelledby="pinned-title">
+  <div class="container">
+    <div class="pinned__head">
+      <span class="eyebrow">Pinned work</span>
+      <h2 id="pinned-title" class="pinned__title">An agent that plans, a blend taken apart, and what comes next</h2>
+      <p class="pinned__lede">A MuZero farm agent you can watch play in the browser, a dissection of an RSNA knee-MRI ensemble, and a research plan for an LLM that reads and writes OpenUSD scenes.</p>
+    </div>
+    <div class="pinned__grid">
+      {%- for p in pinned %}
+      <article class="pin-card">
+        <span class="pin-card__badge">{{ p.pin_badge | default: p.tags | first }}</span>
+        {%- if p.pin_image %}<img class="pin-card__media" src="{{ p.pin_image | relative_url }}" alt="" loading="lazy" width="640" height="360">{% endif %}
+        <h3 class="pin-card__title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+        <p class="pin-card__text">{{ p.description | strip_html | truncate: 230 }}</p>
+        {%- if p.pin_stats %}
+        <ul class="pin-card__stats">{% for s in p.pin_stats %}<li><strong>{{ s }}</strong></li>{% endfor %}</ul>
+        {%- endif %}
+        <div class="pin-card__links">
+          <a href="{{ p.url | relative_url }}">Read →</a>
+          {%- if p.kaggle %}<a href="{{ p.kaggle }}">Kaggle</a>{% endif %}
+          {%- if p.github %}<a href="{{ p.github }}">GitHub</a>{% endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+    <p class="pinned__more"><a href="https://www.kaggle.com/scottweeden">All notebooks and datasets on Kaggle →</a> · <a href="{{ '/toolkit/' | relative_url }}">Toolkit: cheat sheet, Evidently template, Llama agents →</a></p>
+  </div>
+</section>
+{%- endif %}

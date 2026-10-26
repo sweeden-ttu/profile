@@ -1,0 +1,3 @@
+# The examples and llm.py are standard-library only (Python >= 3.9; Pyodide-compatible).
+# run_all.py --evidently additionally needs the Evidently template's pinned stack:
+-r ../evidently-llama/requirements.txt

@@ -1,0 +1,118 @@
+{
+ "format": "llama-agents-transcript/v1",
+ "example": "json_extraction",
+ "task": "Hi Scott, this is Priya Natarajan from Lakeside Robotics (priya.n@lakeside-robotics.example). Could we meet on 2026-11-05 to talk about drift monitoring and on-device Llama inference? Thanks!",
+ "backend": "mock",
+ "model": "llama3.2:1b",
+ "started_at": "2026-10-26T07:52:33+00:00",
+ "final_answer": {
+  "name": "Priya Natarajan",
+  "email": "priya.n@lakeside-robotics.example",
+  "company": "Lakeside Robotics",
+  "meeting_date": "2026-11-05",
+  "topics": [
+   "drift monitoring",
+   "on-device Llama inference"
+  ]
+ },
+ "ok": true,
+ "steps": [
+  {
+   "step": 1,
+   "kind": "llm",
+   "name": "extract-attempt-1",
+   "input": "Hi Scott, this is Priya Natarajan from Lakeside Robotics (priya.n@lakeside-robotics.example). Could we meet on 2026-11-05 to talk about drift monitoring and on-device Llama inference? Thanks!",
+   "output": "{\"name\": \"Priya Natarajan\", \"email\": \"priya.n@lakeside-robotics.example\", \"company\": \"Lakeside Robotics\", \"meeting_date\": \"November 5, 2026\", \"topics\": \"drift monitoring, on-device Llama inference\"}",
+   "ok": true,
+   "latency_ms": 1151.2,
+   "prompt_tokens": 120,
+   "completion_tokens": 23,
+   "match": "live"
+  },
+  {
+   "step": 2,
+   "kind": "validate",
+   "name": "schema-check-1",
+   "input": "{\"name\": \"Priya Natarajan\", \"email\": \"priya.n@lakeside-robotics.example\", \"company\": \"Lakeside Robotics\", \"meeting_date\": \"November 5, 2026\", \"topics\": \"drift monitoring, on-device Llama inference\"}",
+   "output": [
+    "\"meeting_date\" must look like date in YYYY-MM-DD, got 'November 5, 2026'",
+    "\"topics\" must be a list (list of short topic strings), got str"
+   ],
+   "ok": false,
+   "latency_ms": 0.0
+  },
+  {
+   "step": 3,
+   "kind": "llm",
+   "name": "extract-attempt-2",
+   "input": "Your JSON failed validation:\n- \"meeting_date\" must look like date in YYYY-MM-DD, got 'November 5, 2026'\n- \"topics\" must be a list (list of short topic strings), got str\nReturn the corrected JSON object only.",
+   "output": "{\"name\": \"Priya Natarajan\", \"email\": \"priya.n@lakeside-robotics.example\", \"company\": \"Lakeside Robotics\", \"meeting_date\": \"2026-11-05\", \"topics\": [\"drift monitoring\", \"on-device Llama inference\"]}",
+   "ok": true,
+   "latency_ms": 1231.2,
+   "prompt_tokens": 222,
+   "completion_tokens": 20,
+   "match": "live"
+  },
+  {
+   "step": 4,
+   "kind": "validate",
+   "name": "schema-check-2",
+   "input": "{\"name\": \"Priya Natarajan\", \"email\": \"priya.n@lakeside-robotics.example\", \"company\": \"Lakeside Robotics\", \"meeting_date\": \"2026-11-05\", \"topics\": [\"drift monitoring\", \"on-device Llama inference\"]}",
+   "output": "valid",
+   "ok": true,
+   "latency_ms": 0.0
+  }
+ ],
+ "calls": [
+  {
+   "key": "5faeef57c02b7017",
+   "messages": [
+    {
+     "role": "system",
+     "content": "Extract fields from the email as ONE JSON object with exactly these keys:\n- \"name\": str (sender's full name)\n- \"email\": str (sender's email address)\n- \"company\": str (sender's company)\n- \"meeting_date\": str (date in YYYY-MM-DD)\n- \"topics\": list (list of short topic strings)\nReturn JSON only."
+    },
+    {
+     "role": "user",
+     "content": "Hi Scott, this is Priya Natarajan from Lakeside Robotics (priya.n@lakeside-robotics.example). Could we meet on 2026-11-05 to talk about drift monitoring and on-device Llama inference? Thanks!"
+    }
+   ],
+   "format": "json",
+   "response": "{\"name\": \"Priya Natarajan\", \"email\": \"priya.n@lakeside-robotics.example\", \"company\": \"Lakeside Robotics\", \"meeting_date\": \"November 5, 2026\", \"topics\": \"drift monitoring, on-device Llama inference\"}",
+   "latency_ms": 1151.2,
+   "prompt_tokens": 120,
+   "completion_tokens": 23,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "5bcab2cdc34e3d04",
+   "messages": [
+    {
+     "role": "system",
+     "content": "Extract fields from the email as ONE JSON object with exactly these keys:\n- \"name\": str (sender's full name)\n- \"email\": str (sender's email address)\n- \"company\": str (sender's company)\n- \"meeting_date\": str (date in YYYY-MM-DD)\n- \"topics\": list (list of short topic strings)\nReturn JSON only."
+    },
+    {
+     "role": "user",
+     "content": "Hi Scott, this is Priya Natarajan from Lakeside Robotics (priya.n@lakeside-robotics.example). Could we meet on 2026-11-05 to talk about drift monitoring and on-device Llama inference? Thanks!"
+    },
+    {
+     "role": "assistant",
+     "content": "{\"name\": \"Priya Natarajan\", \"email\": \"priya.n@lakeside-robotics.example\", \"company\": \"Lakeside Robotics\", \"meeting_date\": \"November 5, 2026\", \"topics\": \"drift monitoring, on-device Llama inference\"}"
+    },
+    {
+     "role": "user",
+     "content": "Your JSON failed validation:\n- \"meeting_date\" must look like date in YYYY-MM-DD, got 'November 5, 2026'\n- \"topics\" must be a list (list of short topic strings), got str\nReturn the corrected JSON object only."
+    }
+   ],
+   "format": "json",
+   "response": "{\"name\": \"Priya Natarajan\", \"email\": \"priya.n@lakeside-robotics.example\", \"company\": \"Lakeside Robotics\", \"meeting_date\": \"2026-11-05\", \"topics\": [\"drift monitoring\", \"on-device Llama inference\"]}",
+   "latency_ms": 1231.2,
+   "prompt_tokens": 222,
+   "completion_tokens": 20,
+   "model": "llama3.2:1b"
+  }
+ ],
+ "finished_at": "2026-10-26T07:52:33+00:00",
+ "title": "Structured JSON extraction + validate/retry",
+ "file": "02_json_extraction.py",
+ "source": "scripted-mock (synthetic, see tools/seed_recordings.py)"
+}

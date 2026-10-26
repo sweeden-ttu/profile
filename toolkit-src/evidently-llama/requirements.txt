@@ -1,0 +1,12 @@
+# Pinned, verified together on Python 3.13 (CI uses 3.12). Python >= 3.11 (pandas 3).
+# Set DO_NOT_TRACK=1 to switch off Evidently's anonymous usage telemetry.
+# Everything runs locally: no cloud keys, no model downloads (Ollama serves the model).
+evidently==0.7.23        # Reports, descriptors, tests, local Workspace + UI (`evidently ui`)
+tracely==0.2.12          # Evidently's OpenTelemetry wrapper (only used when EVIDENTLY_URL is set)
+opentelemetry-api==1.45.1
+opentelemetry-sdk==1.45.1
+pandas==3.0.5
+# The Ollama client is stdlib urllib (see evllama/llm.py) so there is nothing else to install.
+# Optional, NOT required: `pip install litellm` lets Evidently's built-in
+# LLMEval(provider="ollama", ...) judges call Ollama directly; this template ships its
+# own dependency-free judge (evllama/descriptors.py::LocalJudge) instead.

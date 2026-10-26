@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Fonts: Latin subsets, inlined into the bundle (works offline) ---------- */
+@font-face {
+  font-family: "Source Serif 4 Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 900;
+  src: url("data-url:../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("data-url:../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("data-url:../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+/* ---------- Tokens (RGB triplets so Tailwind can apply /alpha) ---------- */
+@layer base {
+  :root {
+    color-scheme: light;
+    --paper: 245 241 232;      /* #f5f1e8 */
+    --paper-2: 251 248 241;    /* raised card */
+    --paper-3: 236 229 214;    /* wells, code */
+    --ink: 15 15 15;           /* #0f0f0f */
+    --ink-2: 66 60 50;
+    --ink-3: 104 96 82;
+    --rule: 216 207 187;
+    --accent: 139 30 30;       /* #8b1e1e oxblood */
+    --accent-soft: 241 224 216;
+    /* syntax */
+    --syn-kw: 139 30 30;
+    --syn-str: 70 98 38;
+    --syn-num: 150 86 14;
+    --syn-com: 120 112 96;
+    --syn-fn: 34 80 120;
+    --syn-type: 110 60 120;
+    --syn-pre: 150 86 14;
+    /* viz */
+    --viz-a: 34 80 120;
+    --viz-b: 70 98 38;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: 21 18 12;        /* #15120c */
+      --paper-2: 30 26 18;
+      --paper-3: 40 34 24;
+      --ink: 236 228 207;       /* #ece4cf */
+      --ink-2: 200 191 168;
+      --ink-3: 160 151 128;
+      --rule: 62 54 40;
+      --accent: 217 122 122;    /* #d97a7a */
+      --accent-soft: 58 31 28;
+      --syn-kw: 217 122 122;
+      --syn-str: 166 196 120;
+      --syn-num: 226 170 96;
+      --syn-com: 140 131 110;
+      --syn-fn: 132 182 222;
+      --syn-type: 200 160 220;
+      --syn-pre: 226 170 96;
+      --viz-a: 132 182 222;
+      --viz-b: 166 196 120;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: 21 18 12;
+    --paper-2: 30 26 18;
+    --paper-3: 40 34 24;
+    --ink: 236 228 207;
+    --ink-2: 200 191 168;
+    --ink-3: 160 151 128;
+    --rule: 62 54 40;
+    --accent: 217 122 122;
+    --accent-soft: 58 31 28;
+    --syn-kw: 217 122 122;
+    --syn-str: 166 196 120;
+    --syn-num: 226 170 96;
+    --syn-com: 140 131 110;
+    --syn-fn: 132 182 222;
+    --syn-type: 200 160 220;
+    --syn-pre: 226 170 96;
+    --viz-a: 132 182 222;
+    --viz-b: 166 196 120;
+  }
+
+  * {
+    @apply border-rule;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: rgb(var(--paper));
+    color: rgb(var(--ink));
+    @apply font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.22);
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .kicker {
+    @apply font-sans text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink-3;
+  }
+  .hairline {
+    border-color: rgb(var(--rule));
+  }
+  .prose-cs p { @apply my-2; }
+  .prose-cs ul { @apply my-2 list-none pl-0; }
+  .prose-cs li { @apply relative pl-4 my-1; }
+  .prose-cs li::before {
+    content: "";
+    @apply absolute left-0 top-[0.7em] h-[5px] w-[5px] rounded-full;
+    background: rgb(var(--accent) / 0.75);
+  }
+  .code-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--rule)) transparent;
+  }
+  kbd.kbd {
+    @apply inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-sm border px-1 font-mono text-[0.7rem] text-ink-3;
+    background: rgb(var(--paper-2));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Syntax tokens live outside @layer so Tailwind never purges the dynamic names. */
+.tok-kw { color: rgb(var(--syn-kw)); font-weight: 600; }
+.tok-str { color: rgb(var(--syn-str)); }
+.tok-num { color: rgb(var(--syn-num)); }
+.tok-com { color: rgb(var(--syn-com)); font-style: italic; }
+.tok-fn { color: rgb(var(--syn-fn)); }
+.tok-type { color: rgb(var(--syn-type)); }
+.tok-pre { color: rgb(var(--syn-pre)); }
+.tok-dec { color: rgb(var(--syn-type)); }
+
+/* Show code exactly as typed: no "<=" -> "≤" ligatures. */
+pre, code, kbd, .font-mono {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}

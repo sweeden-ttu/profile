@@ -1,0 +1,194 @@
+// ─────────────────────────────────────────────────────────────────────────
+// Widgets — interactive figures, pinned work, chart frames.
+// Exposes the design tokens as CSS custom properties so client-side JS
+// (canvas renderers, SVG charts) can read the same palette in both themes.
+// ─────────────────────────────────────────────────────────────────────────
+@use "tokens" as *;
+
+:root {
+  --ink: #{$ink};
+  --ink-2: #{$ink-2};
+  --ink-3: #{$ink-3};
+  --ink-4: #{$ink-4};
+  --paper: #{$paper};
+  --paper-raise: #{$paper-raise};
+  --paper-sink: #{$paper-sink};
+  --rule: #{$rule};
+  --rule-2: #{$rule-2};
+  --accent: #{$accent};
+  --accent-soft: #{$accent-soft};
+  --success: #{$success};
+  --warn: #{$warn};
+  --code-fn: #{$code-fn};
+  --code-string: #{$code-string};
+  --code-number: #{$code-number};
+  --sans: #{$sans};
+  --mono: #{$mono};
+  --serif: #{$serif};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #{$dk-ink};
+    --ink-2: #{$dk-ink-2};
+    --ink-3: #{$dk-ink-3};
+    --ink-4: #{$dk-ink-4};
+    --paper: #{$dk-paper};
+    --paper-raise: #{$dk-paper-raise};
+    --paper-sink: #{$dk-paper-sink};
+    --rule: #{$dk-rule};
+    --rule-2: #{$dk-rule-2};
+    --accent: #{$dk-accent};
+    --accent-soft: #{$dk-accent-soft};
+    --code-fn: #{$dk-code-fn};
+    --code-string: #{$dk-code-string};
+    --code-number: #{$dk-code-number};
+  }
+}
+
+// ── Pinned work (homepage) ────────────────────────────────────────────────
+.pinned {
+  padding-block: $s-8 $s-7;
+  border-bottom: 1px solid var(--rule);
+}
+.pinned__head {
+  text-align: center;
+  max-width: $measure;
+  margin: 0 auto $s-7;
+}
+.pinned__title {
+  font-family: $serif;
+  font-size: $fs-h1;
+  line-height: $lh-heading;
+  letter-spacing: $ls-heading;
+  margin: $s-3 0 $s-3;
+  color: var(--ink);
+}
+.pinned__lede { color: var(--ink-3); font-size: $fs-body; margin: 0; }
+.pinned__grid {
+  display: grid;
+  gap: $s-5;
+  grid-template-columns: 1fr;
+  max-width: $measure-page;
+  margin-inline: auto;
+  @media (min-width: $bp-md) { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: $bp-lg) { grid-template-columns: repeat(3, 1fr); }
+}
+.pin-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $s-3;
+  padding: $s-5;
+  background: var(--paper-raise);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  border-radius: $r-2;
+  transition: transform $dur-base $ease, box-shadow $dur-base $ease;
+  &:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); }
+}
+.pin-card__badge {
+  align-self: flex-start;
+  font-family: $sans;
+  font-size: $fs-eyebrow;
+  font-weight: 600;
+  letter-spacing: $ls-eyebrow;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.pin-card__media {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
+  border-radius: $r-1;
+  border: 1px solid var(--rule-2);
+  background: var(--paper-sink);
+}
+.pin-card__title {
+  font-family: $serif;
+  font-size: $fs-h3;
+  line-height: $lh-heading;
+  margin: 0;
+  a { color: var(--ink); text-decoration: none; &:hover { color: var(--accent); } }
+  a::after { content: ""; position: absolute; inset: 0; }   // whole card clickable
+}
+.pin-card__text { font-family: $sans; font-size: $fs-small; line-height: $lh-tight + 0.1; color: var(--ink-2); margin: 0; }
+.pin-card__stats {
+  display: flex; flex-wrap: wrap; gap: $s-2 $s-4;
+  font-family: $mono; font-size: $fs-tiny; color: var(--ink-3);
+  margin: 0; padding: 0; list-style: none;
+  strong { color: var(--ink); font-weight: 600; }
+}
+.pin-card__links {
+  position: relative; z-index: 1;      // sit above the stretched title link
+  display: flex; flex-wrap: wrap; gap: $s-2 $s-4; margin-top: auto; padding-top: $s-2;
+  font-family: $sans; font-size: $fs-tiny; font-weight: 600;
+  a { text-decoration: none; color: var(--accent); &:hover { text-decoration: underline; } }
+}
+
+// ── Wide figure breakout inside reading-width prose ──────────────────────
+.figure-wide {
+  margin: $s-6 0;
+  @media (min-width: $bp-lg) {
+    width: min(#{$measure-wide}, calc(100vw - #{$pad-desktop * 2} - 16px));
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.prose figure img, .prose figure svg { margin-inline: auto; }
+.prose figure figcaption { font-family: $sans; font-size: $fs-tiny; margin-top: $s-2; text-align: center; }
+
+// ── Generic interactive widget frame ─────────────────────────────────────
+.widget {
+  font-family: $sans;
+  font-size: $fs-small;
+  color: var(--ink);
+  background: var(--paper-raise);
+  border: 1px solid var(--rule);
+  border-radius: $r-2;
+  padding: $s-4;
+  line-height: $lh-tight;
+  h4 { font-family: $sans; font-size: $fs-tiny; font-weight: 600; letter-spacing: $ls-eyebrow; text-transform: uppercase; color: var(--ink-3); margin: 0 0 $s-2; }
+  button, select, input[type="range"] { font-family: $sans; font-size: $fs-tiny; }
+  button {
+    padding: $s-1 $s-3; border: 1px solid var(--rule); border-radius: $r-1;
+    background: var(--paper); color: var(--ink);
+    &:hover { border-color: var(--accent); color: var(--accent); }
+    &[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  }
+  select { padding: $s-1 $s-2; border: 1px solid var(--rule); border-radius: $r-1; background: var(--paper); }
+  input[type="range"] { accent-color: var(--accent); }
+  .widget__row { display: flex; flex-wrap: wrap; align-items: center; gap: $s-2 $s-3; margin-bottom: $s-3; }
+  .widget__grid { display: grid; gap: $s-4; grid-template-columns: 1fr; @media (min-width: $bp-md) { grid-template-columns: 1fr 1fr; } }
+  .widget__note { color: var(--ink-3); font-size: $fs-tiny; margin: $s-2 0 0; }
+  .widget__mono { font-family: $mono; font-size: $fs-tiny; }
+  canvas, svg { width: 100%; height: auto; }
+}
+.widget-caption { font-family: $sans; font-size: $fs-tiny; color: var(--ink-3); margin-top: $s-2; }
+
+// ── Impairment-indicator grid (seminar post) ─────────────────────────────
+.ii-grid {
+  display: grid; gap: $s-1; margin: $s-3 0;
+  grid-template-columns: repeat(8, 1fr);
+  @media (min-width: $bp-sm) { grid-template-columns: repeat(12, 1fr); }
+}
+.widget .ii-cell {
+  font-family: $mono; font-size: $fs-tiny; padding: $s-1 0; min-height: 32px;
+  background: var(--paper-sink); color: var(--ink-3); border-color: var(--rule-2);
+  &.is-hit { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+}
+.widget__legend { display: flex; flex-wrap: wrap; gap: $s-2 $s-4; font-size: $fs-tiny; color: var(--ink-3);
+  i { display: inline-block; width: 10px; height: 10px; border-radius: $r-1; margin-right: $s-1; vertical-align: -1px; } }
+.pinned__more { text-align: center; font-family: $sans; font-size: $fs-small; margin: $s-6 0 0; }
+
+// ── Small-screen hygiene for long-form pages ──────────────────────────────
+.page-header__meta-item { flex-wrap: wrap; max-width: 100%; }
+.widget select { max-width: 100%; }
+@media (max-width: $bp-md) {
+  .prose table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+.prose .mermaid { overflow-x: auto; }
+.prose .mermaid svg { max-width: 100%; height: auto; }
+.katex-display { position: relative; }
+.prose :not(pre) > code { overflow-wrap: anywhere; }

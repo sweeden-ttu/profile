@@ -1,0 +1,10 @@
+{"id": "t01", "task": "A team runs 14 evals per day for 23 days. How many evals is that in total?", "expected": "322"}
+{"id": "t02", "task": "What is 15% of 2480 tokens? Calculate it.", "expected": "372"}
+{"id": "t03", "task": "Latency went from 840 ms to 610 ms. Calculate the reduction in ms.", "expected": "230"}
+{"id": "t04", "task": "Extract name, email and company as JSON from: 'Hi, I'm Dana Reyes (dana.reyes@example.org) from Northwind Labs.'", "expected": "{\"name\": \"Dana Reyes\", \"email\": \"dana.reyes@example.org\", \"company\": \"Northwind Labs\"}"}
+{"id": "t05", "task": "Extract the fields city and date (YYYY-MM-DD) as JSON: 'The workshop is in Lubbock on 2026-03-14.'", "expected": "{\"city\": \"Lubbock\", \"date\": \"2026-03-14\"}"}
+{"id": "t06", "task": "Parse this status line into JSON with keys tool and status: 'calc finished OK'", "expected": "{\"tool\": \"calc\", \"status\": \"OK\"}"}
+{"id": "t07", "task": "According to the docs, which port does Ollama listen on by default?", "expected": "11434"}
+{"id": "t08", "task": "According to the docs, what license is Evidently released under?", "expected": "Apache-2.0"}
+{"id": "t09", "task": "Summarize: Drift detection compares a current batch of data with a reference batch so that distribution changes are flagged before model quality quietly degrades in production.", "expected": "one sentence"}
+{"id": "t10", "task": "Give one tip for keeping prompts versioned.", "expected": "tip"}

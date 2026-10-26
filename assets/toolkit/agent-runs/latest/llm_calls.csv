@@ -1,0 +1,48 @@
+input,output,example,expects_json,latency_ms,prompt_tokens,completion_tokens,output_chars,output_chars: less or equal to 1500.0,output_words,output_sentences,sentiment_heuristic,toxicity,toxicity: equals clean,refusal,refusal: equals answer,pii,json_valid,row_tests_success_rate,row_tests_success_all
+Ollama serves its API on a default port. What is that port number multiplied by 3?,"Thought: I need Ollama's default port from the docs.
+Action: search_docs
+Action Input: ollama default port",react_calculator,False,1086.0,131,20,106,True,14,2,0.0,clean,True,answer,True,none,n/a,1.0,True
+Observation: ollama-port: Ollama serves its HTTP API on port 11434 by default.,"Thought: The port is 11434. Now I multiply it by 3.
+Action: calculator
+Action Input: 11434 * 3",react_calculator,False,1241.6,177,23,94,True,12,3,0.0,clean,True,answer,True,none,n/a,1.0,True
+Observation: 34302,"Thought: The calculator says 34302.
+Final Answer: 34302",react_calculator,False,876.4,205,10,55,True,6,2,0.0,clean,True,answer,True,none,n/a,1.0,True
+"Hi Scott, this is Priya Natarajan from Lakeside Robotics (priya.n@lakeside-robotics.example). Could we meet on 2026-11-05 to talk about drift monitoring and on-device Llama inference? Thanks!","{""name"": ""Priya Natarajan"", ""email"": ""priya.n@lakeside-robotics.example"", ""company"": ""Lakeside Robotics"", ""meeting_date"": ""November 5, 2026"", ""topics"": ""drift monitoring, on-device Llama inference""}",json_extraction,True,1151.2,120,23,198,True,16,1,0.0,clean,True,answer,True,pii,valid,1.0,True
+"Your JSON failed validation:
+- ""meeting_date"" must look like date in YYYY-MM-DD, got 'November 5, 2026'
+- ""topics"" must be a list (list of short topic strings), got str
+Return the corrected JSON object only.","{""name"": ""Priya Natarajan"", ""email"": ""priya.n@lakeside-robotics.example"", ""company"": ""Lakeside Robotics"", ""meeting_date"": ""2026-11-05"", ""topics"": [""drift monitoring"", ""on-device Llama inference""]}",json_extraction,True,1231.2,222,20,196,True,15,1,0.0,clean,True,answer,True,pii,valid,1.0,True
+How many times more parameters does Llama 3.1 8B have than Llama 3.2 1B? Round to one decimal.,"{""steps"": [{""tool"": ""search_docs"", ""input"": ""Llama 3.1 8B parameters""}, {""tool"": ""search_docs"", ""input"": ""Llama 3.2 1B parameters""}, {""tool"": ""calculator"", ""input"": ""8B parameters divided by 1.24B parameters""}]}",planner_executor,True,1350.0,91,31,211,True,22,1,0.0,clean,True,answer,True,none,valid,1.0,True
+"Facts:
+step 1 (search_docs: Llama 3.1 8B parameters): llama31-8b: Llama 3.1 8B has about 8 billion parameters and a 128K-token context window.
+step 2 (search_docs: Llama 3.2 1B parameters): llama32-1b: Llama 3.2 1B has about 1.24 billion parameters and a 128K-token context window.
+
+Compute: 8B parameters divided by 1.24B parameters",8 / 1.24,planner_executor,False,517.4,109,3,8,True,0,1,0.0,clean,True,answer,True,none,n/a,1.0,True
+"Question: How many times more parameters does Llama 3.1 8B have than Llama 3.2 1B? Round to one decimal.
+
+Step results:
+step 1 (search_docs: Llama 3.1 8B parameters): llama31-8b: Llama 3.1 8B has about 8 billion parameters and a 128K-token context window.
+step 2 (search_docs: Llama 3.2 1B parameters): llama32-1b: Llama 3.2 1B has about 1.24 billion parameters and a 128K-token context window.
+step 3 (calculator: 8B parameters divided by 1.24B parameters): 6.451613",Llama 3.1 8B has about 6.5 times more parameters than Llama 3.2 1B (8 / 1.24 = 6.45).,planner_executor,False,1168.4,131,23,85,True,10,1,0.0,clean,True,answer,True,none,n/a,1.0,True
+"Explain data drift to a product manager in at most 50 words, including one concrete example.","Data drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.",self_critique,False,2716.8,23,78,412,True,60,2,0.0,clean,True,answer,True,none,n/a,1.0,True
+"Task: Explain data drift to a product manager in at most 50 words, including one concrete example.
+
+Draft:
+Data drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.","{""score"": 5, ""issues"": [""too long for a product manager"", ""no concrete example"", ""jargon: statistical patterns, input distributions""]}",self_critique,True,1193.4,172,22,134,True,16,1,0.0,clean,True,answer,True,none,valid,1.0,True
+"Explain data drift to a product manager in at most 50 words, including one concrete example.
+
+Revise this draft to fix:
+- too long for a product manager
+- no concrete example
+- jargon: statistical patterns, input distributions
+- 60 words; limit is 50
+- no concrete example
+
+Draft:
+Data drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.
+
+Return only the revised text.","Data drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.",self_critique,False,2436.6,181,61,285,True,47,3,-1.0,clean,True,answer,True,none,n/a,1.0,True
+"Task: Explain data drift to a product manager in at most 50 words, including one concrete example.
+
+Draft:
+Data drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.","{""score"": 9, ""issues"": []}",self_critique,True,609.6,141,5,26,True,2,1,0.0,clean,True,answer,True,none,valid,1.0,True

@@ -1,0 +1,902 @@
+{
+ "format": "evllama-recordings/v1",
+ "model": "llama3.2:1b",
+ "source": "scripted-mock: synthetic hand-written responses (see tools/make_mock_recordings.py); re-record with `python -m evllama demo --record` against Ollama",
+ "records": [
+  {
+   "key": "f3759ba2bfbaa50b",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "A team runs 14 evals per day for 23 days. How many evals is that in total?"
+    }
+   ],
+   "format": null,
+   "response": "Sure! 14 evals per day for 23 days is 14 x 23 = 322 evals in total.",
+   "latency_ms": 949.2,
+   "prompt_tokens": 88,
+   "completion_tokens": 22,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "64d690bedd25d66d",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "What is 15% of 2480 tokens? Calculate it."
+    }
+   ],
+   "format": null,
+   "response": "15% of 2480 tokens is 362 tokens.",
+   "latency_ms": 557.6,
+   "prompt_tokens": 79,
+   "completion_tokens": 9,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "dacf5be078d610f6",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "Latency went from 840 ms to 610 ms. Calculate the reduction in ms."
+    }
+   ],
+   "format": null,
+   "response": "The latency reduction is 840 - 610 = 230 ms, which is a great improvement!",
+   "latency_ms": 870.4,
+   "prompt_tokens": 86,
+   "completion_tokens": 19,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "f4f1d6cf84206c62",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nReturn ONE JSON object and nothing else: no prose, no code fences. Use exactly the keys\nthe task names, strings for text, ISO-8601 (YYYY-MM-DD) for dates, and null when a value\nis not present in the text. Never invent values."
+    },
+    {
+     "role": "user",
+     "content": "Extract name, email and company as JSON from: 'Hi, I'm Dana Reyes (dana.reyes@example.org) from Northwind Labs.'"
+    }
+   ],
+   "format": "json",
+   "response": "Here is the JSON you asked for:\n```json\n{\"name\": \"Dana Reyes\", \"email\": \"dana.reyes@example.org\", \"company\": \"Northwind Labs\"}\n```",
+   "latency_ms": 954.5,
+   "prompt_tokens": 91,
+   "completion_tokens": 22,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "9b81f5d0541989f3",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nReturn ONE JSON object and nothing else: no prose, no code fences. Use exactly the keys\nthe task names, strings for text, ISO-8601 (YYYY-MM-DD) for dates, and null when a value\nis not present in the text. Never invent values."
+    },
+    {
+     "role": "user",
+     "content": "Extract the fields city and date (YYYY-MM-DD) as JSON: 'The workshop is in Lubbock on 2026-03-14.'"
+    }
+   ],
+   "format": "json",
+   "response": "{\"city\": \"Lubbock\", \"date\": \"March 14, 2026\"}",
+   "latency_ms": 531.5,
+   "prompt_tokens": 88,
+   "completion_tokens": 7,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "a7a8312e8411c820",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nReturn ONE JSON object and nothing else: no prose, no code fences. Use exactly the keys\nthe task names, strings for text, ISO-8601 (YYYY-MM-DD) for dates, and null when a value\nis not present in the text. Never invent values."
+    },
+    {
+     "role": "user",
+     "content": "Parse this status line into JSON with keys tool and status: 'calc finished OK'"
+    }
+   ],
+   "format": "json",
+   "response": "tool: calc, status: OK",
+   "latency_ms": 448.6,
+   "prompt_tokens": 83,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "4710d149dcd63b66",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nAnswer only from the documentation. Search it with the lookup tool first, then answer in\none sentence and cite the doc id in square brackets, e.g. [d2]. If the docs do not\ncontain the answer, say \"not in the docs\"."
+    },
+    {
+     "role": "user",
+     "content": "According to the docs, which port does Ollama listen on by default?"
+    }
+   ],
+   "format": null,
+   "response": "Ollama listens on port 8080 by default.",
+   "latency_ms": 554.9,
+   "prompt_tokens": 77,
+   "completion_tokens": 9,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "8ebcf9c6be573400",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nAnswer only from the documentation. Search it with the lookup tool first, then answer in\none sentence and cite the doc id in square brackets, e.g. [d2]. If the docs do not\ncontain the answer, say \"not in the docs\"."
+    },
+    {
+     "role": "user",
+     "content": "According to the docs, what license is Evidently released under?"
+    }
+   ],
+   "format": null,
+   "response": "I'm unable to browse the documentation, but most libraries like this use the MIT license.",
+   "latency_ms": 857.8,
+   "prompt_tokens": 77,
+   "completion_tokens": 19,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "6f1ee3709b8ee0d8",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nSummarize the given text in ONE sentence of at most 25 words. Keep the main claim and\nany numbers; drop hedging and filler."
+    },
+    {
+     "role": "user",
+     "content": "Summarize: Drift detection compares a current batch of data with a reference batch so that distribution changes are flagged before model quality quietly degrades in production."
+    }
+   ],
+   "format": null,
+   "response": "Drift detection is a technique that compares current data with reference data in order to flag changes in the distribution of the data before the quality of the model degrades in production systems, which is useful.",
+   "latency_ms": 1663.2,
+   "prompt_tokens": 82,
+   "completion_tokens": 46,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "89b222d48ec99234",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a helpful assistant.\n\nAnswer briefly (1-2 sentences) and concretely. Prefer an actionable tip over theory."
+    },
+    {
+     "role": "user",
+     "content": "Give one tip for keeping prompts versioned."
+    }
+   ],
+   "format": null,
+   "response": "Use version control.",
+   "latency_ms": 348.9,
+   "prompt_tokens": 39,
+   "completion_tokens": 3,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "76417c0433fb24b4",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: calculator. Available tools: calc.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "Task: A team runs 14 evals per day for 23 days. How many evals is that in total?"
+    }
+   ],
+   "format": null,
+   "response": "TOOL calc: 14*23",
+   "latency_ms": 502.9,
+   "prompt_tokens": 149,
+   "completion_tokens": 3,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "cc6187f2e3c6de80",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: calculator. Available tools: calc.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "Task: A team runs 14 evals per day for 23 days. How many evals is that in total?"
+    },
+    {
+     "role": "assistant",
+     "content": "TOOL calc: 14*23"
+    },
+    {
+     "role": "user",
+     "content": "Tool result: 322\nNow give the final answer."
+    }
+   ],
+   "format": null,
+   "response": "322 evals",
+   "latency_ms": 485.6,
+   "prompt_tokens": 164,
+   "completion_tokens": 2,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "48fb8db524ff8a1e",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: calculator. Available tools: calc.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "Task: What is 15% of 2480 tokens? Calculate it."
+    }
+   ],
+   "format": null,
+   "response": "TOOL calc: 2480*15%",
+   "latency_ms": 491.4,
+   "prompt_tokens": 141,
+   "completion_tokens": 3,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "beb16f8f1c869b04",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: calculator. Available tools: calc.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "Task: What is 15% of 2480 tokens? Calculate it."
+    },
+    {
+     "role": "assistant",
+     "content": "TOOL calc: 2480*15%"
+    },
+    {
+     "role": "user",
+     "content": "Tool result: 372\nNow give the final answer."
+    }
+   ],
+   "format": null,
+   "response": "372 tokens",
+   "latency_ms": 475.1,
+   "prompt_tokens": 156,
+   "completion_tokens": 2,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "cad44e1133588bd9",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: calculator. Available tools: calc.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "Task: Latency went from 840 ms to 610 ms. Calculate the reduction in ms."
+    }
+   ],
+   "format": null,
+   "response": "TOOL calc: 840-610",
+   "latency_ms": 500.1,
+   "prompt_tokens": 147,
+   "completion_tokens": 3,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "eae644049dc6e9eb",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: calculator. Available tools: calc.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nSolve arithmetic word problems. Translate the question into a single arithmetic\nexpression (numbers and + - * / % ** only) and let the calc tool compute it — small\nmodels are unreliable at multi-digit arithmetic. Reply with the number and its unit."
+    },
+    {
+     "role": "user",
+     "content": "Task: Latency went from 840 ms to 610 ms. Calculate the reduction in ms."
+    },
+    {
+     "role": "assistant",
+     "content": "TOOL calc: 840-610"
+    },
+    {
+     "role": "user",
+     "content": "Tool result: 230\nNow give the final answer."
+    }
+   ],
+   "format": null,
+   "response": "230 ms",
+   "latency_ms": 483.5,
+   "prompt_tokens": 162,
+   "completion_tokens": 2,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "230b258b9d61cf91",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: extractor. Available tools: none.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nReturn ONE JSON object and nothing else: no prose, no code fences. Use exactly the keys\nthe task names, strings for text, ISO-8601 (YYYY-MM-DD) for dates, and null when a value\nis not present in the text. Never invent values."
+    },
+    {
+     "role": "user",
+     "content": "Task: Extract name, email and company as JSON from: 'Hi, I'm Dana Reyes (dana.reyes@example.org) from Northwind Labs.'"
+    }
+   ],
+   "format": "json",
+   "response": "{\"name\": \"Dana Reyes\", \"email\": \"dana.reyes@example.org\", \"company\": \"Northwind Labs\"}",
+   "latency_ms": 697.9,
+   "prompt_tokens": 152,
+   "completion_tokens": 10,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "0a5b8e4e57b55696",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: extractor. Available tools: none.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nReturn ONE JSON object and nothing else: no prose, no code fences. Use exactly the keys\nthe task names, strings for text, ISO-8601 (YYYY-MM-DD) for dates, and null when a value\nis not present in the text. Never invent values."
+    },
+    {
+     "role": "user",
+     "content": "Task: Extract the fields city and date (YYYY-MM-DD) as JSON: 'The workshop is in Lubbock on 2026-03-14.'"
+    }
+   ],
+   "format": "json",
+   "response": "{\"city\": \"Lubbock\", \"date\": \"2026-03-14\"}",
+   "latency_ms": 541.0,
+   "prompt_tokens": 149,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "5a081f079ed05666",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: extractor. Available tools: none.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nReturn ONE JSON object and nothing else: no prose, no code fences. Use exactly the keys\nthe task names, strings for text, ISO-8601 (YYYY-MM-DD) for dates, and null when a value\nis not present in the text. Never invent values."
+    },
+    {
+     "role": "user",
+     "content": "Task: Parse this status line into JSON with keys tool and status: 'calc finished OK'"
+    }
+   ],
+   "format": "json",
+   "response": "{\"tool\": \"calc\", \"status\": \"OK\"}",
+   "latency_ms": 534.0,
+   "prompt_tokens": 144,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "e0adc2e15eb791bd",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: docs_qa. Available tools: lookup.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nAnswer only from the documentation. Search it with the lookup tool first, then answer in\none sentence and cite the doc id in square brackets, e.g. [d2]. If the docs do not\ncontain the answer, say \"not in the docs\"."
+    },
+    {
+     "role": "user",
+     "content": "Task: According to the docs, which port does Ollama listen on by default?"
+    }
+   ],
+   "format": null,
+   "response": "TOOL lookup: ollama default port",
+   "latency_ms": 564.2,
+   "prompt_tokens": 138,
+   "completion_tokens": 6,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "d35b46f42e0effab",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: docs_qa. Available tools: lookup.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nAnswer only from the documentation. Search it with the lookup tool first, then answer in\none sentence and cite the doc id in square brackets, e.g. [d2]. If the docs do not\ncontain the answer, say \"not in the docs\"."
+    },
+    {
+     "role": "user",
+     "content": "Task: According to the docs, which port does Ollama listen on by default?"
+    },
+    {
+     "role": "assistant",
+     "content": "TOOL lookup: ollama default port"
+    },
+    {
+     "role": "user",
+     "content": "Tool result: [d1] Ollama server: Ollama serves models over HTTP on port 11434 by default; set OLLAMA_HOST to change the bind address.\n[d4] Evidently UI: Run `evidently ui --workspace ./workspace` to browse projects, dashboards, prompts and traces locally on port 8000.\nNow give the final answer."
+    }
+   ],
+   "format": null,
+   "response": "Ollama listens on port 11434 by default [d1].",
+   "latency_ms": 792.7,
+   "prompt_tokens": 220,
+   "completion_tokens": 10,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "ace31ea80c4acf70",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: docs_qa. Available tools: lookup.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nAnswer only from the documentation. Search it with the lookup tool first, then answer in\none sentence and cite the doc id in square brackets, e.g. [d2]. If the docs do not\ncontain the answer, say \"not in the docs\"."
+    },
+    {
+     "role": "user",
+     "content": "Task: According to the docs, what license is Evidently released under?"
+    }
+   ],
+   "format": null,
+   "response": "TOOL lookup: evidently license",
+   "latency_ms": 525.2,
+   "prompt_tokens": 138,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "ee00d0035033023e",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: docs_qa. Available tools: lookup.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nAnswer only from the documentation. Search it with the lookup tool first, then answer in\none sentence and cite the doc id in square brackets, e.g. [d2]. If the docs do not\ncontain the answer, say \"not in the docs\"."
+    },
+    {
+     "role": "user",
+     "content": "Task: According to the docs, what license is Evidently released under?"
+    },
+    {
+     "role": "assistant",
+     "content": "TOOL lookup: evidently license"
+    },
+    {
+     "role": "user",
+     "content": "Tool result: [d2] Evidently license: Evidently is an open-source library released under the Apache-2.0 license.\n[d4] Evidently UI: Run `evidently ui --workspace ./workspace` to browse projects, dashboards, prompts and traces locally on port 8000.\nNow give the final answer."
+    }
+   ],
+   "format": null,
+   "response": "Evidently is released under the Apache-2.0 license [d2].",
+   "latency_ms": 783.2,
+   "prompt_tokens": 213,
+   "completion_tokens": 10,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "6114d654b1346c79",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: summarizer. Available tools: none.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nSummarize the given text in ONE sentence of at most 25 words. Keep the main claim and\nany numbers; drop hedging and filler."
+    },
+    {
+     "role": "user",
+     "content": "Task: Summarize: Drift detection compares a current batch of data with a reference batch so that distribution changes are flagged before model quality quietly degrades in production."
+    }
+   ],
+   "format": null,
+   "response": "Drift detection compares current and reference data to flag distribution changes before model quality degrades.",
+   "latency_ms": 950.9,
+   "prompt_tokens": 143,
+   "completion_tokens": 19,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "7862a70062c432ba",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a precise local agent running on a small Llama model.\nActive skill: general. Available tools: none.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\nAnswer briefly (1-2 sentences) and concretely. Prefer an actionable tip over theory."
+    },
+    {
+     "role": "user",
+     "content": "Task: Give one tip for keeping prompts versioned."
+    }
+   ],
+   "format": null,
+   "response": "Store every prompt change as a new numbered version together with the eval feedback it got.",
+   "latency_ms": 927.6,
+   "prompt_tokens": 99,
+   "completion_tokens": 20,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "189fce9cf14d2626",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nA team runs 14 evals per day for 23 days. How many evals is that in total?\n\nAnswer:\nSure! 14 evals per day for 23 days is 14 x 23 = 322 evals in total.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 4 - correct total, chatty",
+   "latency_ms": 561.3,
+   "prompt_tokens": 109,
+   "completion_tokens": 7,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "9142ebe954d0f468",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nWhat is 15% of 2480 tokens? Calculate it.\n\nAnswer:\n15% of 2480 tokens is 362 tokens.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 1 - wrong number; 15% of 2480 is 372",
+   "latency_ms": 689.9,
+   "prompt_tokens": 92,
+   "completion_tokens": 13,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "ec47f9d02fa670bb",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nLatency went from 840 ms to 610 ms. Calculate the reduction in ms.\n\nAnswer:\nThe latency reduction is 840 - 610 = 230 ms, which is a great improvement!\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 4 - correct, unnecessary commentary",
+   "latency_ms": 561.0,
+   "prompt_tokens": 109,
+   "completion_tokens": 7,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "db143a1dd26e81bd",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nExtract name, email and company as JSON from: 'Hi, I'm Dana Reyes (dana.reyes@example.org) from Northwind Labs.'\n\nAnswer:\nHere is the JSON you asked for:\n```json\n{\"name\": \"Dana Reyes\", \"email\": \"dana.reyes@example.org\", \"company\": \"Northwind Labs\"}\n```\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 3 - right values but wrapped in prose and a code fence",
+   "latency_ms": 862.6,
+   "prompt_tokens": 134,
+   "completion_tokens": 16,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "946b1eeb7341c335",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nExtract the fields city and date (YYYY-MM-DD) as JSON: 'The workshop is in Lubbock on 2026-03-14.'\n\nAnswer:\n{\"city\": \"Lubbock\", \"date\": \"March 14, 2026\"}\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 2 - date not in YYYY-MM-DD",
+   "latency_ms": 600.0,
+   "prompt_tokens": 110,
+   "completion_tokens": 9,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "114212af43b580f7",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nParse this status line into JSON with keys tool and status: 'calc finished OK'\n\nAnswer:\ntool: calc, status: OK\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 1 - not JSON",
+   "latency_ms": 508.9,
+   "prompt_tokens": 99,
+   "completion_tokens": 6,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "af832d98df859814",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nAccording to the docs, which port does Ollama listen on by default?\n\nAnswer:\nOllama listens on port 8080 by default.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 1 - wrong port, invented",
+   "latency_ms": 549.0,
+   "prompt_tokens": 100,
+   "completion_tokens": 7,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "78148ca0bb47469c",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nAccording to the docs, what license is Evidently released under?\n\nAnswer:\nI'm unable to browse the documentation, but most libraries like this use the MIT license.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 1 - refused and guessed the wrong license",
+   "latency_ms": 679.5,
+   "prompt_tokens": 112,
+   "completion_tokens": 11,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "ccd37de8747c71a7",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nSummarize: Drift detection compares a current batch of data with a reference batch so that distribution changes are flagged before model quality quietly degrades in production.\n\nAnswer:\nDrift detection is a technique that compares current data with reference data in order to flag changes in the distribution of the data before the quality of the model degrades in production systems, which is useful.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 3 - accurate but over 25 words",
+   "latency_ms": 724.8,
+   "prompt_tokens": 172,
+   "completion_tokens": 10,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "6e171c023894137c",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nGive one tip for keeping prompts versioned.\n\nAnswer:\nUse version control.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 2 - too vague",
+   "latency_ms": 496.0,
+   "prompt_tokens": 90,
+   "completion_tokens": 6,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "6d692b0a465431f6",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nA team runs 14 evals per day for 23 days. How many evals is that in total?\n\nAnswer:\n322 evals\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - correct",
+   "latency_ms": 465.0,
+   "prompt_tokens": 95,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "9674c1e8228491a8",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nWhat is 15% of 2480 tokens? Calculate it.\n\nAnswer:\n372 tokens\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - correct",
+   "latency_ms": 453.8,
+   "prompt_tokens": 87,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "1606566e7661c3bd",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nLatency went from 840 ms to 610 ms. Calculate the reduction in ms.\n\nAnswer:\n230 ms\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - correct",
+   "latency_ms": 461.1,
+   "prompt_tokens": 92,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "34a29574b7f9724f",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nExtract name, email and company as JSON from: 'Hi, I'm Dana Reyes (dana.reyes@example.org) from Northwind Labs.'\n\nAnswer:\n{\"name\": \"Dana Reyes\", \"email\": \"dana.reyes@example.org\", \"company\": \"Northwind Labs\"}\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - exact JSON",
+   "latency_ms": 543.2,
+   "prompt_tokens": 123,
+   "completion_tokens": 6,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "0b8dfff278ff115d",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nExtract the fields city and date (YYYY-MM-DD) as JSON: 'The workshop is in Lubbock on 2026-03-14.'\n\nAnswer:\n{\"city\": \"Lubbock\", \"date\": \"2026-03-14\"}\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - exact JSON",
+   "latency_ms": 522.6,
+   "prompt_tokens": 109,
+   "completion_tokens": 6,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "7505feacb47de64f",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nParse this status line into JSON with keys tool and status: 'calc finished OK'\n\nAnswer:\n{\"tool\": \"calc\", \"status\": \"OK\"}\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - exact JSON",
+   "latency_ms": 512.5,
+   "prompt_tokens": 101,
+   "completion_tokens": 6,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "f411e897b766df1f",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nAccording to the docs, which port does Ollama listen on by default?\n\nAnswer:\nOllama listens on port 11434 by default [d1].\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - correct with citation",
+   "latency_ms": 551.1,
+   "prompt_tokens": 102,
+   "completion_tokens": 7,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "83da39e5b5ef8a20",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nAccording to the docs, what license is Evidently released under?\n\nAnswer:\nEvidently is released under the Apache-2.0 license [d2].\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - correct with citation",
+   "latency_ms": 554.0,
+   "prompt_tokens": 104,
+   "completion_tokens": 7,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "eb80f3aecc4c6b62",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nSummarize: Drift detection compares a current batch of data with a reference batch so that distribution changes are flagged before model quality quietly degrades in production.\n\nAnswer:\nDrift detection compares current and reference data to flag distribution changes before model quality degrades.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 5 - concise",
+   "latency_ms": 536.4,
+   "prompt_tokens": 146,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "f10217024d9a867c",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format."
+    },
+    {
+     "role": "user",
+     "content": "Question:\nGive one tip for keeping prompts versioned.\n\nAnswer:\nStore every prompt change as a new numbered version together with the eval feedback it got.\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason."
+    }
+   ],
+   "format": null,
+   "response": "SCORE: 4 - actionable",
+   "latency_ms": 482.9,
+   "prompt_tokens": 107,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  }
+ ]
+}

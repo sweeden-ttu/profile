@@ -1,0 +1,152 @@
+{
+ "format": "llama-agents-transcript/v1",
+ "example": "react_calculator",
+ "task": "Ollama serves its API on a default port. What is that port number multiplied by 3?",
+ "backend": "replay",
+ "model": "llama3.2:1b",
+ "started_at": "2026-10-26T07:52:55+00:00",
+ "final_answer": "34302",
+ "ok": true,
+ "steps": [
+  {
+   "step": 1,
+   "kind": "llm",
+   "name": "react-turn-1",
+   "input": "Ollama serves its API on a default port. What is that port number multiplied by 3?",
+   "output": "Thought: I need Ollama's default port from the docs.\nAction: search_docs\nAction Input: ollama default port",
+   "ok": true,
+   "latency_ms": 1086.0,
+   "prompt_tokens": 131,
+   "completion_tokens": 20,
+   "match": "exact"
+  },
+  {
+   "step": 2,
+   "kind": "tool",
+   "name": "search_docs",
+   "input": "ollama default port",
+   "output": "ollama-port: Ollama serves its HTTP API on port 11434 by default.",
+   "ok": true,
+   "latency_ms": 0.1
+  },
+  {
+   "step": 3,
+   "kind": "llm",
+   "name": "react-turn-2",
+   "input": "Observation: ollama-port: Ollama serves its HTTP API on port 11434 by default.",
+   "output": "Thought: The port is 11434. Now I multiply it by 3.\nAction: calculator\nAction Input: 11434 * 3",
+   "ok": true,
+   "latency_ms": 1241.6,
+   "prompt_tokens": 177,
+   "completion_tokens": 23,
+   "match": "exact"
+  },
+  {
+   "step": 4,
+   "kind": "tool",
+   "name": "calculator",
+   "input": "11434 * 3",
+   "output": "34302",
+   "ok": true,
+   "latency_ms": 2.7
+  },
+  {
+   "step": 5,
+   "kind": "llm",
+   "name": "react-turn-3",
+   "input": "Observation: 34302",
+   "output": "Thought: The calculator says 34302.\nFinal Answer: 34302",
+   "ok": true,
+   "latency_ms": 876.4,
+   "prompt_tokens": 205,
+   "completion_tokens": 10,
+   "match": "exact"
+  }
+ ],
+ "calls": [
+  {
+   "key": "fb84bb627ca00089",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a ReAct agent. You can use these tools:\n- search_docs: look up a fact in the documentation. Input: a short search query.\n- calculator: evaluate arithmetic. Input: an expression such as 12 * (3 + 4).\n\nReply in exactly this format, one step at a time:\nThought: <what you need next>\nAction: <search_docs or calculator>\nAction Input: <the tool input>\n\nWhen you know the answer, reply:\nThought: <why you are done>\nFinal Answer: <the answer>"
+    },
+    {
+     "role": "user",
+     "content": "Ollama serves its API on a default port. What is that port number multiplied by 3?"
+    }
+   ],
+   "format": null,
+   "response": "Thought: I need Ollama's default port from the docs.\nAction: search_docs\nAction Input: ollama default port",
+   "latency_ms": 1086.0,
+   "prompt_tokens": 131,
+   "completion_tokens": 20,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "222d38a2a3b6d037",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a ReAct agent. You can use these tools:\n- search_docs: look up a fact in the documentation. Input: a short search query.\n- calculator: evaluate arithmetic. Input: an expression such as 12 * (3 + 4).\n\nReply in exactly this format, one step at a time:\nThought: <what you need next>\nAction: <search_docs or calculator>\nAction Input: <the tool input>\n\nWhen you know the answer, reply:\nThought: <why you are done>\nFinal Answer: <the answer>"
+    },
+    {
+     "role": "user",
+     "content": "Ollama serves its API on a default port. What is that port number multiplied by 3?"
+    },
+    {
+     "role": "assistant",
+     "content": "Thought: I need Ollama's default port from the docs.\nAction: search_docs\nAction Input: ollama default port"
+    },
+    {
+     "role": "user",
+     "content": "Observation: ollama-port: Ollama serves its HTTP API on port 11434 by default."
+    }
+   ],
+   "format": null,
+   "response": "Thought: The port is 11434. Now I multiply it by 3.\nAction: calculator\nAction Input: 11434 * 3",
+   "latency_ms": 1241.6,
+   "prompt_tokens": 177,
+   "completion_tokens": 23,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "68e5e8be62facb94",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You are a ReAct agent. You can use these tools:\n- search_docs: look up a fact in the documentation. Input: a short search query.\n- calculator: evaluate arithmetic. Input: an expression such as 12 * (3 + 4).\n\nReply in exactly this format, one step at a time:\nThought: <what you need next>\nAction: <search_docs or calculator>\nAction Input: <the tool input>\n\nWhen you know the answer, reply:\nThought: <why you are done>\nFinal Answer: <the answer>"
+    },
+    {
+     "role": "user",
+     "content": "Ollama serves its API on a default port. What is that port number multiplied by 3?"
+    },
+    {
+     "role": "assistant",
+     "content": "Thought: I need Ollama's default port from the docs.\nAction: search_docs\nAction Input: ollama default port"
+    },
+    {
+     "role": "user",
+     "content": "Observation: ollama-port: Ollama serves its HTTP API on port 11434 by default."
+    },
+    {
+     "role": "assistant",
+     "content": "Thought: The port is 11434. Now I multiply it by 3.\nAction: calculator\nAction Input: 11434 * 3"
+    },
+    {
+     "role": "user",
+     "content": "Observation: 34302"
+    }
+   ],
+   "format": null,
+   "response": "Thought: The calculator says 34302.\nFinal Answer: 34302",
+   "latency_ms": 876.4,
+   "prompt_tokens": 205,
+   "completion_tokens": 10,
+   "model": "llama3.2:1b"
+  }
+ ],
+ "finished_at": "2026-10-26T07:52:55+00:00",
+ "title": "ReAct: docs search + calculator",
+ "file": "01_react_calculator.py"
+}

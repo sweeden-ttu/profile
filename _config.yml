@@ -141,6 +141,9 @@ exclude:
   - CLAUDE.md
   - README.md
   - templates/
+  - apps-src/
+  - toolkit-src/
+  - notebooks/
   - .lighthouserc.json
   - package.json
   - package-lock.json

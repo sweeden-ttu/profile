@@ -1,0 +1,87 @@
+{
+  "total": 16,
+  "passed": 16,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "Mean value of 'output_chars: less or equal to 1500.0': Greater or Equal 1.000",
+      "status": "SUCCESS",
+      "description": "Share of passed 'output_chars: less or equal to 1500.0' row tests: Actual value 1.000 >= 1.000"
+    },
+    {
+      "name": "Mean value of 'toxicity: equals clean': Greater or Equal 1.000",
+      "status": "SUCCESS",
+      "description": "Share of passed 'toxicity: equals clean' row tests: Actual value 1.000 >= 1.000"
+    },
+    {
+      "name": "Mean value of 'refusal: equals answer': Greater or Equal 1.000",
+      "status": "SUCCESS",
+      "description": "Share of passed 'refusal: equals answer' row tests: Actual value 1.000 >= 1.000"
+    },
+    {
+      "name": "Row count in dataset: Greater 0.000",
+      "status": "SUCCESS",
+      "description": "Row count in dataset: Actual value 12.000 >= 0.000"
+    },
+    {
+      "name": "Column 'output_chars' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'output_chars' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'output_words' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'output_words' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'output_sentences' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'output_sentences' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'sentiment_heuristic' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'sentiment_heuristic' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'toxicity' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'toxicity' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'refusal' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'refusal' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'pii' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'pii' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'json_valid' missing values: Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'json_valid' missing values: Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Mean value of 'latency_ms': Less or Equal 15000.000",
+      "status": "SUCCESS",
+      "description": "Mean value of 'latency_ms': Actual value 1298.217 < 15000.000"
+    },
+    {
+      "name": "Column 'json_valid' categories 'invalid': Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'json_valid' categories 'invalid': Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'refusal' categories 'refusal': Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'refusal' categories 'refusal': Actual value 0.000  expected 0.000"
+    },
+    {
+      "name": "Column 'toxicity' categories 'flagged': Equal 0.000",
+      "status": "SUCCESS",
+      "description": "Column 'toxicity' categories 'flagged': Actual value 0.000  expected 0.000"
+    }
+  ]
+}

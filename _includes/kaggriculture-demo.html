@@ -1,0 +1,48 @@
+<figure class="figure-wide">
+<div id="kagg-demo" class="widget" data-base="{{ '/assets/kaggriculture/' | relative_url }}" tabindex="-1" aria-label="Kaggriculture MuZero agent demo">
+  <p class="kd-loading">Loading two recorded games and the trained network (≈250 KB)…</p>
+  <div class="kd-body" hidden>
+    <div class="widget__row">
+      <label class="visually-hidden" for="kd-game">Game</label>
+      <select id="kd-game" class="kd-game"></select>
+      <button type="button" class="kd-play" aria-pressed="false">▶ play</button>
+      <button type="button" class="kd-prev" aria-label="previous day">◀ day</button>
+      <button type="button" class="kd-next" aria-label="next day">day ▶</button>
+      <label class="widget__mono">speed <input type="range" class="kd-speed" min="1" max="24" value="6"></label>
+    </div>
+    <input type="range" class="kd-scrub" min="0" max="719" value="0" aria-label="turn" style="width:100%">
+    <p class="widget__mono kd-clock" aria-live="polite"></p>
+    <div class="widget__grid">
+      <div>
+        <h4>MuZero macrocontroller · <span class="kd-cash-a"></span></h4>
+        <canvas class="kd-farm-a" role="img" style="aspect-ratio:1/1"></canvas>
+      </div>
+      <div>
+        <h4>Expert playbook · <span class="kd-cash-b"></span></h4>
+        <canvas class="kd-farm-b" role="img" style="aspect-ratio:1/1"></canvas>
+      </div>
+    </div>
+    <div class="widget__legend" aria-hidden="true">
+      <span><i style="background:var(--warn)"></i>wheat</span><span><i style="background:var(--accent)"></i>carrot · tomato · strawberry</span>
+      <span><i style="background:var(--success)"></i>melon</span><span><i style="background:var(--code-fn)"></i>cows</span>
+      <span><i style="background:var(--ink-3)"></i>sheep</span><span><i style="background:var(--paper-sink);outline:1px solid var(--rule)"></i>locked quadrant</span>
+      <span>outlined tile = unwatered yesterday · ● farmer · ○ hired hands · square = shed</span>
+    </div>
+    <h4 style="margin-top:16px">Cash over the season</h4>
+    <svg class="kd-cash" role="img" aria-label="cash of both farms over the season"></svg>
+    <p class="widget__note kd-prices"></p>
+    <h4 style="margin-top:16px">Day <span class="kd-day"></span>: the plan MuZero played was <em class="kd-plan"></em></h4>
+    <div class="widget__row">
+      <span class="widget__mono">weights</span>
+      <button type="button" data-weights="trained" aria-pressed="true">trained</button>
+      <button type="button" data-weights="random" aria-pressed="false">random (weight-swap)</button>
+      <label class="widget__mono">simulations <input type="range" class="kd-sims" min="1" max="256" value="32"> <span class="kd-sims-v">32</span></label>
+      <button type="button" class="kd-rerun">re-run search</button>
+    </div>
+    <svg class="kd-visits" role="img" aria-label="MCTS visit counts over the ten plans"></svg>
+    <p class="widget__note kd-sim" aria-live="polite"></p>
+  </div>
+</div>
+<figcaption>The real agent, replayed. Both games come from <code>kaggle-environments</code> 1.33.2 with the champion weights. The planner below the farms is a JavaScript port of the notebook's MCTS. At 32 simulations it reproduces the recorded plan on all 60 days of both games, and the black ticks show the visit distribution that was recorded during play.</figcaption>
+</figure>
+<script defer src="{{ '/assets/kaggriculture/agent-demo.js' | relative_url }}"></script>

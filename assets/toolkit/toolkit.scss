@@ -1,0 +1,227 @@
+---
+# Compiled by Jekyll from the site's design tokens (_sass/_tokens.scss).
+---
+@use "tokens" as *;
+
+// Tokens re-exposed as CSS custom properties so the toolkit JS/HTML can theme itself,
+// with the same paper/ink/oxblood palette and automatic dark mode as the rest of the site.
+:root {
+  --tk-paper: #{$paper};
+  --tk-raise: #{$paper-raise};
+  --tk-sink: #{$paper-sink};
+  --tk-ink: #{$ink};
+  --tk-ink-2: #{$ink-2};
+  --tk-ink-3: #{$ink-3};
+  --tk-ink-4: #{$ink-4};
+  --tk-rule: #{$rule};
+  --tk-rule-2: #{$rule-2};
+  --tk-accent: #{$accent};
+  --tk-accent-hover: #{$accent-hover};
+  --tk-accent-soft: #{$accent-soft};
+  --tk-success: #{$success};
+  --tk-warn: #{$warn};
+  --tk-code-bg: #{$code-bg};
+  --tk-code-text: #{$code-text};
+  --tk-code-comment: #{$code-comment};
+  --tk-sans: #{$sans};
+  --tk-mono: #{$mono};
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tk-paper: #{$dk-paper};
+    --tk-raise: #{$dk-paper-raise};
+    --tk-sink: #{$dk-paper-sink};
+    --tk-ink: #{$dk-ink};
+    --tk-ink-2: #{$dk-ink-2};
+    --tk-ink-3: #{$dk-ink-3};
+    --tk-ink-4: #{$dk-ink-4};
+    --tk-rule: #{$dk-rule};
+    --tk-rule-2: #{$dk-rule-2};
+    --tk-accent: #{$dk-accent};
+    --tk-accent-hover: #{$dk-accent-hover};
+    --tk-accent-soft: #{$dk-accent-soft};
+    --tk-success: #8fbf7f;
+    --tk-warn: #d6b88a;
+    --tk-code-bg: #{$dk-code-bg};
+    --tk-code-text: #{$dk-code-text};
+    --tk-code-comment: #{$dk-code-comment};
+  }
+}
+
+// Break out of the 680px reading column for wide interactive blocks.
+.tk-wide {
+  width: min(calc(100vw - #{2 * $pad-mobile}), #{$measure-page - 2 * $pad-desktop});
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-block: $s-6;
+}
+
+.tk-panel {
+  background: var(--tk-raise);
+  border: 1px solid var(--tk-rule);
+  border-radius: $r-3;
+  padding: $s-5;
+}
+
+// Wide tables scroll inside their own box instead of widening the page on phones.
+.tk-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-block: $s-5; }
+.tk-scroll > table { margin: 0; }
+
+.tk-gap-b { margin-bottom: $s-4; }
+.tk-gap-t { margin-top: $s-4; }
+
+.tk-eyebrow {
+  font-family: var(--tk-sans);
+  font-size: $fs-eyebrow;
+  font-weight: 600;
+  letter-spacing: $ls-eyebrow;
+  text-transform: uppercase;
+  color: var(--tk-accent);
+  margin: 0 0 $s-2;
+}
+
+// ── Toolbar ───────────────────────────────────────────────────────────────
+.tk-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $s-3;
+  margin-bottom: $s-4;
+  font-family: var(--tk-sans);
+  font-size: $fs-small;
+
+  label { color: var(--tk-ink-3); font-size: $fs-tiny; font-weight: 600; letter-spacing: 0.04em; }
+  select {
+    min-height: 44px;
+    padding: $s-2 $s-3;
+    background: var(--tk-paper);
+    color: var(--tk-ink);
+    border: 1px solid var(--tk-rule);
+    border-radius: $r-2;
+  }
+  .btn { min-height: 44px; }
+  .btn[disabled] { opacity: 0.55; cursor: progress; transform: none; }
+}
+.tk-toolbar__spacer { flex: 1 1 auto; }
+
+.tk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: $s-2;
+  padding: $s-1 $s-3;
+  border-radius: $r-pill;
+  border: 1px solid var(--tk-rule);
+  font-family: var(--tk-sans);
+  font-size: $fs-tiny;
+  color: var(--tk-ink-2);
+  background: var(--tk-paper);
+  white-space: nowrap;
+  &::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--tk-ink-4); }
+  &.is-ok::before { background: var(--tk-success); }
+  &.is-fail::before { background: var(--tk-accent); }
+  &.is-busy::before { background: var(--tk-warn); animation: tk-pulse 1s $ease infinite alternate; }
+}
+@keyframes tk-pulse { from { opacity: 0.3; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .tk-pill.is-busy::before { animation: none; } }
+
+// ── Runner: editor + output ────────────────────────────────────────────────
+.tk-runner {
+  display: grid;
+  gap: $s-4;
+  grid-template-columns: minmax(0, 1fr);
+  @media (min-width: $bp-lg) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+}
+.tk-pane { display: flex; flex-direction: column; min-width: 0; }
+.tk-pane__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: $s-3;
+  font-family: var(--tk-sans);
+  font-size: $fs-tiny;
+  color: var(--tk-ink-3);
+  margin-bottom: $s-2;
+  code { font-size: inherit; }
+}
+
+.tk-editor,
+.tk-output {
+  width: 100%;
+  margin: 0;
+  font-family: var(--tk-mono);
+  font-size: $fs-tiny;
+  line-height: $lh-code;
+  color: var(--tk-code-text);
+  background: var(--tk-code-bg);
+  border: 1px solid var(--tk-rule);
+  border-radius: $r-2;
+  padding: $s-4;
+  tab-size: 4;
+}
+.tk-editor {
+  min-height: 460px;
+  resize: vertical;
+  white-space: pre;
+  overflow: auto;
+  &:focus-visible { outline: 2px solid var(--tk-accent); outline-offset: 2px; }
+}
+.tk-output {
+  min-height: 460px;
+  max-height: 640px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  .tk-err { color: var(--tk-accent); }
+  .tk-dim { color: var(--tk-code-comment); }
+}
+
+// ── CI run metadata ────────────────────────────────────────────────────────
+.tk-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: $s-3 $s-5;
+  margin: 0;
+  font-family: var(--tk-sans);
+  dt { font-size: $fs-eyebrow; font-weight: 600; letter-spacing: $ls-eyebrow; text-transform: uppercase; color: var(--tk-ink-3); }
+  dd { margin: $s-1 0 0; font-size: $fs-small; color: var(--tk-ink); overflow-wrap: anywhere; }
+  code { font-size: $fs-tiny; }
+}
+
+// ── Trace timeline ─────────────────────────────────────────────────────────
+.tk-steps { display: flex; flex-direction: column; gap: $s-2; margin: 0; padding: 0; list-style: none; }
+.tk-step {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+  gap: $s-3;
+  align-items: start;
+  padding: $s-2 $s-3;
+  border-left: 2px solid var(--tk-rule);
+  font-family: var(--tk-sans);
+  font-size: $fs-tiny;
+  color: var(--tk-ink-2);
+  &.is-fail { border-left-color: var(--tk-accent); }
+}
+.tk-step__kind {
+  font-family: var(--tk-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tk-accent);
+}
+.tk-step__io { min-width: 0; overflow-wrap: anywhere; }
+.tk-step__io b { color: var(--tk-ink); font-weight: 600; }
+.tk-step__ms { color: var(--tk-ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+// ── Embedded Evidently report ──────────────────────────────────────────────
+.tk-report {
+  width: 100%;
+  height: 900px;
+  border: 1px solid var(--tk-rule);
+  border-radius: $r-3;
+  background: #fff; // Evidently's report UI is light-only
+}
+.tk-note { font-family: var(--tk-sans); font-size: $fs-tiny; color: var(--tk-ink-3); margin-top: $s-2; }
+
+// Toolkit landing cards: make whole card clickable without changing .card styles
+.tk-cards .card { position: relative; }
+.tk-cards .card__title a::after { content: ""; position: absolute; inset: 0; }

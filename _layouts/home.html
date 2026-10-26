@@ -13,6 +13,8 @@ layout: default
   </div>
 </section>
 
+{% include pinned-work.html %}
+
 <section class="section">
   <div class="container">
     <div class="section-rule"><span class="section-rule__label">Recent writing</span></div>
@@ -61,7 +63,7 @@ layout: default
 </section>
 {%- endif %}
 
-{%- assign featured_projects = site.projects | slice: 0, 3 -%}
+{%- assign featured_projects = site.projects | where_exp: "p", "p.pinned == nil" | sort: "date" | reverse | slice: 0, 3 -%}
 {%- if featured_projects and featured_projects.size > 0 %}
 <section class="section section--bordered">
   <div class="container">

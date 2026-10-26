@@ -1,0 +1,65 @@
+{
+  "prompts": {
+    "agent-system": {
+      "description": "System + user prompt for the skills agent. The demo compares v1 (reference) with v2 (current).",
+      "versions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-20T15:00:00+00:00",
+          "system": "You are a helpful assistant.\n\n$skill_instructions",
+          "template": "$task",
+          "note": "baseline: generic assistant, no tool protocol",
+          "feedback": "judge 2.2/5, mean latency 773.66 ms, tool success 1.0, invalid JSON 1, refusals 1, tests 15/20 (replay backend)",
+          "metrics": {
+            "rows": 10,
+            "judge_mean": 2.2,
+            "latency_ms_mean": 773.66,
+            "tool_success": 1.0,
+            "json_invalid": 1,
+            "refusals": 1,
+            "tests_passed": 15,
+            "tests_total": 20
+          },
+          "answered_at": "2026-10-26T07:39:26+00:00"
+        },
+        {
+          "version": 2,
+          "created_at": "2026-10-22T15:00:00+00:00",
+          "system": "You are a precise local agent running on a small Llama model.\nActive skill: $skill. Available tools: $tools.\nTo use a tool, reply with exactly one line `TOOL <name>: <input>` and nothing else.\nWhen you have the answer, reply with the final answer only, no preamble.\n\n$skill_instructions",
+          "template": "Task: $task",
+          "note": "explicit tool protocol + 'final answer only' to stop hallucinated arithmetic and prose-wrapped JSON",
+          "feedback": "judge 4.9/5, mean latency 925.53 ms, tool success 1.0, invalid JSON 0, refusals 0, tests 20/20 (replay backend)",
+          "metrics": {
+            "rows": 10,
+            "judge_mean": 4.9,
+            "latency_ms_mean": 925.53,
+            "tool_success": 1.0,
+            "json_invalid": 0,
+            "refusals": 0,
+            "tests_passed": 20,
+            "tests_total": 20
+          },
+          "answered_at": "2026-10-26T07:39:26+00:00"
+        }
+      ]
+    },
+    "judge": {
+      "description": "LLM-as-judge rubric run on the same local model.",
+      "versions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-20T15:00:00+00:00",
+          "system": "You are a strict grader of answers produced by a small assistant. Penalize wrong numbers, invented facts, refusals and answers that ignore the requested format.",
+          "template": "Question:\n$question\n\nAnswer:\n$answer\n\nRate correctness and helpfulness from 1 (bad) to 5 (excellent). Reply as `SCORE: <n>` followed by one short reason.",
+          "note": "1-5 rubric; parsed with the regex SCORE: <n>",
+          "feedback": "parsed 20/20 scores (SCORE: n); mean 3.55",
+          "metrics": {
+            "parsed": 20,
+            "total": 20
+          },
+          "answered_at": "2026-10-26T07:39:26+00:00"
+        }
+      ]
+    }
+  }
+}

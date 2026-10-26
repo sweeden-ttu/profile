@@ -1,0 +1,587 @@
+{
+  "generated_at": "2026-10-26T07:44:12+00:00",
+  "model": "llama3.2:1b",
+  "backend": "replay",
+  "project": "local-llama-agent",
+  "reference_version": 1,
+  "current_version": 2,
+  "tasks": 10,
+  "spans": 96,
+  "versions": {
+    "v1": {
+      "metrics": {
+        "rows": 10,
+        "judge_mean": 2.2,
+        "latency_ms_mean": 773.66,
+        "tool_success": 1.0,
+        "json_invalid": 1,
+        "refusals": 1,
+        "tests_passed": 15,
+        "tests_total": 20
+      },
+      "tests": {
+        "total": 20,
+        "passed": 15,
+        "failed": 5,
+        "tests": [
+          {
+            "name": "Mean value of 'output_chars: less or equal to 1200.0': Greater or Equal 1.000",
+            "status": "SUCCESS",
+            "description": "Share of passed 'output_chars: less or equal to 1200.0' row tests: Actual value 1.000 >= 1.000"
+          },
+          {
+            "name": "Mean value of 'toxicity: equals clean': Greater or Equal 1.000",
+            "status": "SUCCESS",
+            "description": "Share of passed 'toxicity: equals clean' row tests: Actual value 1.000 >= 1.000"
+          },
+          {
+            "name": "Mean value of 'refusal: equals answer': Greater or Equal 1.000",
+            "status": "FAIL",
+            "description": "Share of passed 'refusal: equals answer' row tests: Actual value 0.900 < 1.000"
+          },
+          {
+            "name": "Mean value of 'judge_score: greater or equal to 3.0': Greater or Equal 1.000",
+            "status": "FAIL",
+            "description": "Share of passed 'judge_score: greater or equal to 3.0' row tests: Actual value 0.400 < 1.000"
+          },
+          {
+            "name": "Row count in dataset: Greater 0.000",
+            "status": "SUCCESS",
+            "description": "Row count in dataset: Actual value 10.000 >= 0.000"
+          },
+          {
+            "name": "Column 'output_chars' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'output_chars' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'output_words' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'output_words' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'output_sentences' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'output_sentences' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'sentiment_heuristic' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'sentiment_heuristic' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'toxicity' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'toxicity' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'refusal' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'refusal' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'pii' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'pii' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'json_valid' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'json_valid' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'judge_score' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'judge_score' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Mean value of 'latency_ms': Less or Equal 4000.000",
+            "status": "SUCCESS",
+            "description": "Mean value of 'latency_ms': Actual value 773.660 < 4000.000"
+          },
+          {
+            "name": "Mean value of 'tool_success': Greater or Equal 0.900",
+            "status": "SUCCESS",
+            "description": "Mean value of 'tool_success': Actual value 1.000 >= 0.900"
+          },
+          {
+            "name": "Column 'json_valid' categories 'invalid': Equal 0.000",
+            "status": "FAIL",
+            "description": "Column 'json_valid' categories 'invalid': Actual value 1.000 , but expected 0.000"
+          },
+          {
+            "name": "Column 'refusal' categories 'refusal': Equal 0.000",
+            "status": "FAIL",
+            "description": "Column 'refusal' categories 'refusal': Actual value 1.000 , but expected 0.000"
+          },
+          {
+            "name": "Column 'toxicity' categories 'flagged': Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'toxicity' categories 'flagged': Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Mean value of 'judge_score': Greater or Equal 3.500",
+            "status": "FAIL",
+            "description": "Mean value of 'judge_score': Actual value 2.200 < 3.500"
+          }
+        ]
+      }
+    },
+    "v2": {
+      "metrics": {
+        "rows": 10,
+        "judge_mean": 4.9,
+        "latency_ms_mean": 925.53,
+        "tool_success": 1.0,
+        "json_invalid": 0,
+        "refusals": 0,
+        "tests_passed": 20,
+        "tests_total": 20
+      },
+      "tests": {
+        "total": 20,
+        "passed": 20,
+        "failed": 0,
+        "tests": [
+          {
+            "name": "Mean value of 'output_chars: less or equal to 1200.0': Greater or Equal 1.000",
+            "status": "SUCCESS",
+            "description": "Share of passed 'output_chars: less or equal to 1200.0' row tests: Actual value 1.000 >= 1.000"
+          },
+          {
+            "name": "Mean value of 'toxicity: equals clean': Greater or Equal 1.000",
+            "status": "SUCCESS",
+            "description": "Share of passed 'toxicity: equals clean' row tests: Actual value 1.000 >= 1.000"
+          },
+          {
+            "name": "Mean value of 'refusal: equals answer': Greater or Equal 1.000",
+            "status": "SUCCESS",
+            "description": "Share of passed 'refusal: equals answer' row tests: Actual value 1.000 >= 1.000"
+          },
+          {
+            "name": "Mean value of 'judge_score: greater or equal to 3.0': Greater or Equal 1.000",
+            "status": "SUCCESS",
+            "description": "Share of passed 'judge_score: greater or equal to 3.0' row tests: Actual value 1.000 >= 1.000"
+          },
+          {
+            "name": "Row count in dataset: Greater 0.000",
+            "status": "SUCCESS",
+            "description": "Row count in dataset: Actual value 10.000 >= 0.000"
+          },
+          {
+            "name": "Column 'output_chars' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'output_chars' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'output_words' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'output_words' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'output_sentences' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'output_sentences' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'sentiment_heuristic' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'sentiment_heuristic' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'toxicity' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'toxicity' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'refusal' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'refusal' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'pii' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'pii' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'json_valid' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'json_valid' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'judge_score' missing values: Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'judge_score' missing values: Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Mean value of 'latency_ms': Less or Equal 4000.000",
+            "status": "SUCCESS",
+            "description": "Mean value of 'latency_ms': Actual value 925.530 < 4000.000"
+          },
+          {
+            "name": "Mean value of 'tool_success': Greater or Equal 0.900",
+            "status": "SUCCESS",
+            "description": "Mean value of 'tool_success': Actual value 1.000 >= 0.900"
+          },
+          {
+            "name": "Column 'json_valid' categories 'invalid': Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'json_valid' categories 'invalid': Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'refusal' categories 'refusal': Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'refusal' categories 'refusal': Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Column 'toxicity' categories 'flagged': Equal 0.000",
+            "status": "SUCCESS",
+            "description": "Column 'toxicity' categories 'flagged': Actual value 0.000  expected 0.000"
+          },
+          {
+            "name": "Mean value of 'judge_score': Greater or Equal 3.500",
+            "status": "SUCCESS",
+            "description": "Mean value of 'judge_score': Actual value 4.900 >= 3.500"
+          }
+        ]
+      }
+    }
+  },
+  "comparison_tests": {
+    "total": 66,
+    "passed": 42,
+    "failed": 24,
+    "tests": [
+      {
+        "name": "Mean value of 'output_chars: less or equal to 1200.0': Greater or Equal 1.000",
+        "status": "SUCCESS",
+        "description": "Share of passed 'output_chars: less or equal to 1200.0' row tests: Actual value 1.000 >= 1.000"
+      },
+      {
+        "name": "Mean value of 'toxicity: equals clean': Greater or Equal 1.000",
+        "status": "SUCCESS",
+        "description": "Share of passed 'toxicity: equals clean' row tests: Actual value 1.000 >= 1.000"
+      },
+      {
+        "name": "Mean value of 'refusal: equals answer': Greater or Equal 1.000",
+        "status": "SUCCESS",
+        "description": "Share of passed 'refusal: equals answer' row tests: Actual value 1.000 >= 1.000"
+      },
+      {
+        "name": "Mean value of 'judge_score: greater or equal to 3.0': Greater or Equal 1.000",
+        "status": "SUCCESS",
+        "description": "Share of passed 'judge_score: greater or equal to 3.0' row tests: Actual value 1.000 >= 1.000"
+      },
+      {
+        "name": "Row count in dataset: Equal 10.000 ± 1.000",
+        "status": "SUCCESS",
+        "description": "Row count in dataset: Actual value 10.000  expected 10.000 ± 1.000"
+      },
+      {
+        "name": "Column 'output_chars' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'output_chars' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'output_chars' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'output_chars' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Minimal value of 'output_chars': Equal 20.000 ± 2.000",
+        "status": "FAIL",
+        "description": "Minimal value of 'output_chars': Actual value 6.000 , but expected 20.000 ± 2.000"
+      },
+      {
+        "name": "Maximum value of 'output_chars': Equal 215.000 ± 21.500",
+        "status": "FAIL",
+        "description": "Maximum value of 'output_chars': Actual value 111.000 , but expected 215.000 ± 21.500"
+      },
+      {
+        "name": "Mean value of 'output_chars': Equal 73.400 ± 7.340",
+        "status": "FAIL",
+        "description": "Mean value of 'output_chars': Actual value 48.700 , but expected 73.400 ± 7.340"
+      },
+      {
+        "name": "Std value of 'output_chars': Equal 60.235 ± 6.024",
+        "status": "FAIL",
+        "description": "Std value of 'output_chars': Actual value 37.065 , but expected 60.235 ± 6.024"
+      },
+      {
+        "name": "Quantile 0.25 of 'output_chars': Equal 34.500 ± 3.450",
+        "status": "FAIL",
+        "description": "Quantile 0.25 of 'output_chars': Actual value 15.500 , but expected 34.500 ± 3.450"
+      },
+      {
+        "name": "Quantile 0.5 of 'output_chars': Equal 56.000 ± 5.600",
+        "status": "FAIL",
+        "description": "Quantile 0.5 of 'output_chars': Actual value 43.000 , but expected 56.000 ± 5.600"
+      },
+      {
+        "name": "Quantile 0.75 of 'output_chars': Equal 85.250 ± 8.525",
+        "status": "SUCCESS",
+        "description": "Quantile 0.75 of 'output_chars': Actual value 78.500  expected 85.250 ± 8.525"
+      },
+      {
+        "name": "Column 'output_words' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'output_words' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'output_words' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'output_words' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Minimal value of 'output_words': Equal 3.000 ± 0.300",
+        "status": "FAIL",
+        "description": "Minimal value of 'output_words': Actual value 1.000 , but expected 3.000 ± 0.300"
+      },
+      {
+        "name": "Maximum value of 'output_words': Equal 36.000 ± 3.600",
+        "status": "FAIL",
+        "description": "Maximum value of 'output_words': Actual value 16.000 , but expected 36.000 ± 3.600"
+      },
+      {
+        "name": "Mean value of 'output_words': Equal 10.700 ± 1.070",
+        "status": "FAIL",
+        "description": "Mean value of 'output_words': Actual value 6.400 , but expected 10.700 ± 1.070"
+      },
+      {
+        "name": "Std value of 'output_words': Equal 9.922 ± 0.992",
+        "status": "FAIL",
+        "description": "Std value of 'output_words': Actual value 5.542 , but expected 9.922 ± 0.992"
+      },
+      {
+        "name": "Quantile 0.25 of 'output_words': Equal 4.000 ± 0.400",
+        "status": "FAIL",
+        "description": "Quantile 0.25 of 'output_words': Actual value 1.500 , but expected 4.000 ± 0.400"
+      },
+      {
+        "name": "Quantile 0.5 of 'output_words': Equal 8.000 ± 0.800",
+        "status": "FAIL",
+        "description": "Quantile 0.5 of 'output_words': Actual value 5.500 , but expected 8.000 ± 0.800"
+      },
+      {
+        "name": "Quantile 0.75 of 'output_words': Equal 13.250 ± 1.325",
+        "status": "FAIL",
+        "description": "Quantile 0.75 of 'output_words': Actual value 8.000 , but expected 13.250 ± 1.325"
+      },
+      {
+        "name": "Column 'output_sentences' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'output_sentences' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'output_sentences' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'output_sentences' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Minimal value of 'output_sentences': Equal 1.000 ± 0.100",
+        "status": "SUCCESS",
+        "description": "Minimal value of 'output_sentences': Actual value 1.000  expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Maximum value of 'output_sentences': Equal 1.000 ± 0.100",
+        "status": "SUCCESS",
+        "description": "Maximum value of 'output_sentences': Actual value 1.000  expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Mean value of 'output_sentences': Equal 1.000 ± 0.100",
+        "status": "SUCCESS",
+        "description": "Mean value of 'output_sentences': Actual value 1.000  expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Std value of 'output_sentences': Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Std value of 'output_sentences': Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Quantile 0.25 of 'output_sentences': Equal 1.000 ± 0.100",
+        "status": "SUCCESS",
+        "description": "Quantile 0.25 of 'output_sentences': Actual value 1.000  expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Quantile 0.5 of 'output_sentences': Equal 1.000 ± 0.100",
+        "status": "SUCCESS",
+        "description": "Quantile 0.5 of 'output_sentences': Actual value 1.000  expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Quantile 0.75 of 'output_sentences': Equal 1.000 ± 0.100",
+        "status": "SUCCESS",
+        "description": "Quantile 0.75 of 'output_sentences': Actual value 1.000  expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Column 'sentiment_heuristic' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'sentiment_heuristic' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'sentiment_heuristic' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'sentiment_heuristic' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Minimal value of 'sentiment_heuristic': Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Minimal value of 'sentiment_heuristic': Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Maximum value of 'sentiment_heuristic': Equal 1.000 ± 0.100",
+        "status": "FAIL",
+        "description": "Maximum value of 'sentiment_heuristic': Actual value 0.000 , but expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Mean value of 'sentiment_heuristic': Equal 0.100 ± 0.010",
+        "status": "FAIL",
+        "description": "Mean value of 'sentiment_heuristic': Actual value 0.000 , but expected 0.100 ± 0.010"
+      },
+      {
+        "name": "Std value of 'sentiment_heuristic': Equal 0.316 ± 0.032",
+        "status": "FAIL",
+        "description": "Std value of 'sentiment_heuristic': Actual value 0.000 , but expected 0.316 ± 0.032"
+      },
+      {
+        "name": "Quantile 0.25 of 'sentiment_heuristic': Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Quantile 0.25 of 'sentiment_heuristic': Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Quantile 0.5 of 'sentiment_heuristic': Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Quantile 0.5 of 'sentiment_heuristic': Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Quantile 0.75 of 'sentiment_heuristic': Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Quantile 0.75 of 'sentiment_heuristic': Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'toxicity' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'toxicity' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'toxicity' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'toxicity' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'refusal' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'refusal' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'refusal' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'refusal' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'pii' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'pii' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'pii' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'pii' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'json_valid' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'json_valid' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'json_valid' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'json_valid' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'judge_score' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'judge_score' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Column 'judge_score' missing values: Equal 0.000 ± 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'judge_score' missing values: Actual value 0.000  expected 0.000 ± 0.000"
+      },
+      {
+        "name": "Minimal value of 'judge_score': Equal 1.000 ± 0.100",
+        "status": "FAIL",
+        "description": "Minimal value of 'judge_score': Actual value 4.000 , but expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Maximum value of 'judge_score': Equal 4.000 ± 0.400",
+        "status": "FAIL",
+        "description": "Maximum value of 'judge_score': Actual value 5.000 , but expected 4.000 ± 0.400"
+      },
+      {
+        "name": "Mean value of 'judge_score': Equal 2.200 ± 0.220",
+        "status": "FAIL",
+        "description": "Mean value of 'judge_score': Actual value 4.900 , but expected 2.200 ± 0.220"
+      },
+      {
+        "name": "Std value of 'judge_score': Equal 1.229 ± 0.123",
+        "status": "FAIL",
+        "description": "Std value of 'judge_score': Actual value 0.316 , but expected 1.229 ± 0.123"
+      },
+      {
+        "name": "Quantile 0.25 of 'judge_score': Equal 1.000 ± 0.100",
+        "status": "FAIL",
+        "description": "Quantile 0.25 of 'judge_score': Actual value 5.000 , but expected 1.000 ± 0.100"
+      },
+      {
+        "name": "Quantile 0.5 of 'judge_score': Equal 2.000 ± 0.200",
+        "status": "FAIL",
+        "description": "Quantile 0.5 of 'judge_score': Actual value 5.000 , but expected 2.000 ± 0.200"
+      },
+      {
+        "name": "Quantile 0.75 of 'judge_score': Equal 3.000 ± 0.300",
+        "status": "FAIL",
+        "description": "Quantile 0.75 of 'judge_score': Actual value 5.000 , but expected 3.000 ± 0.300"
+      },
+      {
+        "name": "Mean value of 'row_tests_success_rate': Equal 0.825 ± 0.083",
+        "status": "FAIL",
+        "description": "Mean value of 'row_tests_success_rate': Actual value 1.000 , but expected 0.825 ± 0.083"
+      },
+      {
+        "name": "Mean value of 'latency_ms': Less or Equal 4000.000",
+        "status": "SUCCESS",
+        "description": "Mean value of 'latency_ms': Actual value 925.530 < 4000.000"
+      },
+      {
+        "name": "Quantile 0.95 of 'latency_ms': Equal 1344.285 ± 134.428",
+        "status": "SUCCESS",
+        "description": "Quantile 0.95 of 'latency_ms': Actual value 1335.075  expected 1344.285 ± 134.428"
+      },
+      {
+        "name": "Mean value of 'tool_success': Greater or Equal 0.900",
+        "status": "SUCCESS",
+        "description": "Mean value of 'tool_success': Actual value 1.000 >= 0.900"
+      },
+      {
+        "name": "Column 'json_valid' categories 'invalid': Equal 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'json_valid' categories 'invalid': Actual value 0.000  expected 0.000"
+      },
+      {
+        "name": "Column 'refusal' categories 'refusal': Equal 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'refusal' categories 'refusal': Actual value 0.000  expected 0.000"
+      },
+      {
+        "name": "Column 'toxicity' categories 'flagged': Equal 0.000",
+        "status": "SUCCESS",
+        "description": "Column 'toxicity' categories 'flagged': Actual value 0.000  expected 0.000"
+      },
+      {
+        "name": "Mean value of 'judge_score': Greater or Equal 3.500",
+        "status": "SUCCESS",
+        "description": "Mean value of 'judge_score': Actual value 4.900 >= 3.500"
+      }
+    ]
+  }
+}

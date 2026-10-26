@@ -1,0 +1,166 @@
+{
+ "format": "llama-agents-transcript/v1",
+ "example": "self_critique",
+ "task": "Explain data drift to a product manager in at most 50 words, including one concrete example.",
+ "backend": "replay",
+ "model": "llama3.2:1b",
+ "started_at": "2026-10-26T07:52:55+00:00",
+ "final_answer": "Data drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.",
+ "ok": true,
+ "steps": [
+  {
+   "step": 1,
+   "kind": "llm",
+   "name": "draft",
+   "input": "Explain data drift to a product manager in at most 50 words, including one concrete example.",
+   "output": "Data drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.",
+   "ok": true,
+   "latency_ms": 2716.8,
+   "prompt_tokens": 23,
+   "completion_tokens": 78,
+   "match": "exact"
+  },
+  {
+   "step": 2,
+   "kind": "llm",
+   "name": "critique-1",
+   "input": "Task: Explain data drift to a product manager in at most 50 words, including one concrete example.\n\nDraft:\nData drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.",
+   "output": "{\"score\": 5, \"issues\": [\"too long for a product manager\", \"no concrete example\", \"jargon: statistical patterns, input distributions\"]}",
+   "ok": true,
+   "latency_ms": 1193.4,
+   "prompt_tokens": 172,
+   "completion_tokens": 22,
+   "match": "exact"
+  },
+  {
+   "step": 3,
+   "kind": "critique",
+   "name": "round-1",
+   "input": "Data drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.",
+   "output": {
+    "score": 5,
+    "issues": [
+     "too long for a product manager",
+     "no concrete example",
+     "jargon: statistical patterns, input distributions"
+    ],
+    "hard": [
+     "60 words; limit is 50",
+     "no concrete example"
+    ]
+   },
+   "ok": false,
+   "latency_ms": 0.0
+  },
+  {
+   "step": 4,
+   "kind": "llm",
+   "name": "revise-1",
+   "input": "Explain data drift to a product manager in at most 50 words, including one concrete example.\n\nRevise this draft to fix:\n- too long for a product manager\n- no concrete example\n- jargon: statistical patterns, input distributions\n- 60 words; limit is 50\n- no concrete example\n\nDraft:\nData drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.\n\nReturn only the revised text.",
+   "output": "Data drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.",
+   "ok": true,
+   "latency_ms": 2436.6,
+   "prompt_tokens": 181,
+   "completion_tokens": 61,
+   "match": "exact"
+  },
+  {
+   "step": 5,
+   "kind": "llm",
+   "name": "critique-2",
+   "input": "Task: Explain data drift to a product manager in at most 50 words, including one concrete example.\n\nDraft:\nData drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.",
+   "output": "{\"score\": 9, \"issues\": []}",
+   "ok": true,
+   "latency_ms": 609.6,
+   "prompt_tokens": 141,
+   "completion_tokens": 5,
+   "match": "exact"
+  },
+  {
+   "step": 6,
+   "kind": "critique",
+   "name": "round-2",
+   "input": "Data drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.",
+   "output": {
+    "score": 9,
+    "issues": [],
+    "hard": []
+   },
+   "ok": true,
+   "latency_ms": 0.0
+  }
+ ],
+ "calls": [
+  {
+   "key": "2ebccd67b85db5e5",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Explain data drift to a product manager in at most 50 words, including one concrete example."
+    }
+   ],
+   "format": null,
+   "response": "Data drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.",
+   "latency_ms": 2716.8,
+   "prompt_tokens": 23,
+   "completion_tokens": 78,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "94e81fc9417f5084",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You review short explanations for a product manager. Return JSON: {\"score\": <1-10>, \"issues\": [\"...\"]}. Penalize jargon, more than 50 words, and a missing concrete example."
+    },
+    {
+     "role": "user",
+     "content": "Task: Explain data drift to a product manager in at most 50 words, including one concrete example.\n\nDraft:\nData drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly."
+    }
+   ],
+   "format": "json",
+   "response": "{\"score\": 5, \"issues\": [\"too long for a product manager\", \"no concrete example\", \"jargon: statistical patterns, input distributions\"]}",
+   "latency_ms": 1193.4,
+   "prompt_tokens": 172,
+   "completion_tokens": 22,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "b78a6e52275706b4",
+   "messages": [
+    {
+     "role": "user",
+     "content": "Explain data drift to a product manager in at most 50 words, including one concrete example.\n\nRevise this draft to fix:\n- too long for a product manager\n- no concrete example\n- jargon: statistical patterns, input distributions\n- 60 words; limit is 50\n- no concrete example\n\nDraft:\nData drift happens when the data your model sees in production gradually stops looking like the data it was trained on. Because machine learning models learn statistical patterns from historical training data, any shift in input distributions, user behaviour, seasonality or upstream pipelines can silently reduce accuracy over time, which is why teams monitor feature distributions and retrain models regularly.\n\nReturn only the revised text."
+    }
+   ],
+   "format": null,
+   "response": "Data drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears.",
+   "latency_ms": 2436.6,
+   "prompt_tokens": 181,
+   "completion_tokens": 61,
+   "model": "llama3.2:1b"
+  },
+  {
+   "key": "1de4b7d9aa52224e",
+   "messages": [
+    {
+     "role": "system",
+     "content": "You review short explanations for a product manager. Return JSON: {\"score\": <1-10>, \"issues\": [\"...\"]}. Penalize jargon, more than 50 words, and a missing concrete example."
+    },
+    {
+     "role": "user",
+     "content": "Task: Explain data drift to a product manager in at most 50 words, including one concrete example.\n\nDraft:\nData drift means the real-world data a model sees slowly stops matching the data it learned from, so its predictions get worse. For example, a shopping recommender trained before the holidays may misjudge what people want in December. Teams watch for drift and retrain when it appears."
+    }
+   ],
+   "format": "json",
+   "response": "{\"score\": 9, \"issues\": []}",
+   "latency_ms": 609.6,
+   "prompt_tokens": 141,
+   "completion_tokens": 5,
+   "model": "llama3.2:1b"
+  }
+ ],
+ "finished_at": "2026-10-26T07:52:55+00:00",
+ "title": "Self-critique: draft -> critique -> revise",
+ "file": "04_self_critique.py"
+}

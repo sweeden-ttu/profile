@@ -1,0 +1,7 @@
+[
+  {"id": "d1", "title": "Ollama server", "text": "Ollama serves models over HTTP on port 11434 by default; set OLLAMA_HOST to change the bind address."},
+  {"id": "d2", "title": "Evidently license", "text": "Evidently is an open-source library released under the Apache-2.0 license."},
+  {"id": "d3", "title": "Llama 3.2 1B", "text": "Llama 3.2 1B is a small instruction-tuned model with a 128K-token context window, small enough for CPU inference."},
+  {"id": "d4", "title": "Evidently UI", "text": "Run `evidently ui --workspace ./workspace` to browse projects, dashboards, prompts and traces locally on port 8000."},
+  {"id": "d5", "title": "Prompt versions", "text": "Every change to a prompt should be stored as a new version together with the evaluation feedback it received."}
+]

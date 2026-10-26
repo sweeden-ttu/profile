@@ -1,0 +1,219 @@
+# Run the local-Llama agent examples LIVE on a GitHub runner (Ollama, CPU), log traces and an
+# Evidently report through toolkit-src/evidently-llama, commit the results into the site, and
+# deploy GitHub Pages from this same workflow.
+#
+# Why deploy here instead of relying on deploy.yml: a push made with GITHUB_TOKEN does NOT
+# trigger other workflows (no `push` event for deploy.yml), so the results would sit in the repo
+# until someone's next push. This workflow therefore (1) commits the results to `stable` so they
+# survive future deploys and (2) builds + deploys Pages itself with the same actions as deploy.yml,
+# sharing deploy.yml's concurrency group "pages" so the two never deploy over each other.
+#
+# Trigger:
+#   gh workflow run llama-agents.yml -f model=llama3.2:1b -f example=all
+#   curl -X POST -H "Authorization: Bearer <FINE_GRAINED_PAT>" \
+#        -H "Accept: application/vnd.github+json" \
+#        https://api.github.com/repos/sweeden-ttu/profile/dispatches \
+#        -d '{"event_type":"run-llama-agents","client_payload":{"model":"llama3.2:1b","example":"all"}}'
+
+name: Llama agents (live run + deploy)
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Ollama model tag (small models only: CPU runner)"
+        required: false
+        default: "llama3.2:1b"
+        type: string
+      example:
+        description: "Which example to run"
+        required: false
+        default: "all"
+        type: choice
+        options: [all, react_calculator, json_extraction, planner_executor, self_critique]
+      deploy:
+        description: "Commit results to stable and deploy Pages"
+        required: false
+        default: true
+        type: boolean
+  repository_dispatch:
+    types: [run-llama-agents]
+
+# Least privilege: read-only by default, escalated per job below.
+permissions:
+  contents: read
+
+# Same group as deploy.yml: runs queue behind / ahead of normal deploys instead of racing them.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  OLLAMA_VERSION: "0.40.11"   # pinned for reproducibility; bump deliberately
+  PYTHON_VERSION: "3.12"
+  DO_NOT_TRACK: "1"           # disable Evidently's anonymous usage telemetry
+
+jobs:
+  run-agents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write          # commit results back to stable
+    outputs:
+      deploy: ${{ steps.params.outputs.deploy }}
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Inputs come from workflow_dispatch OR repository_dispatch client_payload. They are passed
+      # through env (never interpolated into the script) and validated before use.
+      - name: Validate parameters
+        id: params
+        env:
+          IN_MODEL: ${{ github.event.inputs.model || github.event.client_payload.model || 'llama3.2:1b' }}
+          IN_EXAMPLE: ${{ github.event.inputs.example || github.event.client_payload.example || 'all' }}
+          IN_DEPLOY: ${{ github.event.inputs.deploy || github.event.client_payload.deploy || 'true' }}
+        run: |
+          set -euo pipefail
+          [[ "$IN_MODEL" =~ ^[A-Za-z0-9._:/-]{1,64}$ ]] || { echo "::error::invalid model '$IN_MODEL'"; exit 1; }
+          case "$IN_EXAMPLE" in all|react_calculator|json_extraction|planner_executor|self_critique) ;;
+            *) echo "::error::invalid example '$IN_EXAMPLE'"; exit 1 ;; esac
+          deploy=false
+          if [[ "$IN_DEPLOY" == "true" && "$GITHUB_REF" == "refs/heads/stable" ]]; then deploy=true; fi
+          {
+            echo "model=$IN_MODEL"
+            echo "example=$IN_EXAMPLE"
+            echo "deploy=$deploy"
+          } >> "$GITHUB_OUTPUT"
+          echo "model=$IN_MODEL example=$IN_EXAMPLE deploy=$deploy ref=$GITHUB_REF"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: toolkit-src/evidently-llama/requirements.txt
+
+      - name: Install Python requirements (pinned)
+        run: pip install -r toolkit-src/evidently-llama/requirements.txt
+
+      - name: Install Ollama
+        run: |
+          set -euo pipefail
+          command -v zstd >/dev/null || sudo apt-get install -y zstd   # install.sh needs zstd for .tar.zst
+          curl -fsSL https://ollama.com/install.sh | OLLAMA_VERSION="$OLLAMA_VERSION" sh
+          # install.sh starts a systemd service on the runner; fall back to a background server.
+          if ! curl -sf http://127.0.0.1:11434/api/version >/dev/null; then
+            nohup ollama serve > "$RUNNER_TEMP/ollama.log" 2>&1 &
+          fi
+          for _ in $(seq 1 60); do
+            curl -sf http://127.0.0.1:11434/api/version && break
+            sleep 1
+          done
+          ollama --version
+
+      - name: Pull model
+        env:
+          MODEL: ${{ steps.params.outputs.model }}
+        run: ollama pull "$MODEL"
+
+      - name: Unit tests (offline mock backend)
+        run: |
+          python -m unittest discover -s toolkit-src/llama-agents/tests
+          python -m unittest discover -s toolkit-src/evidently-llama/tests
+
+      - name: Run agents live + Evidently traces/report
+        env:
+          MODEL: ${{ steps.params.outputs.model }}
+          EXAMPLE: ${{ steps.params.outputs.example }}
+          OLLAMA_HOST: http://127.0.0.1:11434
+        run: |
+          python toolkit-src/llama-agents/run_all.py \
+            --backend ollama --model "$MODEL" --example "$EXAMPLE" --evidently --site .
+          python - <<'PY'
+          import json, os
+          d = json.load(open("_data/agent_runs.json"))["latest"]
+          lines = [f"### Llama agents: {d['passed']}/{d['total']} examples passed ({d['model']})", "",
+                   "| example | ok | llm calls | tools | latency ms |", "|---|---|---|---|---|"]
+          lines += [f"| {e['name']} | {'yes' if e['ok'] else 'no'} | {e['llm_calls']} | {e['tool_calls']} | {e['latency_ms']:.0f} |"
+                    for e in d["examples"]]
+          if "tests" in d:
+              lines += ["", f"Evidently tests: {d['tests']['passed']}/{d['tests']['total']} passed"]
+          open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(lines) + "\n")
+          PY
+
+      - name: Upload results artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-runs-${{ github.run_id }}
+          path: |
+            assets/toolkit/agent-runs/latest
+            _data/agent_runs.json
+          if-no-files-found: warn
+
+      - name: Commit results to stable
+        id: commit
+        if: steps.params.outputs.deploy == 'true'
+        env:
+          MODEL: ${{ steps.params.outputs.model }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/toolkit/agent-runs assets/toolkit/llama-agents assets/toolkit/evidently/lib _data/agent_runs.json
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "agent-runs: ${MODEL} run #${GITHUB_RUN_NUMBER}"
+            # deploy.yml may have pushed meanwhile; our files are disjoint, so rebase is safe.
+            git pull --rebase origin stable
+            git push origin HEAD:stable
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  # Same steps as deploy.yml's build job, pinned to the commit we just pushed.
+  build:
+    needs: run-agents
+    if: needs.run-agents.outputs.deploy == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.run-agents.outputs.sha }}
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
