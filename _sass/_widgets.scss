@@ -204,6 +204,22 @@
   background: var(--paper-raise); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: $r-1;
 }
 
+// Trustworthy AI in Practice (third homepage section)
+.trust-apps { padding-block: $s-7; border-bottom: 1px solid var(--rule); }
+.trust-card .pin-card__media { object-position: top; }
+.trust-card__checks {
+  position: relative; z-index: 1;   // above the stretched title link
+  font-family: $sans; font-size: $fs-tiny; color: var(--ink-2);
+  summary { cursor: pointer; font-weight: 600; color: var(--ink); padding: $s-1 0; min-height: 32px; display: flex; align-items: center; }
+  summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▸"; margin-right: $s-2; color: var(--accent); }
+  &[open] summary::before { content: "▾"; }
+  ul { margin: $s-1 0 0; padding-left: $s-4; }
+  li { margin: 0 0 $s-1; }
+}
+
 .pinned__more { text-align: center; font-family: $sans; font-size: $fs-small; margin: $s-6 0 0; }
 
 // ── Small-screen hygiene for long-form pages ──────────────────────────────

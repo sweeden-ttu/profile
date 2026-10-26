@@ -1,0 +1,5 @@
+samples/*.pdf
+out/
+__pycache__/
+*.aux
+*.log

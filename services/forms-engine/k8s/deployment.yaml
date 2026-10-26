@@ -1,0 +1,49 @@
+# forms-engine on OCI Container Engine for Kubernetes (OKE), Always Free tier:
+# Ampere A1 (arm64) nodes, one flexible load balancer at 10 Mbps.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forms-engine
+  namespace: forms-engine
+  labels: { app: forms-engine }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: forms-engine } }
+  template:
+    metadata:
+      labels: { app: forms-engine }
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+        seccompProfile: { type: RuntimeDefault }
+      containers:
+        - name: forms-engine
+          image: ghcr.io/sweeden-ttu/forms-engine:latest
+          imagePullPolicy: Always
+          ports: [{ containerPort: 8080, name: http }]
+          env:
+            - { name: JOB_TTL_MINUTES, value: "60" }
+            - { name: MAX_UPLOAD_MB, value: "25" }
+            - { name: OLLAMA_URL, value: "" }          # set to http://ollama:11434 if you deploy ollama.yaml
+            - name: ANTHROPIC_API_KEY                   # optional: enables the Claude review pass
+              valueFrom: { secretKeyRef: { name: forms-engine-secrets, key: anthropic-api-key, optional: true } }
+            - name: HUD_API_TOKEN                       # optional: HUD USER income limits
+              valueFrom: { secretKeyRef: { name: forms-engine-secrets, key: hud-api-token, optional: true } }
+            - { name: CLAUDE_MODEL, value: "claude-sonnet-5-5" }
+          resources:
+            requests: { cpu: "1", memory: 3Gi }
+            limits: { cpu: "2", memory: 8Gi }
+          readinessProbe: { httpGet: { path: /healthz, port: http }, initialDelaySeconds: 10, periodSeconds: 10 }
+          livenessProbe: { httpGet: { path: /healthz, port: http }, initialDelaySeconds: 30, periodSeconds: 30 }
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: { drop: [ALL] }
+          volumeMounts:
+            - { name: data, mountPath: /data }
+      volumes:
+        - name: data
+          emptyDir: { sizeLimit: 5Gi }   # jobs are deleted after JOB_TTL_MINUTES; nothing persists

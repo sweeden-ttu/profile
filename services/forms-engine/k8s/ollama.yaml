@@ -1,0 +1,26 @@
+# Optional: a small local multimodal model for naming fields on scanned forms.
+# Fits the Always Free A1 budget only with the engine on 1 OCPU; expect ~20-60 s per field crop on CPU.
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: ollama, namespace: forms-engine, labels: { app: ollama } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: ollama } }
+  template:
+    metadata: { labels: { app: ollama } }
+    spec:
+      nodeSelector: { kubernetes.io/arch: arm64 }
+      containers:
+        - name: ollama
+          image: ollama/ollama:0.40.11   # same pinned version as .github/workflows/llama-agents.yml
+          ports: [{ containerPort: 11434 }]
+          resources: { requests: { cpu: "1", memory: 6Gi }, limits: { cpu: "2", memory: 10Gi } }
+          lifecycle:
+            postStart: { exec: { command: ["/bin/sh", "-c", "sleep 5; ollama pull qwen2.5vl:3b"] } }
+          volumeMounts: [{ name: models, mountPath: /root/.ollama }]
+      volumes: [{ name: models, emptyDir: { sizeLimit: 12Gi } }]
+---
+apiVersion: v1
+kind: Service
+metadata: { name: ollama, namespace: forms-engine }
+spec: { selector: { app: ollama }, ports: [{ port: 11434, targetPort: 11434 }] }

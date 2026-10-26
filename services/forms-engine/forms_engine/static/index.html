@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forms Engine</title>
+<style>
+  :root { --ink:#0d1329; --ink2:#344054; --ink3:#6b7280; --paper:#f6f8fb; --raise:#fff; --rule:#d6deec; --accent:#2446b5; --ok:#10b981; --warn:#b45309; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#e8ecf5; --ink2:#c3cad8; --ink3:#9aa3b5; --paper:#0f1424; --raise:#161d33; --rule:#2a3350; --accent:#7f9cff; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.55 "IBM Plex Sans", system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; } h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+  p.lede { color: var(--ink2); margin: 0 0 16px; }
+  .card { background: var(--raise); border:1px solid var(--rule); border-radius:8px; padding:16px; margin: 12px 0; }
+  button, .btn { font: inherit; padding: 9px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; text-decoration: none; display:inline-block; }
+  button.secondary { background: transparent; color: var(--accent); }
+  button:disabled { opacity: .55; cursor: progress; }
+  label { display:block; font-weight:600; margin: 10px 0 4px; font-size: .9rem; }
+  textarea, input[type=text] { width:100%; font: inherit; padding: 8px; border:1px solid var(--rule); border-radius:6px; background: var(--paper); color: var(--ink); }
+  table { width:100%; border-collapse: collapse; font-size: .88rem; } th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--rule); vertical-align: top; }
+  .wrap { overflow-x:auto; } .muted { color: var(--ink3); font-size: .85rem; } .tag { font-family: ui-monospace, monospace; font-size: .8rem; }
+  .row { display:flex; gap: 12px; flex-wrap: wrap; align-items:center; }
+  .status { min-height: 1.4em; color: var(--ink2); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Forms Engine</h1>
+  <p class="lede">PDF → LaTeX → one fillable packet. Adobe-only XFA forms, ordinary fillable PDFs and scans become portable forms; every box that asks for the same thing becomes one field, so a first name typed once fills every form.</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">1. Convert</h2>
+    <div class="row">
+      <button id="demo">Run the USDA demo set (5 forms)</button>
+      <span class="muted">or</span>
+      <input type="file" id="files" accept="application/pdf" multiple>
+      <button class="secondary" id="upload">Convert my PDFs</button>
+    </div>
+    <p class="status" id="s1"></p>
+    <div class="wrap"><table id="forms" hidden><thead><tr><th>Form</th><th>Input</th><th>Pages</th><th>Fields</th><th>Linked</th><th>Notes</th></tr></thead><tbody></tbody></table></div>
+    <p id="dl1" class="row"></p>
+  </div>
+
+  <div class="card" id="step2" hidden>
+    <h2 style="margin-top:0">2. Fill from what the applicant provides</h2>
+    <p class="muted">Only what you enter here is used. Tax IDs, birth dates, signatures and demographic questions are never filled automatically. Nothing is stored after the job expires (60 minutes).</p>
+    <label for="resume">Résumé text</label><textarea id="resume" rows="6"></textarea>
+    <label for="plot">Plot description (farm location)</label><input type="text" id="plot" placeholder="e.g. 320 acres two miles north of Shallowater, Texas">
+    <label for="gh">GitHub handle (optional, public profile only)</label><input type="text" id="gh" placeholder="e.g. octocat">
+    <p class="row" style="margin-top:12px"><button class="secondary" id="sample">Use the fictional sample applicant</button><button class="secondary" id="preview">Preview values</button><button id="fill">Fill the packet</button></p>
+    <p class="status" id="s2"></p>
+    <div class="wrap"><table id="vals" hidden><thead><tr><th>Field</th><th>Value (editable)</th><th>Source</th><th>Confidence</th></tr></thead><tbody></tbody></table></div>
+    <pre id="ctx" class="muted" hidden></pre>
+    <p id="dl2"></p>
+  </div>
+</main>
+<script>
+const $ = (s) => document.querySelector(s);
+let job = null;
+const SAMPLE_RESUME = `Jordan Avery Rivera\n100 Example Farm Road\nShallowater, TX 79363\n(806) 555-0142 · jordan.rivera@example.com\n\nFictional applicant used to demonstrate the forms engine.`;
+const SAMPLE_PLOT = "About 320 acres of dryland cotton, two miles north of Shallowater, Texas, in Lubbock County, Texas.";
+async function convert(fd) {
+  $("#s1").textContent = "Converting… (pdflatex runs for every form; about a minute for the demo set)";
+  document.querySelectorAll("button").forEach(b => b.disabled = true);
+  try {
+    const r = await fetch("api/convert", { method: "POST", body: fd });
+    const j = await r.json(); if (!r.ok) throw new Error(j.detail || r.status);
+    job = j.job;
+    const tb = $("#forms tbody"); tb.innerHTML = "";
+    for (const f of j.forms) {
+      const tr = document.createElement("tr");
+      [f.form_id, f.kind, f.pages, f.fields, f.linked, (f.notes || []).join(" ")].forEach(v => { const td = document.createElement("td"); td.textContent = v; tr.appendChild(td); });
+      tb.appendChild(tr);
+    }
+    $("#forms").hidden = false;
+    $("#s1").textContent = `Done in ${j.timings.total} s: ${j.packet.widgets} widgets became ${j.packet.fields} fields; ${Object.keys(j.packet.linked).length} shared keys.`;
+    $("#dl1").innerHTML = `<a class="btn" href="api/jobs/${job}/packet.pdf">Blank packet (PDF)</a> <a class="btn" href="api/jobs/${job}/latex-sources.zip" style="background:transparent;color:var(--accent)">LaTeX sources (.zip)</a> <a href="api/jobs/${job}/manifest.json">manifest.json</a>`;
+    $("#step2").hidden = false;
+  } catch (e) { $("#s1").textContent = "Failed: " + e.message; }
+  document.querySelectorAll("button").forEach(b => b.disabled = false);
+}
+$("#demo").onclick = () => { const fd = new FormData(); fd.append("demo", "1"); convert(fd); };
+$("#upload").onclick = () => { const fd = new FormData(); for (const f of $("#files").files) fd.append("files", f); convert(fd); };
+$("#sample").onclick = () => { $("#resume").value = SAMPLE_RESUME; $("#plot").value = SAMPLE_PLOT; };
+function body(overrides) { return JSON.stringify({ resume_text: $("#resume").value, plot_description: $("#plot").value, github_handle: $("#gh").value, overrides }); }
+function overrides() { const o = {}; document.querySelectorAll("#vals input").forEach(i => o[i.dataset.k] = i.value); return o; }
+$("#preview").onclick = async () => {
+  $("#s2").textContent = "Looking up…";
+  const r = await fetch(`api/jobs/${job}/profile`, { method: "POST", headers: { "Content-Type": "application/json" }, body: body({}) });
+  const j = await r.json(); const tb = $("#vals tbody"); tb.innerHTML = "";
+  for (const [k, v] of Object.entries(j.values)) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td class="tag"></td><td><input type="text"></td><td class="muted"></td><td></td>`;
+    tr.children[0].textContent = k; const inp = tr.querySelector("input"); inp.value = v.value; inp.dataset.k = k;
+    tr.children[2].textContent = `${v.source} — ${v.evidence}`; tr.children[3].textContent = v.confidence.toFixed(2);
+    tb.appendChild(tr);
+  }
+  $("#vals").hidden = false;
+  $("#ctx").hidden = false; $("#ctx").textContent = JSON.stringify(j.context, null, 1) + (j.notes.length ? "\n" + j.notes.join("\n") : "");
+  $("#s2").textContent = "Review and edit, then fill.";
+};
+$("#fill").onclick = async () => {
+  $("#s2").textContent = "Filling…";
+  const r = await fetch(`api/jobs/${job}/fill`, { method: "POST", headers: { "Content-Type": "application/json" }, body: body(overrides()) });
+  const j = await r.json();
+  $("#s2").textContent = `Wrote ${Object.values(j.fill.written).reduce((a, b) => a + b, 0)} boxes from ${Object.keys(j.fill.written).length} values.`;
+  $("#dl2").innerHTML = `<a class="btn" href="${j.pdf.replace(/^\//, "")}">Filled packet (PDF)</a>`;
+};
+</script>
+</body>
+</html>

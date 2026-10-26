@@ -1,0 +1,85 @@
+{
+ "values": {
+  "first_name": {
+   "value": "Jordan",
+   "source": "resume",
+   "evidence": "first line: \u201cJordan Avery Rivera\u201d",
+   "confidence": 0.9
+  },
+  "middle_name": {
+   "value": "Avery",
+   "source": "resume",
+   "evidence": "first line: \u201cJordan Avery Rivera\u201d",
+   "confidence": 0.9
+  },
+  "last_name": {
+   "value": "Rivera",
+   "source": "resume",
+   "evidence": "first line: \u201cJordan Avery Rivera\u201d",
+   "confidence": 0.9
+  },
+  "email": {
+   "value": "jordan.rivera@example.com",
+   "source": "resume",
+   "evidence": "email address in r\u00e9sum\u00e9",
+   "confidence": 0.95
+  },
+  "phone_primary": {
+   "value": "(806) 555-0142",
+   "source": "resume",
+   "evidence": "phone number in r\u00e9sum\u00e9",
+   "confidence": 0.9
+  },
+  "city": {
+   "value": "Shallowater",
+   "source": "resume",
+   "evidence": "address line: \u201cShallowater, TX 79363\u201d",
+   "confidence": 0.9
+  },
+  "state": {
+   "value": "TX",
+   "source": "resume",
+   "evidence": "address line: \u201cShallowater, TX 79363\u201d",
+   "confidence": 0.9
+  },
+  "zip": {
+   "value": "79363",
+   "source": "resume",
+   "evidence": "address line: \u201cShallowater, TX 79363\u201d",
+   "confidence": 0.9
+  },
+  "street_address": {
+   "value": "100 Example Farm Road",
+   "source": "resume",
+   "evidence": "line above \u201cShallowater, TX 79363\u201d",
+   "confidence": 0.85
+  },
+  "county": {
+   "value": "Lubbock",
+   "source": "plot lookup (FCC Census Area API)",
+   "evidence": "\u201cAbout 320 acres of dryland cotton, two miles north of Shallowater, Texas, in Lub\u201d \u2192 Shallowater, Lubbock County, Texas, United States",
+   "confidence": 0.88
+  }
+ },
+ "context": {
+  "farm_location": {
+   "lat": 33.6911663,
+   "lon": -101.992717,
+   "county": "Lubbock",
+   "county_fips": "48303",
+   "state": "TX",
+   "hud": {
+    "fmr_area": "Lubbock, TX HUD Metro FMR Area",
+    "fmr_2br_usd": 1175,
+    "qualified_census_tract": false
+   },
+   "sources": [
+    "https://nominatim.openstreetmap.org/search?q=Shallowater%2C+TX&format=jsonv2&addressdetails=1&limit=1&countrycodes=us",
+    "https://geo.fcc.gov/api/census/area?lat=33.6911663&lon=-101.992717&format=json",
+    "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Fair_Market_Rents/FeatureServer/0/query?geometry=-101.992717%2C33.6911663&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&f=json",
+    "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/QUALIFIED_CENSUS_TRACTS/FeatureServer/0/query?geometry=-101.992717%2C33.6911663&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false&f=json"
+   ]
+  }
+ },
+ "notes": []
+}

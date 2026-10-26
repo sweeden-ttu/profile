@@ -1,0 +1,57 @@
+# Third homepage section: live applications where AI improves a field of practice under explicit checks.
+- name: Legal Luminary
+  badge: Law · Live
+  url: https://legalluminary.com
+  url_label: legalluminary.com
+  source: https://github.com/sweeden-ttu/legal-luminary
+  image: /assets/apps/legal-luminary.jpg
+  image_alt: "Legal Luminary home page: Central Texas Legal Resource, a guide to Bell County courts, elected officials and legal representation"
+  profession: Attorneys, residents and voters in Bell County, Texas
+  improves: >-
+    Research agents gather Bell County court, county and state information into one place. That
+    includes a court directory with contacts, judicial scorecards, candidate dossiers and a ballot
+    guide, so people stop piecing it together from dozens of government sites.
+  trust:
+    - Citations may point only to an allowlist of official government and court hosts.
+    - Each agent finding carries a confidence score that rises only as corroborating evidence accumulates.
+    - Candidate pages are published only after their status is set to verified.
+    - Every page carries a not-legal-advice notice, and advertising is labeled.
+
+- name: Evidently observability
+  badge: ML engineering · Live (sign-in)
+  url: https://evidently.cloudfronts.group
+  url_label: evidently.cloudfronts.group (sign-in required)
+  source: /toolkit/evidently/
+  source_label: Template
+  image: /assets/apps/evidently-report.jpg
+  image_alt: "Evidently report from the Toolkit template: row tests for output length, toxicity, refusal and judge score, all passed"
+  profession: ML engineers and data scientists evaluating LLM agents
+  improves: >-
+    A self-hosted Evidently AI server logs agent runs as datasets, versioned prompts and
+    OpenTelemetry traces, alongside an experiment ledger for Kaggle challenges. An agent's quality
+    is then measured run over run instead of judged by eye.
+  trust:
+    - Each answer is scored by rule-based checks and an LLM judge before a run counts as passing.
+    - Traces record every step an agent took, so a result can be audited afterwards.
+    - The template runs on a local Llama model, so evaluation data does not leave the machine.
+
+- name: Forms Engine
+  badge: Agriculture · Demo, deploying
+  url: /apps/forms-engine/
+  url_label: Demo and downloads
+  source: https://github.com/sweeden-ttu/profile/tree/stable/services/forms-engine
+  image: /assets/apps/forms-engine/fsa2001-p3-filled.jpg
+  image_alt: "FSA-2001 page 3 rebuilt and filled for a fictional applicant: name, address, phone, email and county filled; Social Security number, birth date, race and sex left blank"
+  profession: Farmers applying for USDA programs, and the Farm Service Agency staff who process them
+  improves: >-
+    Rebuilds Adobe-only USDA forms as LaTeX and portable fillable PDFs, then links every box that
+    asks for the same thing. A first name typed once fills every name box in the packet, and the
+    county is looked up from a plain-language description of the plot.
+  stats:
+    - 5 USDA forms, 25 pages
+    - 1,215 boxes → 1,194 fields
+    - 15 shared keys across 36 boxes
+  trust:
+    - Tax IDs, birth dates, signatures, bank details and demographic questions are never filled, and never linked across forms.
+    - Every filled value shows its source, its evidence and a confidence score, and the person edits before filling.
+    - Jobs are deleted after an hour; the only outside calls go to public Census, OpenStreetMap, FCC and HUD data services.

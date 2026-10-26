@@ -1,0 +1,16 @@
+# Public endpoint through OCI's Always Free flexible load balancer (10 Mbps).
+apiVersion: v1
+kind: Service
+metadata:
+  name: forms-engine
+  namespace: forms-engine
+  annotations:
+    oci.oraclecloud.com/load-balancer-type: "lb"
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
+spec:
+  type: LoadBalancer
+  selector: { app: forms-engine }
+  ports:
+    - { name: http, port: 80, targetPort: http }

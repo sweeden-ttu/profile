@@ -1,0 +1,35 @@
+{%- assign apps = site.data.trustworthy_apps -%}
+{%- if apps and apps.size > 0 %}
+<section class="trust-apps" aria-labelledby="trust-title">
+  <div class="container">
+    <div class="pinned__head">
+      <h2 id="trust-title" class="pinned__title">Trustworthy AI in Practice</h2>
+      <p class="pinned__lede">Three deployed applications, each improving the daily work of a specific profession, with the checks that make the AI trustworthy listed alongside.</p>
+    </div>
+    <div class="pinned__grid">
+      {%- for a in apps %}
+      <article class="pin-card trust-card">
+        <span class="pin-card__badge">{{ a.badge }}</span>
+        <img class="pin-card__media" src="{{ a.image | relative_url }}" alt="{{ a.image_alt }}" loading="lazy" width="640" height="360">
+        <h3 class="pin-card__title"><a href="{{ a.url | relative_url }}">{{ a.name }}</a></h3>
+        <dl class="pin-card__credit">
+          <dt>For</dt><dd>{{ a.profession }}</dd>
+        </dl>
+        <p class="pin-card__text">{{ a.improves }}</p>
+        {%- if a.stats %}
+        <ul class="pin-card__stats">{% for s in a.stats %}<li><strong>{{ s }}</strong></li>{% endfor %}</ul>
+        {%- endif %}
+        <details class="trust-card__checks">
+          <summary>How it stays trustworthy</summary>
+          <ul>{% for t in a.trust %}<li>{{ t }}</li>{% endfor %}</ul>
+        </details>
+        <div class="pin-card__links">
+          <a href="{{ a.url | relative_url }}">{{ a.url_label }} →</a>
+          {%- if a.source %}<a href="{{ a.source | relative_url }}">{{ a.source_label | default: 'Source' }}</a>{% endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}

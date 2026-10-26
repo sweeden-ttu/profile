@@ -1,0 +1,3 @@
+samples/*.pdf
+out/
+__pycache__/
